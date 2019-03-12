@@ -11,6 +11,14 @@
 
     <artifactId>sword-laboratory-geneator-tkmapper</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <!-- mvn mybatis-generator:generate -->
