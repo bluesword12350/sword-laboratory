@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.bluesword.web.laboratory.dao.LTestMapper">
+
+    <insert id="insertList">
+        begin
+            <foreach item="item" collection="list" index="index" open="" separator="" close="">
+                insert into L_TEST(TEST_ID, TEST_VALUE) values
+                ((SELECT LOWER(SYS_GUID()) FROM DUAL),#{item.testValue});
+            </foreach>
+        end;
+    </insert>
+
+    <select id="selectListByValues" resultType="top.bluesword.web.laboratory.entity.LTest">
+        select TEST_ID,TEST_VALUE
+        from L_TEST
+        <where>
+            <if test="list!=null and list.size>0">
+                TEST_VALUE in
+                <foreach item="item" collection="list" index="index" open="(" separator="," close=")">
+                    <if test="(index % 999) == 998"> '测试') OR TEST_VALUE in (</if>
+                    <if test="item!=null and item!=''">#{item}</if>
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

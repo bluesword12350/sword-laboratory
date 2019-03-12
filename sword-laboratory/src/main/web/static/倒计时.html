@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <style>
+        #time {
+            margin: 12% auto auto;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <p id="time"></p>
+    <script>
+        function timeLeft(select,endTime){//curTime默认为当下时间
+            var leftTime = new Date(endTime - Date.now());
+            if(leftTime <= 0){//如果时间差小于等于0
+                clearInterval(timer);//清除定时器
+                document.getElementById(select).innerHTML = 0+"天"+0+"时"+0+"分"+0+"秒"+0+"毫秒";
+            }else{
+                var days = Math.floor(leftTime/(1000*60*60*24));//天
+                var hours = leftTime.getUTCHours();
+                var mi = leftTime.getMinutes();//分
+                var se = leftTime.getSeconds();//秒
+                var ms = leftTime.getMilliseconds();//毫秒
+                document.getElementById(select).innerHTML = days+"天"+hours+"时"+mi+"分"+se+"秒"+ms+"毫秒";
+            }
+        }
+        var timer = setInterval(function(){
+            timeLeft("time",new Date("2018-09-21T18:00:00+08:00"));
+        },1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "web实验室",
+  "main": "es6.js",
+  "scripts": {},
+  "author": "李林峰",
+  "license": "MIT",
+  "dependencies": {
+    "dayjs": "^1.8.7",
+    "echarts": "^4.1.0"
+  }
+}
