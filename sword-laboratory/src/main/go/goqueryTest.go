@@ -2,8 +2,11 @@ package main
 
 import (
 	"github.com/PuerkitoBio/goquery"
+	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+	"strconv"
 	"strings"
 )
 
@@ -23,11 +26,20 @@ func main() {
 	}
 
 	img := doc.Find("img")
+
 	img.Each(func(i int, selection *goquery.Selection) {
 		val, exists := selection.Attr("data-src")
-		if exists && strings.HasPrefix(val, ".jpg") {
-
+		if exists && strings.HasSuffix(val, ".jpg") {
+			file, err := os.Create(strconv.Itoa(i) + ".jpg")
+			if err != nil {
+				log.Fatal(err)
+			}
+			response, err := http.Get("http:" + val)
+			if err != nil {
+				log.Fatal(err)
+			}
+			bytes, _ := ioutil.ReadAll(response.Body)
+			_, _ = file.Write(bytes)
 		}
 	})
-
 }
