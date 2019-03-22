@@ -10,6 +10,16 @@ import java.util.concurrent.CompletableFuture;
  * @author 李林峰
  */
 class CompletableFutureTest {
+
+    @Test
+    void completedFuture(){
+        Integer i = 0;
+        CompletableFuture.completedFuture(i).completeAsync(() -> {
+            System.out.println(i);
+            return i+1;
+        });
+    }
+
     @Test
     void runAsync(){
         CompletableFuture.runAsync(()-> {
