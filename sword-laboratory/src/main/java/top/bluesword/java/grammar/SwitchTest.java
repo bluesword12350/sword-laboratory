@@ -1,12 +1,18 @@
 package top.bluesword.java.grammar;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 /**
  * @author 李林峰
  */
-public class SwitchTest {
-	public static void main(String[] args) {
+class SwitchTest {
+
+	@Test
+	void main() {
 		Random random = new Random();
 		String key = random.nextBoolean() ? "0001":"0000";
 		switch (key) {
