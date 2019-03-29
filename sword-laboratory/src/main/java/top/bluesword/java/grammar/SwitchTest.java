@@ -2,8 +2,6 @@ package top.bluesword.java.grammar;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 /**
@@ -17,8 +15,6 @@ class SwitchTest {
 		String key = random.nextBoolean() ? "0001":"0000";
 		switch (key) {
 			case "0001":
-				System.out.println(key);
-				break;
 			case "0000":
 				System.out.println(key);
 				break;
