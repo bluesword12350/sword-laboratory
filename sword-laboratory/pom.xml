@@ -201,6 +201,11 @@
 			<artifactId>reactor-core</artifactId>
 			<version>3.2.6.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-web</artifactId>
+			<version>3.7.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
