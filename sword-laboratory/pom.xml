@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>11</java.version>
+		<java.version>12</java.version>
         <jupiter.version>5.2.0</jupiter.version>
 	</properties>
 	<licenses>
@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>top.bluesword</groupId>
 			<artifactId>sword</artifactId>
-			<version>3.0.9</version>
+			<version>3.0.10</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -202,10 +202,14 @@
 			<version>3.14.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.13.1</version>
-			<scope>compile</scope>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-core</artifactId>
+			<version>3.2.6.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-web</artifactId>
+			<version>3.7.0</version>
 		</dependency>
 	</dependencies>
 
@@ -214,7 +218,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
+				<version>3.8.0</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -224,7 +228,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.1.1</version>
+				<version>3.2.1</version>
 				<configuration>
 					<transformers>
 						<transformer
@@ -242,6 +246,6 @@
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>
+        </plugins>
 	</build>
 </project>
