@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>top.bluesword</groupId>
 			<artifactId>sword</artifactId>
-			<version>3.0.10</version>
+			<version>3.0.9</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -246,6 +246,6 @@
 					</execution>
 				</executions>
 			</plugin>
-        </plugins>
+		</plugins>
 	</build>
 </project>
