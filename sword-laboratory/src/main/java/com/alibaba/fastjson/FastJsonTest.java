@@ -67,7 +67,7 @@ class FastJsonTest {
 
 	static class BeanDemo {
 		public String string;
-		public InsideBeanDemo insideBeanDemo;
+		InsideBeanDemo insideBeanDemo;
 		
 		static class InsideBeanDemo {
 			public String string;
