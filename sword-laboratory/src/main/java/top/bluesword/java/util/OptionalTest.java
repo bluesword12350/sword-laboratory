@@ -8,6 +8,15 @@ import java.util.Optional;
 import java.util.Random;
 
 class OptionalTest {
+
+    @Test
+    void get(){
+        BeanDemo beanDemo = new Random().nextInt(2)==1?null:new BeanDemo();
+        Optional<BeanDemo> demo = Optional.ofNullable(beanDemo);
+        BeanDemo result = demo.orElse(null);
+        System.out.println(result);
+    }
+
     @Test
     void mainTest(){
         BeanDemo beanDemo,cache = new BeanDemo("初始bean");
@@ -25,7 +34,7 @@ class OptionalTest {
         beanDemo = demo.orElseGet(() -> new BeanDemo("orElseGetBean", BigDecimal.ONE));
         System.out.println(beanDemo.getString());
 
-        demo = Optional.ofNullable(beanDemo).filter(b -> "初始bean".equals(b.getString()));
+        demo = Optional.of(beanDemo).filter(b -> "初始bean".equals(b.getString()));
         System.out.println(demo.map(BeanDemo::getString).orElse("空值"));
     }
 }
