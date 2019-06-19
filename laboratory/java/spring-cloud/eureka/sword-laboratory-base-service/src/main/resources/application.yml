@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: sword-laboratory-eureka-base-service
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#  instance:
+#    preferIpAddress: true
+#    hostname: ${HOST_NAME}
