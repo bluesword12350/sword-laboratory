@@ -7,7 +7,7 @@ import java.util.TimeZone;
 /**
  * @author 李林峰
  */
-public class TimeZoneTest {
+class TimeZoneTest {
 
     @Test
     void test(){
