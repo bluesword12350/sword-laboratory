@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.bluesword.web.laboratory.dao.ArrayMapper">
-    <select id="selectArray" resultType="object">
-        SELECT array[1]
+    <select id="selectArrayToObject" resultType="top.bluesword.web.laboratory.model.ArrayTestModel">
+        SELECT array[1] string,array[2] integers,array[3] objects,array[4.0] "bigDecimals"
     </select>
 </mapper>

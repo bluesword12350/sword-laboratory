@@ -16,8 +16,9 @@ public class ArrayMapperTest {
 
     @Test
     public void selectArray() throws JsonProcessingException {
-        Object o = arrayMapper.selectArray();
+        Object o = arrayMapper.selectArrayToObject();
         System.out.println(o.getClass());
+        System.out.println(Integer[].class);
         System.out.println(new ObjectMapper().writeValueAsString(o));
     }
 }

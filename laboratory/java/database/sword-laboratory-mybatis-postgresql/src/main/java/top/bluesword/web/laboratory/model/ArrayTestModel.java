@@ -1,34 +1,14 @@
 package top.bluesword.web.laboratory.model;
 
+import java.math.BigDecimal;
+
 public class ArrayTestModel {
 
-    private String string;
+    public String string;
 
-    private Integer[] integers;
+    public Integer[] integers;
 
-    private Object[] objects;
+    public Object[] objects;
 
-    public String getString() {
-        return string;
-    }
-
-    public void setString(String string) {
-        this.string = string;
-    }
-
-    public Integer[] getIntegers() {
-        return integers;
-    }
-
-    public void setIntegers(Integer[] integers) {
-        this.integers = integers;
-    }
-
-    public Object[] getObjects() {
-        return objects;
-    }
-
-    public void setObjects(Object[] objects) {
-        this.objects = objects;
-    }
+    public BigDecimal[] bigDecimals;
 }
