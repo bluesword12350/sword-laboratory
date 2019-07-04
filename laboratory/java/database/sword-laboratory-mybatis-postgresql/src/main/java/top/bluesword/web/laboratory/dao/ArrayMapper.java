@@ -5,5 +5,5 @@ import top.bluesword.web.laboratory.model.ArrayTestModel;
 
 @Repository
 public interface ArrayMapper {
-    ArrayTestModel selectArrayToObject();
+    ArrayTestModel selectArray();
 }
