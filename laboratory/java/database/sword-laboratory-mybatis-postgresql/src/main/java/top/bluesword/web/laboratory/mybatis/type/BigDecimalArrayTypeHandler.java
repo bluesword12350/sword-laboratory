@@ -6,6 +6,9 @@ import org.apache.ibatis.type.JdbcType;
 import java.math.BigDecimal;
 import java.sql.*;
 
+/**
+ * @author 李林峰
+ */
 public class BigDecimalArrayTypeHandler extends BaseTypeHandler<BigDecimal[]> {
 
     @Override

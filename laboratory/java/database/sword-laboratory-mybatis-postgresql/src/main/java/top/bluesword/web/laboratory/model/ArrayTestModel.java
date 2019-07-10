@@ -6,6 +6,8 @@ public class ArrayTestModel {
 
     public String string;
 
+    public String[] strings;
+
     public Integer[] integers;
 
     public Object[] objects;

@@ -5,6 +5,9 @@ import org.apache.ibatis.type.JdbcType;
 
 import java.sql.*;
 
+/**
+ * @author 李林峰
+ */
 public class ObjectArrayTypeHandler extends BaseTypeHandler<Object[]> {
     @Override
     public void setNonNullParameter(PreparedStatement preparedStatement, int i, Object[] objects, JdbcType jdbcType)

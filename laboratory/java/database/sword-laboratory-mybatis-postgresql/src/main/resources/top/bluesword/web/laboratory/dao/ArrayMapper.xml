@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.bluesword.web.laboratory.dao.ArrayMapper">
     <select id="selectArray" resultType="top.bluesword.web.laboratory.model.ArrayTestModel">
-        SELECT array[1] string,array[2] integers,array[3] objects,array[4.0] "bigDecimals"
+        SELECT array[1] string,array[2] integers,array[3] objects,array[4.0] "bigDecimals",
+            array['1','2'] strings
     </select>
 </mapper>
