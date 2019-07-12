@@ -4,6 +4,7 @@ import okhttp3.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Objects;
 
 class OkHttpTest {
 
@@ -14,20 +15,20 @@ class OkHttpTest {
                 .url("https://www.baidu.com")
                 .build();
         Response response = client.newCall(request).execute();
-        System.out.println(response.body().string());
+        System.out.println(Objects.requireNonNull(response.body()).string());
     }
 
     @Test
-    String post() throws IOException {
+    void post() throws IOException {
         String url = "https://www.baidu.com";
         String json = "{}";
         OkHttpClient client = new OkHttpClient();
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
+        RequestBody body = RequestBody.create(json, MediaType.parse("application/json; charset=utf-8"));
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
                 .build();
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        System.out.println(Objects.requireNonNull(response.body()).string());
     }
 }
