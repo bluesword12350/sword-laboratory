@@ -7,10 +7,9 @@ import java.util.Arrays;
 class DigestUtilsTest {
 
 	@Test
-	void md5HexTest() {
-		String md5Hex = DigestUtils.md5Hex("1").substring(9, 25);
+	void md5Hex() {
+		String md5Hex = DigestUtils.md5Hex("SKa7Zj7E#P");
 		System.out.println(md5Hex);
-		System.out.println(md5Hex.length());
 	}
 
 	@Test
