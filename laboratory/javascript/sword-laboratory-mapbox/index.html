@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 
 <head>
     <meta charset='utf-8' />
@@ -29,46 +29,50 @@
             position: absolute;
             margin: 20px;
         }
-
-        #pause::after {
-            content: 'Pause';
-        }
-
-        #pause.pause::after {
-            content: 'Play';
-        }
     </style>
     <div id='map'></div>
     <script>
         import {mapboxToken} from 'config.js';
         mapboxgl.accessToken = mapboxToken;
-        var map = new mapboxgl.Map({
+        const map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [0, 0],
             zoom: 0.5
         });
-
-        var geojson = {
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [0, 0], [100, 50], [50, 100]
-                    ]
+        const longitudeAndLatitudeLine = [[50, 0],[179.99, 10],[-179.99, 10],[-50, 0]];
+        const eastLongitudeLine = [[50, 0],[179.99, 10]];
+        const westLongitudeLine = [[-179.99, 10],[-50, 0]];
+        for (let i in longitudeAndLatitudeLine) {
+            if (longitudeAndLatitudeLine[i][0]<0){
+                westLongitudeLine.push(longitudeAndLatitudeLine[i]);
+            } else {
+                eastLongitudeLine.push(longitudeAndLatitudeLine[i]);
+            }
+        }
+        const geoJson = {
+            type: "FeatureCollection",
+            features: [{
+                type: "Feature",
+                geometry: {
+                    type: "LineString",
+                    coordinates: eastLongitudeLine
+                }
+            },{
+                type: "Feature",
+                geometry: {
+                    type: "LineString",
+                    coordinates: westLongitudeLine
                 }
             }]
         };
-
         map.on('load', function () {
             map.addLayer({
                 'id': 'line-animation',
                 'type': 'line',
                 'source': {
                     'type': 'geojson',
-                    'data': geojson
+                    'data': geoJson
                 },
                 'layout': {
                     'line-cap': 'round',
