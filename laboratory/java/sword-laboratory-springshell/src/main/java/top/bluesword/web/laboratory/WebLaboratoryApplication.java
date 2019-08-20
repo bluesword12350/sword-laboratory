@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.shell.jline.PromptProvider;
 
+/**
+ * @author 李林峰
+ */
 @SpringBootApplication
 public class WebLaboratoryApplication {
 
