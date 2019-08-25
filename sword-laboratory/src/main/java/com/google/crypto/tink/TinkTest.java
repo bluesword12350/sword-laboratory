@@ -32,9 +32,16 @@ class TinkTest {
     private byte[] data = "1212424".getBytes();
     private byte[] contextInfo = data;
 
+    static {
+        try {
+            TinkConfig.register();
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
     void aes128Test() throws GeneralSecurityException {
-        TinkConfig.register();
         KeysetHandle keysetHandle = KeysetHandle.generateNew(
                 AeadKeyTemplates.AES128_GCM);
         Aead aead = AeadFactory.getPrimitive(keysetHandle);
@@ -47,7 +54,6 @@ class TinkTest {
 
     @Test
     void aes256Test() throws GeneralSecurityException {
-        TinkConfig.register();
         KeysetHandle keysetHandle = KeysetHandle.generateNew(
                 DeterministicAeadKeyTemplates.AES256_SIV);
         DeterministicAead dAead = DeterministicAeadFactory.getPrimitive(keysetHandle);
@@ -59,7 +65,6 @@ class TinkTest {
 
     @Test
     void macTest() throws GeneralSecurityException {
-        TinkConfig.register();
         KeysetHandle keysetHandle = KeysetHandle.generateNew(
                 MacKeyTemplates.HMAC_SHA256_128BITTAG);
         Mac mac = MacFactory.getPrimitive(keysetHandle);
@@ -81,7 +86,6 @@ class TinkTest {
 
     @Test
     void ecdsaSignTest() throws GeneralSecurityException, IOException {
-        TinkConfig.register();
         KeysetHandle privateKeysetHandle = KeysetHandle.generateNew(
                 SignatureKeyTemplates.ECDSA_P256);
         PublicKeySign signer = PublicKeySignFactory.getPrimitive(
@@ -99,7 +103,6 @@ class TinkTest {
 
     @Test
     void ecdsaVerifierTest() throws GeneralSecurityException, IOException {
-        TinkConfig.register();
         KeysetHandle publicKeysetHandle = KeysetHandle.fromKeyset(BinaryKeysetReader.withFile(new File("publicKey"))
                 .read());
         String sign = "";
@@ -116,7 +119,6 @@ class TinkTest {
 
     @Test
     void hybridEncryptTest() throws GeneralSecurityException, IOException {
-        TinkConfig.register();
         KeysetHandle privateKeysetHandle = KeysetHandle.generateNew(
                 HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM);
         KeysetHandle publicKeysetHandle =
@@ -135,7 +137,6 @@ class TinkTest {
 
     @Test
     void hybridDecryptTest() throws GeneralSecurityException, IOException {
-        TinkConfig.register();
         KeysetHandle privateKeysetHandle = KeysetHandle.fromKeyset(
                 JsonKeysetReader.withFile(new File("publicKey.json")).read());
         HybridDecrypt hybridDecrypt = HybridDecryptFactory.getPrimitive(
@@ -147,7 +148,6 @@ class TinkTest {
 
     @Test
     void streamingAeadTest () throws GeneralSecurityException, IOException {
-        TinkConfig.register();
         KeysetHandle keysetHandle = KeysetHandle.generateNew(
                 StreamingAeadKeyTemplates.AES128_CTR_HMAC_SHA256_4KB);
         StreamingAead streamingAead = StreamingAeadFactory.getPrimitive(keysetHandle);
