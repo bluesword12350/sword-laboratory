@@ -16,9 +16,8 @@ import io.swagger.annotations.ApiParam;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import top.bluesword.web.laboratory.bean.ExcelTemplate;
@@ -30,6 +29,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+/**
+ * @author 李林峰
+ */
 @Controller
 @Api(tags = "easyPoi测试接口")
 public class EasyPoiController {
@@ -38,8 +40,10 @@ public class EasyPoiController {
 	@ApiOperation("最简导入")
     @ResponseBody
 	public String importExcel(@ApiParam(required = true) MultipartFile file){
-		if (file.isEmpty()) return "文件为空";
-		if (file.getSize()/(1024.0*1024)>1) {
+		if (file.isEmpty()) {
+            return "文件为空";
+        }
+		if (file.getSize()/(1024*1024)>1) {
 			return "文件过大";
 		}
 		try (InputStream inputStream = file.getInputStream()) {
@@ -58,7 +62,7 @@ public class EasyPoiController {
 		}
 	}
 	
-	@GetMapping("/exportExcel")
+	@RequestMapping("/exportExcel")
 	@ApiOperation("最简导出")
     @ResponseBody
 	public void exportExcelByBean(ModelMap map,HttpServletRequest request,HttpServletResponse response){
@@ -71,17 +75,12 @@ public class EasyPoiController {
         PoiBaseView.render(map, request, response, NormalExcelConstants.EASYPOI_EXCEL_VIEW);
 	}
 	
-	@PostMapping("/exportExcelByTemplate")
+	@RequestMapping("/exportExcelByTemplate")
 	@ApiOperation("模板导出")
 	public void exportExcelByTemplate(HttpServletRequest request, HttpServletResponse response) {
         ModelMap modelMap = new ModelMap();
-        Map<String, Object> map = new HashMap<>();
         TemplateExportParams params = new TemplateExportParams("doc/test.xlsx");
-        List<ExcelTemplate> list = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            list.add(new ExcelTemplate(i, UUID.randomUUID().toString(),new ExcelTemplate(2,"内部模型"+i,null)));
-        }
-        map.put("list", list);
+        Map<String, Object> map = generateData();
         modelMap.put(TemplateExcelConstants.FILE_NAME, "用戶信息");
         modelMap.put(TemplateExcelConstants.PARAMS, params);
         modelMap.put(TemplateExcelConstants.MAP_DATA, map);
@@ -89,21 +88,27 @@ public class EasyPoiController {
             TemplateExcelConstants.EASYPOI_TEMPLATE_EXCEL_VIEW);
 	}
 
-	@PostMapping("/exportExcelByTemplate2")
+	@RequestMapping("/exportExcelByTemplate2")
 	@ApiOperation("模板导出2")
 	public void exportExcelByTemplate2(HttpServletResponse response) {
-        Map<String, Object> map = new HashMap<>();
-        TemplateExportParams params = new TemplateExportParams("doc/test.xlsx");
+        Map<String, Object> map = generateData();
         response.setHeader("content-disposition", "attachment;filename=" + "测试文件.xlsx");
-        List<ExcelTemplate> list = new ArrayList<>();
-        for (int i = 0; i < 100; i++)
-            list.add(new ExcelTemplate(i, UUID.randomUUID().toString(), new ExcelTemplate(2, "内部模型" + i, null)));
-        map.put("list", list);
+        TemplateExportParams params = new TemplateExportParams("doc/test.xlsx");
         Workbook workbook = ExcelExportUtil.exportExcel(params, map);
         try (ServletOutputStream outputStream = response.getOutputStream()){
             workbook.write(outputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Map<String, Object> generateData() {
+        Map<String, Object> map = new HashMap<>(1);
+        List<ExcelTemplate> list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            list.add(new ExcelTemplate(i, UUID.randomUUID().toString(), new ExcelTemplate(2, "内部模型" + i, null)));
+        }
+        map.put("list", list);
+        return map;
     }
 }
