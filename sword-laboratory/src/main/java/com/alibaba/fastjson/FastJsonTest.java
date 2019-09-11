@@ -1,9 +1,11 @@
 package com.alibaba.fastjson;
 
-import com.alibaba.fastjson.FastJsonTest.BeanDemo.InsideBeanDemo;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.junit.jupiter.api.Test;
+import top.bluesword.bean.BeanDemo;
+import top.bluesword.bean.InsideBeanDemo;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,8 +13,16 @@ class FastJsonTest {
 
 	@Test
 	void nullTest(){
-		if (new JSONObject().getBoolean("data")) System.out.println(1);
-		else System.out.println(2);
+		try {
+			String key = "key";
+			if (new JSONObject().getBoolean(key)) {
+				System.out.println(1);
+			} else {
+				System.out.println(2);
+			}
+		}catch (NullPointerException e){
+			System.out.println("空指针异常");
+		}
 	}
 
 	@Test
@@ -65,12 +75,11 @@ class FastJsonTest {
         System.out.println("bigDecimal是null:"+(parseObject.get("bigDecimal")==null));
 	}
 
-	static class BeanDemo {
-		public String string;
-		InsideBeanDemo insideBeanDemo;
-		
-		static class InsideBeanDemo {
-			public String string;
-		}
+	@Test
+	void date() {
+		BeanDemo beanDemo=new BeanDemo();
+		beanDemo.date = new Date();
+		System.out.println(JSON.toJSONString(beanDemo));
 	}
+
 }

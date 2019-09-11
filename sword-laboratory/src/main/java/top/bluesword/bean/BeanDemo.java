@@ -1,14 +1,22 @@
 package top.bluesword.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author 李林峰
  */
 public class BeanDemo {
-	private String string;
-	private BigDecimal bigDecimal;
-	private InsideBeanDemo insideBeanDemo;
+	public String string;
+
+	public BigDecimal bigDecimal;
+
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss.SSS ZZ")
+	public Date date;
+
+	public InsideBeanDemo insideBeanDemo;
 
 	public BeanDemo() {
 	}
@@ -20,24 +28,5 @@ public class BeanDemo {
 	public BeanDemo(String string, BigDecimal bigDecimal) {
 		this.string = string;
 		this.bigDecimal = bigDecimal;
-	}
-
-	public String getString() {
-		return string;
-	}
-	public void setString(String string) {
-		this.string = string;
-	}
-	public BigDecimal getBigDecimal() {
-		return bigDecimal;
-	}
-	public void setBigDecimal(BigDecimal bigDecimal) {
-		this.bigDecimal = bigDecimal;
-	}
-	public InsideBeanDemo getInsideBeanDemo() {
-		return insideBeanDemo;
-	}
-	public void setInsideBeanDemo(InsideBeanDemo insideBeanDemo) {
-		this.insideBeanDemo = insideBeanDemo;
 	}
 }
