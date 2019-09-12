@@ -48,11 +48,10 @@ public class EasyPoiController {
 		}
 		try (InputStream inputStream = file.getInputStream()) {
 			ImportParams params = new ImportParams();
-			params.setTitleRows(1);
+			params.setTitleRows(0);
 			params.setNeedVerfiy(true);
-			ExcelImportResult<ExcelTemplate> importExcel = 
-					ExcelImportUtil.importExcelMore(inputStream, ExcelTemplate.class, params);
-			if (importExcel.isVerfiyFail()) {
+            ExcelImportResult<ExcelTemplate> importExcel = ExcelImportUtil.importExcelMore(inputStream, ExcelTemplate.class, params);
+            if (importExcel.isVerfiyFail()) {
 				return JSON.toJSONString(importExcel.getFailList());
 			}else {
 				return JSON.toJSONString(importExcel.getList());
@@ -106,7 +105,7 @@ public class EasyPoiController {
         Map<String, Object> map = new HashMap<>(1);
         List<ExcelTemplate> list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
-            list.add(new ExcelTemplate(i, UUID.randomUUID().toString(), new ExcelTemplate(2, "内部模型" + i, null)));
+            list.add(new ExcelTemplate(i, UUID.randomUUID().toString()));
         }
         map.put("list", list);
         return map;
