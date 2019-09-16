@@ -26,15 +26,15 @@ class OptionalTest {
         Optional<BeanDemo> demo = Optional.ofNullable(beanDemo);
         demo.ifPresent(o -> System.out.println("beanDemo不为空"));
         beanDemo = demo.orElse(new BeanDemo("orElseBean", BigDecimal.ONE));
-        System.out.println(beanDemo.getString());
+        System.out.println(beanDemo.string);
 
         if (i==1) beanDemo = cache;
         else beanDemo = null;
         demo = Optional.ofNullable(beanDemo);
         beanDemo = demo.orElseGet(() -> new BeanDemo("orElseGetBean", BigDecimal.ONE));
-        System.out.println(beanDemo.getString());
+        System.out.println(beanDemo.string);
 
-        demo = Optional.of(beanDemo).filter(b -> "初始bean".equals(b.getString()));
-        System.out.println(demo.map(BeanDemo::getString).orElse("空值"));
+        demo = Optional.of(beanDemo).filter(b -> "初始bean".equals(b.string));
+        System.out.println(demo.map(b -> b.string).orElse("空值"));
     }
 }

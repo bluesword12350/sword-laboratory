@@ -14,7 +14,7 @@ class JacksonTest {
     @Test
     void toJsonString() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(2);
         map.put("string", "123");
         map.put("bigDecimal", new BigDecimal(124));
         String jsonString = mapper.writeValueAsString(map);
@@ -27,7 +27,7 @@ class JacksonTest {
 
         BeanDemo fromJsonBean = mapper.readValue(jsonString, BeanDemo.class);
         System.out.println("fromJsonBean:"+mapper.writeValueAsString(fromJsonBean));
-        System.out.println("fromJsonBean中string:"+fromJsonBean.getString());
-        System.out.println("fromJsonBean中bigDecimal是null:"+(fromJsonBean.getBigDecimal()==null));
+        System.out.println("fromJsonBean中string:"+fromJsonBean.string);
+        System.out.println("fromJsonBean中bigDecimal是null:"+(fromJsonBean.bigDecimal==null));
     }
 }
