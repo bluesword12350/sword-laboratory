@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 /**
  * @author 李林峰
  */
-class LambdaTest {
+class ConsumerTest {
 
     @Test
     void main(String[] args) {
