@@ -1,6 +1,9 @@
 package top.bluesword.web.laboratory.destroy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import top.bluesword.web.laboratory.delay.DelayTaskEngine;
 
 import javax.annotation.PreDestroy;
 
@@ -9,6 +12,8 @@ import javax.annotation.PreDestroy;
  */
 @Component
 public class TestAnnotationPreDestroy {
+
+    private static final Logger log = LoggerFactory.getLogger(TestAnnotationPreDestroy.class);
 
     @PreDestroy
     public void destroy() {
