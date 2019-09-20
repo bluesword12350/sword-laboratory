@@ -29,4 +29,10 @@ class LongTest {
 		System.out.println(time);
 		System.out.println(time.length());
 	}
+
+	@Test
+	void toBinaryString2(){
+		String binaryString = Long.toBinaryString(~(-1L << 63));
+		System.out.println(binaryString);
+	}
 }
