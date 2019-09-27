@@ -66,7 +66,6 @@ public class EasyPoiController {
     @ResponseBody
 	public void exportExcelByBean(ModelMap map,HttpServletRequest request,HttpServletResponse response){
 		ExportParams params = new ExportParams("测试导出表格","表格1");
-        params.setFreezeCol(2);
         map.put(NormalExcelConstants.DATA_LIST, new ArrayList<ExcelTemplate>());
         map.put(NormalExcelConstants.CLASS, ExcelTemplate.class);
         map.put(NormalExcelConstants.PARAMS, params);
