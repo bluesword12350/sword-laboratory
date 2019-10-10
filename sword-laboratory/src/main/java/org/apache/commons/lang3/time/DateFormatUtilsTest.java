@@ -10,8 +10,8 @@ class DateFormatUtilsTest {
 	@Test
 	void formatTest(){
         Date date = new Date();
-		System.out.println(DateFormatUtils.format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS ZZ"));
-        System.out.println(DateFormatUtils.format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS ZZ",TimeZone.getTimeZone("UCT")));
+		System.out.println(DateFormatUtils.format(date, "yyyy-MM-dd HH:mm:ss.SSS ZZ"));
+        System.out.println(DateFormatUtils.format(date, "yyyy-MM-dd HH:mm:ss.SSS ZZ",TimeZone.getTimeZone("UCT")));
 		System.out.println(DateFormatUtils.format(date, "('UTC' X) yyyy/MM/dd HH:mm"));
 	}
 }
