@@ -18,3 +18,4 @@ bin
 .h2
 application-dev.properties
 venv
+~*.xlsx

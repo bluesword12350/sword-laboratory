@@ -2,6 +2,8 @@ package top.bluesword.web.laboratory.bean;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 
+import java.util.Date;
+
 /**
  * @author 李林峰
  */
@@ -16,12 +18,15 @@ public class ExcelTemplate {
 	@Excel(name = "主键",fixedIndex = 2)
 	private String id2;
 
-	public ExcelTemplate() {
-	}
+	private Date date;
 
-	public ExcelTemplate(Integer id, String name) {
+	private String style;
+
+	ExcelTemplate(Integer id, String name, String style) {
 		this.id = id;
 		this.name = name;
+		this.style = style;
+		this.date = new Date();
 	}
 
 	public Integer getId() {
@@ -46,5 +51,21 @@ public class ExcelTemplate {
 
 	public void setId2(String id2) {
 		this.id2 = id2;
+	}
+
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }
