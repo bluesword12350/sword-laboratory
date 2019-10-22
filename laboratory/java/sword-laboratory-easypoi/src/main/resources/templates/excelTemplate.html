@@ -4,10 +4,19 @@
         <th>level</th>
         <th>createDate</th>
     </tr>
-    <tr th:each="user : ${users}" th:with="datePattern = 'yyyy-MM-dd HH:mm:ss Z'">
+    <tr th:each="user : ${users}" th:with="
+        datePattern = 'yyyy-MM-dd HH:mm:ss Z',
+        super = 'color: yellow;',
+        admin = 'color: red;'">
         <td th:text="${user.name}"></td>
-        <td th:if="${user.level!=null && user.level.endsWith('admin')}" th:text="${user.level+'（管理员）'}"></td>
-        <td th:if="${user.level==null || !user.level.endsWith('admin')}" th:text="${user.level}"></td>
+        <td th:style="${(user.level==null || !user.level.equals('admin')) ? admin : super}" th:if="${user.level!=null && user.level.endsWith('admin')}" th:text="${user.level+'（管理员）'}"></td>
+        <td th:style="${(user.level==null || !user.level.equals('admin')) ? admin : super}" th:if="${user.level==null || !user.level.endsWith('admin')}" th:text="${user.level}"></td>
         <td th:text="${user.createDate == null ? '' : T(org.apache.commons.lang3.time.DateFormatUtils).format(user.createDate,datePattern)}"></td>
     </tr>
 </table>
+
+<style>
+    div {
+        color: yellow;
+    }
+</style>
