@@ -3,7 +3,6 @@ package top.bluesword.web.laboratory;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.xssf.streaming.SXSSFCell;
 import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
@@ -24,21 +23,24 @@ public class ExportExcelService {
 
     @GetMapping
     public void get(HttpServletResponse response){
-
         response.setHeader("content-disposition", "attachment;filename=test.xlsx");
         try (SXSSFWorkbook table = new SXSSFWorkbook();
              ServletOutputStream outputStream = response.getOutputStream()) {
-
-            SXSSFSheet sheet = table.createSheet("POI导出测试");
-
-            SXSSFRow row1 = sheet.createRow(0);
-            SXSSFCell row1cell1 = row1.createCell(0);
-            row1cell1.setCellValue("蓝色前景");
-            CellStyle baseTitleStyle = table.createCellStyle();
-            baseTitleStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-            baseTitleStyle.setFillForegroundColor(IndexedColors.BLUE.index);
-            row1cell1.setCellStyle(baseTitleStyle);
-
+            SXSSFSheet sheet = table.createSheet("颜色卡");
+            IndexedColors[] values = IndexedColors.values();
+            int rowIndex = 0;
+            for (int i = 0,j = 0,rowNumber = 6; j < rowNumber; j++) {
+                SXSSFRow name = sheet.createRow(rowIndex++);
+                SXSSFRow color = sheet.createRow(rowIndex++);
+                for (int index = 0;i < (values.length/rowNumber*(j+1)); index++,i++){
+                    IndexedColors value = values[i];
+                    name.createCell(index).setCellValue(value.name());
+                    CellStyle colorStyle = table.createCellStyle();
+                    colorStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                    colorStyle.setFillForegroundColor(value.index);
+                    color.createCell(index).setCellStyle(colorStyle);
+                }
+            }
             table.write(outputStream);
         } catch (IOException e) {
             e.printStackTrace();
