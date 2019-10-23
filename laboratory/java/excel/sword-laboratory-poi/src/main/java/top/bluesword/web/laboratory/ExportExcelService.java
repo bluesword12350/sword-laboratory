@@ -27,6 +27,8 @@ public class ExportExcelService {
         try (SXSSFWorkbook table = new SXSSFWorkbook();
              ServletOutputStream outputStream = response.getOutputStream()) {
             SXSSFSheet sheet = table.createSheet("颜色卡");
+            sheet.setDefaultColumnWidth(20);
+            sheet.setDefaultRowHeightInPoints(15);
             IndexedColors[] values = IndexedColors.values();
             int rowIndex = 0;
             for (int i = 0,j = 0,rowNumber = 6; j < rowNumber; j++) {
