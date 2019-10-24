@@ -2,7 +2,9 @@ package top.bluesword.web.laboratory;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.xssf.streaming.SXSSFCell;
 import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
@@ -36,11 +38,17 @@ public class ExportExcelService {
                 SXSSFRow color = sheet.createRow(rowIndex++);
                 for (int index = 0;i < (values.length/rowNumber*(j+1)); index++,i++){
                     IndexedColors value = values[i];
-                    name.createCell(index).setCellValue(value.name());
+                    SXSSFCell nameCell = name.createCell(index);
+                    nameCell.setCellValue(value.name());
                     CellStyle colorStyle = table.createCellStyle();
-                    colorStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-                    colorStyle.setFillForegroundColor(value.index);
-                    color.createCell(index).setCellStyle(colorStyle);
+                    Font font = table.createFont();
+                    font.setColor(value.index);
+                    colorStyle.setFont(font);
+                    nameCell.setCellStyle(colorStyle);
+                    CellStyle fillForegroundColorStyle = table.createCellStyle();
+                    fillForegroundColorStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                    fillForegroundColorStyle.setFillForegroundColor(value.index);
+                    color.createCell(index).setCellStyle(fillForegroundColorStyle);
                 }
             }
             table.write(outputStream);
