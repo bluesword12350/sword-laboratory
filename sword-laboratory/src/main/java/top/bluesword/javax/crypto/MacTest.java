@@ -1,4 +1,4 @@
-package top.bluesword.javax.crypto.Mac;
+package top.bluesword.javax.crypto;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +13,8 @@ class MacTest {
     void macTest() throws NoSuchAlgorithmException, InvalidKeyException {
         Mac mac = Mac.getInstance("HmacSHA256");
         byte[] secret = "secret".getBytes();
-        SecretKeySpec secret_key = new SecretKeySpec(secret, "RAW");
-        mac.init(secret_key);
+        SecretKeySpec secretKey = new SecretKeySpec(secret, "RAW");
+        mac.init(secretKey);
         byte[] data = "data".getBytes();
         byte[] bytes1 = mac.doFinal(data);
         System.out.print("[");
