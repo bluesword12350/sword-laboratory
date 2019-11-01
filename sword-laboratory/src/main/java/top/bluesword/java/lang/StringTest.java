@@ -9,19 +9,6 @@ import java.util.Arrays;
 class StringTest {
 
     @Test
-    void eq(){
-        String s1 = "你好";
-        String s2 = "你好";
-        String s3 = "你"+"好";
-        System.out.println(s1==s2);
-        System.out.println(s1==s3);
-
-        String s4 = "你好 李林峰";
-        String s5 = new String("你好 李林峰");
-        System.out.println(s4==s5);
-    }
-
-    @Test
     void charsetTest(){
         byte[] bytes = "你好".getBytes();
 
