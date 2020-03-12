@@ -1,0 +1,12 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: sword-laboratory-consul-application-service
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        healthCheckInterval: 15s

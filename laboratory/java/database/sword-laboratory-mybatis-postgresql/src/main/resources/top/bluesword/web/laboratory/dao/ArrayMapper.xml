@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.bluesword.web.laboratory.dao.ArrayMapper">
+    <select id="selectArray" resultType="top.bluesword.web.laboratory.model.ArrayTestModel">
+        SELECT * FROM (VALUES (array[1],array[2],array[3],array[4.0],
+                               array['1','2'],array[[1.0],[2.0]]),
+                              (array[1],array[2],array[3],ARRAY[]::numeric[],
+                               array['1','2'],ARRAY[]::numeric[][]))
+                AS t (string,integers,objects,"bigDecimals",strings,"bigDecimalDyadicArray")
+    </select>
+</mapper>

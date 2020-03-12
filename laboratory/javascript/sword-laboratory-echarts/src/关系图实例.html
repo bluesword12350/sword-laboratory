@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>关系图实例</title>
+    <script src="../node_modules/echarts/dist/echarts.min.js"></script>
+</head>
+<body style="height: 100%">
+    <div id="graph-help" style="height: 100%"></div>
+    <script>
+        echarts.init(document.getElementById('graph-help')).setOption({
+            title: { text: 'Graph 简单示例' },
+            legend: {},
+            series: [{
+                type: 'graph',
+                //legendHoverLink:true,
+                layout: 'force',
+                force: { repulsion: 500, edgeLength: 100 },
+                symbolSize: 50,
+                //roam: true,
+                label: { normal: { show: true } },
+                //edgeSymbolSize: [4, 10],
+                edgeLabel: { normal: { show: true, formatter: "{c}" } },
+                data: [
+                    { id: "2",name: '毛发'},{ id: "1",name: '毛发'},
+                    { name: '刀'},{ name: '指纹'},{ name: '张三'},
+                    { name: '李四'},{ name: '张三2'},{ name: '无名尸'},
+                    { name: '赖子'},{ name: '王五'},{ name: '刘大'} ],
+                links: [
+                    { source: '1', target: '刀', value: '案件ID' },
+                    { source: '2', target: '指纹', value: 'DNA' },
+                    { source: '1', target: '张三', value: 'DNA' },
+                    { source: '2', target: '李四', value: '案件ID' },
+                    { source: '刀', target: '张三2', value: '案件ID' },
+                    { source: '刀', target: '无名尸', value: '案件ID' },
+                    { source: '李四', target: '赖子', value: '案件ID' },
+                    { source: '李四', target: '王五', value: '身份证ID' },
+                    { source: '王五', target: '刘大', value: 'DNA' }]
+            }]
+        });
+    </script>
+</body>
+</html>

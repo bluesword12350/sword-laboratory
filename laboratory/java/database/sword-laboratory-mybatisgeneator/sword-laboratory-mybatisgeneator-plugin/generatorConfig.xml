@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- mvn mybatis-generator:generate -->
+<generatorConfiguration>
+	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+		<property name="beginningDelimiter" value="`"/>
+		<property name="endingDelimiter" value="`"/>
+		<property name="javaFileEncoding" value="UTF-8"/>
+
+		<commentGenerator type="top.bluesword.phkj.RemarksCommentGenerator"/>
+		
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+		                connectionURL=""
+		                userId=""
+		                password="">
+		</jdbcConnection>
+
+		<javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}"/>
+
+		<sqlMapGenerator targetPackage="${targetXMLPackage}"  targetProject="${targetResourcesProject}"/>
+
+		<javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
+		
+		<table tableName="t_phone_validate" >
+		</table>
+	</context>
+</generatorConfiguration>

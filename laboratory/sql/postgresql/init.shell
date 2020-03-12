@@ -1,0 +1,3 @@
+initdb -D "%{数据库目录}" -E utf-8
+pg_ctl start -D "%{数据库目录}"
+psql postgres

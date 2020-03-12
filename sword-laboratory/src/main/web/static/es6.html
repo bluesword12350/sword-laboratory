@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>es6</title>
+</head>
+    <div id="num"></div>
+    <div id="foo"></div>
+<body>
+    <script type="module">
+        import {foo, num} from './es6.js';
+        document.getElementById("num").innerText=num;
+        document.getElementById("foo").innerText=foo();
+    </script>
+</body>
+</html>

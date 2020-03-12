@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset='utf-8' />
+    <title>Animate a line</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <style>
+        button {
+            position: absolute;
+            margin: 20px;
+        }
+    </style>
+    <div id='map'></div>
+    <script>
+        import {mapboxToken} from 'config.js';
+        mapboxgl.accessToken = mapboxToken;
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [0, 0],
+            zoom: 0.5
+        });
+        const longitudeAndLatitudeLine = [[50, 0],[179.99, 10],[-179.99, 10],[-50, 0]];
+        const eastLongitudeLine = [[50, 0],[179.99, 10]];
+        const westLongitudeLine = [[-179.99, 10],[-50, 0]];
+        for (let i in longitudeAndLatitudeLine) {
+            if (longitudeAndLatitudeLine[i][0]<0){
+                westLongitudeLine.push(longitudeAndLatitudeLine[i]);
+            } else {
+                eastLongitudeLine.push(longitudeAndLatitudeLine[i]);
+            }
+        }
+        const geoJson = {
+            type: "FeatureCollection",
+            features: [{
+                type: "Feature",
+                geometry: {
+                    type: "LineString",
+                    coordinates: eastLongitudeLine
+                }
+            },{
+                type: "Feature",
+                geometry: {
+                    type: "LineString",
+                    coordinates: westLongitudeLine
+                }
+            }]
+        };
+        map.on('load', function () {
+            map.addLayer({
+                'id': 'line-animation',
+                'type': 'line',
+                'source': {
+                    'type': 'geojson',
+                    'data': geoJson
+                },
+                'layout': {
+                    'line-cap': 'round',
+                    'line-join': 'round'
+                },
+                'paint': {
+                    'line-color': '#ed6498',
+                    'line-width': 5,
+                    'line-opacity': .8
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

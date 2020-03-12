@@ -1,0 +1,2 @@
+-Dsentry.dsn=https://public:private@host:port/1
+-Dsentry.environment=dev
