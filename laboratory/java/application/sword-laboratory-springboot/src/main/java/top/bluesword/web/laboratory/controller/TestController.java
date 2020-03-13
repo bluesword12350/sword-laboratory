@@ -1,5 +1,7 @@
 package top.bluesword.web.laboratory.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,9 @@ import java.util.Enumeration;
  */
 @Controller
 public class TestController {
+
+    private static final Logger log = LoggerFactory.getLogger(TestController.class);
+
     @GetMapping(value={"/","home"})
     public void home(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect(request.getContextPath() + "/static.html");
@@ -27,9 +32,9 @@ public class TestController {
         Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()){
             String element = headerNames.nextElement();
-            System.out.println(element+":"+request.getHeader(element));
+            log.info("{} : {}",element,request.getHeader(element));
         }
-        System.out.println(body);
+        log.info(body);
         return body;
     }
 }

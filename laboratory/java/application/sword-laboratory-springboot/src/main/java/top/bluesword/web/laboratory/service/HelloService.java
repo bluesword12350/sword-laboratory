@@ -1,5 +1,7 @@
 package top.bluesword.web.laboratory.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,8 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloService {
 
+    private static final Logger log = LoggerFactory.getLogger(HelloService.class);
+
     public void startUp(){
-        System.out.println("成功启动");
+        log.info("成功启动");
     }
 
 }

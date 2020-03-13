@@ -1,5 +1,7 @@
 package top.bluesword.web.laboratory.component;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.stereotype.Component;
 
@@ -10,17 +12,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestSmartLifecycle implements SmartLifecycle {
 
+    private static final Logger log = LoggerFactory.getLogger(TestSmartLifecycle.class);
+
     private boolean isRunning = false;
 
     @Override
     public void start() {
-        System.out.println("start");
+        log.info("start");
         isRunning = true;
     }
 
     @Override
     public void stop() {
-        System.out.println("stop");
+        log.info("stop");
         isRunning = false;
     }
 
