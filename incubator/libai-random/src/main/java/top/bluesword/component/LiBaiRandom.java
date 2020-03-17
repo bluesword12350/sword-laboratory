@@ -97,6 +97,7 @@ public class LiBaiRandom {
                 .enjoy(ENJOY.getSize())
                 .storehouse(STOREHOUSE.getSize())
                 .shelve(SHELVE.getSize())
+                .all(ENJOY.getSize()+STOREHOUSE.getSize()+SHELVE.getSize())
                 .build();
     }
 

@@ -17,6 +17,8 @@ public class LiBaiStatistic {
 
     Integer shelve;
 
+    Integer all;
+
     @Override
     public String toString() {
         return JSON.toJSONString(this);
