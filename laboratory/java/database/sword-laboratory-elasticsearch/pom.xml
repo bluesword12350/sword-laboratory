@@ -21,6 +21,7 @@
 	</developers>
 	<properties>
 		<springfox.version>2.9.2</springfox.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

@@ -15,5 +15,5 @@ public interface UserRepository extends ElasticsearchRepository<User,String> {
      * @param name 名称
      * @return 返回值
      */
-    Iterable<User> findByName(String name);
+    Iterable<User> findByNameContaining(String name);
 }

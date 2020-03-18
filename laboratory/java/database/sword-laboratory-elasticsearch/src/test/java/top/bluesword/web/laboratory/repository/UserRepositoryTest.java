@@ -35,7 +35,7 @@ class UserRepositoryTest {
 
     @Test
     void findByName(){
-        Iterable<User> users = userRepository.findByName("sword2");
+        Iterable<User> users = userRepository.findByNameContaining("sw");
         System.out.println(users);
     }
 }
