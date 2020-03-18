@@ -1,8 +1,12 @@
 package top.bluesword.web.laboratory.repository;
 
+import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import top.bluesword.web.laboratory.model.User;
 
 import java.time.Instant;
@@ -37,5 +41,15 @@ class UserRepositoryTest {
     void findByName(){
         Iterable<User> users = userRepository.findByNameContaining("sw");
         System.out.println(users);
+    }
+
+    @Test
+    void search(){
+        NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.wildcardQuery("name", "sw*"))
+                .withFields("name")
+                .build();
+        Page<User> search = userRepository.search(searchQuery);
+        System.out.println(search.getContent());
     }
 }
