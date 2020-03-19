@@ -14,7 +14,7 @@ public class ScheduledService {
 
     private static final Logger log = LoggerFactory.getLogger(TestAnnotationPreDestroy.class);
 
-    @Scheduled(cron = "0/10 * * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void scheduled(){
         log.info("定时任务执行");
     }

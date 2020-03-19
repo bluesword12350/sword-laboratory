@@ -2,11 +2,13 @@ package top.bluesword.web.laboratory.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.bluesword.web.laboratory.async.AsyncTask;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,9 @@ import java.util.Enumeration;
  */
 @Controller
 public class TestController {
+
+    @Autowired
+    AsyncTask asyncTask;
 
     private static final Logger log = LoggerFactory.getLogger(TestController.class);
 
@@ -36,5 +41,13 @@ public class TestController {
         }
         log.info(body);
         return body;
+    }
+
+    @ResponseBody
+    @GetMapping("async-task-start")
+    public Object asyncTaskStart() throws InterruptedException {
+        asyncTask.doTaskOne();
+        log.info("异步任务开启，同步返回");
+        return "开启完成";
     }
 }
