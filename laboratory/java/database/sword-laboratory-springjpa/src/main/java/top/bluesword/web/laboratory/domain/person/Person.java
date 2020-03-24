@@ -15,7 +15,7 @@ public class Person {
     @Id
     private Long id;
 
-    private FullName name;
+    private FullName fullName;
 
     private String identityCode;
 
