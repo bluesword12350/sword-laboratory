@@ -2,9 +2,9 @@ package top.bluesword.web.laboratory.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import top.bluesword.web.laboratory.domain.person.PersonSummary;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.Instant;
 
 /**
@@ -13,7 +13,7 @@ import java.time.Instant;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
-public class DataModel extends BaseData{
+public class DataModel extends BaseData {
 
     @Id
     private Long id;
@@ -25,5 +25,12 @@ public class DataModel extends BaseData{
     private String type;
 
     private Instant date;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "name",column = @Column(name = "ownerName")),
+            @AttributeOverride(name = "identityCode",column = @Column(name = "ownerIdentityCode"))
+    })
+    private PersonSummary owner;
 
 }
