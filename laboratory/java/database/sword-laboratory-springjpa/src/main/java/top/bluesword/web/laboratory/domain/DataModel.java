@@ -30,11 +30,11 @@ public class DataModel extends BaseData {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "name",column = @Column(name = "ownerName")),
-            @AttributeOverride(name = "identityCode",column = @Column(name = "ownerIdentityCode"))
+            @AttributeOverride(name = PersonSummary_.NAME,column = @Column(name = "ownerName")),
+            @AttributeOverride(name = PersonSummary_.IDENTITY_CODE,column = @Column(name = "ownerIdentityCode"))
     })
     private PersonSummary owner;
 
-    @OneToMany(mappedBy="dataModel")
+    @OneToMany(mappedBy=EditLog_.DATA_MODEL)
     private List<EditLog> editLogs;
 }
