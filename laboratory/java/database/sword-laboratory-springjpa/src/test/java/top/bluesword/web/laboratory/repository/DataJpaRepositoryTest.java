@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.Specification;
 import top.bluesword.web.laboratory.domain.DataModel;
 import top.bluesword.web.laboratory.domain.DataModel_;
+import top.bluesword.web.laboratory.domain.TypeEnum;
 
 import java.time.Instant;
 import java.util.List;
@@ -29,7 +30,7 @@ class DataJpaRepositoryTest {
         dataModel.setId(3L);
         dataModel.setKey("key%");
         dataModel.setName("name1");
-        dataModel.setType("type1");
+        dataModel.setType(TypeEnum.CANDIDATE);
         dataModel.setDate(Instant.now());
         System.out.println(dataJpaRepository.save(dataModel));
     }

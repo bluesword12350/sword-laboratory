@@ -22,7 +22,8 @@ public class DataModel extends BaseData {
 
     private String name;
 
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private TypeEnum type;
 
     private Instant date;
 
