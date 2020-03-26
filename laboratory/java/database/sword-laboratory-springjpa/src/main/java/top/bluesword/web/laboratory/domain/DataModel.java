@@ -6,6 +6,7 @@ import top.bluesword.web.laboratory.domain.person.PersonSummary;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @author 李林峰
@@ -34,4 +35,6 @@ public class DataModel extends BaseData {
     })
     private PersonSummary owner;
 
+    @OneToMany(mappedBy="dataModel")
+    private List<EditLog> editLogs;
 }
