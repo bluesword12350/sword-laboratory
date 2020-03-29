@@ -9,7 +9,7 @@ crawl
 .gradle
 out
 target
-node_modules
+
 package-lock.json
 *.log
 .vscode
@@ -20,3 +20,15 @@ application-dev.properties
 venv
 *.xlsx
 *.db
+
+.yarn
+yarn.lock
+.yarnrc.yml
+babel.config.js
+.pnp.js
+
+dist
+node_modules
+
+*.png
+*.ico
