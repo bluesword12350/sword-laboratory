@@ -1,7 +1,8 @@
 package com.fasterxml.jackson;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,6 +15,7 @@ public class JacksonBeanDemo {
 	@JsonProperty("name")
 	public String string;
 
+	@JsonSerialize(using = ToStringSerializer.class)
 	public BigDecimal bigDecimal;
 
 	public Date date;
