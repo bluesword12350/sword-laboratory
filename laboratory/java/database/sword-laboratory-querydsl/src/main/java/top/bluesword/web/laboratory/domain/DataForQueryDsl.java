@@ -9,7 +9,7 @@ import java.time.Instant;
  */
 @lombok.Data
 @Entity
-public class Data {
+public class DataForQueryDsl {
 
     @Id
     private Long id;
