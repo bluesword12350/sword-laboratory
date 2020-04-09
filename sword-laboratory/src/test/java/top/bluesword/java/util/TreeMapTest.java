@@ -11,7 +11,7 @@ class TreeMapTest {
 	private static TreeMap<Integer, Integer> treeMap = new TreeMap<>(Comparator.comparingInt(o -> o));
 
 	@Test
-	void main(String[] args) {
+	void put() {
 		treeMap.put(9, 1);
 		treeMap.put(2, 1);
 		treeMap.put(5, 1);

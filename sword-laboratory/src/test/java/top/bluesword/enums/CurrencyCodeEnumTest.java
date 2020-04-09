@@ -6,7 +6,7 @@ class CurrencyCodeEnumTest {
 
     @Test
     void test(){
-        System.out.println(CurrencyCodeEnum.valueOf("RMB"));
+        System.out.println(CurrencyCodeEnum.valueOf("CNY"));
     }
 
 }

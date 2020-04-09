@@ -13,7 +13,7 @@ class SystemTest {
         var routeLine = new BigDecimal[][]{{BigDecimal.TEN,BigDecimal.ONE},{BigDecimal.ONE,BigDecimal.ONE}};
         final BigDecimal[][] joinedArray = new BigDecimal[line.length+routeLine.length][2];
         System.arraycopy(line, 0, joinedArray, 0, line.length);
-        System.arraycopy(routeLine, 0, joinedArray, line.length, joinedArray.length);
+        System.arraycopy(routeLine, 0, joinedArray, line.length, routeLine.length);
         System.out.println(Arrays.deepToString(joinedArray));
     }
 }

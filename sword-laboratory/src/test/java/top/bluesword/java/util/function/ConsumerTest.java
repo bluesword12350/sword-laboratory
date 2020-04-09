@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 class ConsumerTest {
 
     @Test
-    void main(String[] args) {
+    void main() {
         List<String> sList = new ArrayList<>();
         sList.add("1");
         sList.add("2");
