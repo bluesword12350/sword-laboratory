@@ -25,6 +25,19 @@ public class ExportExcelService {
 
     @GetMapping
     public void get(HttpServletResponse response) throws IOException {
+        SXSSFWorkbook table = createColorTable();
+        outToHttp(response, table);
+    }
+
+    private void outToHttp(HttpServletResponse response, SXSSFWorkbook table) throws IOException {
+        response.setHeader("content-disposition", "attachment;filename=test.xlsx");
+        ServletOutputStream outputStream = response.getOutputStream();
+        try (table;outputStream) {
+            table.write(outputStream);
+        }
+    }
+
+    public static SXSSFWorkbook createColorTable() {
         SXSSFWorkbook table = new SXSSFWorkbook();
         SXSSFSheet sheet = table.createSheet("颜色卡");
         sheet.setDefaultColumnWidth(20);
@@ -49,12 +62,7 @@ public class ExportExcelService {
                 color.createCell(index).setCellStyle(fillForegroundColorStyle);
             }
         }
-
-        response.setHeader("content-disposition", "attachment;filename=test.xlsx");
-        ServletOutputStream outputStream = response.getOutputStream();
-        try (table;outputStream) {
-            table.write(outputStream);
-        }
+        return table;
     }
 
 }
