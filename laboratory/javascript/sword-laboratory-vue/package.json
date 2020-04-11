@@ -1,0 +1,19 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "web实验室",
+  "main": "es6.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "author": "李林峰",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "latest",
+    "vue-template-compiler": "latest"
+  }
+}
