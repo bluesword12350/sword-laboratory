@@ -97,37 +97,6 @@ const calendar = {
     '8-15': {title: '中秋节'},
     '9-9': {title: '重阳节'},
   },
-
-  /**
-   * 返回默认定义的阳历节日
-   */
-  getFestival() {
-    return this.festival
-  },
-
-  /**
-   * 返回默认定义的内容里节日
-   */
-  getLunarFestival() {
-    return this.lfestival
-  },
-
-  /**
-   *
-   * @param {Object} 按照festival的格式输入数据，设置阳历节日
-   */
-  setFestival(param = {}) {
-    this.festival = param
-  },
-
-  /**
-   *
-   * @param {Object} 按照lfestival的格式输入数据，设置农历节日
-   */
-  setLunarFestival(param = {}) {
-    this.lfestival = param
-  },
-
   /**
    * 24节气速查表
    * @Array Of Property
@@ -235,7 +204,7 @@ const calendar = {
 
   /**
    * 返回农历y年一整年的总天数
-   * @param lunar Year
+   * @param y lunar Year
    * @return Number
    * @eg:var count = calendar.lYearDays(1987) ;//count=387
    */
