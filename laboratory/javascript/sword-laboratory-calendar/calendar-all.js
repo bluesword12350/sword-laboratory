@@ -209,16 +209,16 @@ const calendar = {
    * @eg:var count = calendar.lYearDays(1987) ;//count=387
    */
   lYearDays: function (y) {
-    var i, sum = 348;
+    let i, sum = 348;
     for (i = 0x8000; i > 0x8; i >>= 1) {
-      sum += (this.lunarInfo[y - 1900] & i) ? 1 : 0;
+      sum += (this.lunarInfo[y - 1900] && i) ? 1 : 0;
     }
     return (sum + this.leapDays(y));
   },
 
   /**
    * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
-   * @param lunar Year
+   * @param y lunar Year
    * @return Number (0-12)
    * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
    */
@@ -228,7 +228,7 @@ const calendar = {
 
   /**
    * 返回农历y年闰月的天数 若该年没有闰月则返回0
-   * @param lunar Year
+   * @param y lunar Year
    * @return Number (0、29、30)
    * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
    */
@@ -241,7 +241,8 @@ const calendar = {
 
   /**
    * 返回农历y年m月（非闰月）的总天数，计算m为闰月时的天数请使用leapDays方法
-   * @param lunar Year
+   * @param y lunar Year
+   * @param m
    * @return Number (-1、29、30)
    * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
    */
@@ -251,51 +252,18 @@ const calendar = {
     }//月份参数从1至12，参数错误返回-1
     return ((this.lunarInfo[y - 1900] & (0x10000 >> m)) ? 30 : 29);
   },
-
-  /**
-   * 返回公历(!)y年m月的天数
-   * @param solar Year
-   * @return Number (-1、28、29、30、31)
-   * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
-   */
-  solarDays: function (y, m) {
-    if (m > 12 || m < 1) {
-      return -1
-    } //若参数错误 返回-1
-    var ms = m - 1;
-    if (ms == 1) { //2月份的闰平规律测算后确认返回28或29
-      return (((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0)) ? 29 : 28);
-    } else {
-      return (this.solarMonth[ms]);
-    }
-  },
-
   /**
    * 农历年份转换为干支纪年
    * @param  lYear 农历年的年份数
    * @return Cn string
    */
   toGanZhiYear: function (lYear) {
-    var ganKey = (lYear - 3) % 10;
-    var zhiKey = (lYear - 3) % 12;
-    if (ganKey == 0) ganKey = 10;//如果余数为0则为最后一个天干
-    if (zhiKey == 0) zhiKey = 12;//如果余数为0则为最后一个地支
+    let ganKey = (lYear - 3) % 10;
+    let zhiKey = (lYear - 3) % 12;
+    if (ganKey === 0) ganKey = 10;//如果余数为0则为最后一个天干
+    if (zhiKey === 0) zhiKey = 12;//如果余数为0则为最后一个地支
     return this.Gan[ganKey - 1] + this.Zhi[zhiKey - 1];
-
   },
-
-  /**
-   * 公历月、日判断所属星座
-   * @param  cMonth [description]
-   * @param  cDay [description]
-   * @return Cn string
-   */
-  toAstro: function (cMonth, cDay) {
-    var s = "\u9b54\u7faf\u6c34\u74f6\u53cc\u9c7c\u767d\u7f8a\u91d1\u725b\u53cc\u5b50\u5de8\u87f9\u72ee\u5b50\u5904\u5973\u5929\u79e4\u5929\u874e\u5c04\u624b\u9b54\u7faf";
-    var arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
-    return s.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + "\u5ea7";//座
-  },
-
   /**
    * 传入offset偏移量返回干支
    * @param offset 相对甲子的偏移量
@@ -534,9 +502,6 @@ const calendar = {
     //日柱 当月一日与 1900/1/1 相差天数
     var dayCyclical = Date.UTC(y, sm, 1, 0, 0, 0, 0) / 86400000 + 25567 + 10;
     var gzD = this.toGanZhi(dayCyclical + d - 1);
-    //该日期所属的星座
-    var astro = this.toAstro(m, d);
-
     var solarDate = y + '-' + m + '-' + d
     var lunarDate = year + '-' + month + '-' + day
 
@@ -568,8 +533,7 @@ const calendar = {
       'nWeek': nWeek,
       'ncWeek': "\u661f\u671f" + cWeek,
       'isTerm': isTerm,
-      'Term': Term,
-      'astro': astro
+      'Term': Term
     };
   },
 
@@ -587,9 +551,8 @@ const calendar = {
     m = parseInt(m)
     d = parseInt(d)
     var isLeapMonth = !!isLeapMonth;
-    var leapOffset = 0;
     var leapMonth = this.leapMonth(y);
-    var leapDay = this.leapDays(y);
+    this.leapDays(y);
     if (isLeapMonth && (leapMonth != m)) {
       return -1;
     }//传参要求计算该闰月公历 但该年得出的闰月与传参的月份并不同
