@@ -1,0 +1,14 @@
+{
+  "name": "sword-laboratory-calendar",
+  "version": "0.0.1",
+  "description": "农历工具",
+  "main": "index.js",
+  "scripts": {
+    "calendar-test": "node ./test/calendar-test"
+  },
+  "keywords": [
+    "农历"
+  ],
+  "author": "李林峰",
+  "license": "Apache-2.0"
+}
