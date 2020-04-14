@@ -88,43 +88,13 @@ const calendar = {
   /**
    * 农历节日
    */
-  lfestival: {
+  lunarFestival: {
     '12-30': {title: '除夕'},
     '1-1': {title: '春节'},
     '1-15': {title: '元宵节'},
     '5-5': {title: '端午节'},
     '8-15': {title: '中秋节'},
     '9-9': {title: '重阳节'},
-  },
-
-  /**
-   * 返回默认定义的阳历节日
-   */
-  getFestival() {
-    return this.festival
-  },
-
-  /**
-   * 返回默认定义的内容里节日
-   */
-  getLunarFestival() {
-    return this.lfestival
-  },
-
-  /**
-   *
-   * @param {Object} 按照festival的格式输入数据，设置阳历节日
-   */
-  setFestival(param = {}) {
-    this.festival = param
-  },
-
-  /**
-   *
-   * @param {Object} 按照lfestival的格式输入数据，设置农历节日
-   */
-  setLunarFestival(param = {}) {
-    this.lfestival = param
   },
 
   /**
@@ -571,7 +541,7 @@ const calendar = {
     var lunarDate = year + '-' + month + '-' + day
 
     var festival = this.festival
-    var lfestival = this.lfestival
+    var lfestival = this.lunarFestival
 
     var festivalDate = m + '-' + d
     var lunarFestivalDate = month + '-' + day
