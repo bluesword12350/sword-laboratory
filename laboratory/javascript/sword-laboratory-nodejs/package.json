@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "web实验室",
   "main": "es6.js",
-  "scripts": {},
+  "scripts": {
+    "logical-operation-test": "node src/test/LogicalOperationTest.js"
+  },
   "author": "李林峰",
   "license": "MIT",
   "dependencies": {
