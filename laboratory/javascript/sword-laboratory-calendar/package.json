@@ -4,7 +4,7 @@
   "description": "农历工具",
   "main": "index.js",
   "scripts": {
-    "calendar-test": "node ./test/calendar-test"
+    "calendar-test": "node ./test/calendar-all.test.js"
   },
   "keywords": [
     "农历"
