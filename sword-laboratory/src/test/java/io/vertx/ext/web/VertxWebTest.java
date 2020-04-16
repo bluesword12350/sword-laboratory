@@ -14,21 +14,22 @@ import java.util.Map;
  */
 public class VertxWebTest {
 
-    private static Map<String, JsonObject> products = new HashMap<>();
+    private static final Map<String, JsonObject> products = new HashMap<>();
 
     public static void main(String[] args) {
-
         setUpInitialData();
-
         Vertx vertx = Vertx.vertx();
-        Router router = Router.router(vertx);
+        Router router = configRouter(vertx);
+        vertx.createHttpServer().requestHandler(router).listen(8080);
+    }
 
+    private static Router configRouter(Vertx vertx) {
+        Router router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
         router.get("/products/:productId").handler(VertxWebTest::handleGetProduct);
         router.put("/products/:productId").handler(VertxWebTest::handleAddProduct);
         router.get("/products").handler(VertxWebTest::handleListProducts);
-
-        vertx.createHttpServer().requestHandler(router).listen(8080);
+        return router;
     }
 
     private static void handleGetProduct(RoutingContext routingContext) {
