@@ -22,12 +22,10 @@ let s2lt = {
     nWeek: 3,
     ncWeek: '星期三',
     isTerm: false,
-    Term: null,
-    astro: '白羊座'
+    Term: null
 }
 
 let s2l = calendar.solar2lunar(2020,4,15);
-//console.log(s2l)
 for (let variable in s2lt){
     if (s2lt[variable] !== s2l[variable]){
         console.error(`值不匹配 ${variable} ${s2lt[variable]} !== ${s2l[variable]}`)
@@ -56,12 +54,10 @@ let l2st = {
     nWeek: 6,
     ncWeek: '星期六',
     isTerm: false,
-    Term: null,
-    astro: '水瓶座'
+    Term: null
 }
 
 let l2s = calendar.lunar2solar(2020,1,1);
-//console.log(l2s)
 for (let variable in l2st){
     if (l2st[variable] !== l2s[variable]){
         console.error(`值不匹配 ${variable} ${l2st[variable]} !== ${l2s[variable]}`)
