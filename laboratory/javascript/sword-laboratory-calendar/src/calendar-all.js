@@ -204,12 +204,12 @@ const calendar = {
 
   /**
    * 返回农历y年一整年的总天数
-   * @param lunar Year
+   * @param y lunar Year
    * @return Number
    * @eg:var count = calendar.lYearDays(1987) ;//count=387
    */
   lYearDays: function (y) {
-    var i, sum = 348;
+    let i, sum = 348;
     for (i = 0x8000; i > 0x8; i >>= 1) {
       sum += (this.lunarInfo[y - 1900] & i) ? 1 : 0;
     }
@@ -218,7 +218,7 @@ const calendar = {
 
   /**
    * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
-   * @param lunar Year
+   * @param y lunar Year
    * @return Number (0-12)
    * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
    */
@@ -228,7 +228,7 @@ const calendar = {
 
   /**
    * 返回农历y年闰月的天数 若该年没有闰月则返回0
-   * @param lunar Year
+   * @param y lunar Year
    * @return Number (0、29、30)
    * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
    */
@@ -241,7 +241,8 @@ const calendar = {
 
   /**
    * 返回农历y年m月（非闰月）的总天数，计算m为闰月时的天数请使用leapDays方法
-   * @param lunar Year
+   * @param y lunar Year
+   * @param m
    * @return Number (-1、29、30)
    * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
    */
@@ -254,7 +255,8 @@ const calendar = {
 
   /**
    * 返回公历(!)y年m月的天数
-   * @param solar Year
+   * @param y solar Year
+   * @param m
    * @return Number (-1、28、29、30、31)
    * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
    */
@@ -262,9 +264,9 @@ const calendar = {
     if (m > 12 || m < 1) {
       return -1
     } //若参数错误 返回-1
-    var ms = m - 1;
-    if (ms == 1) { //2月份的闰平规律测算后确认返回28或29
-      return (((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0)) ? 29 : 28);
+    let ms = m - 1;
+    if (ms === 1) { //2月份的闰平规律测算后确认返回28或29
+      return (((y % 4 === 0) && (y % 100 !== 0) || (y % 400 === 0)) ? 29 : 28);
     } else {
       return (this.solarMonth[ms]);
     }
@@ -276,10 +278,10 @@ const calendar = {
    * @return Cn string
    */
   toGanZhiYear: function (lYear) {
-    var ganKey = (lYear - 3) % 10;
-    var zhiKey = (lYear - 3) % 12;
-    if (ganKey == 0) ganKey = 10;//如果余数为0则为最后一个天干
-    if (zhiKey == 0) zhiKey = 12;//如果余数为0则为最后一个地支
+    let ganKey = (lYear - 3) % 10;
+    let zhiKey = (lYear - 3) % 12;
+    if (ganKey === 0) ganKey = 10;//如果余数为0则为最后一个天干
+    if (zhiKey === 0) zhiKey = 12;//如果余数为0则为最后一个地支
     return this.Gan[ganKey - 1] + this.Zhi[zhiKey - 1];
 
   },
@@ -307,7 +309,8 @@ const calendar = {
 
   /**
    * 传入公历(!)y年获得该年第n个节气的公历日期
-   * @param y公历年(1900-2100)；n二十四节气中的第几个节气(1~24)；从n=1(小寒)算起
+   * @param y 公历年(1900-2100)；n二十四节气中的第几个节气(1~24)；从n=1(小寒)算起
+   * @param n
    * @return day Number
    * @eg:var _24 = calendar.getTerm(1987,3) ;//_24=4;意即1987年2月4日立春
    */
