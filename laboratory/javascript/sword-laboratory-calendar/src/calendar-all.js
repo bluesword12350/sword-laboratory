@@ -69,20 +69,16 @@ const calendar = {
   festival: {
     '1-1': {title: '元旦节'},
     '2-14': {title: '情人节'},
+    '3-8': {title: '妇女节'},
+    '3-12': {title: '植树节'},
     '5-1': {title: '劳动节'},
     '5-4': {title: '青年节'},
     '6-1': {title: '儿童节'},
-    '9-10': {title: '教师节'},
-    '10-1': {title: '国庆节'},
-    '12-25': {title: '圣诞节'},
-
-    '3-8': {title: '妇女节'},
-    '3-12': {title: '植树节'},
-    '4-1': {title: '愚人节'},
-    '5-12': {title: '护士节'},
     '7-1': {title: '建党节'},
     '8-1': {title: '建军节'},
-    '12-24': {title: '平安夜'},
+    '9-10': {title: '教师节'},
+    '10-1': {title: '国庆节'},
+    '12-25': {title: '圣诞节'}
   },
 
   /**
@@ -298,7 +294,7 @@ const calendar = {
       parseInt('0x' + _table.substr(20, 5)).toString(),
       parseInt('0x' + _table.substr(25, 5)).toString()
     ];
-    let _calday = [
+    let _solarTerm = [
       _info[0].substr(0, 1),
       _info[0].substr(1, 2),
       _info[0].substr(3, 1),
@@ -329,7 +325,7 @@ const calendar = {
       _info[5].substr(3, 1),
       _info[5].substr(4, 2),
     ];
-    return parseInt(_calday[n - 1]);
+    return parseInt(_solarTerm[n - 1]);
   },
 
   /**
@@ -480,7 +476,6 @@ const calendar = {
     let gzY = this.toGanZhiYear(year);
 
     // 当月的两个节气
-    // bugfix-2017-7-24 11:03:38 use lunar Year Param `y` Not `year`
     let firstNode = this.getTerm(y, (m * 2 - 1));//返回当月「节」为几日开始
     let secondNode = this.getTerm(y, (m * 2));//返回当月「节」为几日开始
 
@@ -509,7 +504,7 @@ const calendar = {
     let lunarDate = year + '-' + month + '-' + day
 
     let festival = this.festival
-    let lfestival = this.lunarFestival
+    let lunarFestival = this.lunarFestival
 
     let festivalDate = m + '-' + d
     let lunarFestivalDate = month + '-' + day
@@ -518,7 +513,7 @@ const calendar = {
       date: solarDate,
       lunarDate: lunarDate,
       festival: festival[festivalDate] ? festival[festivalDate].title : null,
-      lunarFestival: lfestival[lunarFestivalDate] ? lfestival[lunarFestivalDate].title : null,
+      lunarFestival: lunarFestival[lunarFestivalDate] ? lunarFestival[lunarFestivalDate].title : null,
       'lYear': year,
       'lMonth': month,
       'lDay': day,
@@ -594,8 +589,8 @@ const calendar = {
       offset += day;
     }
     //1900年农历正月一日的公历时间为1900年1月30日0时0分0秒(该时间也是本农历的最开始起始点)
-    let stmap = Date.UTC(1900, 1, 30, 0, 0, 0);
-    let calObj = new Date((offset + d - 31) * 86400000 + stmap);
+    let origin = Date.UTC(1900, 1, 30, 0, 0, 0);
+    let calObj = new Date((offset + d - 31) * 86400000 + origin);
     let cY = calObj.getUTCFullYear();
     let cM = calObj.getUTCMonth() + 1;
     let cD = calObj.getUTCDate();
