@@ -56,14 +56,6 @@ const calendar = {
   Zhi: ["\u5b50", "\u4e11", "\u5bc5", "\u536f", "\u8fb0", "\u5df3", "\u5348", "\u672a", "\u7533", "\u9149", "\u620c", "\u4ea5"],
 
   /**
-   * 天干地支之地支速查表<=>生肖
-   * @Array Of Property
-   * @trans["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"]
-   * @return Cn string
-   */
-  Animals: ["\u9f20", "\u725b", "\u864e", "\u5154", "\u9f99", "\u86c7", "\u9a6c", "\u7f8a", "\u7334", "\u9e21", "\u72d7", "\u732a"],
-
-  /**
    * 阳历节日
    */
   festival: {
@@ -369,16 +361,6 @@ const calendar = {
   },
 
   /**
-   * 年份转生肖[!仅能大致转换] => 精确划分生肖分界线是“立春”
-   * @param y year
-   * @return Cn string
-   * @eg:var animal = calendar.getAnimal(1987) ;//animal='兔'
-   */
-  getAnimal: function (y) {
-    return this.Animals[(y - 4) % 12]
-  },
-
-  /**
    * 传入阳历年月日获得详细的公历、农历object信息 <=>JSON
    * @param y solar year
    * @param m  solar month
@@ -420,12 +402,6 @@ const calendar = {
       i--;
     }
 
-    //是否今天
-    let isTodayObj = new Date(),
-        isToday = false;
-    if (isTodayObj.getFullYear() === y && isTodayObj.getMonth() + 1 === m && isTodayObj.getDate() === d) {
-      isToday = true;
-    }
     //星期几
     let nWeek = objDate.getDay(),
         cWeek = this.nStr1[nWeek];
@@ -514,10 +490,9 @@ const calendar = {
       lunarDate: lunarDate,
       festival: festival[festivalDate] ? festival[festivalDate].title : null,
       lunarFestival: lunarFestival[lunarFestivalDate] ? lunarFestival[lunarFestivalDate].title : null,
-      'lYear': year,
-      'lMonth': month,
-      'lDay': day,
-      'Animal': this.getAnimal(year),
+      'lunarYear': year,
+      'lunarMonth': month,
+      'lunarDay': day,
       'IMonthCn': (isLeap ? "\u95f0" : '') + this.toChinaMonth(month),
       'IDayCn': this.toChinaDay(day),
       'cYear': y,
@@ -526,7 +501,6 @@ const calendar = {
       'gzYear': gzY,
       'gzMonth': gzM,
       'gzDay': gzD,
-      'isToday': isToday,
       'isLeap': isLeap,
       'nWeek': nWeek,
       'ncWeek': "\u661f\u671f" + cWeek,
