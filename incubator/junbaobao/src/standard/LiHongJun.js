@@ -1,0 +1,1 @@
+export const knowDate = new Date(2020,0,23);
