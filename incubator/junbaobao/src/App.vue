@@ -29,6 +29,9 @@ let nextSpringFestivalCalendar = calendar.lunar2solar(nowCalendar.lunarYear+1,1,
 let lastSpringFestivalTime = lastSpringFestivalCalendar.date.getTime();
 let nextSpringFestivalTime = nextSpringFestivalCalendar.date.getTime();
 let nextMidAutumnFestivalCalendar = calendar.lunar2solar(nowCalendar.lunarYear,8,15);
+if (nextMidAutumnFestivalCalendar.date.getTime()<now.getTime()){
+  nextMidAutumnFestivalCalendar = calendar.lunar2solar(nowCalendar.lunarYear+1,8,15);
+}
 
 let dateTime = 24*60*60*1000;
 
