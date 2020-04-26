@@ -5,7 +5,7 @@
     <h2 class="center-text">农历年进度: {{percent}}% (春节 {{springFestival}})</h2>
     <a-progress :percent="percentNum" :strokeWidth="20" :showInfo="false" strokeColor="red"/>
     <a-divider />
-    <h2 class="center-text">距离中秋节 {{midAutumnFestival}}</h2>
+    <h2 class="center-text">距离中秋节({{midAutumnFestival}})</h2>
     <a-statistic-countdown class="center-text" :value="deadline" format="D 天 HH 时 mm 分 ss 秒 SSS" />
   </div>
 </template>

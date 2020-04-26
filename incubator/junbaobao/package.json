@@ -7,19 +7,18 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "ant-design-vue": "^1.4.12",
-    "core-js": "^3.6.4",
-    "dayjs": "^1.8.24",
-    "vue": "^2.6.11"
+    "ant-design-vue": "laster",
+    "dayjs": "laster",
+    "vue": "laster"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.2.0",
-    "@vue/cli-plugin-eslint": "~4.2.0",
-    "@vue/cli-service": "~4.2.0",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.1.2",
-    "vue-template-compiler": "^2.6.11"
+    "@vue/cli-plugin-babel": "laster",
+    "@vue/cli-plugin-eslint": "laster",
+    "@vue/cli-service": "laster",
+    "babel-eslint": "laster",
+    "eslint": "laster",
+    "eslint-plugin-vue": "laster",
+    "vue-template-compiler": "laster"
   },
   "eslintConfig": {
     "root": true,
