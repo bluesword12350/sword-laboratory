@@ -1,6 +1,7 @@
-package top.bluesword.web.laboratory.domain;
+package top.bluesword.web.laboratory.domain.log;
 
 import lombok.Data;
+import top.bluesword.web.laboratory.domain.DataModel;
 import top.bluesword.web.laboratory.domain.person.PersonSummary;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.time.Instant;
 public class EditLog {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private Instant editTime;

@@ -11,8 +11,14 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class FullName {
 
+    /**
+     * 姓
+     */
     private String surname;
 
+    /**
+     * 名
+     */
     private String name;
 
     public String acquireFullName(){

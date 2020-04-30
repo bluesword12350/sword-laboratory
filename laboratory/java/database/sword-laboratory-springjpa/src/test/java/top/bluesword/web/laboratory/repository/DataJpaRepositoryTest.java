@@ -6,11 +6,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.Specification;
 import top.bluesword.web.laboratory.domain.DataModel;
 import top.bluesword.web.laboratory.domain.DataModel_;
-import top.bluesword.web.laboratory.domain.TypeEnum;
+import top.bluesword.web.laboratory.mock.DataModelMock;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
+
+import static top.bluesword.web.laboratory.mock.DataModelMock.mock;
 
 @SpringBootTest
 class DataJpaRepositoryTest {
@@ -26,13 +27,18 @@ class DataJpaRepositoryTest {
 
     @Test
     void save(){
-        DataModel dataModel = new DataModel();
-        dataModel.setId(3L);
-        dataModel.setKey("key%");
-        dataModel.setName("name1");
-        dataModel.setType(TypeEnum.CANDIDATE);
-        dataModel.setDate(Instant.now());
+        DataModel dataModel = mock();
         System.out.println(dataJpaRepository.save(dataModel));
+    }
+
+    @Test
+    void update(){
+        List<DataModel> dataModels = dataJpaRepository.findAll();
+        if (!dataModels.isEmpty()) {
+            DataModel dataModel = dataModels.get(0);
+            dataModel.setFragments(DataModelMock.mockFormatList());
+            dataJpaRepository.save(dataModel);
+        }
     }
 
     @Test
