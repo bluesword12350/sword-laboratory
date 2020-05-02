@@ -4,5 +4,8 @@
 	"libVersion": "2.11.0",
 	"appid": "wx75df2e7a072085bf",
 	"projectname": "sword-laboratory-weixin",
-	"simulatorType": "wechat"
+	"simulatorType": "wechat",
+	"setting": {},
+	"simulatorPluginLibVersion": {},
+	"condition": {}
 }
