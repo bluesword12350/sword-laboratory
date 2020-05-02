@@ -1,20 +1,8 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
 	"miniprogramRoot": "miniprogram/",
-	"compileType": "miniprogram",
-	"libVersion": "2.8.2",
-	"projectname": "sword-laboratory-weixin",
-	"scripts": {
-		"beforeCompile": "npm run tsc",
-		"beforePreview": "npm run tsc",
-		"beforeUpload": "npm run tsc"
-	},
+	"appid": "wx75df2e7a072085bf",
 	"setting": {},
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"appid": "wx75df2e7a072085bf",
 	"condition": {}
 }
