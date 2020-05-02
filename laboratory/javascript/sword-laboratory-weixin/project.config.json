@@ -1,8 +1,8 @@
 {
-	"miniprogramRoot": "miniprogram/",
+	"description": "",
+	"compileType": "miniprogram",
+	"libVersion": "2.11.0",
 	"appid": "wx75df2e7a072085bf",
-	"setting": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {}
+	"projectname": "sword-laboratory-weixin",
+	"simulatorType": "wechat"
 }
