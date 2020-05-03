@@ -14,7 +14,7 @@
 import Vue from 'vue';
 import { Progress,Statistic,Divider } from 'ant-design-vue';
 import dayjs from 'dayjs'
-import calendar from "./util/calendar"
+import { calendar } from "./util/calendar"
 import { knowDate } from "./standard/LiHongJun"
 
 Vue.use(Progress);
