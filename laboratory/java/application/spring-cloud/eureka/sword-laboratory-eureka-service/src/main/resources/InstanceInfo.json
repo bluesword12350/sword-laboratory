@@ -1,0 +1,37 @@
+{
+  "instanceId": "龙仔之剑",
+  "app": "LOONG-SWORD",
+  "appGroupName": null,
+  "ipAddr": "192.168.3.9",
+  "sid": "na",
+  "homePageUrl": "http://localhost:8761/",
+  "statusPageUrl": "http://localhost:8761/actuator/info",
+  "healthCheckUrl": "http://localhost:8761/actuator/health",
+  "secureHealthCheckUrl": null,
+  "vipAddress": "sword-laboratory-eureka-service",
+  "secureVipAddress": "sword-laboratory-eureka-service",
+  "countryId": 1,
+  "dataCenterInfo": {
+    "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+    "name": "MyOwn"
+  },
+  "hostName": "localhost",
+  "status": "UP",
+  "overriddenStatus": "UNKNOWN",
+  "leaseInfo": {
+    "renewalIntervalInSecs": 30,
+    "durationInSecs": 90,
+    "registrationTimestamp": 0,
+    "lastRenewalTimestamp": 0,
+    "evictionTimestamp": 0,
+    "serviceUpTimestamp": 0
+  },
+  "isCoordinatingDiscoveryServer": false,
+  "metadata": {
+    "management.port": "8761"
+  },
+  "lastUpdatedTimestamp": 1589007391268,
+  "lastDirtyTimestamp": 1589007393192,
+  "actionType": null,
+  "asgName": null
+}
