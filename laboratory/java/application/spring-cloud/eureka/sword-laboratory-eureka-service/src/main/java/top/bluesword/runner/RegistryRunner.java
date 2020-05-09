@@ -1,16 +1,17 @@
 package top.bluesword.runner;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.shared.resolver.DefaultEndpoint;
+import com.netflix.discovery.shared.transport.EurekaHttpClient;
 import com.netflix.eureka.registry.PeerAwareInstanceRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
+import org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory;
 import org.springframework.stereotype.Component;
+import top.bluesword.util.EurekaUtil;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
 /**
  * @author 李林峰
@@ -18,28 +19,21 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class RegistryRunner implements ApplicationRunner {
 
-    final PeerAwareInstanceRegistry registry;
-
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private final PeerAwareInstanceRegistry registry;
+    private final EurekaHttpClient eurekaHttpClient;
 
     @Autowired
-    public RegistryRunner(PeerAwareInstanceRegistry registry) {
+    public RegistryRunner(PeerAwareInstanceRegistry registry,EurekaClientConfigBean eurekaClientConfigBean) {
         this.registry = registry;
+        RestTemplateTransportClientFactory clientFactory = new RestTemplateTransportClientFactory();
+        String serviceUrl = eurekaClientConfigBean.getServiceUrl().get(EurekaClientConfigBean.DEFAULT_ZONE);
+        this.eurekaHttpClient = clientFactory.newClient(new DefaultEndpoint(serviceUrl));
     }
 
     @Override
     public void run(ApplicationArguments args) throws IOException {
-        InstanceInfo instanceInfo = buildInstanceInfo();
-        registry.register(instanceInfo,false);
+        registry.register(EurekaUtil.buildInstanceInfo("LOONG-SWORD-1.json"),false);
+        eurekaHttpClient.register(EurekaUtil.buildInstanceInfo("LOONG-SWORD-2.json"));
     }
 
-    private InstanceInfo buildInstanceInfo() throws IOException {
-        return MAPPER.readValue(readInstanceInfoJson(),InstanceInfo.class);
-    }
-
-    private String readInstanceInfoJson() throws IOException {
-        InputStream io = getClass().getClassLoader().getResourceAsStream("InstanceInfo.json");
-        assert io != null;
-        return new String(io.readAllBytes(), StandardCharsets.UTF_8);
-    }
 }
