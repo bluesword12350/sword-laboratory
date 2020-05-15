@@ -18,10 +18,6 @@ import java.util.List;
 @Entity
 public class DataModel extends BaseData {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-
     private String key;
 
     private String name;

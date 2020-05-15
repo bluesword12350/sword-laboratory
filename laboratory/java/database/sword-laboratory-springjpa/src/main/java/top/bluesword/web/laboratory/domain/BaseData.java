@@ -2,6 +2,8 @@ package top.bluesword.web.laboratory.domain;
 
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.time.Instant;
 
@@ -11,6 +13,10 @@ import java.time.Instant;
 @Data
 @MappedSuperclass
 public class BaseData {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private Instant createTime;
 
