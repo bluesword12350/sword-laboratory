@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * @author 李林峰
  */
-public class VertxWebTest {
+class VertxWebTest {
 
     private static final Map<String, JsonObject> products = new HashMap<>();
 
