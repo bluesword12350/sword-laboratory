@@ -8,7 +8,7 @@ class MyVerticleTest {
     public static void main(String[] args) {
         Vertx vertx = Vertx.vertx();
         DeploymentOptions options = new DeploymentOptions().setWorker(true);
-        vertx.deployVerticle("top.bluesword.laboratory.verticle.MyVerticle", options);
+        vertx.deployVerticle("verticle/MyVerticle.java", options);
     }
 
 }
