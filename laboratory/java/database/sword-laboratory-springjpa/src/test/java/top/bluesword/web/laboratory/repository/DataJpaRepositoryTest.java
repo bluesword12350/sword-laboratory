@@ -3,6 +3,8 @@ package top.bluesword.web.laboratory.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import top.bluesword.web.laboratory.domain.DataModel;
 import top.bluesword.web.laboratory.domain.DataModel_;
@@ -22,6 +24,12 @@ class DataJpaRepositoryTest {
     @Test
     void findAll(){
         List<DataModel> all = dataJpaRepository.findAll();
+        System.out.println(all);
+    }
+
+    @Test
+    void pageRequest(){
+        Page<DataModel> all = dataJpaRepository.findAll(PageRequest.of(0,1));
         System.out.println(all);
     }
 

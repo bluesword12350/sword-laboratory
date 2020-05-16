@@ -2,7 +2,6 @@ package top.bluesword.web.laboratory.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import top.bluesword.web.laboratory.domain.person.Person;
 import top.bluesword.web.laboratory.domain.person.PersonSummary;
 import top.bluesword.web.laboratory.domain.person.PersonSummary_;
 
@@ -27,7 +26,7 @@ public class DataModel extends BaseData {
 
     private Instant date;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     @JoinColumn(name = DataFragment_.DATA_MODEL_ID)
     private List<DataFragment> fragments;
 
@@ -37,8 +36,5 @@ public class DataModel extends BaseData {
             @AttributeOverride(name = PersonSummary_.IDENTITY_CODE,column = @Column(name = "ownerIdentityCode"))
     })
     private PersonSummary owner;
-
-    @OneToMany(cascade = CascadeType.DETACH)
-    private List<Person> subscribers;
 
 }
