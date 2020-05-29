@@ -7,7 +7,6 @@ import top.bluesword.web.laboratory.domain.person.PersonSummary_;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.List;
 
 /**
  * @author 李林峰
@@ -26,9 +25,8 @@ public class DataModel extends BaseData {
 
     private Instant date;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-    @JoinColumn(name = DataFragment_.DATA_MODEL_ID)
-    private List<DataFragment> fragments;
+    @Embedded
+    private DataContext context;
 
     @Embedded
     @AttributeOverrides({
