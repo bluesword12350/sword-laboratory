@@ -1,5 +1,6 @@
 package top.bluesword.web.laboratory.mock;
 
+import top.bluesword.web.laboratory.domain.DataContext;
 import top.bluesword.web.laboratory.domain.DataFragment;
 import top.bluesword.web.laboratory.domain.DataModel;
 import top.bluesword.web.laboratory.domain.TypeEnum;
@@ -16,8 +17,15 @@ public final class DataModelMock {
         dataModel.setName("name1");
         dataModel.setType(TypeEnum.CANDIDATE);
         dataModel.setDate(Instant.now());
-        dataModel.setFragments(mockFormatList());
+        dataModel.setContext(mockContext());
         return dataModel;
+    }
+
+    public static DataContext mockContext() {
+        DataContext dataContext = new DataContext();
+        dataContext.setBriefIntroduction("基本数据模型");
+        dataContext.setFragments(mockFormatList());
+        return dataContext;
     }
 
     public static List<DataFragment> mockFormatList() {

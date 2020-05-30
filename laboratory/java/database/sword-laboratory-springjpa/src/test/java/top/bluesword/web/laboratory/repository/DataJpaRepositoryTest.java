@@ -8,12 +8,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import top.bluesword.web.laboratory.domain.DataModel;
 import top.bluesword.web.laboratory.domain.DataModel_;
-import top.bluesword.web.laboratory.mock.DataModelMock;
 
 import java.util.List;
 import java.util.Optional;
 
 import static top.bluesword.web.laboratory.mock.DataModelMock.mock;
+import static top.bluesword.web.laboratory.mock.DataModelMock.mockContext;
 
 @SpringBootTest
 class DataJpaRepositoryTest {
@@ -44,7 +44,7 @@ class DataJpaRepositoryTest {
         List<DataModel> dataModels = dataJpaRepository.findAll();
         if (!dataModels.isEmpty()) {
             DataModel dataModel = dataModels.get(0);
-            dataModel.setFragments(DataModelMock.mockFormatList());
+            dataModel.setContext(mockContext());
             dataJpaRepository.save(dataModel);
         }
     }
