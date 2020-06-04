@@ -3,6 +3,8 @@ package com.fasterxml.jackson;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import lombok.Data;
+import top.bluesword.serialize.CustomNumberSerialize;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.Date;
 /**
  * @author 李林峰
  */
+@Data
 public class JacksonBeanDemo {
 
 	@JsonProperty("name")
@@ -18,17 +21,9 @@ public class JacksonBeanDemo {
 	@JsonSerialize(using = ToStringSerializer.class)
 	public BigDecimal bigDecimal;
 
+	@JsonSerialize(using = CustomNumberSerialize.class)
+	public BigDecimal number;
+
 	public Date date;
 
-	public JacksonBeanDemo() {
-	}
-
-	public JacksonBeanDemo(String string) {
-		this.string = string;
-	}
-
-	public JacksonBeanDemo(String string, BigDecimal bigDecimal) {
-		this.string = string;
-		this.bigDecimal = bigDecimal;
-	}
 }

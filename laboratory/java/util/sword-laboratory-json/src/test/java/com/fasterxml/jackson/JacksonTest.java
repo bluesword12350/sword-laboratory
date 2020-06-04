@@ -1,5 +1,6 @@
 package com.fasterxml.jackson;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,14 @@ import java.util.Map;
 class JacksonTest {
 
     @Test
+    void jsonFormat() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        JacksonBeanDemo beanDemo = new JacksonBeanDemo();
+        beanDemo.setNumber(BigDecimal.valueOf(1468465465465.4646546));
+        System.out.println(mapper.writeValueAsString(beanDemo));
+    }
+
+    @Test
     void toJsonString() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> map = new HashMap<>(2);
@@ -21,7 +30,8 @@ class JacksonTest {
         String jsonString = mapper.writeValueAsString(map);
         System.out.println(jsonString);
         Map<String, Object> fromJsonMap;
-        fromJsonMap = mapper.readValue(jsonString, new TypeReference<Map<String, Object>>(){});
+        fromJsonMap = mapper.readValue(jsonString, new TypeReference<>() {
+        });
         System.out.println("fromJsonMap:"+fromJsonMap);
         System.out.println("fromJsonMap中string:"+fromJsonMap.get("string"));
         System.out.println("fromJsonMap中bigDecimal是null:"+(fromJsonMap.get("bigDecimal")==null));
