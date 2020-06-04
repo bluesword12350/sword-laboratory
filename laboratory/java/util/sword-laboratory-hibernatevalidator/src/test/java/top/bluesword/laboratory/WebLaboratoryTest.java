@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory;
+package top.bluesword.laboratory;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

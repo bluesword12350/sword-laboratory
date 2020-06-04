@@ -1,27 +1,34 @@
 package org.hibernate;
 
-import org.hibernate.checks.AllChecks;
-import org.hibernate.checks.StringChecks;
+import lombok.extern.slf4j.Slf4j;
+import top.bluesword.laboratory.bean.InsideBeanDemo;
+import top.bluesword.laboratory.validation.group.StringChecks;
 import org.junit.jupiter.api.Test;
-import top.bluesword.web.laboratory.bean.BeanDemo;
-import top.bluesword.web.laboratory.bean.BeanDemo2;
+import top.bluesword.laboratory.bean.BeanDemo;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
+import java.math.BigDecimal;
 import java.util.Set;
 
+@Slf4j
 class ValidatorTest {
 	
 	private static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
 
 	@Test
-	void defaultTest(){
+	void defaultTest() {
 		BeanDemo beanDemo = new BeanDemo();
+		beanDemo.setInteger(100);
+		beanDemo.setString("13246");
+		beanDemo.setDecimal(BigDecimal.valueOf(134165448.1324564768));
+		beanDemo.setI1(new InsideBeanDemo());
+		beanDemo.setI2(new InsideBeanDemo());
+
 		Set<ConstraintViolation<BeanDemo>> vm = VALIDATOR.validate(beanDemo);
-		System.out.println(vm.size());
 		for (ConstraintViolation<BeanDemo> constraintViolation : vm) {
-			System.out.println(constraintViolation.getMessage());
+			log.error("{}:{}",constraintViolation.getPropertyPath(),constraintViolation.getMessage());
 		}
 	}
 
@@ -31,13 +38,6 @@ class ValidatorTest {
 		Set<ConstraintViolation<BeanDemo>> vm1 = VALIDATOR.validate(beanDemo, StringChecks.class);
 		System.out.println(vm1.size());
 		for (ConstraintViolation<BeanDemo> constraintViolation : vm1) {
-			System.out.println(constraintViolation.getMessage());
-		}
-		
-		BeanDemo2 beanDemo2 = new BeanDemo2();
-		Set<ConstraintViolation<BeanDemo2>> vm2 = VALIDATOR.validate(beanDemo2, AllChecks.class);
-		System.out.println(vm1.size());
-		for (ConstraintViolation<BeanDemo2> constraintViolation : vm2) {
 			System.out.println(constraintViolation.getMessage());
 		}
 	}

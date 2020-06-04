@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory;
+package top.bluesword.laboratory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import top.bluesword.web.laboratory.bean.BeanDemo;
+import top.bluesword.laboratory.bean.BeanDemo;
 
 /**
  * @author 李林峰
@@ -14,6 +14,7 @@ import top.bluesword.web.laboratory.bean.BeanDemo;
 @RestController
 @SpringBootApplication
 public class WebLaboratoryApplication {
+
 	public static void main(String[] args) {
 		SpringApplication.run(WebLaboratoryApplication.class, args);
 	}
@@ -22,4 +23,5 @@ public class WebLaboratoryApplication {
 	public BeanDemo test(@RequestBody @Validated BeanDemo demo) {
 		return demo;
 	}
+
 }

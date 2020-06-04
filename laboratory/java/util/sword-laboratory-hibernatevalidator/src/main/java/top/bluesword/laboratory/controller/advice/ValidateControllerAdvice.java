@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.controller.advice;
+package top.bluesword.laboratory.controller.advice;
 
 import java.util.List;
 
