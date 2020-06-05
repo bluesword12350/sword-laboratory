@@ -18,6 +18,7 @@ class JacksonTest {
         ObjectMapper mapper = new ObjectMapper();
         JacksonBeanDemo beanDemo = new JacksonBeanDemo();
         beanDemo.setNumber(BigDecimal.valueOf(1468465465465.4646546));
+        beanDemo.setInteger(BigDecimal.valueOf(165463.46543));
         System.out.println(mapper.writeValueAsString(beanDemo));
     }
 

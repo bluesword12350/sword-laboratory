@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import top.bluesword.serialize.CustomNumberSerialize;
+import top.bluesword.serialize.NoDecimalNumberSerialize;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -23,6 +24,9 @@ public class JacksonBeanDemo {
 
 	@JsonSerialize(using = CustomNumberSerialize.class)
 	public BigDecimal number;
+
+	@JsonSerialize(using = NoDecimalNumberSerialize.class)
+	public BigDecimal integer;
 
 	public Date date;
 
