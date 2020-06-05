@@ -4,6 +4,7 @@ import top.bluesword.web.laboratory.domain.DataContext;
 import top.bluesword.web.laboratory.domain.DataFragment;
 import top.bluesword.web.laboratory.domain.DataModel;
 import top.bluesword.web.laboratory.domain.TypeEnum;
+import top.bluesword.web.laboratory.domain.person.PersonSummary;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -18,7 +19,15 @@ public final class DataModelMock {
         dataModel.setType(TypeEnum.CANDIDATE);
         dataModel.setDate(Instant.now());
         dataModel.setContext(mockContext());
+        dataModel.setOwner(mockOwner());
         return dataModel;
+    }
+
+    private static PersonSummary mockOwner() {
+        PersonSummary personSummary = new PersonSummary();
+        personSummary.setName("龙仔");
+        personSummary.setIdentityCode("1321564");
+        return personSummary;
     }
 
     public static DataContext mockContext() {
