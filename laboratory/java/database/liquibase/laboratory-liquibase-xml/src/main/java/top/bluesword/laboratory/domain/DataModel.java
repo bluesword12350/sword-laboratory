@@ -6,6 +6,7 @@ import top.bluesword.laboratory.domain.person.PersonSummary;
 import top.bluesword.laboratory.domain.person.PersonSummary_;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.Instant;
 
 /**
@@ -24,6 +25,9 @@ public class DataModel extends BaseData {
     private TypeEnum type;
 
     private Instant date;
+
+    @Column(precision = 36,scale = 6)
+    private BigDecimal size;
 
     @Embedded
     private DataContext context;

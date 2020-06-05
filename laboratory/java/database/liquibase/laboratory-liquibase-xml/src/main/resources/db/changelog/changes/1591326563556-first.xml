@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-1">
+    <changeSet author="李林峰" id="1591326563556-1">
         <createTable tableName="data_fragment">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="data_fragment_pkey"/>
@@ -13,7 +13,7 @@
             <column name="title" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-2">
+    <changeSet author="李林峰" id="1591326563556-2">
         <createTable tableName="person">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="person_pkey"/>
@@ -23,7 +23,7 @@
             <column name="identity_code" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-3">
+    <changeSet author="李林峰" id="1591326563556-3">
         <createTable tableName="data_subscriber">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="data_subscriber_pkey"/>
@@ -33,7 +33,7 @@
             <column name="person_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-4">
+    <changeSet author="李林峰" id="1591326563556-4">
         <createTable tableName="data_model" remarks="数据模型">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="data_model_pkey"/>
@@ -49,19 +49,19 @@
             <column name="owner_id" type="BIGINT" remarks="人物id"/>
         </createTable>
     </changeSet>
-    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-5">
+    <changeSet author="李林峰" id="1591326563556-5">
         <addForeignKeyConstraint baseColumnNames="person_id" baseTableName="data_subscriber" constraintName="fklkv6sqq23hl13jh26ewcve73o" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="person" validate="true"/>
     </changeSet>
-    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-6">
+    <changeSet author="李林峰" id="1591326563556-6">
         <addForeignKeyConstraint baseColumnNames="data_model_id" baseTableName="data_fragment" constraintName="fk7aq02olei53sj4fag7ay7oadw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="data_model" validate="true"/>
     </changeSet>
-    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-7">
+    <changeSet author="李林峰" id="1591326563556-7">
         <addForeignKeyConstraint baseColumnNames="data_model_id" baseTableName="data_subscriber" constraintName="fkmc6q96si0rs0l3o01a8k2gfut" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="data_model" validate="true"/>
     </changeSet>
-    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-8">
+    <changeSet author="李林峰" id="1591326563556-8">
         <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="data_model" constraintName="fkt6vo7du32um7tcvkdi1plkh4w" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="person" validate="true"/>
     </changeSet>
-    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-9">
+    <changeSet author="李林峰" id="1591326563556-9">
         <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="hibernate_sequence" startValue="1"/>
     </changeSet>
 </databaseChangeLog>
