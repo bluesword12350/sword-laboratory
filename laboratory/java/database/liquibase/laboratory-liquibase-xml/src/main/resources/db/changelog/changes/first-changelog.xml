@@ -1,0 +1,67 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-1">
+        <createTable tableName="data_fragment">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="data_fragment_pkey"/>
+            </column>
+            <column name="content" type="VARCHAR(255)"/>
+            <column name="data_model_id" type="BIGINT"/>
+            <column name="index" type="INTEGER"/>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-2">
+        <createTable tableName="person">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="person_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+            <column name="identity_code" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-3">
+        <createTable tableName="data_subscriber">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="data_subscriber_pkey"/>
+            </column>
+            <column name="create_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="data_model_id" type="BIGINT"/>
+            <column name="person_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-4">
+        <createTable tableName="data_model" remarks="数据模型">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="data_model_pkey"/>
+            </column>
+            <column name="key" type="VARCHAR(255)" remarks="索引键"/>
+            <column name="name" type="VARCHAR(255)" remarks="名称"/>
+            <column name="type" type="VARCHAR(255)" remarks="类型"/>
+            <column name="create_time" type="TIMESTAMP WITHOUT TIME ZONE" remarks="创建时间"/>
+            <column name="brief_introduction" type="VARCHAR(255)" remarks="简介"/>
+            <column name="date" type="TIMESTAMP WITHOUT TIME ZONE" remarks="时间"/>
+            <column name="owner_identity_code" type="VARCHAR(255)" remarks="所属人身份证号"/>
+            <column name="owner_name" type="VARCHAR(255)" remarks="所属人名称"/>
+            <column name="owner_id" type="BIGINT" remarks="人物id"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-5">
+        <addForeignKeyConstraint baseColumnNames="person_id" baseTableName="data_subscriber" constraintName="fklkv6sqq23hl13jh26ewcve73o" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="person" validate="true"/>
+    </changeSet>
+    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-6">
+        <addForeignKeyConstraint baseColumnNames="data_model_id" baseTableName="data_fragment" constraintName="fk7aq02olei53sj4fag7ay7oadw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="data_model" validate="true"/>
+    </changeSet>
+    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-7">
+        <addForeignKeyConstraint baseColumnNames="data_model_id" baseTableName="data_subscriber" constraintName="fkmc6q96si0rs0l3o01a8k2gfut" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="data_model" validate="true"/>
+    </changeSet>
+    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-8">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="data_model" constraintName="fkt6vo7du32um7tcvkdi1plkh4w" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="person" validate="true"/>
+    </changeSet>
+    <changeSet author="chinasoft.lf.li (generated)" id="1591326563556-9">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="hibernate_sequence" startValue="1"/>
+    </changeSet>
+</databaseChangeLog>
