@@ -1,13 +1,12 @@
-server:
-  port: 8761
-
 spring:
-  application:
-    name: sword-laboratory-eureka-service
+  profiles:
+    active: e2
+#  application:
+#    name: sword-laboratory-eureka-service
 
 eureka:
-  instance:
-    hostname: localhost
+  server:
+    enable-self-preservation: true
   client:
     registerWithEureka: true
     fetchRegistry: false

@@ -19,7 +19,7 @@ public final class EurekaUtil {
     }
 
     private static String readInstanceInfoJson(String name) throws IOException {
-        InputStream io = EurekaUtil.class.getClassLoader().getResourceAsStream(name);
+        InputStream io = EurekaUtil.class.getClassLoader().getResourceAsStream("application/"+name);
         assert io != null;
         return new String(io.readAllBytes(), StandardCharsets.UTF_8);
     }
