@@ -1,5 +1,7 @@
 package top.bluesword.runner;
 
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.shared.Application;
 import com.netflix.discovery.shared.resolver.DefaultEndpoint;
 import com.netflix.discovery.shared.transport.EurekaHttpClient;
 import com.netflix.eureka.registry.PeerAwareInstanceRegistry;
@@ -34,6 +36,12 @@ public class RegistryRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws IOException {
         registry.register(EurekaUtil.buildInstanceInfo("LOONG-SWORD-1.json"),false);
         eurekaHttpClient.register(EurekaUtil.buildInstanceInfo("LOONG-SWORD-2.json"));
+
+        for (Application registeredApplication : eurekaHttpClient.getApplications().getEntity().getRegisteredApplications()) {
+            for (InstanceInfo instance : registeredApplication.getInstances()) {
+                registry.register(instance, false);
+            }
+        }
     }
 
 }

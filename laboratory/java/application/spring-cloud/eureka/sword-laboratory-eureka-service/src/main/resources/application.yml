@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: e2
+    active: e1
 #  application:
 #    name: sword-laboratory-eureka-service
 
