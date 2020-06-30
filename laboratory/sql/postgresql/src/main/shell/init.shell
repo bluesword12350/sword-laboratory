@@ -1,3 +1,8 @@
+#初始化数据库
 initdb -D "%{数据库目录}" -E utf-8
+
+#启动数据库
 pg_ctl start -D "%{数据库目录}"
+
+#访问数据库
 psql postgres
