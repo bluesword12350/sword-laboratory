@@ -1,6 +1,6 @@
 CREATE FUNCTION somefunc() RETURNS integer AS
 $$
-<< outerblock >>
+<< sword >>
 DECLARE
     quantity integer := 30;
 BEGIN
@@ -11,7 +11,7 @@ BEGIN
         quantity integer := 80;
     BEGIN
         RAISE NOTICE 'Quantity here is %', quantity; -- Prints 80
-        RAISE NOTICE 'Outer quantity here is %', outerblock.quantity; -- Prints 50
+        RAISE NOTICE 'Outer quantity here is %', sword.quantity; -- Prints 50
     END;
 
     RAISE NOTICE 'Quantity here is %', quantity; -- Prints 50
