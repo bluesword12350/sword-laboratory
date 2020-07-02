@@ -5,17 +5,6 @@ import org.junit.jupiter.api.Test;
 class IntegerTest {
 
 	@Test
-	void eq(){
-		Integer i3 = 127;
-		Integer i4 = 127;
-		System.out.println(i3==i4);
-
-		Integer i5 = 128;
-		Integer i6 = 128;
-		System.out.println(i5==i6);
-	}
-
-	@Test
 	void binaryString(){
 		System.out.println(Integer.toBinaryString(8));
 	}
