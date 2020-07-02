@@ -28,14 +28,19 @@ class RocksDBColumnFamilyOptionsTest {
         options = new DBOptions();
         options.setCreateIfMissing(true);
         options.setCreateMissingColumnFamilies(true);
+        options.setKeepLogFileNum(1);
         db = RocksDB.open(options,"database/rocks", cfDescriptors, columnFamilyHandleList);
     }
 
     @Test
-    void iteratorTest() {
-        try(RocksIterator iterator = db.newIterator(columnFamilyHandleList.get(1))) {
-            for (iterator.seekToFirst(); iterator.isValid(); iterator.next()) {
-                System.out.println(new String(iterator.key()));
+    void iteratorTest() throws RocksDBException {
+        for (int i = 0; i < columnFamilyHandleList.size(); i++) {
+            ColumnFamilyHandle columnFamilyHandle = columnFamilyHandleList.get(i);
+            System.out.println(i+"-name:"+new String(columnFamilyHandle.getName()));
+            try (RocksIterator iterator = db.newIterator(columnFamilyHandle)) {
+                for (iterator.seekToFirst(); iterator.isValid(); iterator.next()) {
+                    System.out.println(new String(iterator.key()));
+                }
             }
         }
     }
@@ -52,7 +57,9 @@ class RocksDBColumnFamilyOptionsTest {
 
     @AfterAll
     static void after(){
-        for (final ColumnFamilyHandle columnFamilyHandle : columnFamilyHandleList) columnFamilyHandle.close();
+        for (final ColumnFamilyHandle columnFamilyHandle : columnFamilyHandleList) {
+            columnFamilyHandle.close();
+        }
         db.close();
         options.close();
         cfOpts.close();
