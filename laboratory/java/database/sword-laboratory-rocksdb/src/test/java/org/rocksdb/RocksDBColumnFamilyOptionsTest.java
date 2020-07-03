@@ -51,6 +51,11 @@ class RocksDBColumnFamilyOptionsTest {
     }
 
     @Test
+    void dropColumnFamily() throws RocksDBException {
+        db.dropColumnFamily(columnFamilyHandleList.get(2));
+    }
+
+    @Test
     void getTest() throws RocksDBException {
         System.out.println(new String(db.get(columnFamilyHandleList.get(0),"key1".getBytes())));
     }
