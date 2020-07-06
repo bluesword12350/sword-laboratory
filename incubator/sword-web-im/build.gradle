@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('http://nexus.jusdaglobal.com/repository/maven-public/')
+    }
+
+    maven {
+        url = uri('http://repo.maven.apache.org/maven2')
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.3.1.RELEASE'
+    implementation 'javax.websocket:javax.websocket-api:1.1'
+    implementation 'org.projectlombok:lombok:1.18.12'
+}
+
+group = 'top.bluesword'
+version = '0.0.0'
+sourceCompatibility = '1.8'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

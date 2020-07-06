@@ -30,5 +30,11 @@ babel.config.js
 dist
 node_modules
 
+gradle
+gradlew
+gradlew.bat
+
+/gradle
+
 *.png
 *.ico
