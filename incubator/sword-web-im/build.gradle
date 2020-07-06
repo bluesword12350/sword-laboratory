@@ -5,13 +5,6 @@ plugins {
 
 repositories {
     mavenLocal()
-    maven {
-        url = uri('http://nexus.jusdaglobal.com/repository/maven-public/')
-    }
-
-    maven {
-        url = uri('http://repo.maven.apache.org/maven2')
-    }
 }
 
 dependencies {
