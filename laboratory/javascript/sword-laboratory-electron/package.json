@@ -13,6 +13,6 @@
   "author": "李林峰",
   "license": "MIT",
   "devDependencies": {
-    "electron": "3.0.10"
+    "electron": "9.1.0"
   }
 }
