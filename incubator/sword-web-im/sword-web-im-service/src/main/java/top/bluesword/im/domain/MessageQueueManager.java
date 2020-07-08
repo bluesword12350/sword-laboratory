@@ -13,6 +13,7 @@ public class MessageQueueManager {
 
     private static final Map<String,FluxSink<String>> MESSAGE_QUEUES = new HashMap<>();
     private static final Map<String,String> NAMES = new HashMap<>();
+    private static final Map<String,String> IP_NAMES = new HashMap<>();
     private static final Map<String, List<String>> ADDRESS_MAP = new HashMap<>();
 
     public static void putMessageQueue(InetSocketAddress address, FluxSink<String> fluxSink) {
@@ -23,6 +24,9 @@ public class MessageQueueManager {
             ADDRESS_MAP.get(ip).add(addressStr);
         } else {
             ADDRESS_MAP.put(ip,new ArrayList<>(List.of(addressStr)));
+        }
+        if (IP_NAMES.containsKey(ip)){
+            NAMES.put(addressStr,IP_NAMES.get(ip));
         }
     }
 
@@ -61,6 +65,7 @@ public class MessageQueueManager {
     }
 
     public static void setName(String ip, String name) {
+        IP_NAMES.put(ip,name);
         List<String> addresses = ADDRESS_MAP.get(ip);
         for (String address : addresses) {
             NAMES.put(address,name);
