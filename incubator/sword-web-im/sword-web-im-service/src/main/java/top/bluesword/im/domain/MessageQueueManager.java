@@ -61,7 +61,12 @@ public class MessageQueueManager {
         MESSAGE_QUEUES.remove(addressStr);
         NAMES.remove(addressStr);
         String ip = InetSocketAddressAssistant.getHostAddress(address);
-        ADDRESS_MAP.get(ip).remove(addressStr);
+        List<String> addressList = ADDRESS_MAP.get(ip);
+        addressList.remove(addressStr);
+        if (addressList.isEmpty()) {
+            ADDRESS_MAP.remove(ip);
+        }
+        IP_NAMES.remove(ip);
     }
 
     public static void setName(String ip, String name) {
