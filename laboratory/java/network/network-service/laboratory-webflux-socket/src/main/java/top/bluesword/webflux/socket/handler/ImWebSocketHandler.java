@@ -6,7 +6,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.FluxSink;
 import reactor.core.publisher.Mono;
-import top.bluesword.webflux.socket.WebSocketSessionAssistant;
+import top.bluesword.webflux.socket.util.WebSocketSessionAssistant;
 
 import java.util.HashMap;
 import java.util.Map;

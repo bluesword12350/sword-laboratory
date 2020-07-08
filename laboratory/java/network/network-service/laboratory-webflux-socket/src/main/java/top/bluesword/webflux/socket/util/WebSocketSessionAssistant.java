@@ -1,4 +1,4 @@
-package top.bluesword.webflux.socket;
+package top.bluesword.webflux.socket.util;
 
 import org.springframework.web.reactive.socket.WebSocketSession;
 
