@@ -25,8 +25,15 @@ public class ImWebSocketHandler implements WebSocketHandler {
 
         Flux<String> source = Flux.create(sink -> emitted(sink,address));
         Mono<Void> output = session.send(source.map(session::textMessage));
-        Mono<Void> input = session.receive().doOnNext(message -> consume(message,address)).then();
+        Mono<Void> input = session.receive()
+                .doOnNext(message -> consume(message,address))
+                .doFinally(sig -> offline(address))
+                .then();
         return Mono.zip(input,output).then();
+    }
+
+    private void offline(String address) {
+        queues.remove(address);
     }
 
     private void emitted(FluxSink<String> fluxSink,String address) {
