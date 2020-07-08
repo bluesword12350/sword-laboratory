@@ -21,6 +21,7 @@ class WebSocketHandlerConfig {
         map.put("/receive", new ReceiveWebSocketHandler());
         map.put("/sendAndReceive", new SendAndReceiveWebSocketHandler());
         map.put("/sendOrReceive", new SendOrReceiveWebSocketHandler());
+        map.put("/im", new ImWebSocketHandler());
         return new SimpleUrlHandlerMapping(map, order);
     }
 
