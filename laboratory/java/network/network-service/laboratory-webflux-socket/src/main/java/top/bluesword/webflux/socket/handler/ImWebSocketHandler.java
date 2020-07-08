@@ -21,8 +21,7 @@ public class ImWebSocketHandler implements WebSocketHandler {
 
     @Override
     public Mono<Void> handle(WebSocketSession session) {
-        String address = WebSocketSessionAssistant.getHostAddress(session);
-
+        String address = WebSocketSessionAssistant.getRemoteAddressIp(session);
         Flux<String> source = Flux.create(sink -> emitted(sink,address));
         Mono<Void> output = session.send(source.map(session::textMessage));
         Mono<Void> input = session.receive()
