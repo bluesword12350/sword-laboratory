@@ -65,7 +65,7 @@ public class CommunicateHandler implements WebSocketHandler {
             reqSink.next("消息类型不能为空");
             return;
         }
-        consumeMsg.consume();
+        consumeMsg.consume(address);
     }
 
 }
