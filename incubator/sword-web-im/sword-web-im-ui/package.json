@@ -1,0 +1,25 @@
+{
+    "name": "sword-web-im-ui",
+    "version": "1.0.0",
+    "description": "sword 网页即时通讯",
+    "main": "src/main.js",
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build"
+    },
+    "author": "李林峰",
+    "license": "MIT",
+    "dependencies": {
+        "ant-design-vue": "^1.6",
+        "axios": "^0.19",
+        "vue": "^2.6"
+    },
+    "devDependencies": {
+        "@vue/cli-service": "latest",
+        "eslint": "^7.4.0",
+        "eslint-config-standard": "^14.1.1",
+        "eslint-config-vue": "^2.0.2",
+        "eslint-plugin-vue": "^6.2.2",
+        "vue-template-compiler": "latest"
+    }
+}
