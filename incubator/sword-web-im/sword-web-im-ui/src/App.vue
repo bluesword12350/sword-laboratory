@@ -4,7 +4,9 @@
       <AddressBook/>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header></a-layout-header>
+      <a-layout-header>
+        <UserInfo/>
+      </a-layout-header>
       <a-layout-content></a-layout-content>
       <a-layout-footer></a-layout-footer>
     </a-layout>
@@ -14,11 +16,12 @@
 <script>
   import {service} from "./config";
   import AddressBook from "./component/AddressBook";
+  import UserInfo from "./component/UserInfo"
   let imSocket = new WebSocket("ws://"+service.domain+"/communicate");
   export default {
     name: 'App',
     components: {
-      AddressBook
+      AddressBook,UserInfo
     }
   }
 </script>
