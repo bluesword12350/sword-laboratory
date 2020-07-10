@@ -1,5 +1,6 @@
 package top.bluesword.im.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import reactor.core.publisher.FluxSink;
 import top.bluesword.im.util.InetSocketAddressAssistant;
 
@@ -70,6 +71,9 @@ public class MessageQueueManager {
     }
 
     public static void setName(String ip, String name) {
+        if (StringUtils.isBlank(name)) {
+            return;
+        }
         IP_NAMES.put(ip,name);
         List<String> addresses = ADDRESS_MAP.get(ip);
         for (String address : addresses) {
