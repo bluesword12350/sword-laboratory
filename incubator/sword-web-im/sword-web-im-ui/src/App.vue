@@ -7,7 +7,9 @@
       <a-layout-header>
         <UserInfo/>
       </a-layout-header>
-      <a-layout-content></a-layout-content>
+      <a-layout-content style="overflow:scroll">
+        <MessageLog/>
+      </a-layout-content>
       <a-layout-footer>
         <SendMessage />
       </a-layout-footer>
@@ -20,11 +22,12 @@
   import AddressBook from "./component/AddressBook";
   import UserInfo from "./component/UserInfo"
   import SendMessage from "./component/SendMessage";
+  import MessageLog from "./component/MessageLog"
 
   export default {
     name: 'App',
     components: {
-      AddressBook,UserInfo,SendMessage
+      AddressBook,UserInfo,SendMessage,MessageLog
     }
   }
 </script>

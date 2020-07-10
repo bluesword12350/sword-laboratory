@@ -9,6 +9,7 @@
 	import {SwordImDataBase} from "../database/indexed.js"
 	import {service} from "../config.js"
 	import {ImSocket} from "../api/imSocket"
+	import {messageLogList} from "../database/log"
 
 	export default {
 		name: "SendMessage",
@@ -19,13 +20,19 @@
 		},
 		methods:{
 			send(){
-				ImSocket.client.send(JSON.stringify(
-					{
+				let targetAddress = ImSocket.targetAddress;
+				if (!this.message || this.message==="" || !targetAddress || targetAddress===""){
+					return
+				}
+				let sendData = {
 					type:"text",
-					targetAddress:ImSocket.targetAddress,
+					targetAddress:targetAddress,
+					originAddress:"",
 					text:this.message
-					}
-				))
+				}
+				ImSocket.client.send(JSON.stringify(sendData))
+				sendData.sourceType = 'sendOut';
+				messageLogList.push(sendData)
 				this.message = ""
 			}
 		}
