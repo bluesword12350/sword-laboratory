@@ -6,14 +6,14 @@
 				设置昵称
 			</a-button>
 			<a-modal v-model="visible" title="设置昵称" :footer="null" :closable="false">
-				<a-form :form="userInfoForm" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" @submit="confirmNicknameChange">
-					<a-form-item label="昵称">
+				<a-form-model :model="user" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" @submit="confirmNicknameChange">
+					<a-form-model-item label="昵称">
 						<a-input v-model="user.nickname"/>
-					</a-form-item>
-					<a-form-item :wrapper-col="{ span: 12, offset: 5 }">
+					</a-form-model-item>
+					<a-form-model-item :wrapper-col="{ span: 12, offset: 5 }">
 						<a-button type="primary" html-type="submit">确认</a-button>
-					</a-form-item>
-				</a-form>
+					</a-form-model-item>
+				</a-form-model>
 			</a-modal>
 		</a-menu>
 	</a-dropdown>
@@ -22,11 +22,10 @@
 <script>
 	import Vue from 'vue';
 	import {service} from "../config.js"
-	import {SwordImDataBase} from "../database/indexed.js"
-	import Form from 'ant-design-vue'
+	import { FormModel } from 'ant-design-vue';
 	import axios from "axios";
 
-	Vue.use(Form)
+	Vue.use(FormModel)
 
     export default {
         name: "UserInfo",
@@ -35,8 +34,7 @@
 				user : {
 					nickname : "未定义昵称"
 				},
-				visible: false,
-				userInfoForm: this.$form.createForm(this)
+				visible: false
             };
         },
         methods:{

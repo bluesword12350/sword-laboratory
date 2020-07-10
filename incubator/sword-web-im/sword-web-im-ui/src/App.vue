@@ -8,7 +8,9 @@
         <UserInfo/>
       </a-layout-header>
       <a-layout-content></a-layout-content>
-      <a-layout-footer></a-layout-footer>
+      <a-layout-footer>
+        <SendMessage />
+      </a-layout-footer>
     </a-layout>
   </a-layout>
 </template>
@@ -17,11 +19,12 @@
   import {service} from "./config";
   import AddressBook from "./component/AddressBook";
   import UserInfo from "./component/UserInfo"
-  let imSocket = new WebSocket("ws://"+service.domain+"/communicate");
+  import SendMessage from "./component/SendMessage";
+
   export default {
     name: 'App',
     components: {
-      AddressBook,UserInfo
+      AddressBook,UserInfo,SendMessage
     }
   }
 </script>
@@ -41,7 +44,7 @@
     border-bottom: solid #ff7d05 1px;
   }
   #App .ant-layout-footer {
-    height: 300px;
+    height: 25%;
     border-top: solid #ff7d05 1px;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<a-menu mode="inline">
-		<a-menu-item v-for="item in addressList">
+		<a-menu-item v-for="item in addressList" @click="setTargetAddress(item)">
 			<span class="nav-text">{{ item.name }}</span>
 		</a-menu-item>
 	</a-menu>
@@ -8,6 +8,7 @@
 
 <script>
 	import {service} from "../config.js"
+	import {ImSocket} from "../api/imSocket"
 
     export default {
         name: "AddressBook",
@@ -23,31 +24,11 @@
 					.then( data => {
 						this.addressList = data
 					})
-            }
-			// saveAddressList(data) {
-			// 	let siDb = SwordImDataBase.database
-			// 	let transaction = siDb.transaction(SwordImDataBase.addressListStoreName, "readwrite");
-			// 	transaction.onerror = function (event) {
-			// 		console.error(event)
-			// 	};
-			// 	let addressListStore = transaction.objectStore(SwordImDataBase.addressListStoreName);
-			// 	addressListStore.clear()
-			// 	data.forEach(function (address) {
-			// 		addressListStore.add(address);
-			// 	})
-			// },
-			// readAddressList(){
-			// 	let selfVue = this;
-			// 	let siDb = SwordImDataBase.database
-			// 	let dbReq = siDb.transaction(SwordImDataBase.addressListStoreName).objectStore(SwordImDataBase.addressListStoreName).getAll()
-			// 	dbReq.onerror = function (event) {
-			// 		console.error(event)
-			// 	}
-			// 	dbReq.onsuccess = function () {
-			// 		selfVue.addressList = dbReq.result
-			// 		console.log(selfVue)
-			// 	}
-			// }
+            },
+			setTargetAddress(item){
+				console.log(item)
+				ImSocket.targetAddress=item.address
+			}
 		},
         mounted(){
 			this.updateAddressBook()
