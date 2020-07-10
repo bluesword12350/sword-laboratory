@@ -53,11 +53,14 @@
 			showUpdateModal() {
 				this.visible = true;
 			},
-			confirmNicknameChange(){
+			confirmNicknameChange(e){
+				e.preventDefault();
         		let nickname = this.user.nickname;
 				if (nickname && nickname!=='') {
 					localStorage.setItem('user.nickname', nickname);
+					this.submitNicknameChange(nickname);
 				}
+				this.visible = false;
 			}
 		},
 		mounted(){
