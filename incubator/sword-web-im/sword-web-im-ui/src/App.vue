@@ -37,4 +37,11 @@
   #App .ant-layout-sider {
     border-right: solid #ff7d05 1px;
   }
+  #App .ant-layout-header {
+    border-bottom: solid #ff7d05 1px;
+  }
+  #App .ant-layout-footer {
+    height: 300px;
+    border-top: solid #ff7d05 1px;
+  }
 </style>

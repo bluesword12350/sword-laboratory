@@ -1,5 +1,5 @@
 <template>
-	<a-dropdown placement="bottomCenter" style="float:right">
+	<a-dropdown placement="bottomCenter" style="float:right; margin-top:15px">
 		<a-button>{{ user.nickname }}</a-button>
 		<a-menu slot="overlay">
 			<a-button type="primary" @click="showUpdateModal">
@@ -42,7 +42,6 @@
         methods:{
         	readNicknameChange(){
 				let nickname = localStorage.getItem("user.nickname");
-				console.log("nickname",nickname)
 				if (nickname && nickname!=='') {
 					this.user.nickname = nickname;
 					this.submitNicknameChange(nickname);
