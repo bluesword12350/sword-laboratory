@@ -6,10 +6,8 @@
 </template>
 
 <script>
-	import {SwordImDataBase} from "../database/indexed.js"
-	import {service} from "../config.js"
 	import {ImSocket} from "../api/imSocket"
-	import {messageLogList} from "../database/log"
+	import {messageManager} from "../database/messageManager"
 
 	export default {
 		name: "SendMessage",
@@ -32,7 +30,10 @@
 				}
 				ImSocket.client.send(JSON.stringify(sendData))
 				sendData.sourceType = 'sendOut';
-				messageLogList.push(sendData)
+				let nickname = localStorage.getItem("user.nickname");
+				sendData.origin = nickname?nickname:"我"
+				sendData.target = messageManager.addressInfo.getNameByAddress(targetAddress);
+				messageManager.messageLog.put(sendData)
 				this.message = ""
 			}
 		}

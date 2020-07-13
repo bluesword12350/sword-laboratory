@@ -5,26 +5,26 @@
         :data-source="messageLogList"
     >
         <a-list-item slot="renderItem" slot-scope="item, index">
-            <a-comment :author="item.originAddress?item.originAddress:'me'">
+            <a-comment :author="item.origin">
                 <p slot="content">
                     {{ item.text }}
                 </p>
             </a-comment>
             <a-tooltip>
-                <span>{{ item.targetAddress }}</span>
+                <span>{{ item.target}}</span>
             </a-tooltip>
         </a-list-item>
     </a-list>
 </template>
 
 <script>
-    import {messageLogList} from "../database/log"
+    import {messageManager} from "../database/messageManager"
 
     export default {
         name: "MessageLog",
         data(){
             return {
-                messageLogList:messageLogList
+                messageLogList:messageManager.messageLog.getAll()
             }
         }
     }

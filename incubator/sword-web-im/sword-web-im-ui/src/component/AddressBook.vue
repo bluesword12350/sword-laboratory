@@ -9,6 +9,7 @@
 <script>
 	import {service} from "../config.js"
 	import {ImSocket} from "../api/imSocket"
+	import {messageManager} from "../database/messageManager"
 
     export default {
         name: "AddressBook",
@@ -23,10 +24,10 @@
 					.then(response => response.json())
 					.then( data => {
 						this.addressList = data
+						messageManager.addressInfo.setAllAddress(data)
 					})
             },
 			setTargetAddress(item){
-				console.log(item)
 				ImSocket.targetAddress=item.address
 			}
 		},
