@@ -27,6 +27,18 @@ class GsonTest {
         System.out.println("fromJsonBean中string:"+fromJsonBean.string);
         System.out.println("fromJsonBean中bigDecimal是null:"+(fromJsonBean.bigDecimal==null));
 	}
+
+	@Test
+	void serializedName(){
+		Gson gson = new Gson();
+		GsonBeanDemo gsonBeanDemo = new GsonBeanDemo();
+		gsonBeanDemo.setString("123");
+		String json = gson.toJson(gsonBeanDemo);
+		System.out.println(json);
+		GsonBeanDemo gsonBeanDemoFromJson = gson.fromJson(json, GsonBeanDemo.class);
+		System.out.println(gsonBeanDemoFromJson);
+
+	}
 	
 	public static class BeanDemo {
 		String string;
