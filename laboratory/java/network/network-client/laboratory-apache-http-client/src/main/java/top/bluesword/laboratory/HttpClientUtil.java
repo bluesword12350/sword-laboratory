@@ -5,9 +5,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
@@ -31,22 +33,51 @@ public class HttpClientUtil {
 
     public static String sendUnsafeHttpsGet(String url, Map<String, String> paramMap, Map<String, String> headersMap) throws IOException {
         try (CloseableHttpClient httpClient = createUnsafeSslClient()) {
-            String param = URLEncodedUtils.format(toParamMap(paramMap), CharEncoding.UTF_8);
-            if (StringUtils.isNotBlank(param)) {
-                param = "?" + param;
+            return sendGet(url, paramMap, headersMap, httpClient);
+        }
+    }
+
+    public static String sendGet(String url, Map<String, String> paramMap, Map<String, String> headersMap) throws IOException {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+            return sendGet(url, paramMap, headersMap, httpClient);
+        }
+    }
+
+    private static String sendGet(String url, Map<String, String> paramMap, Map<String, String> headersMap, CloseableHttpClient httpClient) throws IOException {
+        String param = URLEncodedUtils.format(toParamMap(paramMap), CharEncoding.UTF_8);
+        if (StringUtils.isNotBlank(param)) {
+            param = "?" + param;
+        }
+        HttpGet httpGet = new HttpGet(url + param);
+        if (headersMap != null) {
+            for (Map.Entry<String, String> entry : headersMap.entrySet()) {
+                httpGet.setHeader(entry.getKey(), entry.getValue());
             }
-            HttpGet httpGet = new HttpGet(url + param);
-            if (headersMap != null) {
-                for (Map.Entry<String, String> entry : headersMap.entrySet()) {
-                    httpGet.setHeader(entry.getKey(), entry.getValue());
-                }
-            }
-            CloseableHttpResponse response = httpClient.execute(httpGet);
+        }
+        CloseableHttpResponse response = httpClient.execute(httpGet);
+        return EntityUtils.toString(response.getEntity());
+    }
+
+    /**
+     * 发送json格式的post请求
+     *
+     * @param url  访问地址
+     * @param json 请求参数(json字符串)
+     * @return 接收的参数
+     */
+    public static String sendPostJson(String url, String json) throws IOException {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+            HttpPost httpPost = new HttpPost(url);
+            StringEntity entity = new StringEntity(json, CharEncoding.UTF_8);
+            httpPost.setEntity(entity);
+            httpPost.setHeader("Content-Encoding", CharEncoding.UTF_8);
+            httpPost.setHeader("content-type", "application/json");
+            CloseableHttpResponse response = httpClient.execute(httpPost);
             return EntityUtils.toString(response.getEntity());
         }
     }
 
-    public static List<NameValuePair> toParamMap(Map<String, String> paramMap) {
+    private static List<NameValuePair> toParamMap(Map<String, String> paramMap) {
         List<NameValuePair> params = new ArrayList<>();
         if (paramMap != null) {
             for (Map.Entry<String, String> entry : paramMap.entrySet()) {
