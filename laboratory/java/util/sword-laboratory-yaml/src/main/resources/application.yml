@@ -2,3 +2,10 @@ blue-sword:
   ls:
     - s1
     - s2
+  map:
+    k1:
+      - v1
+      - v2
+    k2:
+      - v3
+      - v4
