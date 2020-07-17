@@ -27,9 +27,21 @@ class ValidatorTest {
 		beanDemo.setI2(new InsideBeanDemo());
 
 		Set<ConstraintViolation<BeanDemo>> vm = VALIDATOR.validate(beanDemo);
+		printViolation(vm);
+	}
+
+	private void printViolation(Set<ConstraintViolation<BeanDemo>> vm) {
 		for (ConstraintViolation<BeanDemo> constraintViolation : vm) {
-			log.error("{}:{}",constraintViolation.getPropertyPath(),constraintViolation.getMessage());
+			log.error("{}:{}", constraintViolation.getPropertyPath(), constraintViolation.getMessage());
 		}
+	}
+
+	@Test
+	void sizeTest(){
+		BeanDemo beanDemo = new BeanDemo();
+		beanDemo.setString("0123456789");
+		Set<ConstraintViolation<BeanDemo>> validate = VALIDATOR.validate(beanDemo);
+		printViolation(validate);
 	}
 
 	@Test
@@ -37,9 +49,7 @@ class ValidatorTest {
 		BeanDemo beanDemo = new BeanDemo();
 		Set<ConstraintViolation<BeanDemo>> vm1 = VALIDATOR.validate(beanDemo, StringChecks.class);
 		System.out.println(vm1.size());
-		for (ConstraintViolation<BeanDemo> constraintViolation : vm1) {
-			System.out.println(constraintViolation.getMessage());
-		}
+		printViolation(vm1);
 	}
 
 }
