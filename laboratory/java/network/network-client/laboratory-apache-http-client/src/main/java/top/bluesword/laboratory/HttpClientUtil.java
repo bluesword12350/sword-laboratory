@@ -2,7 +2,9 @@ package top.bluesword.laboratory;
 
 import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.Header;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -72,6 +74,23 @@ public class HttpClientUtil {
             httpPost.setEntity(entity);
             httpPost.setHeader("Content-Encoding", CharEncoding.UTF_8);
             httpPost.setHeader("content-type", "application/json");
+            CloseableHttpResponse response = httpClient.execute(httpPost);
+            return EntityUtils.toString(response.getEntity());
+        }
+    }
+
+    /**
+     * 发送普通格式参数的post请求
+     * @param url 请求地址
+     * @param paramMap 参数
+     * @param headers 请求头
+     * @return 返回参数
+     */
+    public static String sendPostParam(String url, Map<String, String> paramMap, Header[] headers) throws IOException {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setEntity(new UrlEncodedFormEntity(toParamMap(paramMap), CharEncoding.UTF_8));
+            httpPost.setHeaders(headers);
             CloseableHttpResponse response = httpClient.execute(httpPost);
             return EntityUtils.toString(response.getEntity());
         }
