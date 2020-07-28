@@ -8,33 +8,44 @@ import org.apache.poi.xssf.streaming.SXSSFCell;
 import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ZeroCopyHttpOutputMessage;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
  * @author 李林峰
  */
-@Controller
+@RestController
 @RequestMapping("export-excel")
 public class ExportExcelService {
 
     @GetMapping
-    public void get(HttpServletResponse response) throws IOException {
-        SXSSFWorkbook table = createColorTable();
-        outToHttp(response, table);
+    public Mono<Void> get(ServerHttpResponse response) {
+        SXSSFWorkbook colorTable = createColorTable();
+        String fileName = "test.xlsx";
+        return Mono.fromCallable(() -> outputFile(colorTable, fileName)).flatMap(file -> downloadFile(response, file, fileName));
     }
 
-    private void outToHttp(HttpServletResponse response, SXSSFWorkbook table) throws IOException {
-        response.setHeader("content-disposition", "attachment;filename=test.xlsx");
-        ServletOutputStream outputStream = response.getOutputStream();
-        try (table;outputStream) {
-            table.write(outputStream);
+    private File outputFile(SXSSFWorkbook colorTable, String fileName) throws IOException {
+        File file = new File(fileName);
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        try(colorTable;fileOutputStream) {
+            colorTable.write(new FileOutputStream(file));
         }
+        return file;
+    }
+
+    private Mono<Void> downloadFile(ServerHttpResponse response, File file, String fileName) {
+        response.getHeaders().set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+fileName);
+        return ((ZeroCopyHttpOutputMessage) response).writeWith(file, 0, file.length());
     }
 
     public static SXSSFWorkbook createColorTable() {
