@@ -2,6 +2,7 @@ package top.bluesword.java.util.concurrent;
 
 import org.junit.jupiter.api.Test;
 
+import javax.annotation.Nonnull;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.concurrent.DelayQueue;
@@ -15,7 +16,7 @@ import java.util.function.Supplier;
 class DelayQueueTest {
 
     @Test
-    void main(){
+    void main() throws InterruptedException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS ZZ");
         DelayQueue<Agreement> queue = new DelayQueue<>();
         long now = System.currentTimeMillis();
@@ -26,19 +27,15 @@ class DelayQueueTest {
             System.out.println("执行时间"+simpleDateFormat.format(ext));
             return true;
         }));
-        try {
-            Agreement take = queue.take();
-            take.getAction().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Agreement take = queue.take();
+        take.getAction().get();
     }
 
     static class Agreement implements Delayed {
 
-        private Instant executionTime;
+        private final Instant executionTime;
 
-        private Supplier<Boolean> action;
+        private final Supplier<Boolean> action;
 
         Agreement(Instant executionTime, Supplier<Boolean> action) {
             this.executionTime = executionTime;
@@ -51,7 +48,7 @@ class DelayQueueTest {
         }
 
         @Override
-        public int compareTo(Delayed o) {
+        public int compareTo(@Nonnull Delayed o) {
             return this.executionTime.compareTo(((Agreement)o).executionTime);
         }
 
