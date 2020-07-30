@@ -17,8 +17,9 @@ class Base64Test {
 		FileOutputStream outputStream = new FileOutputStream("rocket.ico");
 		try (inputStream;outputStream) {
 			data = new byte[inputStream.available()];
-			int read = inputStream.read(data);
-			System.out.println(read);
+			if (inputStream.read(data) == -1) {
+				return;
+			}
 			byte[] decode = Base64.getDecoder().decode(data);
 			outputStream.write(decode);
 		}
