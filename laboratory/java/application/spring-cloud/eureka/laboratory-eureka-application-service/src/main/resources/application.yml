@@ -5,6 +5,11 @@ spring:
   application:
     name: sword-laboratory-eureka-application-service
 
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
 #eureka:
 #  client:
 #    service-url:
