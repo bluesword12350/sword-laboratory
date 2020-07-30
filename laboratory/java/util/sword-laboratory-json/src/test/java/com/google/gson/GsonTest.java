@@ -45,8 +45,7 @@ class GsonTest {
 		GsonBeanDemo gsonBeanDemo = new GsonBeanDemo();
 		gsonBeanDemo.setString("123");
 		String jsonStr = gson.toJson(gsonBeanDemo);
-		JsonParser jsonParser = new JsonParser();
-		JsonElement parse = jsonParser.parse(jsonStr);
+		JsonElement parse = JsonParser.parseString(jsonStr);
 		JsonObject asJsonObject = parse.getAsJsonObject();
 		System.out.println(asJsonObject);
 	}
