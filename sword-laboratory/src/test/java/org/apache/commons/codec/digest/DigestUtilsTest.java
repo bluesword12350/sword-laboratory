@@ -16,4 +16,10 @@ class DigestUtilsTest {
 	void sha1(){
 		System.out.println(Arrays.toString(DigestUtils.sha1("214")));
 	}
+
+	@Test
+	void md2Hex() {
+		String s = DigestUtils.md2Hex("73.25");
+		System.out.println(s);
+	}
 }
