@@ -3,6 +3,8 @@ package top.bluesword.web.laboratory.controller;
 import java.time.Duration;
 
 import org.springframework.http.codec.ServerSentEvent;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,11 +18,11 @@ import reactor.util.function.Tuples;
  * @author 李林峰
  */
 @RestController
-@RequestMapping("webfluxDemo")
+@RequestMapping("webflux")
 public class WebfluxDemoController {
 	
 	@GetMapping("demo")
-	public Mono<String> demo() {
+	public Mono<String> demo(ServerHttpRequest httpRequest, ServerHttpResponse httpResponse) {
 		return Mono.just("Hello World");
 	}
 	
