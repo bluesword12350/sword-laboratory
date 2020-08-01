@@ -43,7 +43,4 @@ public class Node {
         this.rheaKVStore.shutdown();
     }
 
-    public RheaKVStore getRheaKVStore() {
-        return rheaKVStore;
-    }
 }
