@@ -67,8 +67,11 @@ class JChannelTest {
         ch.connect("ChatCluster");
     }
 
-    @Test
-    void service() throws Exception {
+    public static void main(String[] args) throws Exception {
+        service();
+    }
+
+    static void service() throws Exception {
         JChannel ch=new JChannel().name("s1");
 
         ch.setReceiver(new ReceiverAdapter() {
@@ -88,6 +91,7 @@ class JChannelTest {
     void send() throws Exception {
         JChannel ch=new JChannel().name("c1");
         ch.connect("ChatCluster");
+        System.out.println(ch.getView());
         ch.send(null, "第5次");
     }
 }
