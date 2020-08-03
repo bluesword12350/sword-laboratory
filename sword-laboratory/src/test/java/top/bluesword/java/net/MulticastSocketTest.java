@@ -15,7 +15,7 @@ import static org.awaitility.Awaitility.await;
  */
 public class MulticastSocketTest {
 
-    private int port = 1234;
+    private final int port = 1234;
 
     /**
      * https://www.rfc-editor.org/rfc/rfc5771.txt
@@ -23,12 +23,12 @@ public class MulticastSocketTest {
      * 224.0.0.0 - 224.0.0.255 (/24) Local Network Control Block（局域网）
      * 224.0.1.0 - 224.0.1.255 (/24) Internetwork Control Block （互联网）
      */
-    private String host = "224.0.1.1";
+    private final String host = "224.0.1.1";
 
     private boolean ready = false;
 
     private String receiveData;
-    private String data = "hello world.";
+    private final String data = "hello world.";
 
     @Test
     void sendAndReceive(){
