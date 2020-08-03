@@ -3,9 +3,7 @@ package top.bluesword.java.net;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
+import java.net.*;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
@@ -54,11 +52,12 @@ public class MulticastSocketTest {
     void receive() throws IOException {
         byte[] data = new byte[256];
         try(MulticastSocket ms = new MulticastSocket(this.port)) {
-            ms.joinGroup(InetAddress.getByName(this.host));
+            ms.joinGroup(new InetSocketAddress(this.host, port), NetworkInterface.getByName("bge0"));
             DatagramPacket packet = new DatagramPacket(data, data.length);
             ready = true;
             ms.receive(packet);
             receiveData = new String(packet.getData(), 0, packet.getLength());
+            System.out.println(receiveData);
         }
     }
 
