@@ -1,7 +1,5 @@
 blue-sword:
-  ls:
-    - s1
-    - s2
+  ls: s1,s2
   map:
     k1:
       - v1
