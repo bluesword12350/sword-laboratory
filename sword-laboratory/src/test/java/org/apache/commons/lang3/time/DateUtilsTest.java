@@ -9,11 +9,7 @@ class DateUtilsTest {
 
 	@Test
 	void parse() throws ParseException {
-
-		Date date1 = DateUtils.parseDate("2019-04-08 08:00:00.0", "yyyy-MM-dd HH:mm:ss.S","yyyy-MM-dd");
-		System.out.println(date1);
-
-		Date date = DateUtils.parseDate("2020-04-09T16:56:43.434 +08:00", "yyyy-MM-dd'T'HH:mm:ss.SSS ZZ");
+		Date date = DateUtils.parseDate("2020-07-30T07:43:55.079+0000", "yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 		System.out.println(DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(date));
 	}
 
