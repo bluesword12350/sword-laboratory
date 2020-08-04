@@ -3,7 +3,7 @@ package com.alibaba.fastjson;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 /**
  * @author 李林峰
@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class BeanDemo {
 
-	@JSONField(name = "time")
-	public Date date;
+	@JSONField(name = "time",format = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+	public ZonedDateTime date;
 
 }
