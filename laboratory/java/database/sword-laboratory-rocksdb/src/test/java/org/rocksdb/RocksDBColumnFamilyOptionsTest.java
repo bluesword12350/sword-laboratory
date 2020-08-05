@@ -5,31 +5,31 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 class RocksDBColumnFamilyOptionsTest {
 
-    private static DBOptions options;
     private static RocksDB db;
-    private static ColumnFamilyOptions cfOpts;
     private static List<ColumnFamilyHandle> columnFamilyHandleList;
 
     @BeforeAll
     static void before() throws RocksDBException {
-        cfOpts = new ColumnFamilyOptions();
-        cfOpts.optimizeUniversalStyleCompaction();
-        final List<ColumnFamilyDescriptor> cfDescriptors = Arrays.asList(
-                new ColumnFamilyDescriptor(RocksDB.DEFAULT_COLUMN_FAMILY, cfOpts),
-                new ColumnFamilyDescriptor("columnFamily".getBytes(), cfOpts)
-        );
-        columnFamilyHandleList = new ArrayList<>();
         RocksDB.loadLibrary();
-        options = new DBOptions();
-        options.setCreateIfMissing(true);
-        options.setCreateMissingColumnFamilies(true);
-        options.setKeepLogFileNum(1);
-        db = RocksDB.open(options,"database/rocks", cfDescriptors, columnFamilyHandleList);
+        ColumnFamilyOptions cfOpts = new ColumnFamilyOptions();
+        DBOptions options = new DBOptions();
+        try(cfOpts;options) {
+            cfOpts.optimizeUniversalStyleCompaction();
+            final List<ColumnFamilyDescriptor> cfDescriptors = List.of(
+                    new ColumnFamilyDescriptor(RocksDB.DEFAULT_COLUMN_FAMILY, cfOpts),
+                    new ColumnFamilyDescriptor("columnFamily".getBytes(), cfOpts)
+            );
+            options.setCreateIfMissing(true);
+            options.setCreateMissingColumnFamilies(true);
+            options.setKeepLogFileNum(1);
+            columnFamilyHandleList = new ArrayList<>();
+            db = RocksDB.open(options,"database/rocks", cfDescriptors, columnFamilyHandleList);
+        }
     }
 
     @Test
@@ -47,17 +47,18 @@ class RocksDBColumnFamilyOptionsTest {
 
     @Test
     void putTest() throws RocksDBException {
-        db.put(columnFamilyHandleList.get(1),"key1".getBytes(),"1".getBytes());
+        ColumnFamilyHandle columnFamilyHandle = columnFamilyHandleList.get(1);
+        long l = new Random().nextLong();
+        String v = Long.toHexString(l);
+        byte[] k = "k1".getBytes();
+        db.put(columnFamilyHandle,k,v.getBytes());
+        String v2 = new String(db.get(columnFamilyHandle, k));
+        System.out.println(String.format("v:%s v2:%s eq:%b",v,v2,v.equals(v2)));
     }
 
     @Test
     void dropColumnFamily() throws RocksDBException {
         db.dropColumnFamily(columnFamilyHandleList.get(2));
-    }
-
-    @Test
-    void getTest() throws RocksDBException {
-        System.out.println(new String(db.get(columnFamilyHandleList.get(0),"key1".getBytes())));
     }
 
     @AfterAll
@@ -66,7 +67,5 @@ class RocksDBColumnFamilyOptionsTest {
             columnFamilyHandle.close();
         }
         db.close();
-        options.close();
-        cfOpts.close();
     }
 }
