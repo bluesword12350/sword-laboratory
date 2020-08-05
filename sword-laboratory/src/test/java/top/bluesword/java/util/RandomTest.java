@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class RandomTest {
 
-	private Random random = new Random();
+	private final Random random = new Random();
 
 	@Test
 	void nextIntTest() {
