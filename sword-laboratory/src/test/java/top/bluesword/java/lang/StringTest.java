@@ -17,12 +17,10 @@ class StringTest {
     @Test
     void charsetTest(){
         byte[] bytes = "你好".getBytes();
-
         System.out.println(new String(bytes, StandardCharsets.UTF_8));
         System.out.println(new String(bytes, StandardCharsets.ISO_8859_1));
         System.out.println(new String(bytes, StandardCharsets.US_ASCII));
         System.out.println(new String(bytes, StandardCharsets.UTF_16));
-
         System.out.println(new String(bytes, Charset.forName("GBK")));
         System.out.println(new String(bytes, Charset.forName("GB18030")));
         System.out.println(new String(bytes, Charset.forName("GB2312")));
@@ -53,6 +51,11 @@ class StringTest {
         String aaa1 = String.format("%12s", "aaa");
         System.out.println(aaa1);
         System.out.println(aaa1.length());
+    }
+
+    @Test
+    void formatTest0() {
+        System.out.println(String.format("AND updated >= -%dm", 30));
     }
 
 	@Test
