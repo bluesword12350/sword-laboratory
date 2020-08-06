@@ -23,4 +23,9 @@ public class ScheduledService {
         log.info("定时任务1执行");
     }
 
+    @Scheduled(initialDelay = 0,fixedDelayString = "#{${scheduled.time-interval-second}*1000}")
+    public void scheduled2(){
+        log.info("定时任务2执行");
+    }
+
 }
