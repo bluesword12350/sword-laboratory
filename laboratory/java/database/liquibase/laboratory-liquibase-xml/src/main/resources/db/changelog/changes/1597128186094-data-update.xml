@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="李林峰" id="1597128186094">
+        <update tableName="data_model">
+            <column name="name">only1</column>
+            <where>
+                key = 'k1'
+            </where>
+        </update>
+        <update tableName="data_model">
+            <column name="name">all</column>
+            <where>
+                name isnull
+            </where>
+        </update>
+    </changeSet>
+</databaseChangeLog>

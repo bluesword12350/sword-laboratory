@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="李林峰" id="1597127939086">
+        <insert tableName="data_model">
+            <column name="id">1</column>
+            <column name="key">k1</column>
+            <column name="create_time">now()</column>
+        </insert>
+        <insert tableName="data_model">
+            <column name="id">2</column>
+            <column name="key">k2</column>
+            <column name="create_time">now()</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
