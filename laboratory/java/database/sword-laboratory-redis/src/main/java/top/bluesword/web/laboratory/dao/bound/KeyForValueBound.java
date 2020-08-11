@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class KeyForValueBound {
 
-    private BoundValueOperations<String, String> boundValueOperations;
+    private final BoundValueOperations<String, String> boundValueOperations;
 
     private static final String KEY = "keyForValue";
 
