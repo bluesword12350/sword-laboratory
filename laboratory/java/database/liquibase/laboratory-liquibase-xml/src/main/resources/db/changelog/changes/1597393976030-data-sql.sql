@@ -1,0 +1,1 @@
+update data_model set name = key where key = 'k1';
