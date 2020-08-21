@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.bluesword.web.laboratory.util.HttpContextAssist;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,13 +28,21 @@ public class TestController {
     }
 
     @ResponseBody
-    @PostMapping("requestTest")
+    @PostMapping("request-test")
     public Object requestTest(HttpServletRequest request, @RequestBody String body) {
         Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()){
             String element = headerNames.nextElement();
             log.info("{} : {}",element,request.getHeader(element));
         }
+        log.info(body);
+        return body;
+    }
+
+    @ResponseBody
+    @PostMapping("body")
+    public String requestTest() throws IOException {
+        String body = HttpContextAssist.getJsonBody();
         log.info(body);
         return body;
     }
