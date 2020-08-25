@@ -17,6 +17,9 @@
 			<url>LICENSE</url>
 		</license>
 	</licenses>
+
+	<!-- mvn dependency:sources -->
+	<!-- mvn dependency:resolve -Dclassifier=javadoc -->
 	<dependencies>
 		<dependency>
 			<groupId>top.bluesword</groupId>
