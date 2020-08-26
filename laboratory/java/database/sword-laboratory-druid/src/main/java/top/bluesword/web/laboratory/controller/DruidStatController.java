@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/druidStat")
 public class DruidStatController {
 
-    private DruidStatManagerFacade managerFacade = DruidStatManagerFacade.getInstance();
+    private final DruidStatManagerFacade managerFacade = DruidStatManagerFacade.getInstance();
 
     @GetMapping("/stat")
     public Object druidStat(){
