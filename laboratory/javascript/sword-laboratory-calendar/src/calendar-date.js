@@ -255,4 +255,4 @@ const calendar = {
   }
 };
 
-module.exports = calendar;
+export default calendar;

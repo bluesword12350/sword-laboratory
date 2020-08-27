@@ -10,5 +10,8 @@
     "农历"
   ],
   "author": "李林峰",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "^7.7.0"
+  }
 }
