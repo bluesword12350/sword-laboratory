@@ -28,4 +28,12 @@ public class AsyncController {
         log.info("异步任务开启，同步返回");
         return "开启完成";
     }
+
+    @ResponseBody
+    @GetMapping("start0")
+    public Object asyncTaskStart0() throws InterruptedException {
+        asyncTask.doTaskTwo();
+        log.info("异步任务2开启，同步返回");
+        return "开启完成";
+    }
 }

@@ -22,4 +22,9 @@ public class AsyncTask {
         log.info("异步任务执行完成");
     }
 
+    @Async
+    public void doTaskTwo() throws InterruptedException {
+        doTaskOne();
+    }
+
 }
