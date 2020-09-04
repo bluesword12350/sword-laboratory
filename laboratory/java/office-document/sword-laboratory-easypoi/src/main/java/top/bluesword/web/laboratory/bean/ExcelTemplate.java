@@ -43,12 +43,12 @@ public class ExcelTemplate implements IExcelDataModel, IExcelModel {
 	}
 
 	@Override
-	public int getRowNum() {
+	public Integer getRowNum() {
 		return rowNum;
 	}
 
 	@Override
-	public void setRowNum(int rowNum) {
+	public void setRowNum(Integer rowNum) {
 		this.rowNum = rowNum;
 	}
 

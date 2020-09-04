@@ -48,7 +48,7 @@ public class ModelController {
 			params.setTitleRows(1);
 			params.setNeedVerify(true);
             ExcelImportResult<ExcelTemplate> importExcel = ExcelImportUtil.importExcelMore(inputStream, ExcelTemplate.class, params);
-            if (importExcel.isVerfiyFail()) {
+            if (importExcel.isVerifyFail()) {
 				return JSON.toJSONString(importExcel.getFailList());
 			}else {
 				return JSON.toJSONString(importExcel.getList());
