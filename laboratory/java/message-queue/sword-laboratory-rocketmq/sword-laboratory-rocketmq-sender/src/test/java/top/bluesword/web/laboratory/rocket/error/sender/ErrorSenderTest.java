@@ -1,16 +1,17 @@
-package top.bluesword.web.laboratory.rocket.topic.sender;
+package top.bluesword.web.laboratory.rocket.error.sender;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TopicSenderTest {
+class ErrorSenderTest {
+
     @Autowired
-    TopicSender topicSender;
+    ErrorSender errorSender;
 
     @Test
-    void send1() {
-        topicSender.send("主题：topic.message 测试 消息6");
+    void send() {
+        errorSender.send("主题：topic.message 异常消息");
     }
 }
