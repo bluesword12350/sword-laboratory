@@ -15,6 +15,11 @@ class StringTest {
     }
 
     @Test
+    void indexOf(){
+        System.out.println("Asd".indexOf("As"));
+    }
+
+    @Test
     void charsetTest(){
         byte[] bytes = "你好".getBytes();
         System.out.println(new String(bytes, StandardCharsets.UTF_8));
