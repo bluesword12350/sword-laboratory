@@ -35,4 +35,7 @@ public class DataModel extends BaseData {
     })
     private PersonSummary owner;
 
+    @Version
+    private Integer version;
+
 }
