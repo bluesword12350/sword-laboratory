@@ -16,6 +16,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.Future;
 
+import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
+
 /**
  * @author 李林峰
  */
@@ -38,13 +40,14 @@ public class TransactionalService {
     }
 
     /**
-     * 无事务
+     * 新事务
      * @param id id
      */
     @Async
     @Retryable(value = ObjectOptimisticLockingFailureException.class)
-    public Future<Boolean> noTransactional(Long id, int waitingTime){
-        String addition = "无事务；";
+    @Transactional(rollbackFor = Exception.class,propagation = REQUIRES_NEW)
+    public Future<Boolean> requiresNewPropagation(Long id, int waitingTime){
+        String addition = "新事务；";
         nameAddition(id, addition,waitingTime);
         return new AsyncResult<>(true);
     }
