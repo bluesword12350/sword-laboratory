@@ -22,6 +22,7 @@ import org.apache.http.util.EntityUtils;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -37,17 +38,22 @@ public class HttpClientUtil {
 
     public static String sendUnsafeHttpsGet(String url, Map<String, String> paramMap, Map<String, String> headersMap) throws IOException {
         try (CloseableHttpClient httpClient = createUnsafeSslClient()) {
-            return sendGet(url, paramMap, headersMap, httpClient);
+            return sendGetForString(url, paramMap, headersMap, httpClient);
         }
     }
 
-    public static String sendGet(String url, Map<String, String> paramMap, Map<String, String> headersMap) throws IOException {
+    public static String sendGetForString(String url, Map<String, String> paramMap, Map<String, String> headersMap) throws IOException {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            return sendGet(url, paramMap, headersMap, httpClient);
+            return sendGetForString(url, paramMap, headersMap, httpClient);
         }
     }
 
-    private static String sendGet(String url, Map<String, String> paramMap, Map<String, String> headersMap, CloseableHttpClient httpClient) throws IOException {
+    private static String sendGetForString(String url, Map<String, String> paramMap, Map<String, String> headersMap, CloseableHttpClient httpClient) throws IOException {
+        CloseableHttpResponse response = sendGet(url, paramMap, headersMap, httpClient);
+        return EntityUtils.toString(response.getEntity());
+    }
+
+    private static CloseableHttpResponse sendGet(String url, Map<String, String> paramMap, Map<String, String> headersMap, CloseableHttpClient httpClient) throws IOException {
         String param = URLEncodedUtils.format(toParamMap(paramMap), CharEncoding.UTF_8);
         if (StringUtils.isNotBlank(param)) {
             param = "?" + param;
@@ -58,8 +64,12 @@ public class HttpClientUtil {
                 httpGet.setHeader(entry.getKey(), entry.getValue());
             }
         }
-        CloseableHttpResponse response = httpClient.execute(httpGet);
-        return EntityUtils.toString(response.getEntity());
+        return httpClient.execute(httpGet);
+    }
+
+    private static InputStream sendGetForInputStream(String url, CloseableHttpClient httpClient) throws IOException {
+        CloseableHttpResponse closeableHttpResponse = sendGet(url, null, null, httpClient);
+        return closeableHttpResponse.getEntity().getContent();
     }
 
     public static String sendPostJson(String url, String json,Map<String, String> headersMap) throws IOException {
