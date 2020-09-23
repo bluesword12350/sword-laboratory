@@ -43,16 +43,6 @@ public class ExcelTemplate implements IExcelDataModel, IExcelModel {
 	}
 
 	@Override
-	public Integer getRowNum() {
-		return rowNum;
-	}
-
-	@Override
-	public void setRowNum(Integer rowNum) {
-		this.rowNum = rowNum;
-	}
-
-	@Override
 	public String getErrorMsg() {
 		return errorMsg;
 	}
