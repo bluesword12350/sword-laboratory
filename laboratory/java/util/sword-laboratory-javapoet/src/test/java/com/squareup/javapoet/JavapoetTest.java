@@ -18,16 +18,14 @@ public class JavapoetTest {
                 .build();
 
         TypeSpec helloWorld = TypeSpec.classBuilder("HelloWorld")
-                .addJavadoc(String.format("@author %s","李林峰"))
-                .addJavadoc("")
+                .addJavadoc(String.format("@author %s\n","李林峰"))
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addMethod(main)
                 .build();
 
         JavaFile javaFile = JavaFile.builder("top.bluesword.laboratory", helloWorld)
                 .build();
-
-        javaFile.writeTo(new File("src/main/java"));
+        javaFile.writeTo(new File("target/java"));
     }
 
 }
