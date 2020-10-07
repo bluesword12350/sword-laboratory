@@ -1,10 +1,10 @@
 package org.hibernate;
 
 import lombok.extern.slf4j.Slf4j;
-import top.bluesword.laboratory.bean.InsideBeanDemo;
-import top.bluesword.laboratory.validation.group.StringChecks;
 import org.junit.jupiter.api.Test;
 import top.bluesword.laboratory.bean.BeanDemo;
+import top.bluesword.laboratory.bean.InsideBeanDemo;
+import top.bluesword.laboratory.validation.group.StringChecks;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
