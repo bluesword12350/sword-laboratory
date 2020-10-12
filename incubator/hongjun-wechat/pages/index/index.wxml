@@ -1,12 +1,17 @@
 <view class="container">
   <view class="container">
     <text>与洪君结识于 {{knowDateTxt}}</text>
-    <text>过去了 {{knowDateToNow}} 天</text>
+    <text>过去了{{knowDateToNow}} 天</text>
   </view>
   <view class="divLine"></view>
   <view class="container">
     <text>春节 {{springFestival}}</text>
     <text>农历年进度: {{percent}}%</text>
+  </view>
+  <view class="divLine"></view>
+  <view class="container">
+    <text>距离结婚({{matrimony}})</text>
+    <text>{{nowToMatrimonyStr}}</text>
   </view>
   <view class="divLine"></view>
   <view class="container">

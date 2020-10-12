@@ -15,6 +15,14 @@ let nextMidAutumnFestivalCalendar = calendar.lunar2solar(nowCalendar.lunarYear,8
 if (nextMidAutumnFestivalCalendar.date.getTime()<now.getTime()){
     nextMidAutumnFestivalCalendar = calendar.lunar2solar(nowCalendar.lunarYear+1,8,15);
 }
+let matrimonyDate = new Date(2021,1,17);
+let nowToMatrimony = Math.trunc((matrimonyDate.getTime()-Date.now()) / dateTime)
+let nowToMatrimonyStr;
+if (nowToMatrimony>0){
+    nowToMatrimonyStr = `还有${nowToMatrimony}天`
+} else {
+    nowToMatrimonyStr = `过去了${-nowToMatrimony}天`
+}
 
 Page({
     data:{
@@ -23,7 +31,9 @@ Page({
         percent:0,
         springFestival:dayjs(nextSpringFestivalCalendar.date).format(dateFormat),
         midAutumnFestival:dayjs(nextMidAutumnFestivalCalendar.date).format(dateFormat),
-        nowToMidAutumn:Math.trunc((nextMidAutumnFestivalCalendar.date.getTime()-Date.now()) / dateTime)
+        nowToMidAutumn:Math.trunc((nextMidAutumnFestivalCalendar.date.getTime()-Date.now()) / dateTime),
+        matrimony:dayjs(matrimonyDate).format(dateFormat),
+        nowToMatrimonyStr:nowToMatrimonyStr
     },
     onLoad: function () {
         setInterval(this.pushPercent,100);
