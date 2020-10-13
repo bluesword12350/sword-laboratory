@@ -21,9 +21,9 @@ class CompletableFutureTest {
     }
 
     @Test
-    void runAsync(){
-        CompletableFuture.runAsync(()-> {
-            if (new Random().nextBoolean()){
+    void runAsync() {
+        CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
+            if (new Random().nextBoolean()) {
                 try {
                     Thread.sleep(10000);
                 } catch (InterruptedException e) {
@@ -31,9 +31,10 @@ class CompletableFutureTest {
                 }
                 throw new SwordRuntimeException("随机异常");
             }
-            System.out.println("Async");
         });
-        System.out.println("result");
+        System.out.println("result0");
+        CompletableFuture.allOf(completableFuture).join();
+        System.out.println("result1");
     }
 
     @Test
