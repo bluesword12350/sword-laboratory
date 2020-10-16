@@ -28,11 +28,7 @@ public class FaviconController {
         InputStream inputStream = FaviconController.class.getClassLoader().getResourceAsStream("rocket.base64");
         try (inputStream;outputStream) {
             assert inputStream != null;
-            byte[] data = new byte[inputStream.available()];
-            int read = inputStream.read(data);
-            if (read<0) {
-                return;
-            }
+            byte[] data = inputStream.readAllBytes();
             byte[] decode = Base64.getDecoder().decode(data);
             outputStream.write(decode);
         }
