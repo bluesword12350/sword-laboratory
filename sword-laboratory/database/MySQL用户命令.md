@@ -11,6 +11,8 @@
 3. 设置用户密码
    ```mysql
    SET PASSWORD FOR 'username'@'host' = PASSWORD('new password');
+   alter user 'username' identified by 'new password';
+   alter user user() identified by 'new password'
    ```
 
 4. 删除用户
