@@ -20,7 +20,6 @@ public class YyetsCrawler {
     public static void main(String[] args) throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().cookieJar(new CustomerCookieJar()).build();
         HttpUrl baseUrl;
-        Request request1;
         {
             String url = "http://www.rrys.tv/";
             Request request0 = new Request.Builder()
@@ -31,19 +30,25 @@ public class YyetsCrawler {
                 Document document = Jsoup.parse(html);
                 Elements elements = document.select("p.domain > a");
                 String nextUrl = elements.attr("href");
-                baseUrl = HttpUrl.get(nextUrl);
-                request1 = new Request.Builder()
-                        .url(nextUrl)
-                        .build();
+                baseUrl = HttpUrl.get(nextUrl+"/resourcelist");
             }
         }
-        try (Response response = client.newCall(request1).execute()) {
-            String html = Objects.requireNonNull(response.body()).string();
-            //todo
-            OutFileUtils.outPutFile(response.headers().toString(),html,
-                    "yyets");
+        for (int i = 1; i < 2; i++) {
+            HttpUrl url = baseUrl.newBuilder()
+                    .addQueryParameter("sort", "update")
+                    .addQueryParameter("page", String.valueOf(i))
+                    .build();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Document document;
+            try (Response response = client.newCall(request).execute()) {
+                String html = Objects.requireNonNull(response.body()).string();
+                document = Jsoup.parse(html);
+            }
+            Elements elements = document.select("div.resource-showlist").select("dt").select("a");
+            OutFileUtils.outPutFile(elements.toString(),"yyets");
         }
-
     }
 
 }
