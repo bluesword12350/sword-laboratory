@@ -3,6 +3,7 @@ package org.apache.commons.lang3.time;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 
 class DateUtilsTest {
@@ -34,5 +35,14 @@ class DateUtilsTest {
 	void addDays(){
 		Date date = DateUtils.addDays(new Date(), 429);
 		System.out.println(DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(date));
+	}
+
+	@Test
+	void truncatedCompareTo(){
+		Date date = new Date();
+		Date date2 = DateUtils.addDays(DateUtils.addHours(date, -1),1);
+		System.out.println(DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(date));
+		System.out.println(DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(date2));
+		System.out.println(DateUtils.truncatedCompareTo(date, date2, Calendar.HOUR));
 	}
 }
