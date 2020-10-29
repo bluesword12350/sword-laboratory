@@ -18,7 +18,6 @@ public class HTreeMapTest {
                 .make();
         map = db.hashMap("map", Serializer.STRING, Serializer.STRING)
                 .createOrOpen();
-        HTreeMap.KeySet<String> set = db.hashSet("set-1", Serializer.STRING).createOrOpen();
     }
 
     @Test
