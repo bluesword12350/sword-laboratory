@@ -1,7 +1,6 @@
 package top.bluesword.java.util.concurrent;
 
 import org.junit.jupiter.api.Test;
-import top.bluesword.util.exception.SwordRuntimeException;
 
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
@@ -29,7 +28,7 @@ class CompletableFutureTest {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                throw new SwordRuntimeException("随机异常");
+                throw new RuntimeException("随机异常");
             }
         });
         System.out.println("result0");

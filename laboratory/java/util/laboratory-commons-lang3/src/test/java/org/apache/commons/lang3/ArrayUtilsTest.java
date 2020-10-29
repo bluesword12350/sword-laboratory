@@ -1,6 +1,5 @@
-package org.apache.commons;
+package org.apache.commons.lang3;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
