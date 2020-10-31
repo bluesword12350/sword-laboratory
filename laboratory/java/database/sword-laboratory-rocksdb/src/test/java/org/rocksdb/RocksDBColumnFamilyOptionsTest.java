@@ -53,7 +53,7 @@ class RocksDBColumnFamilyOptionsTest {
         byte[] k = "k1".getBytes();
         db.put(columnFamilyHandle,k,v.getBytes());
         String v2 = new String(db.get(columnFamilyHandle, k));
-        System.out.println(String.format("v:%s v2:%s eq:%b",v,v2,v.equals(v2)));
+        System.out.printf("v:%s v2:%s eq:%b%n",v,v2,v.equals(v2));
     }
 
     @Test
