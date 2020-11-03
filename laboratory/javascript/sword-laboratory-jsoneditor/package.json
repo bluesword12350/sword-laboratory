@@ -1,0 +1,12 @@
+{
+  "name": "sword-laboratory-jsoneditor",
+  "version": "1.0.0",
+  "description": "web实验室",
+  "main": "es6.js",
+  "scripts": {},
+  "author": "李林峰",
+  "license": "MIT",
+  "dependencies": {
+    "jsoneditor": "latest"
+  }
+}

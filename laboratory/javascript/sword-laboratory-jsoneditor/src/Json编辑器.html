@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh" style="height: 98%">
+<head>
+    <meta charset="UTF-8">
+    <title>关系图实例</title>
+    <link href="../node_modules/jsoneditor/dist/jsoneditor.min.css" rel="stylesheet">
+    <script src="../node_modules/jsoneditor/dist/jsoneditor.min.js"></script>
+</head>
+<body style="height: 100%">
+<div id="codeEditor" style="height: 100%"></div>
+<script>
+    new JSONEditor(
+        document.getElementById(`codeEditor`),
+        {
+            mode: 'tree',
+            modes: ['code', 'form', 'text', 'tree', 'view', 'preview']
+        }
+    )
+</script>
+</body>
+</html>
