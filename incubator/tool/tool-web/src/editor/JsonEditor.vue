@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import "jsoneditor/dist/jsoneditor.min.css"
 import JSONEditor from 'jsoneditor/dist/jsoneditor.min.js';
 
 export default {
