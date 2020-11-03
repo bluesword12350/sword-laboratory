@@ -20,8 +20,9 @@ select current_time;
 SELECT current_timestamp,localtimestamp;
 
 --日期运算
+--https://www.postgresql.org/docs/13/functions-datetime.html
 select current_date - interval '6 month';
+select current_date + 1,current_date + interval '1 day';
 
 --日期比较
 select date '2020-04-07' >= current_date - interval '6 month';
-
