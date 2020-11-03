@@ -23,6 +23,12 @@ public class FilesTest {
     }
 
     @Test
+    void readString() throws IOException {
+        Path path = Paths.get("target/test/test.txt");
+        System.out.println(Files.readString(path));
+    }
+
+    @Test
     void deleteIfExists() throws IOException {
         Path path = Paths.get("target/test/test.txt");
         Files.deleteIfExists(path);
