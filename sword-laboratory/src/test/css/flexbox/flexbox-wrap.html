@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Flexbox</title>
+    <style>
+        /*
+         * flex-wrap: wrap;
+         * flex: 200px;
+         */
+        section {
+            display:flex;
+            flex-wrap: wrap;
+            /*flex-direction: row-reverse;*/
+        }
+
+        article {
+            padding: 10px;
+            margin: 10px;
+            background: aqua;
+            flex: 200px;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <article>
+        <h2>First article</h2>
+    </article>
+    <article>
+        <h2>Second article</h2>
+    </article>
+    <article>
+        <h2>Third article</h2>
+    </article>
+</section>
+</body>
+</html>
