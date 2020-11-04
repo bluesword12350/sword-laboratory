@@ -1,7 +1,11 @@
 <template>
   <div class="box">
-    <div id="codeEditor" class="left" ref="codeEditor"></div>
-    <div id="treeEditor" class="right" ref="treeEditor"></div>
+    <div class="left" ref="codeEditor"></div>
+    <div class="middle column-box">
+      <button @click="letToRight()">==></button>
+      <button @click="rightToLet()"><==</button>
+    </div>
+    <div class="right" ref="treeEditor"></div>
   </div>
 </template>
 
@@ -13,25 +17,45 @@ export default {
   name: "JsonEditor",
   data() {
     return {
-      jsonData : {}
-    };
+      codeEditor:{},
+      treeEditor:{}
+    }
   },
   mounted() {
-    //modes: ['code', 'form', 'text', 'tree', 'view', 'preview']
-    new JSONEditor(this.$refs.codeEditor, {mode: 'code'}).set(this.jsonData)
-    new JSONEditor(this.$refs.treeEditor, {mode: 'tree'}).set(this.jsonData)
-  }
+    this.codeEditor = new JSONEditor(this.$refs.codeEditor, {mode: 'code'})
+    this.treeEditor = new JSONEditor(this.$refs.treeEditor, {mode: 'tree'})
+  },
+  methods:{
+    letToRight(){
+      this.treeEditor.set(this.codeEditor.get())
+    },
+    rightToLet(){
+      this.codeEditor.set(this.treeEditor.get())
+    }
+  },
 }
 </script>
 
 <style scoped>
 .left {
-  width: 50%;
+  flex: 56;
   height: 100%;
 }
 
+.middle {
+  flex: 8;
+  height: 100%;
+}
+
+.column-box{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .right {
-  width: 50%;
+  flex: 56;
   height: 100%;
 }
 

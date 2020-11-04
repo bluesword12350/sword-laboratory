@@ -18,10 +18,7 @@
 html {
   height: 98%;
 }
-body {
-  height: 100%;
-}
-#app {
+body,#app {
   height: 100%;
 }
 </style>
