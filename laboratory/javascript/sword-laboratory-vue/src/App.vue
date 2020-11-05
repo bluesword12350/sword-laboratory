@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <Timestamp/>
+    <p>
+      <router-link to="/timestamp">Go to Bar</router-link>
+    </p>
+    <router-view></router-view>
   </div>
 </template>
 

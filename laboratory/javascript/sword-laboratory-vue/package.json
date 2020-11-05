@@ -10,7 +10,8 @@
   "author": "李林峰",
   "license": "MIT",
   "dependencies": {
-    "vue": "latest"
+    "vue": "latest",
+    "vue-router": "latest"
   },
   "devDependencies": {
     "@vue/cli-service": "latest",
