@@ -23,13 +23,8 @@
 </template>
 
 <script>
-import Timestamp from "./component/Timestamp";
-
 export default {
   name: "App",
-  components: {
-    Timestamp
-  },
   data() {
     return {
       collapsed: false,
