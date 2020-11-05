@@ -20,8 +20,8 @@ export default {
   name: "JsonEditor",
   data() {
     return {
-      plainText:"普通文本",
-      urlEncodedText:"URL编码"
+      plainText:"",
+      urlEncodedText:""
     }
   },
   mounted() {

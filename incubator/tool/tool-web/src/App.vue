@@ -1,25 +1,55 @@
 <template>
-  <div id="app">
-    <UrlEditor />
-  </div>
+  <a-layout id="utils-layout">
+    <a-layout-sider id="utils-sider" v-model="collapsed">
+      <div class="logo">
+        <a-icon
+            class="trigger"
+            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+            @click="() => (collapsed = !collapsed)"
+        />
+      </div>
+      <a-menu theme="dark" mode="inline">
+        <a-menu-item key="json-editor">
+          <a-icon type="video-camera"/>
+          <span>Json编辑器</span>
+          <router-link to="/json-editor"></router-link>
+        </a-menu-item>
+        <a-menu-item key="url-editor">
+          <a-icon type="video-camera"/>
+          <span>URL编码</span>
+          <router-link to="/url-editor"></router-link>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-sider>
+    <a-layout-content>
+      <router-view></router-view>
+    </a-layout-content>
+  </a-layout>
 </template>
 
 <script>
-  import JsonEditor from "./editor/JsonEditor";
-  import UrlEditor from "./editor/UrlEditor";
   export default {
     name: "App",
-    components: {
-      JsonEditor,UrlEditor
-    },
+    data() {
+      return {
+        collapsed: false,
+      };
+    }
   };
 </script>
 
 <style>
-html {
-  height: 98%;
+#utils-sider .trigger {
+  font-size: 18px;
+  color: white;
 }
-body,#app {
+
+#utils-sider .logo {
+  height: 32px;
+  margin: 16px;
+}
+
+#utils-layout, #utils-sider {
   height: 100%;
 }
 </style>

@@ -10,8 +10,10 @@
   "author": "李林峰",
   "license": "MIT",
   "dependencies": {
+    "ant-design-vue": "^1.7.1",
     "jsoneditor": "^9.1.1",
-    "vue": "^2.6.12"
+    "vue": "^2.6.12",
+    "vue-router": "^3.4.8"
   },
   "devDependencies": {
     "@vue/cli-service": "latest",
