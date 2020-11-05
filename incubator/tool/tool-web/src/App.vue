@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <JsonEditor />
+    <UrlEditor />
   </div>
 </template>
 
 <script>
   import JsonEditor from "./editor/JsonEditor";
+  import UrlEditor from "./editor/UrlEditor";
   export default {
     name: "App",
     components: {
-      JsonEditor
+      JsonEditor,UrlEditor
     },
   };
 </script>
