@@ -19,6 +19,12 @@ class BigDecimalTest {
 		System.out.println(BigDecimal.ONE.divide(BigDecimal.valueOf(3),5,RoundingMode.HALF_UP));
 	}
 
+	@Test
+	void intValue() {
+		int i = new BigDecimal("1.99").intValue();
+		System.out.println(i);
+	}
+
     @Test
     void equals() {
         System.out.println(BigDecimal.ZERO.equals(BigDecimal.valueOf(0.0000)));
