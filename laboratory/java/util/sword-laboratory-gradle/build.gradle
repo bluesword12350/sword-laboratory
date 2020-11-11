@@ -2,12 +2,12 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group = 'top.bluesword'
-version = '2.2.0'
+version = '0.0.1'
 
 description = "gradle测试项目"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
@@ -18,7 +18,5 @@ repositories {
      maven { url "http://repo.maven.apache.org/maven2" }
 }
 dependencies {
-    compile("top.bluesword:sword:3.0.7")
     compile("com.xiaoleilu:hutool-all:3.1.1")
-    compile("org.codehaus.groovy:groovy-all:2.5.0")
 }
