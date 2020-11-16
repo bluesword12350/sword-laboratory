@@ -5,7 +5,4 @@
     <changeSet author="李林峰" id="1605489467981">
         <tagDatabase tag="1.0.0"/>
     </changeSet>
-    <changeSet author="李林峰" id="1605489467982">
-        <renameColumn tableName="data_model" oldColumnName="key" newColumnName="key_new"/>
-    </changeSet>
 </databaseChangeLog>
