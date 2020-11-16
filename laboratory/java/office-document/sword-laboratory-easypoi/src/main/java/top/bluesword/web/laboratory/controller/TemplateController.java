@@ -91,7 +91,7 @@ public class TemplateController {
             params.setTemplateWb(book);
             response.setCharacterEncoding(StandardCharsets.UTF_8.displayName());
             response.setHeader("content-disposition", "attachment;filename=" + "test.xlsx");
-            Map<String, Object> dataMap = new HashMap<>(1);
+            Map<String, Object> dataMap = new HashMap<>(3);
             //控制复选框，使用0（不勾选），1（勾选）来控制 {{controlX?1:0}} (还未找到混合勾选的实现方案)
             dataMap.put("control0",false);
             dataMap.put("control1","#N/A");
