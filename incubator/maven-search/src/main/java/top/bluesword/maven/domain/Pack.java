@@ -6,7 +6,7 @@ import lombok.Data;
  * @author 李林峰
  */
 @Data
-public class Dependency {
+public class Pack {
 
     private String groupId;
 
@@ -16,15 +16,15 @@ public class Dependency {
 
     private String groupPath;
 
-    Dependency(final String groupId, final String artifactId, final String version) {
+    Pack(final String groupId, final String artifactId, final String version) {
         this.groupId = groupId;
         this.artifactId = artifactId;
         this.version = version;
         this.groupPath = groupId.replaceAll("\\.","/");
     }
 
-    public static Dependency.DependencyBuilder builder() {
-        return new Dependency.DependencyBuilder();
+    public static Pack.DependencyBuilder builder() {
+        return new Pack.DependencyBuilder();
     }
 
     public static class DependencyBuilder {
@@ -35,23 +35,23 @@ public class Dependency {
         DependencyBuilder() {
         }
 
-        public Dependency.DependencyBuilder groupId(final String groupId) {
+        public Pack.DependencyBuilder groupId(final String groupId) {
             this.groupId = groupId;
             return this;
         }
 
-        public Dependency.DependencyBuilder artifactId(final String artifactId) {
+        public Pack.DependencyBuilder artifactId(final String artifactId) {
             this.artifactId = artifactId;
             return this;
         }
 
-        public Dependency.DependencyBuilder version(final String version) {
+        public Pack.DependencyBuilder version(final String version) {
             this.version = version;
             return this;
         }
 
-        public Dependency build() {
-            return new Dependency(this.groupId, this.artifactId, this.version);
+        public Pack build() {
+            return new Pack(this.groupId, this.artifactId, this.version);
         }
 
     }

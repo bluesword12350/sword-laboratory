@@ -7,7 +7,7 @@ import okhttp3.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import top.bluesword.maven.domain.Dependency;
+import top.bluesword.maven.domain.Pack;
 import top.bluesword.maven.domain.Version;
 
 import java.io.IOException;
@@ -26,10 +26,10 @@ public class MavenRemoteRepository {
         this.repositoryUrl = HttpUrl.get(repositoryUrlStr);
     }
 
-    public String getLatest(Dependency dependency) throws IOException {
+    public String getLatest(Pack pack) throws IOException {
         HttpUrl url = this.repositoryUrl.newBuilder()
-                .addPathSegment(dependency.getGroupPath())
-                .addPathSegment(dependency.getArtifactId())
+                .addPathSegment(pack.getGroupPath())
+                .addPathSegment(pack.getArtifactId())
                 .build();
         Request request = new Request.Builder()
                 .url(url)
