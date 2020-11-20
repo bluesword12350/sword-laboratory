@@ -1,5 +1,7 @@
 package top.bluesword.web.laboratory.domain;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.Instant;
@@ -7,7 +9,7 @@ import java.time.Instant;
 /**
  * @author 李林峰
  */
-@lombok.Data
+@Data
 @Entity
 public class DataForQueryDsl {
 
