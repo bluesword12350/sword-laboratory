@@ -9,7 +9,9 @@ public class PomParser {
 
     public static Pom parse(String pomXml) {
         //todo
-        return null;
+        return Pom.builder()
+                //todo
+                .build();
     }
 
 }

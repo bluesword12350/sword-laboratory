@@ -50,4 +50,8 @@ public class MavenRemoteRepository {
         }
     }
 
+    public String getPom(Pack pack) {
+        //todo
+        return null;
+    }
 }
