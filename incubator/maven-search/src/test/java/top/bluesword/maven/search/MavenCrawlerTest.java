@@ -12,6 +12,6 @@ class MavenCrawlerTest {
         String repositoryUrlStr = "https://repo1.maven.org/maven2/";
         MavenCrawler mavenCrawler = new MavenCrawler(repositoryUrlStr);
         Dependency okhttp = Dependency.builder().groupId("org.jsoup").artifactId("jsoup").build();
-        mavenCrawler.getLatest(okhttp);
+        System.out.println(mavenCrawler.getLatest(okhttp));
     }
 }

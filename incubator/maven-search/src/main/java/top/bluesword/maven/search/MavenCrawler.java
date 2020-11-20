@@ -8,11 +8,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import top.bluesword.maven.domain.Dependency;
+import top.bluesword.maven.domain.Version;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 /**
  * @author 李林峰
@@ -38,14 +40,16 @@ public class MavenCrawler {
         try (Response response = this.httpClient.newCall(request).execute()) {
             assert response.body() != null;
             Elements elements = Jsoup.parse(response.body().string()).select("a");
+            String latestVersion = null;
             for (Element element : elements) {
                 String text = element.text();
                 if (text.startsWith(".") || !text.endsWith("/")) {
                     continue;
                 }
-                //todo 解析版本号，保留最大版本号
+                String version = text.substring(0,text.length()-1);
+                latestVersion = Objects.isNull(latestVersion) ? version : Version.max(latestVersion, version);
             }
-            return null;
+            return latestVersion;
         }
     }
 

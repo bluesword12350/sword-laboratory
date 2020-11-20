@@ -51,6 +51,10 @@ public class Version implements Comparable<Version>{
         return new Version(versionNumber,suffix);
     }
 
+    public static String max(String v1,String v2) {
+        return Version.parse(v1).compareTo(Version.parse(v2)) < 0 ? v2 : v1;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
