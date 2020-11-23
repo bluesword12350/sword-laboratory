@@ -8,10 +8,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import top.bluesword.maven.domain.Pack;
-import top.bluesword.maven.domain.Version;
+import top.bluesword.maven.domain.VersionTextComparator;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author 李林峰
@@ -26,7 +27,7 @@ public class MavenRemoteRepository {
         this.repositoryUrl = HttpUrl.get(repositoryUrlStr);
     }
 
-    public String getLatest(Pack pack) throws IOException {
+    public Set<String> getVersions(Pack pack) throws IOException {
         HttpUrl url = this.repositoryUrl.newBuilder()
                 .addPathSegment(pack.getGroupPath())
                 .addPathSegment(pack.getArtifactId())
@@ -37,16 +38,16 @@ public class MavenRemoteRepository {
         try (Response response = this.httpClient.newCall(request).execute()) {
             assert response.body() != null;
             Elements elements = Jsoup.parse(response.body().string()).select("a");
-            String latestVersion = null;
+            Set<String> versionSet = new TreeSet<>(new VersionTextComparator().reversed());
             for (Element element : elements) {
                 String text = element.text();
                 if (text.startsWith(".") || !text.endsWith("/")) {
                     continue;
                 }
                 String version = text.substring(0,text.length()-1);
-                latestVersion = Objects.isNull(latestVersion) ? version : Version.max(latestVersion, version);
+                versionSet.add(version);
             }
-            return latestVersion;
+            return versionSet;
         }
     }
 

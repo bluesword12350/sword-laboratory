@@ -1,7 +1,5 @@
 package top.bluesword.maven.domain;
 
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,19 +7,15 @@ import java.util.Objects;
 /**
  * @author 李林峰
  */
-@Getter
 public class Version implements Comparable<Version>{
+
+    private final String versionText;
 
     private final List<Integer> versionNumber;
 
     private final String suffix;
 
-    Version(List<Integer> versionNumber, String suffix) {
-        this.versionNumber = versionNumber;
-        this.suffix = suffix;
-    }
-
-    public static Version parse(String versionText) {
+    private Version(String versionText) {
         List<Integer> versionNumber = new ArrayList<>();
         boolean buildSuffix = false;
         StringBuilder numberBuilder = new StringBuilder();
@@ -48,7 +42,13 @@ public class Version implements Comparable<Version>{
         } else {
             versionNumber.add(Integer.valueOf(numberBuilder.toString()));
         }
-        return new Version(versionNumber,suffix);
+        this.versionText = versionText;
+        this.versionNumber = versionNumber;
+        this.suffix = suffix;
+    }
+
+    public static Version parse(String versionText) {
+        return new Version(versionText);
     }
 
     public static String max(String v1,String v2) {
@@ -57,15 +57,15 @@ public class Version implements Comparable<Version>{
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(versionNumber.get(0));
-        for (int i = 1; i < versionNumber.size(); i++) {
-            builder.append('.').append(versionNumber.get(i));
-        }
-        if (Objects.nonNull(suffix)) {
-            builder.append('-').append(suffix);
-        }
-        return builder.toString();
+        return versionText;
+    }
+
+    private List<Integer> getVersionNumber() {
+        return versionNumber;
+    }
+
+    private String getSuffix() {
+        return suffix;
     }
 
     @Override
