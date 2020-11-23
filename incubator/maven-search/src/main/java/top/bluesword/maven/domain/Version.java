@@ -28,8 +28,10 @@ public class Version implements Comparable<Version>{
             if (c>='0' && c<='9') {
                 numberBuilder.append(c);
             } else {
-                versionNumber.add(Integer.valueOf(numberBuilder.toString()));
-                numberBuilder = new StringBuilder();
+                if (numberBuilder.length() > 0) {
+                    versionNumber.add(Integer.valueOf(numberBuilder.toString()));
+                    numberBuilder = new StringBuilder();
+                }
                 buildSuffix = c != '.';
                 if (buildSuffix && c != '-') {
                     numberBuilder.append(c);

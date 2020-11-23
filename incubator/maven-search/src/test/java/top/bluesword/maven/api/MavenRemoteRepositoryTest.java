@@ -11,7 +11,7 @@ class MavenRemoteRepositoryTest {
     void getLatest() throws IOException {
         String repositoryUrlStr = "https://repo1.maven.org/maven2/";
         MavenRemoteRepository remoteRepository = new MavenRemoteRepository(repositoryUrlStr);
-        Pack pack = Pack.builder().groupId("org.apache.shiro").artifactId("shiro-spring").build();
+        Pack pack = Pack.builder().groupId("org.slf4j").artifactId("slf4j-simple").build();
         System.out.println(remoteRepository.getVersions(pack));
     }
 }
