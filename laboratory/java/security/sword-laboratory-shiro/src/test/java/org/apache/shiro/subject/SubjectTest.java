@@ -43,15 +43,4 @@ class SubjectTest {
         System.out.println(currentUser.hasRole("administrator"));
     }
 
-    @Test
-    void isPermitted() {
-        Subject currentUser = SecurityUtils.getSubject();
-        System.out.println(currentUser.isPermitted("user:create"));
-        AuthenticationToken token = new UsernamePasswordToken("username", "password");
-        currentUser.login(token);
-        System.out.println(currentUser.isPermitted("user:create"));
-        AuthenticationToken t1 = new UsernamePasswordToken("u0", "password");
-        currentUser.login(t1);
-        System.out.println(currentUser.isPermitted("user:create"));
-    }
 }
