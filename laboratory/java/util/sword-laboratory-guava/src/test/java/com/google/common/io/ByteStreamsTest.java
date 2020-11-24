@@ -1,6 +1,5 @@
-package top.bluesword.laboratory;
+package com.google.common.io;
 
-import com.google.common.io.ByteStreams;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
