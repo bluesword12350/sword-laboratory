@@ -11,9 +11,8 @@ class PathMatcherTest {
 
 	@Test
 	void matches() {
-		String glob = "glob:/a/*";
 		FileSystem fileSystem = FileSystems.getDefault();
-		PathMatcher pathMatcher = fileSystem.getPathMatcher(glob);
+		PathMatcher pathMatcher = fileSystem.getPathMatcher("glob:/a/**");
 		Path path = fileSystem.getPath("/a/55/5");
 		System.out.println(path);
 		System.out.println(pathMatcher.matches(path));
