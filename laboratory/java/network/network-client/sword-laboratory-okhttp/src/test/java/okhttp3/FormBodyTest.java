@@ -1,6 +1,5 @@
-package com.squareup.okhttp3;
+package okhttp3;
 
-import okhttp3.FormBody;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
