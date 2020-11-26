@@ -51,8 +51,8 @@ public class MavenRemoteRepository {
         }
     }
 
-    public String getPom(Pack pack) {
-        //todo
+    public String getPom(Pack pack) throws IOException {
+        //todo 获取POM文件内容
         return null;
     }
 }
