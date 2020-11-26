@@ -1,5 +1,6 @@
 package top.bluesword.java.nio.file;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -8,30 +9,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+@Disabled
 public class FilesTest {
 
     @Test
-    void createDirectory() throws IOException {
-        Path path = Paths.get("target/test");
-        Files.createDirectory(path);
-    }
-
-    @Test
-    void write() throws IOException {
+    void readString() throws IOException {
+        Path pathDirectory = Paths.get("target/test");
+        if (Files.notExists(pathDirectory)) {
+            Files.createDirectory(pathDirectory);
+        }
         Path path = Paths.get("target/test/test.txt");
         Files.write(path, "测试代码输出文件".getBytes());
-    }
-
-    @Test
-    void readString() throws IOException {
-        Path path = Paths.get("target/test/test.txt");
-        System.out.println(Files.readString(path));
-    }
-
-    @Test
-    void deleteIfExists() throws IOException {
-        Path path = Paths.get("target/test/test.txt");
+        Files.readString(path);
         Files.deleteIfExists(path);
+        Files.deleteIfExists(pathDirectory);
     }
 
     @Test
