@@ -1,7 +1,8 @@
-package org.springframework.expression.spel.standard;
+package org.springframework.expression;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.common.TemplateParserContext;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 import java.util.Map;
