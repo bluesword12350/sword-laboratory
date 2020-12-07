@@ -20,4 +20,12 @@ class DefaultMapperUtilTest {
         dataModelDTO.setKey("父类映射");
         return dataModelDTO;
     }
+
+    @Test
+    void mapNull(){
+        BaseDataDTO baseDataDTO = null;
+        DataModel dataModel = DefaultMapperUtil.map(baseDataDTO, DataModel.class);
+        System.out.println(dataModel);
+    }
+
 }
