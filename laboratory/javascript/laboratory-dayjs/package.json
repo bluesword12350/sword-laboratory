@@ -1,0 +1,17 @@
+{
+  "name": "laboratory-dayjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dayjs"
+  ],
+  "author": "李林峰",
+  "license": "MIT",
+  "dependencies": {
+    "dayjs": "latest"
+  }
+}
