@@ -2,22 +2,22 @@ package top.bluesword.laboratory.mapper;
 
 import org.junit.jupiter.api.Test;
 import top.bluesword.laboratory.domain.DataModel;
-import top.bluesword.laboratory.transfer.BaseDataDTO;
 import top.bluesword.laboratory.transfer.DataModelDTO;
 
 class DataModelMapperTest {
 
     @Test
     void map(){
-        DataModelDTO baseDataDTO = buildBaseData();
-        DataModel dataModel = DataModelMapper.INSTANCE.dtoToDo(baseDataDTO);
+        DataModelDTO baseDataDTO = buildDataModelDTO();
+        DataModel dataModel = DataModelMapper.INSTANCE.map(baseDataDTO);
         String key = dataModel.getKey();
         System.out.println(key);
     }
 
-    private DataModelDTO buildBaseData() {
+    private DataModelDTO buildDataModelDTO() {
         DataModelDTO dataModelDTO = new DataModelDTO();
-        dataModelDTO.setKey("父类映射");
+        dataModelDTO.setKey("目标值");
         return dataModelDTO;
     }
+
 }

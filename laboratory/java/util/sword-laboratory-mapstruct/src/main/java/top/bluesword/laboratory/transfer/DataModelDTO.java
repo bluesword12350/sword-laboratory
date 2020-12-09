@@ -23,7 +23,7 @@ public class DataModelDTO extends BaseDataDTO {
 
     private Instant date;
 
-    private DataContext context;
+    private DataContextDTO context;
 
     private PersonSummary owner;
 

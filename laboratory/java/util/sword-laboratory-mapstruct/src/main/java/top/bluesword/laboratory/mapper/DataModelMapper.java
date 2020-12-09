@@ -1,7 +1,6 @@
 package top.bluesword.laboratory.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 import top.bluesword.laboratory.domain.DataModel;
 import top.bluesword.laboratory.transfer.DataModelDTO;
@@ -19,7 +18,6 @@ public interface DataModelMapper {
      * @param dto 源数据
      * @return 拷贝目标
      */
-    @Mappings({})
-    DataModel dtoToDo(DataModelDTO dto);
+    DataModel map(DataModelDTO dto);
 
 }
