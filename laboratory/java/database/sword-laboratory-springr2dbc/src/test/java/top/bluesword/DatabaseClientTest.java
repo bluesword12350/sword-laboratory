@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.r2dbc.core.DatabaseClient;
+import org.springframework.r2dbc.core.DatabaseClient;
 import reactor.core.publisher.Flux;
 
 import java.util.Map;
@@ -18,7 +18,7 @@ public class DatabaseClientTest {
 
     @Test
     void test() {
-        Flux<Map<String, Object>> all = databaseClient.execute("select 1;").fetch().all();
+        Flux<Map<String, Object>> all = databaseClient.sql("select 1;").fetch().all();
         System.out.println(all.blockFirst());
     }
 }
