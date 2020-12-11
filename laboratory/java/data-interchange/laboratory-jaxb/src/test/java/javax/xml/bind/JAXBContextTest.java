@@ -10,7 +10,7 @@ import java.net.URL;
 public class JAXBContextTest {
 
     @Test
-    void test() throws JAXBException, URISyntaxException {
+    void unmarshal() throws JAXBException, URISyntaxException {
         URL resource = this.getClass().getClassLoader().getResource("metadata.xml");
         assert resource != null;
         Metadata metadata =
