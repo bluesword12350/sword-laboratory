@@ -17,8 +17,6 @@ public class MavenRemoteRepository {
 
     private final OkHttpClient httpClient = new OkHttpClient.Builder().build();
 
-    private final static String MAVEN_METADATA_XML = "maven-metadata.xml";
-
     private final HttpUrl repositoryUrl;
 
     public MavenRemoteRepository(String repositoryUrlStr) {
@@ -29,7 +27,7 @@ public class MavenRemoteRepository {
         HttpUrl url = this.repositoryUrl.newBuilder()
                 .addPathSegment(pack.getGroupPath())
                 .addPathSegment(pack.getArtifactId())
-                .addPathSegment(MAVEN_METADATA_XML)
+                .addPathSegment("maven-metadata.xml")
                 .build();
         Request request = new Request.Builder()
                 .url(url)
@@ -43,7 +41,19 @@ public class MavenRemoteRepository {
     }
 
     public String getPom(Pack pack) throws IOException {
-        //todo 获取POM文件内容
-        return null;
+        HttpUrl url = this.repositoryUrl.newBuilder()
+                .addPathSegment(pack.getGroupPath())
+                .addPathSegment(pack.getArtifactId())
+                .addPathSegment(pack.getVersion())
+                .addPathSegment(pack.getArtifactId()+"-"+pack.getVersion()+".pom")
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        try (Response response = this.httpClient.newCall(request).execute()) {
+            assert response.body() != null;
+            return response.body().string();
+        }
     }
+
 }
