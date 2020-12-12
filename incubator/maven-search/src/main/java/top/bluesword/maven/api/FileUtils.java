@@ -10,7 +10,7 @@ import java.nio.file.Paths;
  */
 public class FileUtils {
 
-    private static void outPutFile(String body, String pathUrl) throws IOException {
+    public static void outPutFile(String body, String pathUrl) throws IOException {
         String uuid = String.valueOf(System.currentTimeMillis());
         Path path = Paths.get(pathUrl);
         Files.write(path.resolve(uuid+".html"), body.getBytes());

@@ -4,15 +4,11 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import top.bluesword.maven.domain.Pack;
-import top.bluesword.maven.domain.VersionTextComparator;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * @author 李林峰
@@ -21,33 +17,28 @@ public class MavenRemoteRepository {
 
     private final OkHttpClient httpClient = new OkHttpClient.Builder().build();
 
+    private final static String MAVEN_METADATA_XML = "maven-metadata.xml";
+
     private final HttpUrl repositoryUrl;
 
     public MavenRemoteRepository(String repositoryUrlStr) {
         this.repositoryUrl = HttpUrl.get(repositoryUrlStr);
     }
 
-    public Set<String> getVersions(Pack pack) throws IOException {
+    public PackMetadata getPackMetadata(Pack pack) throws IOException, JAXBException {
         HttpUrl url = this.repositoryUrl.newBuilder()
                 .addPathSegment(pack.getGroupPath())
                 .addPathSegment(pack.getArtifactId())
+                .addPathSegment(MAVEN_METADATA_XML)
                 .build();
         Request request = new Request.Builder()
                 .url(url)
                 .build();
         try (Response response = this.httpClient.newCall(request).execute()) {
             assert response.body() != null;
-            Elements elements = Jsoup.parse(response.body().string()).select("a");
-            Set<String> versionSet = new TreeSet<>(new VersionTextComparator().reversed());
-            for (Element element : elements) {
-                String text = element.text();
-                if (text.startsWith(".") || !text.endsWith("/")) {
-                    continue;
-                }
-                String version = text.substring(0,text.length()-1);
-                versionSet.add(version);
-            }
-            return versionSet;
+            return (PackMetadata) JAXBContext.newInstance(PackMetadata.class)
+                    .createUnmarshaller()
+                    .unmarshal(response.body().charStream());
         }
     }
 
