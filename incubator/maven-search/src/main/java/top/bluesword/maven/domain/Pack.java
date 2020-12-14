@@ -8,13 +8,13 @@ import lombok.Data;
 @Data
 public class Pack {
 
-    private String groupId;
+    private final String groupId;
 
-    private String artifactId;
+    private final String artifactId;
 
-    private String version;
+    private final String version;
 
-    private String groupPath;
+    private final String groupPath;
 
     Pack(final String groupId, final String artifactId, final String version) {
         this.groupId = groupId;
@@ -23,29 +23,29 @@ public class Pack {
         this.groupPath = groupId.replaceAll("\\.","/");
     }
 
-    public static Pack.DependencyBuilder builder() {
-        return new Pack.DependencyBuilder();
+    public static PackBuilder builder() {
+        return new PackBuilder();
     }
 
-    public static class DependencyBuilder {
+    public static class PackBuilder {
         private String groupId;
         private String artifactId;
         private String version;
 
-        DependencyBuilder() {
+        PackBuilder() {
         }
 
-        public Pack.DependencyBuilder groupId(final String groupId) {
+        public PackBuilder groupId(final String groupId) {
             this.groupId = groupId;
             return this;
         }
 
-        public Pack.DependencyBuilder artifactId(final String artifactId) {
+        public PackBuilder artifactId(final String artifactId) {
             this.artifactId = artifactId;
             return this;
         }
 
-        public Pack.DependencyBuilder version(final String version) {
+        public PackBuilder version(final String version) {
             this.version = version;
             return this;
         }

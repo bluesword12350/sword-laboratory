@@ -12,6 +12,6 @@ import java.util.List;
 @Builder
 public class Pom {
 
-    List<Pack> dependencies;
+    private List<Pack> dependencies;
 
 }
