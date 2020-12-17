@@ -3,7 +3,7 @@ package com.sun.jna;
 /**
  * @author 李林峰
  */
-public class JNATest {
+public class JnaTest {
 
     public static void mainTest(){
         System.out.println(GoLibrary.INSTANCE.sum(1, 2));
