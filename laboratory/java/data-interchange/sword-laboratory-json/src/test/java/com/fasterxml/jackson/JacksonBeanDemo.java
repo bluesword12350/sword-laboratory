@@ -1,5 +1,6 @@
 package com.fasterxml.jackson;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -29,5 +30,8 @@ public class JacksonBeanDemo {
 	public BigDecimal integer;
 
 	public Date date;
+
+	@JsonIgnore
+	public String ignore;
 
 }

@@ -23,6 +23,15 @@ class JacksonTest {
     }
 
     @Test
+    void ignore() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        JacksonBeanDemo beanDemo = new JacksonBeanDemo();
+        beanDemo.setString("@JsonIgnore测试");
+        beanDemo.setIgnore("@JsonIgnore测试");
+        System.out.println(mapper.writeValueAsString(beanDemo));
+    }
+
+    @Test
     void toJsonString() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> map = new HashMap<>(2);
