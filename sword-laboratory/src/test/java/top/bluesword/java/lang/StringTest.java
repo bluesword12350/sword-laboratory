@@ -10,6 +10,11 @@ import java.util.List;
 class StringTest {
 
     @Test
+    void emoji() {
+        System.out.println("\uD83D\uDE18");
+    }
+
+    @Test
     void join(){
         System.out.println(String.join("-", List.of("1", "2","3")));
     }
@@ -60,7 +65,7 @@ class StringTest {
 
     @Test
     void formatTest0() {
-        System.out.println(String.format("AND updated >= -%dm", 30));
+        System.out.printf("AND updated >= -%dm%n", 30);
     }
 
 	@Test
