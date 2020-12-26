@@ -1,4 +1,5 @@
---https://www.postgresql.org/docs/10/functions-datetime.html#9.9.1
+--https://www.postgresql.org/docs/13/functions-datetime.html#FUNCTIONS-DATETIME-EXTRACT
+-- millennium 千年 century 世纪  decade 十年 year 年 quarter 季度 month 月 day 天 hour 小时 minute 分钟 second 秒 milliseconds 豪秒 microseconds 纳秒
 
 --可选时区列表
 select * from pg_timezone_names;

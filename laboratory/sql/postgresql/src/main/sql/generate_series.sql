@@ -1,0 +1,1 @@
+select generate_series(now(), now() + '1 second','1 microseconds');
