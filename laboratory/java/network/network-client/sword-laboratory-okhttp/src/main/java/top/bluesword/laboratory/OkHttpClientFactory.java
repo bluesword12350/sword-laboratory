@@ -21,6 +21,7 @@ public class OkHttpClientFactory {
             X509TrustManager x509TrustManager = getX509TrustManager();
             final SSLSocketFactory sslSocketFactory = getSslSocketFactory(x509TrustManager);
             return new OkHttpClient.Builder()
+                    .cookieJar(new CookieJarImpl())
                     .sslSocketFactory(sslSocketFactory,x509TrustManager)
                     .build();
         } catch (Exception e) {
