@@ -5,6 +5,10 @@ import top.bluesword.laboratory.domain.DataModel;
 import top.bluesword.laboratory.transfer.BaseDataDTO;
 import top.bluesword.laboratory.transfer.DataModelDTO;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.List;
+
 class DefaultMapperUtilTest {
 
     @Test
@@ -26,6 +30,12 @@ class DefaultMapperUtilTest {
         BaseDataDTO baseDataDTO = null;
         DataModel dataModel = DefaultMapperUtil.map(baseDataDTO, DataModel.class);
         System.out.println(dataModel);
+    }
+
+    @Test
+    void mapNullAsList(){
+        List<BaseDataDTO> baseData = null;
+        assertThrows(NullPointerException.class,()-> DefaultMapperUtil.mapAsList(baseData, DataModel.class));
     }
 
 }

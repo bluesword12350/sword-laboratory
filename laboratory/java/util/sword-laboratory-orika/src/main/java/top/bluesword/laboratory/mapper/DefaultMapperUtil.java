@@ -3,6 +3,8 @@ package top.bluesword.laboratory.mapper;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
+import java.util.List;
+
 /**
  * @author 李林峰
  */
@@ -16,12 +18,12 @@ public class DefaultMapperUtil {
         return defaultMapperFactory.getMapperFacade();
     }
 
-    public static <S, D> void map(S sourceObject, D destinationObject) {
-        MAPPER_FACADE.map(sourceObject,destinationObject);
-    }
-
     public static <S, D> D map(S sourceObject, Class<D> destinationClass) {
         return MAPPER_FACADE.map(sourceObject,destinationClass);
+    }
+
+    public static <S, D> List<D> mapAsList(List<S> source, Class<D> destinationClass) {
+        return MAPPER_FACADE.mapAsList(source,destinationClass);
     }
 
 }
