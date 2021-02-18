@@ -19,12 +19,8 @@ public class MavenCrawler {
         this.remoteRepository = new MavenRemoteRepository(repositoryUrlStr);
     }
 
-    public void crawl(Pack pack,boolean refresh) throws IOException {
-        //todo 判断是否强制分析，否则判断是否分析过，分析过则跳过；是，则删除已分析的依赖关系网
-        crawl(pack);
-    }
-
-    private void crawl(Pack pack) throws IOException {
+    public void crawl(Pack pack) throws IOException {
+        //todo 删除已分析的依赖关系网
         String pomXml = remoteRepository.getPom(pack);
         Pom pom = PomParser.parse(pomXml);
         List<Pack> dependencies = pom.getDependencies();
