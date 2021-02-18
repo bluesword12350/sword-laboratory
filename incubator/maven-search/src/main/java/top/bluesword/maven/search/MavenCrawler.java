@@ -1,5 +1,6 @@
 package top.bluesword.maven.search;
 
+import org.dom4j.DocumentException;
 import top.bluesword.maven.api.MavenRemoteRepository;
 import top.bluesword.maven.api.PomParser;
 import top.bluesword.maven.domain.Pack;
@@ -19,7 +20,7 @@ public class MavenCrawler {
         this.remoteRepository = new MavenRemoteRepository(repositoryUrlStr);
     }
 
-    public void crawl(Pack pack) throws IOException {
+    public void crawl(Pack pack) throws IOException, DocumentException {
         //todo 删除已分析的依赖关系网
         String pomXml = remoteRepository.getPom(pack);
         Pom pom = PomParser.parse(pomXml);
