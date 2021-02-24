@@ -6,4 +6,9 @@
     <select id="selectNow" resultType="string">
         SELECT DATETIME('now')
     </select>
+
+    <select id="scan" resultType="integer">
+        WITH RECURSIVE cnt(x) AS ( SELECT 1 UNION ALL SELECT x + 1 FROM cnt LIMIT 100000)
+        SELECT x FROM cnt;
+    </select>
 </mapper>
