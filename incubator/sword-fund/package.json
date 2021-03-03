@@ -1,0 +1,21 @@
+{
+  "name": "sword-fund",
+  "version": "1.0.0",
+  "description": "基金",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "author": "李林峰",
+  "license": "MIT",
+  "devDependencies": {
+    "@vue/cli-service": "latest",
+    "vue-template-compiler": "latest"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.7.4",
+    "axios": "^0.21.1",
+    "dayjs": "^1.10.4",
+    "vue": "^2.6.12"
+  }
+}
