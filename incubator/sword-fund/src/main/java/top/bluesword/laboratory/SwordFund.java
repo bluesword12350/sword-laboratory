@@ -93,7 +93,7 @@ public class SwordFund {
         Map<String,Fund> fundSet = new HashMap<>(50);
         Request request =
                 new Request.Builder()
-                        .url("https://api.vika.cn/fusion/v1/datasheets/dsto5X91Hd2J4XavQS/records?viewId=viwAyeJV6i20V&fieldKey=name")
+                        .url("https://api.vika.cn/fusion/v1/datasheets/dsto5X91Hd2J4XavQS/records?viewId=viwlJBqyfTwxb&fieldKey=name")
                         .header("Authorization","Bearer uskEFgxQSzREdYd5gQwKsgs")
                         .build();
         Response response = HTTP_CLIENT.newCall(request).execute();
