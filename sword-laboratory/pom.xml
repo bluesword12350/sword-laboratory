@@ -22,7 +22,7 @@
 
 	<!-- mvn dependency:sources -->
 	<!-- mvn dependency:resolve -Dclassifier=javadoc -->
-	<dependencies>Timer
+	<dependencies>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
