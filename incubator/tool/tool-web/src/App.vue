@@ -19,6 +19,11 @@
           <span>URL编码</span>
           <router-link to="/url-editor"></router-link>
         </a-menu-item>
+        <a-menu-item key="timestamp">
+          <a-icon type="video-camera"/>
+          <span>时间</span>
+          <router-link to="/timestamp"></router-link>
+        </a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout-content>
