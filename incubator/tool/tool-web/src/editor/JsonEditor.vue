@@ -2,8 +2,8 @@
   <div class="box">
     <div class="left" ref="codeEditor"></div>
     <div class="middle column-box">
-      <button @click="letToRight()">==></button>
-      <button @click="rightToLet()"><==</button>
+      <button @click="letToRight()"><a-icon type="right-circle" /></button>
+      <button @click="rightToLet()"><a-icon type="left-circle" /></button>
     </div>
     <div class="right" ref="treeEditor"></div>
   </div>
@@ -43,7 +43,7 @@ export default {
 }
 
 .middle {
-  flex: 8;
+  flex: 5;
   height: 100%;
 }
 
