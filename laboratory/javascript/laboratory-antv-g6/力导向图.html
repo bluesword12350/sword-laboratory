@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>关系图实例</title>
+    <script src="./node_modules/@antv/g6/dist/g6.min.js"></script>
+</head>
+<body style="height: 100%">
+<div id="graph-demo" style="height: 100%"></div>
+<script>
+    const container = document.getElementById('graph-demo');
+    const width = container.scrollWidth;
+    const height = container.scrollHeight || 500;
+    const graph = new G6.Graph({
+        container: 'graph-demo',
+        width,
+        height,
+        layout: {
+            type: 'force',
+        },
+        defaultNode: {
+            size: 15,
+        },
+    });
+
+    const data = {
+        nodes: [
+            {id: "1", label: '毛发1', size: 40},
+            {id: "2", label: '毛发2', size: 40},
+        ],
+        edges: [
+            {
+                source: '1', target: '2',
+                style: {
+                    endArrow: true,
+                    stroke: '#888'
+                }
+            },
+        ]
+    }
+
+    graph.data(data);  // 读取 Step 2 中的数据源到图上
+    graph.render();    // 渲染图
+</script>
+</body>
+</html>

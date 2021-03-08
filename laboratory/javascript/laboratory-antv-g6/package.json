@@ -1,0 +1,12 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "web实验室",
+  "main": "es6.js",
+  "scripts": {},
+  "author": "李林峰",
+  "license": "MIT",
+  "dependencies": {
+    "@antv/g6": "^4.1.16"
+  }
+}
