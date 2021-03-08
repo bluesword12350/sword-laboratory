@@ -82,8 +82,8 @@ public class SwordFund {
             JSONArray jdsy = JSON.parseObject(body).getJSONArray("jdsy");
             for (int i = 0; i < jdsy.size(); i++) {
                 String[] fundInfos = jdsy.getString(i).split(",");
-                if (fundInfos.length > 8) {
-                    fundMap.get(fundInfos[0]).setYieldStr(fundInfos[8]);
+                if (fundInfos.length > 10) {
+                    fundMap.get(fundInfos[0]).setYieldStr(fundInfos[10]);
                 }
             }
         }
