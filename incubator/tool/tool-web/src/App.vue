@@ -10,17 +10,17 @@
       </div>
       <a-menu theme="dark" mode="inline">
         <a-menu-item key="json-editor">
-          <a-icon type="video-camera"/>
+          <a-icon type="file-text" />
           <span>Json编辑器</span>
           <router-link to="/json-editor"></router-link>
         </a-menu-item>
         <a-menu-item key="url-editor">
-          <a-icon type="video-camera"/>
+          <a-icon type="link" />
           <span>URL编码</span>
           <router-link to="/url-editor"></router-link>
         </a-menu-item>
         <a-menu-item key="timestamp">
-          <a-icon type="video-camera"/>
+          <a-icon type="clock-circle" />
           <span>时间</span>
           <router-link to="/timestamp"></router-link>
         </a-menu-item>
