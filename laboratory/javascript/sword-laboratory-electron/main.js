@@ -1,27 +1,27 @@
-const {app, BrowserWindow} = require('electron');
-const Menu = require('electron').Menu;
-
-let mainWindow;
+const { app, BrowserWindow } = require('electron')
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 800, height: 600});
-  mainWindow.loadFile('index.html');
-
-  mainWindow.on('closed', function () {
-    mainWindow = null
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true
+    }
   })
+
+  win.loadFile('index.html')
 }
 
-app.on('ready', createWindow);
+app.whenReady().then(createWindow)
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
-});
+})
 
-app.on('activate', function () {
-  if (mainWindow === null) {
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
-});
+})
