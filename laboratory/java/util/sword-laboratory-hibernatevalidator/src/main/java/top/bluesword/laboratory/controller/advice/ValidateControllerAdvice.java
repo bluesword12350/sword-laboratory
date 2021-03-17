@@ -25,22 +25,22 @@ public class ValidateControllerAdvice {
      */
     @ExceptionHandler(BindException.class)
     public String validExceptionHandler(BindException e) {
-        List<FieldError> fieldErrors=e.getBindingResult().getFieldErrors();
-        StringBuilder build = new StringBuilder();
-        fieldErrors.forEach(f -> build.append("[").append(f.getField())
-        		.append(f.getDefaultMessage()).append("]"));
-		return build.toString();
+        return toMessage(e.getBindingResult());
+    }
+
+    private String toMessage(BindingResult bindingResult) {
+        List<FieldError> fieldErrors= bindingResult.getFieldErrors();
+        StringBuilder build = new StringBuilder().append("[");
+        for (FieldError f : fieldErrors) {
+            build.append(f.getField()).append(':').append(f.getDefaultMessage()).append(',');
+        }
+        build.setCharAt(build.length()-1,']');
+        return build.toString();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public String exceptionHandler(MethodArgumentNotValidException e) {
-        BindingResult bindingResult = e.getBindingResult();
-        List<FieldError> fieldErrors= bindingResult.getFieldErrors();
-        StringBuilder build = new StringBuilder().append("[");
-        for (FieldError f : fieldErrors) {
-            build.append(f.getField()).append(':').append(f.getDefaultMessage()).append(",");
-        }
-        return build.toString();
+        return toMessage(e.getBindingResult());
     }
 
     @ExceptionHandler(NotReadablePropertyException.class)

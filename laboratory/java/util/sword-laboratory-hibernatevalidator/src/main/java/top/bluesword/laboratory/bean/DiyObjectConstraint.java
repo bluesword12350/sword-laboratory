@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = DiyObjectValidator.class)
 public @interface DiyObjectConstraint {
-    String message() default "范围错误";
+    String message() default "自定义类型错误";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
