@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.NotReadablePropertyException;
 import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,10 +34,12 @@ public class ValidateControllerAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public String exceptionHandler(MethodArgumentNotValidException e) {
-        List<FieldError> fieldErrors=e.getBindingResult().getFieldErrors();
-        StringBuilder build = new StringBuilder();
-        fieldErrors.forEach(f -> build.append("[").append(f.getField())
-                .append(f.getDefaultMessage()).append("]"));
+        BindingResult bindingResult = e.getBindingResult();
+        List<FieldError> fieldErrors= bindingResult.getFieldErrors();
+        StringBuilder build = new StringBuilder().append("[");
+        for (FieldError f : fieldErrors) {
+            build.append(f.getField()).append(':').append(f.getDefaultMessage()).append(",");
+        }
         return build.toString();
     }
 

@@ -10,6 +10,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 @Slf4j
@@ -25,6 +26,7 @@ class ValidatorTest {
 		beanDemo.setDecimal(BigDecimal.valueOf(134165448.1324564768));
 		beanDemo.setI1(new InsideBeanDemo());
 		beanDemo.setI2(new InsideBeanDemo());
+		beanDemo.setList(List.of());
 
 		Set<ConstraintViolation<BeanDemo>> vm = VALIDATOR.validate(beanDemo);
 		printViolation(vm);

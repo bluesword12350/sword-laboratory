@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = DiyValidator.class)
-public @interface Diy {
+public @interface DiyConstraint {
     String message() default "范围错误";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 public class DiyValidatorBeanDemo {
 
     @NotEmpty
-    @Diy
+    @DiyConstraint
     public String string;
 
 }

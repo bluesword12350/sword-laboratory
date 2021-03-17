@@ -9,13 +9,13 @@ import javax.validation.ConstraintValidatorContext;
  * @author 李林峰
  */
 @Slf4j
-public class DiyValidator implements ConstraintValidator<DiyConstraint,String> {
+public class DiyObjectValidator implements ConstraintValidator<DiyObjectConstraint,BeanDemo> {
 
     @Override
-    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        log.debug("校验开始");
+    public boolean isValid(BeanDemo demo, ConstraintValidatorContext constraintValidatorContext) {
+        log.debug("DiyObjectValidator 校验开始");
         waitMillis();
-        log.debug("校验结束");
+        log.debug("DiyObjectValidator 校验结束");
         return false;
     }
 

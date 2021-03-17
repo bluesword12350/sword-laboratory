@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
-class DiyValidatorTest {
+class DiyConstraintValidatorTest {
 
     private static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
 
