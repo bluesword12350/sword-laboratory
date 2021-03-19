@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>基金</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>排名</td>
+            <td>基金编码</td>
+            <td>基金名称</td>
+        </tr>
+        <tr th:each="fund,iterStat : ${funds}">
+            <td th:text="${iterStat.index}+1"></td>
+            <td th:text="${fund.code}"></td>
+            <td th:text="${fund.name}"></td>
+        </tr>
+    </table>
+</body>
+</html>

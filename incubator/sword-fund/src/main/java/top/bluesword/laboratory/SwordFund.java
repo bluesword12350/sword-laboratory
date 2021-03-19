@@ -7,7 +7,12 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.*;
@@ -21,30 +26,23 @@ public class SwordFund {
     private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
     private static Map<String,Fund> fundMap;
     private static final YieldComparator YIELD_COMPARATOR = new YieldComparator();
-    private static final int TARGET_NUMBER = 15;
 
     public static void main(String[] args) throws IOException {
         fundMap = getFunds();
         searchYields();
         List<Fund> funds = sortFunds();
-        List<Fund> sellFunds = getSellFunds(funds);
-        for (Fund sellFund : sellFunds) {
-            System.out.println(sellFund);
-        }
+        outPut(funds);
     }
 
-    private static List<Fund> getSellFunds(List<Fund> funds) {
-        if (funds.size()<TARGET_NUMBER) {
-            return new ArrayList<>();
-        }
-        List<Fund> sellFunds = new ArrayList<>();
-        for (int i = TARGET_NUMBER; i < funds.size(); i++) {
-            Fund fund = funds.get(i);
-            if (Instant.now().compareTo(fund.getSellTime()) > 0) {
-                sellFunds.add(fund);
-            }
-        }
-        return sellFunds;
+    private static void outPut(List<Fund> funds) throws IOException {
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCacheTTLMs(3600000L);
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+        Context context = new Context();
+        context.setVariable("funds",funds);
+        templateEngine.process("fund.html", context,new FileWriter("target/out.html"));
     }
 
     private static List<Fund> sortFunds() {
