@@ -21,9 +21,6 @@ public class Fund {
 
     private Instant sellTime;
 
-    /**
-     * 三年基金收益率
-     */
     private Double yield;
 
     public Fund(String code, String name, Long sellTime) {
