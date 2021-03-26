@@ -4,25 +4,32 @@
     <meta charset="UTF-8">
     <title>基金</title>
     <style>
+        .center {
+            margin: auto;
+        }
         table {
             border-collapse: collapse;
         }
         td {
-            border: solid;
+            border: 1px solid;
         }
     </style>
 </head>
 <body>
-    <table>
+    <table class="center">
         <tr>
             <td>排名</td>
             <td>基金编码</td>
             <td>基金名称</td>
+            <td>近三年收益率</td>
+            <td>免手续费出售时间</td>
         </tr>
         <tr th:each="fund,iterStat : ${funds}">
             <td th:text="${iterStat.index}+1"></td>
             <td th:text="${fund.code}"></td>
             <td th:text="${fund.name}"></td>
+            <td th:text="${fund.yield}"></td>
+            <td th:text="${fund.sellTime}"></td>
         </tr>
     </table>
 </body>
