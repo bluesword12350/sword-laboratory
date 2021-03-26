@@ -13,6 +13,8 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +28,7 @@ public class HoldFund {
 
     private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
     private static Map<String,Fund> fundMap;
-    private static final YieldComparator YIELD_COMPARATOR = new YieldComparator();
+    private static final Fund.YieldComparator YIELD_COMPARATOR = new Fund.YieldComparator();
 
     public static void main(String[] args) throws IOException {
         holdFund();
@@ -47,12 +49,13 @@ public class HoldFund {
         templateEngine.setTemplateResolver(templateResolver);
         Context context = new Context();
         context.setVariable("funds",funds);
-        templateEngine.process("fund.html", context,new FileWriter("target/out.html"));
+        String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
+        templateEngine.process("fund.html", context,new FileWriter(date+"持有基金报告.html"));
     }
 
     private static List<Fund> sortFunds() {
         return fundMap.values().stream()
-                .sorted(YIELD_COMPARATOR)
+                .sorted(YIELD_COMPARATOR.reversed())
                 .collect(Collectors.toList());
     }
 
