@@ -6,10 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,15 +39,11 @@ public class HoldFund {
     }
 
     private static void outPut(List<Fund> funds) throws IOException {
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setTemplateMode(TemplateMode.HTML);
-        templateResolver.setCacheTTLMs(3600000L);
-        TemplateEngine templateEngine = new TemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
         Context context = new Context();
-        context.setVariable("funds",funds);
+        context.setVariable("funds", funds);
         String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
-        templateEngine.process("fund.html", context,new FileWriter(date+"持有基金报告.html"));
+        FileWriter fileWriter = new FileWriter(date + "持有基金报告.html");
+        HtmlBuilder.write("fund.html",context,fileWriter);
     }
 
     private static List<Fund> sortFunds() {
