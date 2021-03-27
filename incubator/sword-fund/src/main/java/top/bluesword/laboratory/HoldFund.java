@@ -12,9 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -24,7 +22,7 @@ import java.util.stream.Collectors;
 public class HoldFund {
 
     private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
-    private static Map<String,Fund> fundMap;
+    private static FundMap fundMap;
     private static final Fund.YieldComparator YIELD_COMPARATOR = new Fund.YieldComparator();
 
     public static void main(String[] args) throws IOException {
@@ -52,8 +50,8 @@ public class HoldFund {
                 .collect(Collectors.toList());
     }
 
-    private static Map<String,Fund> getHoldFunds() throws IOException {
-        Map<String,Fund> fundSet = new HashMap<>(50);
+    private static FundMap getHoldFunds() throws IOException {
+        FundMap fundMap = new FundMap();
         Request request =
                 new Request.Builder()
                         .url("https://api.vika.cn/fusion/v1/datasheets/dsto5X91Hd2J4XavQS/records?viewId=viwlJBqyfTwxb&fieldKey=name")
@@ -67,10 +65,10 @@ public class HoldFund {
                 JSONObject fields = records.getJSONObject(i).getJSONObject("fields");
                 String code = fields.getString("基金编码");
                 Fund fund = new Fund(code, fields.getString("基金名称"), fields.getLong("可卖时间"));
-                fundSet.put(code,fund);
+                fundMap.put(code,fund);
             }
         }
-        return fundSet;
+        return fundMap;
     }
 
 }

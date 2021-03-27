@@ -9,10 +9,10 @@ import okhttp3.Response;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author 李林峰
@@ -21,19 +21,21 @@ public class EastmoneyClient {
 
     private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
 
-    public static void searchYields(Map<String,Fund> fundMap) throws IOException {
-        List<String> fundCodes = new ArrayList<>();
-        for (String code : fundMap.keySet()) {
-            fundCodes.add(code);
-            if (fundCodes.size() == 10) {
-                getYields(fundCodes,fundMap);
-                fundCodes = new ArrayList<>();
+    public static void searchYields(FundMap fundMap) throws IOException {
+        Collection<Fund> funds = fundMap.values();
+        FundMap fundMapForYield = new FundMap();
+        for (Fund fund : funds) {
+            fundMapForYield.add(fund);
+            if (fundMapForYield.size()==10) {
+                getYields(fundMapForYield);
+                fundMapForYield = new FundMap();
             }
         }
-        getYields(fundCodes,fundMap);
+        getYields(fundMap);
     }
 
-    private static void getYields(List<String> fundCodes,Map<String,Fund> fundMap) throws IOException {
+    private static void getYields(FundMap fundMap) throws IOException {
+        List<String> fundCodes = fundMap.values().stream().map(Fund::getCode).collect(Collectors.toList());
         HttpUrl url =
                 HttpUrl.get("http://fund.eastmoney.com/Data/FundCompare_Interface.aspx")
                         .newBuilder()
