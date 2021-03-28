@@ -20,4 +20,5 @@ public class HtmlBuilder {
         templateEngine.setTemplateResolver(templateResolver);
         templateEngine.process(template, context,writer);
     }
+
 }

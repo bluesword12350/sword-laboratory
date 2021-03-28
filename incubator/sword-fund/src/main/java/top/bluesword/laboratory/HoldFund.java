@@ -6,9 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.thymeleaf.context.Context;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,7 +21,6 @@ public class HoldFund {
 
     private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
     private static FundMap fundMap;
-    private static final Fund.YieldComparator YIELD_COMPARATOR = new Fund.YieldComparator();
 
     public static void main(String[] args) throws IOException {
         holdFund();
@@ -33,20 +30,13 @@ public class HoldFund {
         fundMap = getHoldFunds();
         EastmoneyClient.searchYields(fundMap);
         List<Fund> funds = sortFunds();
-        outPut(funds);
-    }
-
-    private static void outPut(List<Fund> funds) throws IOException {
-        Context context = new Context();
-        context.setVariable("funds", funds);
         String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
-        FileWriter fileWriter = new FileWriter(date + "持有基金报告.html");
-        HtmlBuilder.write("fund.html",context,fileWriter);
+        FundHtmlWriter.write(funds,date + "持有基金近三年收益率报告");
     }
 
     private static List<Fund> sortFunds() {
         return fundMap.values().stream()
-                .sorted(YIELD_COMPARATOR.reversed())
+                .sorted(Fund.YIELD_COMPARATOR.reversed())
                 .collect(Collectors.toList());
     }
 

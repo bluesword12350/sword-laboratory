@@ -14,6 +14,8 @@ import java.util.Objects;
 @Data
 public class Fund {
 
+    public static final Fund.YieldComparator YIELD_COMPARATOR = new Fund.YieldComparator();
+
     private static final NumberFormat NUMBER_FORMAT = NumberFormat.getPercentInstance();
 
     private String code;
