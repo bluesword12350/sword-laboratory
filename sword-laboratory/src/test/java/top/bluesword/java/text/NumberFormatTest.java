@@ -14,6 +14,7 @@ public class NumberFormatTest {
 
     @Test
     void parse() throws ParseException {
-        System.out.println(NumberFormat.getPercentInstance().parse("3.50%"));
+        System.out.println(NumberFormat.getPercentInstance().parse("141.0653%"));
     }
+
 }
