@@ -76,7 +76,7 @@ public class EastmoneyClient {
                         .addQueryParameter("sd",startDate.toString())
                         .addQueryParameter("ed",endDate.toString())
                         .addQueryParameter("pi","1")
-                        .addQueryParameter("pn","100")
+                        .addQueryParameter("pn","1000")
                         .build();
         Request request = new Request.Builder().url(url)
                 .header("Referer","http://fund.eastmoney.com")

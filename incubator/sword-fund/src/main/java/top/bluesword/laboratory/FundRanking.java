@@ -39,6 +39,7 @@ public class FundRanking {
                 allYearFund.add(fund);
             }
         }
+        EastmoneyClient.searchYields(allYearFund);
         List<Fund> funds = allYearFund.values().stream().sorted(Fund.YIELD_COMPARATOR.reversed()).collect(Collectors.toList());
         FundHtmlWriter.write(funds,threeYearEnd.getYear()+"到"+oneYearEnd.getYear()+"年上榜基金");
     }
