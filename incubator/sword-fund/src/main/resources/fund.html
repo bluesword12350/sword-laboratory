@@ -28,7 +28,7 @@
             <td th:text="${iterStat.index}+1"></td>
             <td th:text="${fund.code}"></td>
             <td th:text="${fund.name}"></td>
-            <td th:text="${#numbers.formatDecimal(fund.yield*100,1,2)}+'%'"></td>
+            <td style="text-align: right;" th:text="${fund.yield==null ? '-' : #numbers.formatDecimal(fund.yield,1,4)+'%'}"></td>
             <td th:text="${fund.sellTime}"></td>
         </tr>
     </table>

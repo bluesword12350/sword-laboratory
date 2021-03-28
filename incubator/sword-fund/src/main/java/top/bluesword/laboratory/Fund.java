@@ -1,11 +1,9 @@
 package top.bluesword.laboratory;
 
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import java.text.ParseException;
 import java.time.Instant;
 import java.util.Comparator;
 import java.util.Objects;
@@ -32,16 +30,10 @@ public class Fund {
         this.sellTime = Instant.ofEpochMilli(sellTime);
     }
 
-    public void setYieldStr(String yield) {
-        if (StringUtils.isBlank(yield)) {
-            return;
-        }
-        try {
-            this.yield = new BigDecimal(NUMBER_FORMAT.parse(yield).toString());
-        } catch (ParseException e) {
-            this.yield = null;
-        }
-
+    public Fund(String code, String name, BigDecimal yield) {
+        this.code = code;
+        this.name = name;
+        this.yield = yield;
     }
 
     public static class YieldComparator implements Comparator<Fund> {
