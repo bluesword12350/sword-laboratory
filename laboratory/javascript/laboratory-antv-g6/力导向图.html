@@ -19,22 +19,24 @@
             type: 'force',
         },
         defaultNode: {
-            size: 15,
+            size: 40,
         },
+        defaultEdge: {
+            style: {
+                endArrow: true,
+                stroke: '#888'
+            }
+        }
     });
 
     const data = {
         nodes: [
-            {id: "1", label: '毛发1', size: 40},
-            {id: "2", label: '毛发2', size: 40},
+            {id: "1", label: '毛发1'},
+            {id: "2", label: '毛发2'},
         ],
         edges: [
             {
                 source: '1', target: '2',
-                style: {
-                    endArrow: true,
-                    stroke: '#888'
-                }
             },
         ]
     }
