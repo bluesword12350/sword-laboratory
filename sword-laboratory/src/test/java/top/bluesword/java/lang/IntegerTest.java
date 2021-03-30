@@ -6,7 +6,7 @@ class IntegerTest {
 
 	@Test
 	void binaryString(){
-		System.out.println(Integer.toBinaryString(8));
+		System.out.println(Integer.toBinaryString(0b100000000));
 	}
 
 	@Test
