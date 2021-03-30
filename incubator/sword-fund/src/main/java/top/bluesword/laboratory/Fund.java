@@ -3,8 +3,9 @@ package top.bluesword.laboratory;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class Fund {
 
     public static final Fund.YieldComparator YIELD_COMPARATOR = new Fund.YieldComparator();
 
-    private static final NumberFormat NUMBER_FORMAT = NumberFormat.getPercentInstance();
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private String code;
 
@@ -36,6 +37,17 @@ public class Fund {
         this.code = code;
         this.name = name;
         this.yield = yield;
+    }
+
+    public String getSellTimeLocalDateStr() {
+        if (Objects.isNull(this.sellTime)) {
+            return null;
+        }
+        return this.sellTime.atZone(ZoneId.systemDefault()).format(DATE_TIME_FORMATTER);
+    }
+
+    public boolean canSell() {
+        return Objects.nonNull(this.sellTime) && this.sellTime.compareTo(Instant.now()) <= 0;
     }
 
     public static class YieldComparator implements Comparator<Fund> {

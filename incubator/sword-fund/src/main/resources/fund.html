@@ -7,30 +7,34 @@
         .center {
             margin: auto;
         }
+
         table {
             border-collapse: collapse;
         }
+
         td {
             border: 1px solid;
         }
     </style>
 </head>
 <body>
-    <table class="center">
-        <tr>
-            <td>排名</td>
-            <td>基金编码</td>
-            <td>基金名称</td>
-            <td>收益率</td>
-            <td>免手续费出售时间</td>
-        </tr>
-        <tr th:each="fund,iterStat : ${funds}">
-            <td th:text="${iterStat.index}+1"></td>
-            <td th:text="${fund.code}"></td>
-            <td th:text="${fund.name}"></td>
-            <td style="text-align: right;" th:text="${fund.yield==null ? '-' : #numbers.formatDecimal(fund.yield,1,4)+'%'}"></td>
-            <td th:text="${fund.sellTime}"></td>
-        </tr>
-    </table>
+<table class="center">
+    <tr>
+        <td>排名</td>
+        <td>基金编码</td>
+        <td>基金名称</td>
+        <td>收益率</td>
+        <td th:if="${showSellTime}">免手续费出售时间</td>
+        <td th:if="${showSellTime}">建议出售</td>
+    </tr>
+    <tr th:each="fund,iterStat : ${funds}">
+        <td th:text="${iterStat.index}+1"></td>
+        <td th:text="${fund.code}"></td>
+        <td th:text="${fund.name}"></td>
+        <td style="text-align: right;" th:text="${fund.yield==null ? '-' : #numbers.formatDecimal(fund.yield,1,4)+'%'}"></td>
+        <td style="text-align: center;" th:if="${showSellTime}" th:text="${fund.getSellTimeLocalDateStr}"></td>
+        <td th:if="${showSellTime}" th:text="${fund.canSell()&&iterStat.index>=15&&fund.yield!=null ? '是' : ''}"></td>
+    </tr>
+</table>
 </body>
 </html>

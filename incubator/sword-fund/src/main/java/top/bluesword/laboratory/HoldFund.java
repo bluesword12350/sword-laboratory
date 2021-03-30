@@ -31,7 +31,7 @@ public class HoldFund {
         EastmoneyClient.searchYields(fundMap);
         List<Fund> funds = sortFunds();
         String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
-        FundHtmlWriter.write(funds,date + "持有基金近三年收益率报告");
+        FundHtmlWriter.write(funds,date + "持有基金近三年收益率报告",true);
     }
 
     private static List<Fund> sortFunds() {
