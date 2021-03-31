@@ -9,9 +9,9 @@ import org.springframework.shell.standard.ShellMethod;
 @ShellComponent
 public class SayHi {
 
-    @ShellMethod("say-hi")
+    @ShellMethod(key = "你好,Shell",value = "说：‘你好，${name}’")
     public String sayHi(String name) {
-        return String.format("Hi %s", name);
+        return String.format("你好，%s", name);
     }
 
 }
