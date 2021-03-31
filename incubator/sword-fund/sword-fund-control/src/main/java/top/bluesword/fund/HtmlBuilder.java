@@ -1,4 +1,4 @@
-package top.bluesword.laboratory;
+package top.bluesword.fund;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;

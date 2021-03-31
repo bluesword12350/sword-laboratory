@@ -1,4 +1,4 @@
-package top.bluesword.laboratory;
+package top.bluesword.fund.fund;
 
 import lombok.Data;
 
@@ -15,7 +15,7 @@ import java.util.Objects;
 @Data
 public class Fund {
 
-    public static final Fund.YieldComparator YIELD_COMPARATOR = new Fund.YieldComparator();
+    public static final YieldComparator YIELD_COMPARATOR = new YieldComparator();
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 

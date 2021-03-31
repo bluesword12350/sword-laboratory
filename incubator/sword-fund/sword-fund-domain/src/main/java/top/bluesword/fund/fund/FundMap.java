@@ -1,4 +1,4 @@
-package top.bluesword.laboratory;
+package top.bluesword.fund.fund;
 
 import java.util.LinkedHashMap;
 

@@ -1,6 +1,7 @@
-package top.bluesword.laboratory;
+package top.bluesword.fund;
 
 import org.thymeleaf.context.Context;
+import top.bluesword.fund.fund.Fund;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,13 +11,15 @@ import java.util.List;
 /**
  * @author 李林峰
  */
-public class FundHtmlWriter {
+public class ThymeleafFundHtmlWriter implements FundHtmlWriter{
 
-    public static void write(List<Fund> funds, String fileName) throws IOException {
+    @Override
+    public void write(List<Fund> funds, String fileName) throws IOException {
         write(funds,fileName,false);
     }
 
-    public static void write(List<Fund> funds, String fileName,boolean showSellTime) throws IOException {
+    @Override
+    public void write(List<Fund> funds, String fileName,boolean showSellTime) throws IOException {
         Context context = new Context();
         context.setVariable("funds", funds);
         context.setVariable("showSellTime", showSellTime);

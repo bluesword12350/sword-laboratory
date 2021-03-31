@@ -1,4 +1,4 @@
-package top.bluesword.laboratory;
+package top.bluesword.fund;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -6,41 +6,21 @@ import com.alibaba.fastjson.JSONObject;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import top.bluesword.fund.fund.Fund;
+import top.bluesword.fund.fund.FundMap;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * @author 李林峰
  */
-public class HoldFund {
+public class VikaHoldFundClient implements HoldFundClient {
 
     private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
-    private static FundMap fundMap;
 
-    public static void main(String[] args) throws IOException {
-        holdFund();
-    }
-
-    private static void holdFund() throws IOException {
-        fundMap = getHoldFunds();
-        EastmoneyClient.searchYields(fundMap);
-        List<Fund> funds = sortFunds();
-        String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now());
-        FundHtmlWriter.write(funds,date + "持有基金近三年收益率报告",true);
-    }
-
-    private static List<Fund> sortFunds() {
-        return fundMap.values().stream()
-                .sorted(Fund.YIELD_COMPARATOR.reversed())
-                .collect(Collectors.toList());
-    }
-
-    private static FundMap getHoldFunds() throws IOException {
+    @Override
+    public FundMap getHoldFunds() throws IOException {
         FundMap fundMap = new FundMap();
         Request request =
                 new Request.Builder()

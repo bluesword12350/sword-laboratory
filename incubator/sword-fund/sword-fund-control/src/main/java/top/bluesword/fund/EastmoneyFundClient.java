@@ -1,4 +1,4 @@
-package top.bluesword.laboratory;
+package top.bluesword.fund;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -7,6 +7,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.apache.commons.lang3.StringUtils;
+import top.bluesword.fund.fund.Fund;
+import top.bluesword.fund.fund.FundMap;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -20,11 +22,12 @@ import java.util.stream.Collectors;
 /**
  * @author 李林峰
  */
-public class EastmoneyClient {
+public class EastmoneyFundClient implements FundClient {
 
     private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
 
-    public static void searchYields(FundMap fundMap) throws IOException {
+    @Override
+    public void searchYields(FundMap fundMap) throws IOException {
         Collection<Fund> funds = fundMap.values();
         FundMap fundMapForYield = new FundMap();
         for (Fund fund : funds) {
@@ -37,7 +40,7 @@ public class EastmoneyClient {
         getYields(fundMap);
     }
 
-    private static void getYields(FundMap fundMap) throws IOException {
+    private void getYields(FundMap fundMap) throws IOException {
         List<String> fundCodes = fundMap.values().stream().map(Fund::getCode).collect(Collectors.toList());
         HttpUrl url =
                 HttpUrl.get("http://fund.eastmoney.com/Data/FundCompare_Interface.aspx")
@@ -65,7 +68,8 @@ public class EastmoneyClient {
         }
     }
 
-    public static FundMap searchFundRanking(LocalDate startDate,LocalDate endDate) throws IOException {
+    @Override
+    public FundMap searchFundRanking(LocalDate startDate,LocalDate endDate) throws IOException {
         FundMap fundMap = new FundMap();
         HttpUrl url =
                 HttpUrl.get("http://fund.eastmoney.com/data/rankhandler.aspx")

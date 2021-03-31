@@ -1,4 +1,4 @@
-package top.bluesword.laboratory;
+package top.bluesword.fund;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,9 +9,10 @@ class EastmoneyClientTest {
 
     @Test
     void searchFundRanking() throws IOException {
+        EastmoneyFundClient eastmoneyFundClient = new EastmoneyFundClient();
         LocalDate endDate = LocalDate.now();
         LocalDate startDate = endDate.plusYears(-1);
-        System.out.println(EastmoneyClient.searchFundRanking(startDate, endDate));
+        System.out.println(eastmoneyFundClient.searchFundRanking(startDate, endDate));
     }
 
 }
