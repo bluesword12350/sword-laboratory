@@ -1,4 +1,4 @@
-package top.bluesword.fund;
+package top.bluesword.fund.io;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import top.bluesword.fund.HoldFundClient;
 import top.bluesword.fund.fund.Fund;
 import top.bluesword.fund.fund.FundMap;
 

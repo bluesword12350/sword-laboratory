@@ -1,4 +1,8 @@
-package top.bluesword.fund;
+package top.bluesword.fund.api;
+
+import top.bluesword.fund.FundRanking;
+import top.bluesword.fund.io.EastmoneyFundClient;
+import top.bluesword.fund.io.ThymeleafFundHtmlWriter;
 
 import java.io.IOException;
 

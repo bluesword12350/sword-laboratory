@@ -1,6 +1,7 @@
 package top.bluesword.fund;
 
 import org.junit.jupiter.api.Test;
+import top.bluesword.fund.io.EastmoneyFundClient;
 
 import java.io.IOException;
 import java.time.LocalDate;
