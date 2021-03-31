@@ -6,6 +6,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author 李林峰
@@ -16,6 +17,7 @@ public class HtmlBuilder {
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCacheTTLMs(3600000L);
+        templateResolver.setCharacterEncoding(StandardCharsets.UTF_8.displayName());
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
         templateEngine.process(template, context,writer);

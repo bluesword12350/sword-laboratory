@@ -11,17 +11,18 @@ import java.util.stream.Collectors;
 /**
  * @author 李林峰
  */
-public class FundRanking {
+public class FundRankingService {
 
     private final FundClient fundClient;
     private final FundHtmlWriter fundHtmlWriter;
 
-    public FundRanking(FundClient fundClient,FundHtmlWriter fundHtmlWriter) {
+    public FundRankingService(FundClient fundClient, FundHtmlWriter fundHtmlWriter) {
         this.fundClient = fundClient;
         this.fundHtmlWriter = fundHtmlWriter;
     }
 
     public void fundRanking() throws IOException {
+        //todo 优化：获取到的数据持久化，下次获取先从数据库中获取
         int year = LocalDate.now().getYear() - 1;
         LocalDate oneYearEnd = LocalDate.of(year, 12, 31);
         LocalDate twoYearEnd = oneYearEnd.plusYears(-1);

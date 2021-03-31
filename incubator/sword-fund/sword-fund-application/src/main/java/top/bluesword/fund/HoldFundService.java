@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @author 李林峰
  */
 @AllArgsConstructor
-public class HoldFund {
+public class HoldFundService {
 
     private final HoldFundClient holdFundClient;
     private final FundClient fundClient;
