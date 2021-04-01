@@ -34,6 +34,7 @@ public class RegistryRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws IOException {
+        //todo 尝试精简 json
         registry.register(EurekaUtil.buildInstanceInfo("LOONG-SWORD-1.json"),false);
         eurekaHttpClient.register(EurekaUtil.buildInstanceInfo("LOONG-SWORD-2.json"));
 
