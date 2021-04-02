@@ -18,7 +18,7 @@ public class DatabaseClientTest {
 
     @Test
     void test() {
-        Flux<Map<String, Object>> all = databaseClient.sql("select 1;").fetch().all();
+        Flux<Map<String, Object>> all = databaseClient.sql("select :num;").bind("num","5").fetch().all();
         System.out.println(all.blockFirst());
     }
 }
