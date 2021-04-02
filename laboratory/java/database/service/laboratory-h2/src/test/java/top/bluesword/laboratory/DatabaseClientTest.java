@@ -15,4 +15,5 @@ public class DatabaseClientTest {
     void test() {
         System.out.println(databaseClient.sql("select 1").fetch().all().blockFirst());
     }
+
 }
