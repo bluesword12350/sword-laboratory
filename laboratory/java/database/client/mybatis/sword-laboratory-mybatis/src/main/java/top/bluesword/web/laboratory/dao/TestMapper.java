@@ -1,6 +1,5 @@
 package top.bluesword.web.laboratory.dao;
 
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.stereotype.Repository;
 
