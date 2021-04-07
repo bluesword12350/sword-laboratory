@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author 李林峰
- * @see org.springframework.scheduling.support.CronExpression
  */
 @Component
 public class ScheduledService {
@@ -27,6 +26,14 @@ public class ScheduledService {
     @Scheduled(initialDelay = 0,fixedDelayString = "#{${scheduled.time-interval-second}*1000}")
     public void scheduled2(){
         log.info("定时任务2执行");
+    }
+
+    /**
+     * @see org.springframework.scheduling.support.CronExpression#parse(java.lang.String)
+     */
+    @Scheduled(cron = "@hourly")
+    public void scheduled3(){
+        log.info("定时任务3执行");
     }
 
 }
