@@ -12,15 +12,16 @@ class RocksDbTest {
 
     private final org.slf4j.Logger log = LoggerFactory.getLogger(getClass());
 
-    private static Options options;
     private static RocksDB db;
 
     @BeforeAll
     static void before() throws RocksDBException {
         RocksDB.loadLibrary();
-        options = new Options();
-        options.setCreateIfMissing(true);
-        db = RocksDB.open(options, "database");
+        Options options = new Options();
+        try(options) {
+            options.setCreateIfMissing(true);
+            db = RocksDB.open(options, "database");
+        }
     }
 
     @Test
@@ -47,6 +48,5 @@ class RocksDbTest {
     @AfterAll
     static void after(){
         db.close();
-        options.close();
     }
 }

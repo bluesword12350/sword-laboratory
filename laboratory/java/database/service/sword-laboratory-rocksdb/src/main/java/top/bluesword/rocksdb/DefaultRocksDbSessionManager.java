@@ -3,24 +3,23 @@ package top.bluesword.rocksdb;
 import org.rocksdb.RocksDBException;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * @author 李林峰
  */
-public class RocksDbSessionManager implements AutoCloseable {
+public class DefaultRocksDbSessionManager implements AutoCloseable {
 
-    private final Map<String, RocksDbSession> sessionMap = new HashMap<>();
+    private final Map<String, DefaultRocksDbSession> sessionMap = new HashMap<>();
     private final String basePath;
 
-    public RocksDbSessionManager(String basePath) {
+    public DefaultRocksDbSessionManager(String basePath) {
         this.basePath = basePath;
     }
 
-    public RocksDbSession buildAndPut(String tableName, List<String> columnFamilyNames) throws RocksDBException {
+    public DefaultRocksDbSession buildAndPut(String tableName) throws RocksDBException {
         remove(tableName);
-        RocksDbSession session = RocksDbSession.init(basePath + "/" + tableName, columnFamilyNames);
+        DefaultRocksDbSession session = DefaultRocksDbSession.init(basePath + "/" + tableName);
         sessionMap.put(tableName,session);
         return session;
     }
@@ -29,19 +28,19 @@ public class RocksDbSessionManager implements AutoCloseable {
         if (!sessionMap.containsKey(tableName)) {
             return;
         }
-        RocksDbSession rocksDbSession = sessionMap.get(tableName);
+        DefaultRocksDbSession rocksDbSession = sessionMap.get(tableName);
         try(rocksDbSession) {
             sessionMap.remove(tableName);
         }
     }
 
-    public RocksDbSession get(String tableName){
+    public DefaultRocksDbSession get(String tableName){
         return sessionMap.get(tableName);
     }
 
     @Override
     public void close() {
-        for (RocksDbSession session : sessionMap.values()) {
+        for (DefaultRocksDbSession session : sessionMap.values()) {
             session.close();
         }
     }

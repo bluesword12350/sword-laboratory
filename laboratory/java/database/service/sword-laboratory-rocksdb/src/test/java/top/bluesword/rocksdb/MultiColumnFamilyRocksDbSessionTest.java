@@ -10,13 +10,13 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RocksDbSessionTest {
+class MultiColumnFamilyRocksDbSessionTest {
 
-    private static RocksDbSession rocksDbSession;
+    private static MultiColumnFamilyRocksDbSession rocksDbSession;
 
     @BeforeAll
     static void init() throws RocksDBException {
-        rocksDbSession = RocksDbSession.init("database", List.of("c1","c3","c2"));
+        rocksDbSession = MultiColumnFamilyRocksDbSession.init("database", List.of("c1","c3","c2"));
     }
 
     @Test

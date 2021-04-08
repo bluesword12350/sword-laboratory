@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * @author 李林峰
  */
-public class RocksDbSession implements AutoCloseable {
+public class MultiColumnFamilyRocksDbSession implements AutoCloseable {
 
     private final RocksDB db;
     private final Map<String,ColumnFamilyHandle> columnFamilyHandleMap;
@@ -17,19 +17,19 @@ public class RocksDbSession implements AutoCloseable {
         RocksDB.loadLibrary();
     }
 
-    public RocksDbSession(RocksDB db, Map<String, ColumnFamilyHandle> columnFamilyHandleMap) {
+    public MultiColumnFamilyRocksDbSession(RocksDB db, Map<String, ColumnFamilyHandle> columnFamilyHandleMap) {
         this.db = db;
         this.columnFamilyHandleMap = columnFamilyHandleMap;
     }
 
-    public static RocksDbSession init(String path, List<String> columnFamilyNames) throws RocksDBException {
+    public static MultiColumnFamilyRocksDbSession init(String path, List<String> columnFamilyNames) throws RocksDBException {
         final ColumnFamilyOptions cfOpts = createDefaultColumnFamilyOptions();
         final DBOptions options = createDefaultDbOptions();
         final List<ColumnFamilyDescriptor> cfDescriptors = buildColumnFamilyDescriptors(columnFamilyNames, cfOpts);
         List<ColumnFamilyHandle> columnFamilyHandleList = new ArrayList<>();
         RocksDB db = openDb(path, cfOpts, options, cfDescriptors, columnFamilyHandleList);
         Map<String, ColumnFamilyHandle> columnFamilyHandleMap = drawColumnFamilyMap(columnFamilyNames, columnFamilyHandleList);
-        return new RocksDbSession(db, columnFamilyHandleMap);
+        return new MultiColumnFamilyRocksDbSession(db, columnFamilyHandleMap);
     }
 
     private static Map<String, ColumnFamilyHandle> drawColumnFamilyMap(List<String> columnFamilyNames, List<ColumnFamilyHandle> columnFamilyHandleList) {
