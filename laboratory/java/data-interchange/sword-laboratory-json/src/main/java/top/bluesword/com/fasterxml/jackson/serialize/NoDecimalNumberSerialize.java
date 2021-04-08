@@ -1,4 +1,4 @@
-package top.bluesword.serialize;
+package top.bluesword.com.fasterxml.jackson.serialize;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
-import top.bluesword.serialize.CustomNumberSerialize;
-import top.bluesword.serialize.NoDecimalNumberSerialize;
+import top.bluesword.com.fasterxml.jackson.serialize.CustomNumberSerialize;
+import top.bluesword.com.fasterxml.jackson.serialize.NoDecimalNumberSerialize;
 
 import java.math.BigDecimal;
 import java.util.Date;
