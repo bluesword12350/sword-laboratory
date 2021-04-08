@@ -1,7 +1,9 @@
 package com.fasterxml.jackson;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import top.bluesword.bean.BeanDemo;
@@ -9,6 +11,7 @@ import top.bluesword.bean.BeanDemo;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class JacksonTest {
@@ -57,5 +60,31 @@ class JacksonTest {
         JacksonBeanDemo jacksonBeanDemo = new JacksonBeanDemo();
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(mapper.writeValueAsString(jacksonBeanDemo));
+    }
+
+    @Test
+    void jsonArray() throws JsonProcessingException {
+        List<String> list = List.of("1","2","3");
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonStr = mapper.writeValueAsString(list);
+        JsonNode jsonNode = mapper.readTree(jsonStr);
+        if(jsonNode.isArray()) {
+            for (JsonNode node : jsonNode) {
+                System.out.println(node);
+            }
+        }
+    }
+
+    @Test
+    void allowUnquotedFieldNames() throws JsonProcessingException {
+        String jsonStr = "{data:[\"1\",\"2\"]}";
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES,true);
+        JsonNode jsonNode = mapper.readTree(jsonStr).get("data");
+        if(jsonNode.isArray()) {
+            for (JsonNode node : jsonNode) {
+                System.out.println(node);
+            }
+        }
     }
 }
