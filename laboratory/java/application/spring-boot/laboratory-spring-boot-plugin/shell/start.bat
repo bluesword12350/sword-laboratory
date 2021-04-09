@@ -1,0 +1,1 @@
+java -Dloader.path=./plugins -jar laboratory-xxx.jar
