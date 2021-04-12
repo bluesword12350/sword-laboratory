@@ -10,12 +10,17 @@ import java.time.zone.ZoneRules;
 public class ZoneIdTest {
 
     @Test
-    void test() {
+    void getOffset() {
         ZoneId zoneId = ZoneId.systemDefault();
         System.out.println(zoneId);
         ZoneRules rules = zoneId.getRules();
         ZoneOffset offset = rules.getOffset(Instant.now());
         System.out.println(offset.getTotalSeconds());
+    }
+
+    @Test
+    void ofOffset() {
+        System.out.println(ZoneId.ofOffset("UTC", ZoneOffset.ofTotalSeconds(28800)));
     }
 
 }
