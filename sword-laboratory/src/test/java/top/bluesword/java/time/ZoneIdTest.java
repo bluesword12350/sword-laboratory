@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.zone.ZoneRules;
 
 public class ZoneIdTest {
@@ -20,7 +21,12 @@ public class ZoneIdTest {
 
     @Test
     void ofOffset() {
-        System.out.println(ZoneId.ofOffset("UTC", ZoneOffset.ofTotalSeconds(28800)));
+        ZoneId zoneId = ZoneId.ofOffset("UTC", ZoneOffset.ofTotalSeconds(28800));
+        System.out.println(zoneId);
+
+        ZonedDateTime now = ZonedDateTime.now();
+        System.out.println(now);
+        System.out.println(now.toInstant().atZone(zoneId));
     }
 
 }
