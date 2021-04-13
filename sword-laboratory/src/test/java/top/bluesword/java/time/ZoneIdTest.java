@@ -45,4 +45,8 @@ public class ZoneIdTest {
         System.out.println(zoneId.getId());
     }
 
+    @Test
+    void getAvailableZoneIds() {
+        ZoneId.getAvailableZoneIds().forEach(System.out::println);
+    }
 }
