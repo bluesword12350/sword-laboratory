@@ -29,4 +29,20 @@ public class ZoneIdTest {
         System.out.println(now.toInstant().atZone(zoneId));
     }
 
+    @Test
+    void of() {
+        ZoneId zoneId = ZoneId.of("UTC+04:00");
+        System.out.println(zoneId);
+
+        ZonedDateTime now = ZonedDateTime.now();
+        System.out.println(now);
+        System.out.println(now.toInstant().atZone(zoneId));
+    }
+
+    @Test
+    void of0() {
+        ZoneId zoneId = ZoneId.of("+09:30");
+        System.out.println(zoneId.getId());
+    }
+
 }
