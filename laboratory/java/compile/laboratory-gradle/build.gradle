@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'top.bluesword'
+version = '0.0.1'
+
+description = "gradle测试项目"
+
+sourceCompatibility = 11
+targetCompatibility = 11
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+     mavenLocal()
+     maven { url "http://maven.aliyun.com/nexus/content/groups/public//" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile("com.xiaoleilu:hutool-all:3.1.1")
+}
