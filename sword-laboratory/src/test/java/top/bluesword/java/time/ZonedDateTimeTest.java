@@ -10,7 +10,7 @@ class ZonedDateTimeTest {
     @Test
     void now() {
         ZonedDateTime now = ZonedDateTime.now();
-        System.out.println(now.toString());
+        System.out.println(now);
     }
 
     @Test
@@ -24,6 +24,7 @@ class ZonedDateTimeTest {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZZ");
         ZonedDateTime zonedDateTime = ZonedDateTime.parse("2021-04-13T16:02:42+0800", dateTimeFormatter);
         System.out.println(zonedDateTime);
-        System.out.println(zonedDateTime.getZone().getId());
+        System.out.println(zonedDateTime.getOffset());
     }
+
 }
