@@ -11,7 +11,7 @@ public class TemplateTest {
     void process() throws IOException, TemplateException {
         StringWriter out = new StringWriter();
         process(out);
-        System.out.println(out.toString());
+        System.out.println(out);
     }
 
     @Test
