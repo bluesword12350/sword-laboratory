@@ -10,11 +10,11 @@ class DateTimeFormatterTest {
     @Test
     void format(){
         LocalDateTime now = LocalDateTime.now();
-        System.out.println(String.format("BASIC_ISO_DATE:%S", DateTimeFormatter.BASIC_ISO_DATE.format(now)));
-        System.out.println(String.format("ISO_DATE:%S",DateTimeFormatter.ISO_DATE.format(now)));
-        System.out.println(String.format("ISO_DATE_TIME:%S",DateTimeFormatter.ISO_DATE_TIME.format(now)));
-        System.out.println(String.format("ISO_LOCAL_DATE:%S",DateTimeFormatter.ISO_LOCAL_DATE.format(now)));
-        System.out.println(String.format("ISO_LOCAL_DATE_TIME:%S",DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(now)));
+        System.out.printf("BASIC_ISO_DATE:%S%n", DateTimeFormatter.BASIC_ISO_DATE.format(now));
+        System.out.printf("ISO_DATE:%S%n",DateTimeFormatter.ISO_DATE.format(now));
+        System.out.printf("ISO_DATE_TIME:%S%n",DateTimeFormatter.ISO_DATE_TIME.format(now));
+        System.out.printf("ISO_LOCAL_DATE:%S%n",DateTimeFormatter.ISO_LOCAL_DATE.format(now));
+        System.out.printf("ISO_LOCAL_DATE_TIME:%S%n",DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(now));
     }
 
 }
