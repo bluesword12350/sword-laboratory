@@ -1,0 +1,16 @@
+dn: dc=bluesword,dc=top
+objectClass: top
+objectClass: domain
+
+dn: ou=龙仔之剑,dc=bluesword,dc=top
+objectclass: top
+objectclass: organizationalUnit
+ou: 龙仔之剑
+
+dn: uid=龙仔,ou=龙仔之剑,dc=bluesword,dc=top
+objectclass: top
+objectclass: inetOrgPerson
+cn: 李林峰
+sn: 李
+uid: 龙仔
+userPassword: test-password
