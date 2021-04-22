@@ -27,3 +27,5 @@ select current_date + 1,current_date + interval '1 day';
 
 --日期比较
 select date '2020-04-07' >= current_date - interval '6 month';
+
+show timezone;
