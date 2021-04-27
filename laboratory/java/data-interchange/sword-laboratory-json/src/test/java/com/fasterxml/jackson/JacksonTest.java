@@ -5,14 +5,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.Test;
 import top.bluesword.bean.BeanDemo;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
 
 class JacksonTest {
 
@@ -22,6 +26,16 @@ class JacksonTest {
         JacksonBeanDemo beanDemo = new JacksonBeanDemo();
         beanDemo.setNumber(BigDecimal.valueOf(1468465465465.4646546));
         beanDemo.setInteger(BigDecimal.valueOf(165463.46543));
+        System.out.println(mapper.writeValueAsString(beanDemo));
+    }
+
+    @Test
+    void zonedDateTimeFormat() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModules(new JavaTimeModule());
+        mapper.configure(WRITE_DATES_AS_TIMESTAMPS,false);
+        BeanDemo beanDemo = new BeanDemo();
+        beanDemo.zonedDateTime = ZonedDateTime.now();
         System.out.println(mapper.writeValueAsString(beanDemo));
     }
 

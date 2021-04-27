@@ -1,6 +1,7 @@
 package top.bluesword.bean;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 /**
@@ -13,6 +14,8 @@ public class BeanDemo {
 	public BigDecimal bigDecimal;
 
 	public Date date;
+
+	public ZonedDateTime zonedDateTime;
 
 	public InsideBeanDemo insideBeanDemo;
 
