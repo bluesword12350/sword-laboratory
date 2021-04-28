@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory;
+package top.bluesword.laboratory;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
