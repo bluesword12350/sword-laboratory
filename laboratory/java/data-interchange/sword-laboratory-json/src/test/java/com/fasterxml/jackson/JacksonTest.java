@@ -11,11 +11,13 @@ import top.bluesword.bean.BeanDemo;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.fasterxml.jackson.databind.DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
 
 class JacksonTest {
@@ -37,6 +39,16 @@ class JacksonTest {
         BeanDemo beanDemo = new BeanDemo();
         beanDemo.zonedDateTime = ZonedDateTime.now();
         System.out.println(mapper.writeValueAsString(beanDemo));
+    }
+
+    @Test
+    void zonedDateTimeRead() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.configure(WRITE_DATES_AS_TIMESTAMPS,false);
+        mapper.configure(READ_DATE_TIMESTAMPS_AS_NANOSECONDS,false);
+        System.out.println(mapper.readValue(String.valueOf(Instant.now().toEpochMilli()), ZonedDateTime.class));
+        System.out.println(mapper.readValue(mapper.writeValueAsString(ZonedDateTime.now()), ZonedDateTime.class));
     }
 
     @Test
