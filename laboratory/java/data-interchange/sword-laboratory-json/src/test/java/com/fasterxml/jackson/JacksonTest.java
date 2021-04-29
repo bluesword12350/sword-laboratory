@@ -32,7 +32,7 @@ class JacksonTest {
     @Test
     void zonedDateTimeFormat() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModules(new JavaTimeModule());
+        mapper.registerModule(new JavaTimeModule());
         mapper.configure(WRITE_DATES_AS_TIMESTAMPS,false);
         BeanDemo beanDemo = new BeanDemo();
         beanDemo.zonedDateTime = ZonedDateTime.now();
