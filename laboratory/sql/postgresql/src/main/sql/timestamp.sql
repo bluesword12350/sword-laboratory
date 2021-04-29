@@ -15,6 +15,9 @@ select to_char(now(),'YYYY-MM-DD HH24:MI:SS.MS OF');
 select TIMESTAMP WITH TIME ZONE '2020-11-03 10:08:21.890+08';
 select to_char(TIMESTAMP '2020-11-03 10:08:21.890','YYYY-MM-DD HH24:MI:SS.MS OF');
 
+--获取秒级时间戳（距离 1970年1月1日00:00:00+00:00 秒数差值）
+select extract(epoch from TIMESTAMP WITH TIME ZONE '2020-11-03 10:08:21.890+08');
+
 --当前日期
 select current_date;
 select current_time;
