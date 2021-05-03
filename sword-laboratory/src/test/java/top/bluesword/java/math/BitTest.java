@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 class BitTest {
 
     @Test
-    void test(){
+    void toBinaryString(){
         System.out.println(~(-1L << 63));
-
         System.out.println(Long.toBinaryString(-1L));
         System.out.println(Long.toBinaryString(-1L << 63));
         System.out.println(Long.toBinaryString(~(-1L << 63)));
