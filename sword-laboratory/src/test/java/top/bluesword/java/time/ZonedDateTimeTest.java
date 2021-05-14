@@ -14,6 +14,12 @@ class ZonedDateTimeTest {
     }
 
     @Test
+    void isBefore() {
+        ZonedDateTime now = ZonedDateTime.now();
+        System.out.println(now.plusNanos(-1).isBefore(now));
+    }
+
+    @Test
     void format() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZZ");
         System.out.println(ZonedDateTime.now().format(dateTimeFormatter));
