@@ -14,5 +14,7 @@ public class DurationTest {
         Duration between = Duration.between(now, zonedDateTime);
         System.out.println(between.getSeconds());
         System.out.println(between.getNano());
+        System.out.println(between.toDays());
+        System.out.println(between.toHours());
     }
 }

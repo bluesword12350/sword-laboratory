@@ -21,6 +21,7 @@ class ChronoUnitTest {
     void betweenZonedDateTime() {
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime zonedDateTime = now.plusDays(-500);
+        System.out.println(ChronoUnit.DAYS.between(zonedDateTime, now));
         System.out.println(ChronoUnit.YEARS.between(zonedDateTime, now));
     }
 }
