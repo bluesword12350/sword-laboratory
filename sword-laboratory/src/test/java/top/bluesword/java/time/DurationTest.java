@@ -12,6 +12,7 @@ public class DurationTest {
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime zonedDateTime = now.plusDays(-500);
         Duration between = Duration.between(now, zonedDateTime);
-        System.out.println(between);
+        System.out.println(between.getSeconds());
+        System.out.println(between.getNano());
     }
 }

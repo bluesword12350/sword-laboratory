@@ -8,9 +8,12 @@ import java.time.Period;
 public class PeriodTest {
 
     @Test
-    void test() {
+    void between() {
         LocalDate now = LocalDate.now();
-        Period period = Period.between(now, now.plusDays(-1));
+        Period period = Period.between(now, now.plusDays(-500));
+        System.out.println(period.getYears());
+        System.out.println(period.getMonths());
         System.out.println(period.getDays());
     }
+
 }
