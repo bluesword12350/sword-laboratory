@@ -15,6 +15,11 @@ class StringTest {
     }
 
     @Test
+    void substring() {
+        System.out.println("abc.substring(2):"+"abc".substring(3,3));
+    }
+
+    @Test
     void join(){
         System.out.println(String.join("-", List.of("1", "2","3")));
     }
