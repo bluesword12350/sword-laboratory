@@ -28,6 +28,8 @@ public class FilesTest {
     @Test
     void walk() throws IOException {
         Stream<Path> pathStream = Files.walk(Paths.get("src"));
-        pathStream.forEach(pathTemp -> System.out.println("Stream: " + pathTemp.toString()));
+        try(pathStream) {
+            pathStream.forEach(pathTemp -> System.out.println("Stream: " + pathTemp.toString()));
+        }
     }
 }

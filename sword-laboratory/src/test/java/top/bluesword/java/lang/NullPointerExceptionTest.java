@@ -13,8 +13,7 @@ class NullPointerExceptionTest {
     @Test
     void base(){
         String s = null;
-        NullPointerException nullPointerException = assertThrows(NullPointerException.class, () -> System.out.println(s.length()));
-        nullPointerException.printStackTrace();
+        assertThrows(NullPointerException.class, () -> System.out.println(s.length()));
     }
 
 }

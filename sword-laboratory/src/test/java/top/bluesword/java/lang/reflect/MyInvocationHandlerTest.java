@@ -1,10 +1,8 @@
 package top.bluesword.java.lang.reflect;
 
-import org.junit.jupiter.api.Test;
-
 import java.lang.reflect.Proxy;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class MyInvocationHandlerTest {
 
