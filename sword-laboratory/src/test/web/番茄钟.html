@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>番茄钟</title>
+    <style>
+        body {
+            margin:0;
+            background: black;
+        }
+        .circle {
+            position:relative;
+            width:50vh;
+            height:50vh;
+            border-radius:50%;
+            border:3px solid yellow;
+            margin:25vh auto 5px;
+            text-align:center;
+            color: #fff;
+        }
+        #name {
+            margin:10vh 0 0;
+            font-size: 30px;
+        }
+        #time {
+            margin:15vh 0 0;
+            font-size: 50px;
+        }
+        button {
+            margin:5px 15px;
+            border-radius: 1.4em;
+            border: 1px solid #fff;
+            color: #fff;
+            background: none;
+            cursor: pointer;
+        }
+        .workButton {
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+<div class="circle">
+    <p id="name">乱纪元</p>
+    <p id="time">00:00</p>
+</div>
+<div class="workButton">
+    <button onclick="startWork()">开始工作</button>
+    <button onclick="startRest()">开始休息</button>
+</div>
+<script>
+    let timer = {};
+    let duration = 0;
+
+    function startWork() {
+        document.getElementById("name").innerHTML = "工作纪元";
+        startCountdown(25*60);
+    }
+
+    function startRest() {
+        document.getElementById("name").innerHTML = "休息纪元";
+        startCountdown(5*60);
+    }
+
+    function startCountdown(durationNum) {
+        clearInterval(timer);
+        duration = durationNum;
+        timer = setInterval(timeLeft,1000)
+    }
+
+    function timeLeft(){
+        let select = "time";
+        if(duration <= 0){//如果时间差小于等于0
+            clearInterval(timer);//清除定时器
+            document.getElementById(select).innerHTML = 0+":"+0;
+        }else{
+            let mi = Math.floor(duration/60);//分
+            let se = duration%60;//秒
+            document.getElementById(select).innerHTML = (mi<10?'0':'')+mi+":"+(se<10?'0':'')+se;
+        }
+        duration--;
+    }
+</script>
+</body>
+</html>
