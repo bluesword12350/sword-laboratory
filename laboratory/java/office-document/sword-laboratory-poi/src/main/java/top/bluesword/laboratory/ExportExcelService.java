@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory;
+package top.bluesword.laboratory;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
