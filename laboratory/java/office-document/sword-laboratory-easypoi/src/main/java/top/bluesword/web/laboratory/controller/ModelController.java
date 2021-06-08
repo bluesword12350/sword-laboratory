@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import top.bluesword.web.laboratory.bean.DataGenerate;
 import top.bluesword.web.laboratory.bean.ExcelTemplate;
+import top.bluesword.web.laboratory.bean.MergedCellExcelTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,6 +56,30 @@ public class ModelController {
 			}
 		} catch (Exception e1) {
 			return e1.toString();
+		}
+	}
+
+	@PostMapping("import-merged-cell")
+	@ApiOperation("合并单元格导入")
+	@ResponseBody
+	public String importMergedCell(@ApiParam(required = true) MultipartFile file) throws Exception {
+		if (file.isEmpty()) {
+			return "文件为空";
+		}
+		int max = 1024*1024;
+		if (file.getSize() > max) {
+			return "文件过大";
+		}
+		try (InputStream inputStream = file.getInputStream()) {
+			ImportParams params = new ImportParams();
+			params.setTitleRows(0);
+			params.setNeedVerify(true);
+			ExcelImportResult<ExcelTemplate> importExcel = ExcelImportUtil.importExcelMore(inputStream, MergedCellExcelTemplate.class, params);
+			if (importExcel.isVerifyFail()) {
+				return JSON.toJSONString(importExcel.getFailList());
+			}else {
+				return JSON.toJSONString(importExcel.getList());
+			}
 		}
 	}
 	
