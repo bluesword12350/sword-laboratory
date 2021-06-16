@@ -2,7 +2,9 @@ package top.bluesword.web.laboratory.domain;
 
 import lombok.Data;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.Instant;
 
@@ -11,9 +13,10 @@ import java.time.Instant;
  */
 @Data
 @Entity
-public class DataForQueryDsl {
+public class DataModel {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String key;
@@ -23,5 +26,8 @@ public class DataForQueryDsl {
     private String type;
 
     private Instant date;
+
+    @Embedded
+    private DataContext context;
 
 }
