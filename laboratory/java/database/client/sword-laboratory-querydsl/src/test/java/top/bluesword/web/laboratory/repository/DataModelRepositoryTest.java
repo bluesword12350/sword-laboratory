@@ -1,10 +1,8 @@
 package top.bluesword.web.laboratory.repository;
 
-import com.querydsl.core.Tuple;
 import com.querydsl.core.group.GroupBy;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +54,7 @@ class DataModelRepositoryTest {
     }
 
     @Test
-    void transform(){
+    void transformBean(){
         QDataModel qDataModel = QDataModel.dataModel;
         QDataFragment dataFragment = QDataFragment.dataFragment;
         Map<Long, DataModelQueryResult> fragmentTitles = queryFactory
@@ -64,6 +62,18 @@ class DataModelRepositoryTest {
                 .leftJoin(dataFragment).on(dataFragment.dataModelId.eq(qDataModel.id))
                 .transform(GroupBy.groupBy(qDataModel.id)
                         .as(Projections.bean(DataModelQueryResult.class, qDataModel.key, GroupBy.list(dataFragment.title).as("fragmentTitles")))
+                );
+        System.out.println(fragmentTitles);
+    }
+
+    @Test
+    void transform(){
+        QDataModel qDataModel = QDataModel.dataModel;
+        QDataFragment dataFragment = QDataFragment.dataFragment;
+        Map<Long, List<String>> fragmentTitles = queryFactory
+                .from(qDataModel)
+                .leftJoin(dataFragment).on(dataFragment.dataModelId.eq(qDataModel.id))
+                .transform(GroupBy.groupBy(qDataModel.id).as(GroupBy.list(dataFragment.title).as("fragmentTitles"))
                 );
         System.out.println(fragmentTitles);
     }
