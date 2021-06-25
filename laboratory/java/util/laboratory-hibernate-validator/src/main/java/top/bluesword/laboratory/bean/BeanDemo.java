@@ -22,6 +22,9 @@ public class BeanDemo {
 	@Size(min= 10,max = 500)
 	public String string;
 
+	@NotBlank
+	public String string2;
+
 	@Digits(integer = 2,fraction = 2)
 	@NotNull
 	public BigDecimal decimal;

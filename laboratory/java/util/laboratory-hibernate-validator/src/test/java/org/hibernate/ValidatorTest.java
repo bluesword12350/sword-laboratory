@@ -22,7 +22,8 @@ class ValidatorTest {
 	void defaultTest() {
 		BeanDemo beanDemo = new BeanDemo();
 		beanDemo.setInteger(100);
-		beanDemo.setString("13246");
+		beanDemo.setString(" ");
+		beanDemo.setString2(" ");
 		beanDemo.setDecimal(BigDecimal.valueOf(134165448.1324564768));
 		beanDemo.setI1(new InsideBeanDemo());
 		beanDemo.setI2(new InsideBeanDemo());
