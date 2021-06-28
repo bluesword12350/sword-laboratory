@@ -7,6 +7,9 @@ select * from pg_timezone_names;
 --日期转 unix 纪元 数字时间戳
 select extract(epoch from now());
 
+--日期转 一年中的周数
+select extract(week from now()) week;
+
 --时间戳格式化为字符串
 select to_char(now(),'YYYY-MM-DD HH24:MI:SS.MS TZ');
 select to_char(now(),'YYYY-MM-DD HH24:MI:SS.MS OF');
