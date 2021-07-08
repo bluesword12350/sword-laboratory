@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.WeekFields;
 
 class ZonedDateTimeTest {
 
@@ -33,4 +34,8 @@ class ZonedDateTimeTest {
         System.out.println(zonedDateTime.getOffset());
     }
 
+    @Test
+    void weekOfYear() {
+        System.out.println(ZonedDateTime.now().get(WeekFields.ISO.weekOfYear()));
+    }
 }
