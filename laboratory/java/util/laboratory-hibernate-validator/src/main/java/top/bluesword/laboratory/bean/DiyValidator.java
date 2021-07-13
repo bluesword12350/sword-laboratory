@@ -13,17 +13,11 @@ public class DiyValidator implements ConstraintValidator<DiyConstraint,String> {
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        log.debug("校验开始");
-        waitMillis();
-        log.debug("校验结束");
+        constraintValidatorContext.disableDefaultConstraintViolation();
+        ConstraintValidatorContext.ConstraintViolationBuilder constraintViolationBuilder
+                = constraintValidatorContext.buildConstraintViolationWithTemplate("发现异常：给出异常信息");
+        constraintViolationBuilder.addConstraintViolation();
         return false;
-    }
-
-    private void waitMillis() {
-        long now = System.currentTimeMillis();
-        for (long time = System.currentTimeMillis();time<now+1000;){
-            time = System.currentTimeMillis();
-        }
     }
 
 }
