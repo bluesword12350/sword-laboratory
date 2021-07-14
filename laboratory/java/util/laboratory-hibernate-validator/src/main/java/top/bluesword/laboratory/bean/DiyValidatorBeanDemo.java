@@ -2,7 +2,7 @@ package top.bluesword.laboratory.bean;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author 李林峰
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class DiyValidatorBeanDemo {
 
-    @NotEmpty
+    @NotBlank
     @DiyConstraint
     public String string;
 

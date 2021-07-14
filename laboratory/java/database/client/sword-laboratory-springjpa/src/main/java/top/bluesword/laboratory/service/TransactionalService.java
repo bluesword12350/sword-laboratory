@@ -41,6 +41,7 @@ public class TransactionalService {
 
     /**
      * 新事务
+     * Retryable 失败重试
      * @param id id
      */
     @Async

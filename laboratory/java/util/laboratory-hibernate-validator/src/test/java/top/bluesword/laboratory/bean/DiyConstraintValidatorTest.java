@@ -13,7 +13,9 @@ class DiyConstraintValidatorTest {
 
     @Test
     void isValid() {
-        Set<ConstraintViolation<DiyValidatorBeanDemo>> validate = VALIDATOR.validate(new DiyValidatorBeanDemo());
+        DiyValidatorBeanDemo diyValidatorBeanDemo = new DiyValidatorBeanDemo();
+        diyValidatorBeanDemo.setString(" ");
+        Set<ConstraintViolation<DiyValidatorBeanDemo>> validate = VALIDATOR.validate(diyValidatorBeanDemo);
         System.out.println(validate);
     }
 }
