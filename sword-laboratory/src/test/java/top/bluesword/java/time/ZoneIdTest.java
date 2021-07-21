@@ -31,22 +31,22 @@ public class ZoneIdTest {
 
     @Test
     void of() {
-        ZoneId zoneId = ZoneId.of("UTC+04:00");
-        System.out.println(zoneId);
-
-        ZonedDateTime now = ZonedDateTime.now();
-        System.out.println(now);
-        System.out.println(now.toInstant().atZone(zoneId));
-    }
-
-    @Test
-    void of0() {
-        ZoneId zoneId = ZoneId.of("+09:30");
-        System.out.println(zoneId.getId());
+        String[] zoneIds = new String[]{"UTC+04:00","+09:30","GMT-5"};
+        for (String zoneIdName : zoneIds) {
+            ZoneId zoneId = ZoneId.of(zoneIdName);
+            System.out.println("zoneId                                     "+zoneId);
+            System.out.println("zoneId.getId()                             "+zoneId.getId());
+            ZonedDateTime now = ZonedDateTime.now();
+            System.out.println("now                                        "+now);
+            System.out.println("now.toInstant().atZone(zoneId)             "+now.toInstant().atZone(zoneId));
+            System.out.println("zoneId.getRules().getOffset(Instant.now()) "+zoneId.getRules().getOffset(Instant.now()));
+            System.out.println("---------------------------");
+        }
     }
 
     @Test
     void getAvailableZoneIds() {
         ZoneId.getAvailableZoneIds().forEach(System.out::println);
     }
+
 }
