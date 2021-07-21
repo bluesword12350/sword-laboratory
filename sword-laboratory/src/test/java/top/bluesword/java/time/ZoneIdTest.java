@@ -40,7 +40,7 @@ public class ZoneIdTest {
             System.out.println("now                                        "+now);
             System.out.println("now.toInstant().atZone(zoneId)             "+now.toInstant().atZone(zoneId));
             System.out.println("zoneId.getRules().getOffset(Instant.now()) "+zoneId.getRules().getOffset(Instant.now()));
-            System.out.println("---------------------------");
+            System.out.println("-----------------");
         }
     }
 
