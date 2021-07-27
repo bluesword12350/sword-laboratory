@@ -31,7 +31,7 @@ public class ZoneIdTest {
 
     @Test
     void of() {
-        String[] zoneIds = new String[]{"UTC+04:00","+09:30","GMT-5"};
+        String[] zoneIds = new String[]{"UTC+04:00","+09:30","GMT-5","Z","GMT+0"};
         for (String zoneIdName : zoneIds) {
             ZoneId zoneId = ZoneId.of(zoneIdName);
             System.out.println("zoneId                                     "+zoneId);
