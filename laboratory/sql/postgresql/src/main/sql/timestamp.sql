@@ -30,6 +30,6 @@ SELECT current_timestamp,localtimestamp;
 --https://www.postgresql.org/docs/13/functions-datetime.html
 select current_date - interval '6 month';
 select current_date + 1,current_date + interval '1 day';
-
+select current_date - interval '9 week';
 --日期比较
 select date '2020-04-07' >= current_date - interval '6 month';
