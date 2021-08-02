@@ -1,6 +1,7 @@
 package top.bluesword.laboratory.bean;
 
 import lombok.Data;
+import top.bluesword.laboratory.validation.group.StringChecks;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -22,7 +23,7 @@ public class BeanDemo {
 	@Size(min= 10,max = 500)
 	public String string;
 
-	@NotBlank
+	@NotBlank(groups = StringChecks.class)
 	public String string2;
 
 	@Digits(integer = 2,fraction = 2)
