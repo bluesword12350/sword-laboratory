@@ -21,7 +21,7 @@ public class ZoneIdTest {
 
     @Test
     void ofOffset() {
-        ZoneId zoneId = ZoneId.ofOffset("UTC", ZoneOffset.ofTotalSeconds(28800));
+        ZoneId zoneId = ZoneId.ofOffset("GMT", ZoneOffset.ofTotalSeconds(28800));
         System.out.println(zoneId);
 
         ZonedDateTime now = ZonedDateTime.now();
