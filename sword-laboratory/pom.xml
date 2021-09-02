@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>top.bluesword</groupId>
 	<artifactId>sword-laboratory</artifactId>
@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>14</java.version>
+		<java.version>16</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 	</properties>
@@ -127,19 +127,7 @@
 	<repositories>
 		<repository>
 			<id>aliyun</id>
-			<url>http://maven.aliyun.com/nexus/content/groups/public//</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>central</id>
-			<url>http://central.maven.org/maven2/</url>
+			<url>https://maven.aliyun.com/nexus/content/groups/public//</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -160,7 +148,7 @@
 		</pluginRepository>
 		<pluginRepository>
 			<id>aliyun</id>
-			<url>http://maven.aliyun.com/nexus/content/groups/public//</url>
+			<url>https://maven.aliyun.com/nexus/content/groups/public//</url>
 		</pluginRepository>
 	</pluginRepositories>
 </project>

@@ -1,5 +1,6 @@
 package top.bluesword.java.util.concurrent;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -23,19 +24,25 @@ class CompletableFutureTest {
 
     @Test
     void runAsync() {
+        boolean error = new Random().nextBoolean();
         CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
-            if (new Random().nextBoolean()) {
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.interrupted();
+                throw new RuntimeException(e);
+            }
+            if (error) {
                 throw new RuntimeException("随机异常");
             }
         });
-        System.out.println("result0");
-        CompletableFuture.allOf(completableFuture).join();
-        System.out.println("result1");
+        CompletableFuture<Void> future = CompletableFuture.allOf(completableFuture);
+        if (error) {
+            System.out.println("出现随机异常");
+            Assertions.assertThrows(RuntimeException.class, future::join);
+        } else {
+            future.join();
+        }
     }
 
     @Test
@@ -74,7 +81,7 @@ class CompletableFutureTest {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.interrupted();
             }
             return "world";
         }), (s1, s2) -> s1 + " " + s2).join();

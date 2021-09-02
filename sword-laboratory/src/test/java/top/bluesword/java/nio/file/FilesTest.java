@@ -1,6 +1,6 @@
 package top.bluesword.java.nio.file;
 
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -9,8 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-@Disabled
-public class FilesTest {
+class FilesTest {
 
     @Test
     void readString() throws IOException {
@@ -19,8 +18,10 @@ public class FilesTest {
             Files.createDirectory(pathDirectory);
         }
         Path path = Paths.get("target/test/test.txt");
-        Files.write(path, "测试代码输出文件".getBytes());
-        Files.readString(path);
+        String writeString = "test out file";
+        Files.writeString(path, writeString);
+        String readString = Files.readString(path);
+        Assertions.assertEquals(writeString,readString);
         Files.deleteIfExists(path);
         Files.deleteIfExists(pathDirectory);
     }

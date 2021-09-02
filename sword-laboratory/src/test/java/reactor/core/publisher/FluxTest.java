@@ -12,6 +12,6 @@ class FluxTest {
     @Test
     void test(){
         Logger logger = LoggerFactory.getLogger(FluxTest.class);
-        Flux.range(Integer.MIN_VALUE,Integer.MAX_VALUE).subscribe(i -> logger.info(i.toString()));
+        Flux.range(0,100).subscribe(i -> logger.info(i.toString()));
     }
 }
