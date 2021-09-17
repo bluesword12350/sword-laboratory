@@ -6,24 +6,33 @@
     <packaging>jar</packaging>
     <version>0.0.1</version>
     <name>demo</name>
+
     <developers>
         <developer>
             <name>李林峰</name>
             <email>yunlelongzai@qq.com</email>
         </developer>
     </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
         <main-class>top.bluesword.laboratory.HelloFx</main-class>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>16</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>16</version>
+        </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
