@@ -8,10 +8,7 @@ import java.net.*;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
 
-/**
- * @author 李林峰
- */
-public class MulticastSocketTest {
+public class DatagramSocketTest {
 
     private final int port = 1234;
 
@@ -50,25 +47,31 @@ public class MulticastSocketTest {
     }
 
     void receive() throws IOException {
-        byte[] data = new byte[256];
-        try(MulticastSocket ms = new MulticastSocket(this.port)) {
+        byte[] msgBytes = new byte[1024];
+        try(DatagramSocket socket = new DatagramSocket(null)) {
+            socket.setReuseAddress(true); // set reuse address before binding
+            socket.bind(new InetSocketAddress(this.port)); // bind
             InetSocketAddress inetSocketAddress = new InetSocketAddress(this.host, port);
             NetworkInterface bge0 = NetworkInterface.getByName("bge0");
-            ms.joinGroup(inetSocketAddress, bge0);
-            DatagramPacket packet = new DatagramPacket(data, data.length);
+            socket.joinGroup(inetSocketAddress, bge0);
+            DatagramPacket packet = new DatagramPacket(msgBytes, msgBytes.length);
             ready = true;
-            ms.receive(packet);
+            socket.receive(packet);
             receiveData = new String(packet.getData(), 0, packet.getLength());
             System.out.println(receiveData);
-            ms.leaveGroup(inetSocketAddress,bge0);
+            socket.leaveGroup(inetSocketAddress, bge0);
         }
     }
 
     void send() throws IOException {
         await().atMost(1, SECONDS).until(() -> ready);
-        DatagramPacket packet = new DatagramPacket(data.getBytes(), data.length(), InetAddress.getByName(host), port);
-        try(MulticastSocket ms = new MulticastSocket()) {
-            ms.send(packet);
+        byte[] msgBytes = data.getBytes();
+        DatagramPacket packet = new DatagramPacket(msgBytes, msgBytes.length, InetAddress.getByName(host), port);
+        DatagramSocket sender = new DatagramSocket(new InetSocketAddress(0));
+        sender.setOption(StandardSocketOptions.IP_MULTICAST_IF, NetworkInterface.getByName("bge0"));
+        sender.setOption(StandardSocketOptions.IP_MULTICAST_TTL, 10);
+        try(sender) {
+            sender.send(packet);
         }
     }
 
