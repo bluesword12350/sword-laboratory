@@ -15,6 +15,16 @@ class ListTest {
     }
 
     @Test
+    void remove(){
+        List<String> list = new ArrayList<>(List.of("1","2"));
+        System.out.println(list.remove(null));
+        System.out.println(list.remove("null"));
+        System.out.println(list.remove(""));
+        System.out.println(list.remove("1"));
+        System.out.println(list);
+    }
+
+    @Test
     void getClassTest(){
         List<String> list1 = new ArrayList<>();
         list1.add("23");
