@@ -1,4 +1,4 @@
-import { createApp, h } from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import * as VueRouter from 'vue-router'
 import Timestamp from "./components/Timestamp.vue";
