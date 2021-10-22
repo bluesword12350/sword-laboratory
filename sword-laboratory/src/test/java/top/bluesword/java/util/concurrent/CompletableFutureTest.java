@@ -6,12 +6,22 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutionException;
 
 /**
  * @author 李林峰
  */
 class CompletableFutureTest {
+
+    static class CompletableTestException extends RuntimeException{
+        private CompletableTestException(Throwable cause){
+            super(cause);
+        }
+        private CompletableTestException(String message){
+            super(message);
+        }
+    }
 
     @Test
     void completedFuture(){
@@ -23,26 +33,41 @@ class CompletableFutureTest {
     }
 
     @Test
-    void runAsync() {
+    void runAsyncJoin() {
         boolean error = new Random().nextBoolean();
         CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.interrupted();
-                throw new RuntimeException(e);
+                throw new CompletableTestException(e);
             }
             if (error) {
-                throw new RuntimeException("随机异常");
+                throw new CompletableTestException("随机异常");
             }
         });
         CompletableFuture<Void> future = CompletableFuture.allOf(completableFuture);
         if (error) {
             System.out.println("出现随机异常");
-            Assertions.assertThrows(RuntimeException.class, future::join);
+            Assertions.assertThrows(CompletionException.class, future::join);
         } else {
             future.join();
         }
+    }
+
+    @Test
+    void runAsyncGet() {
+        CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.interrupted();
+                throw new CompletableTestException(e);
+            }
+            throw new CompletableTestException("随机异常");
+        });
+        CompletableFuture<Void> future = CompletableFuture.allOf(completableFuture);
+        Assertions.assertThrows(ExecutionException.class, future::get);
     }
 
     @Test
@@ -54,14 +79,16 @@ class CompletableFutureTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println(1);
             return "hello";
         }).thenAccept(result -> map.put(result, result));
         CompletableFuture<Void> cf2 = CompletableFuture.supplyAsync(() -> {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println(2);
             return "world";
         }).thenAccept(result -> map.put(result, result));
         CompletableFuture.allOf(cf1,cf2).get();
@@ -69,6 +96,7 @@ class CompletableFutureTest {
     }
 
     @Test
+
     void thenCombine(){
         String result = CompletableFuture.supplyAsync(() -> {
             try {
