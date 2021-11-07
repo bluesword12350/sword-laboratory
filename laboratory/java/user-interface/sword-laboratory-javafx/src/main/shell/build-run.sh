@@ -5,7 +5,11 @@ mvn clean javafx:run
 mvn clean javafx:jlink
 
 #镜像运行
-image/bin/java -m top.bluesword.laboratory.HelloFx
+target/image/bin/java -m helloFx/top.bluesword.laboratory.HelloFx
 
 #打包镜像为可执行文件
-jpackage --type app-image -n HelloFx -m HelloFx/top.bluesword.laboratory.HelloFx --runtime-image .
+cd target
+jpackage --type app-image -n HelloFx -m helloFx/top.bluesword.laboratory.HelloFx --runtime-image image
+
+start /b javaw -jar *.jar
+exit

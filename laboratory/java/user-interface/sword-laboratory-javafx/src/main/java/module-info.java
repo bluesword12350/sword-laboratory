@@ -1,4 +1,5 @@
-module HelloFx  {
-    requires javafx.controls;
+module helloFx {
+    requires javafx.web;
+
     exports top.bluesword.laboratory;
 }

@@ -52,12 +52,15 @@ public class MulticastSocketTest {
     void receive() throws IOException {
         byte[] data = new byte[256];
         try(MulticastSocket ms = new MulticastSocket(this.port)) {
-            ms.joinGroup(new InetSocketAddress(this.host, port), NetworkInterface.getByName("bge0"));
+            InetSocketAddress inetSocketAddress = new InetSocketAddress(this.host, port);
+            NetworkInterface bge0 = NetworkInterface.getByName("bge0");
+            ms.joinGroup(inetSocketAddress, bge0);
             DatagramPacket packet = new DatagramPacket(data, data.length);
             ready = true;
             ms.receive(packet);
             receiveData = new String(packet.getData(), 0, packet.getLength());
             System.out.println(receiveData);
+            ms.leaveGroup(inetSocketAddress,bge0);
         }
     }
 
