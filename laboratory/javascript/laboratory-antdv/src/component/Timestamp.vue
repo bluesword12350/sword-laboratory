@@ -1,13 +1,22 @@
 <template>
+  <div>
     <h1 class="center-text">{{`${now} 毫秒`}}</h1>
+    <a-config-provider :locale="locale">
+      <a-date-picker showTime/>
+    </a-config-provider>
+  </div>
+
 </template>
 
 <script>
+    import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
+
     export default {
         name: "Timestamp",
         data() {
             return {
                 now : Date.now(),
+                locale : zhCN,
             };
         },
         methods:{

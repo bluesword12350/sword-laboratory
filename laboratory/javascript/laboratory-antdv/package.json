@@ -10,9 +10,9 @@
   "author": "李林峰",
   "license": "MIT",
   "dependencies": {
-    "ant-design-vue": "latest",
-    "vue": "latest",
-    "vue-router": "latest"
+    "ant-design-vue": "^2.2.8",
+    "vue": "^3.2.20",
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@vue/cli-service": "latest",

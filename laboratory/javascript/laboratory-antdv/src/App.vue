@@ -1,17 +1,10 @@
 <template>
   <a-layout id="layout-demo-custom-trigger">
-    <a-layout-sider id="layout-sider-demo" v-model="collapsed">
-      <div class="logo">
-        <a-icon
-            class="trigger"
-            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-            @click="() => (collapsed = !collapsed)"
-        />
-      </div>
+    <a-layout-sider id="layout-sider-demo">
       <a-menu theme="dark" mode="inline">
         <a-menu-item key="2">
-          <a-icon type="video-camera"/>
-          <span>时间戳</span>
+          <FieldTimeOutlined />
+          <span>时间</span>
           <router-link to="/timestamp"></router-link>
         </a-menu-item>
       </a-menu>
@@ -23,26 +16,23 @@
 </template>
 
 <script>
+import MenuFoldOutlined from '@ant-design/icons-vue/MenuFoldOutlined';
+import FieldTimeOutlined from '@ant-design/icons-vue/FieldTimeOutlined';
+
 export default {
   name: "App",
   data() {
     return {
-      collapsed: false,
     };
+  },
+  components: {
+    MenuFoldOutlined,
+    FieldTimeOutlined
   }
 };
 </script>
 
 <style>
-#layout-demo-custom-trigger .trigger {
-  font-size: 18px;
-  color: white;
-}
-
-#layout-demo-custom-trigger .logo {
-  height: 32px;
-  margin: 16px;
-}
 
 #layout-demo-custom-trigger a {
   color: white;
