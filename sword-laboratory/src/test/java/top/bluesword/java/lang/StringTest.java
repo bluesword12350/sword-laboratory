@@ -20,6 +20,11 @@ class StringTest {
     }
 
     @Test
+    void contentEquals() {
+        System.out.println("leftTrim".contentEquals(new StringBuilder("leftTrim")));
+    }
+
+    @Test
     void join(){
         System.out.println(String.join("-", List.of("1", "2","3")));
     }
