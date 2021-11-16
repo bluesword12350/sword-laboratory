@@ -9,7 +9,7 @@ import java.util.List;
 class ListTest {
 
     @Test
-    void ofTest(){
+    void of(){
         List<Integer> list = List.of(1);
         System.out.println(list.getClass());
     }

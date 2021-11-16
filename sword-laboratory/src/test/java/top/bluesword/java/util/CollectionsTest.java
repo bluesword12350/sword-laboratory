@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -17,4 +18,11 @@ public class CollectionsTest {
         Collections.addAll(list,a);
         System.out.println(list);
     }
+
+    @Test
+    void singletonList() {
+        List<Object> list = Collections.singletonList(null);
+        System.out.println(list);
+    }
+
 }
