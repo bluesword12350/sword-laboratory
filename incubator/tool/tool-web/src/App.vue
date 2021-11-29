@@ -14,6 +14,11 @@
           <span>Json编辑器</span>
           <router-link to="/json-editor"></router-link>
         </a-menu-item>
+        <a-menu-item key="json-editor2">
+          <a-icon type="file-text" />
+          <span>Json编辑器(去转义)</span>
+          <router-link to="/json-editor2"></router-link>
+        </a-menu-item>
         <a-menu-item key="url-editor">
           <a-icon type="link" />
           <span>URL编码</span>

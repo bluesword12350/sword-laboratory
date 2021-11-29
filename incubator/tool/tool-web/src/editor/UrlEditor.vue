@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="left">
-      <label for="urlDecode">普通文本</label>
+      <label>普通文本</label>
       <textarea id="urlDecode" v-model="plainText"></textarea>
     </div>
     <div class="middle column-box">
@@ -9,7 +9,7 @@
       <button @click="rightToLet()"><a-icon type="left-circle" /></button>
     </div>
     <div class="right">
-      <label for="urlEncode">URL编码</label>
+      <label>URL编码</label>
       <textarea id="urlEncode" v-model="urlEncodedText"></textarea>
     </div>
   </div>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "JsonEditor",
+  name: "UrlEditor",
   data() {
     return {
       plainText:"",
