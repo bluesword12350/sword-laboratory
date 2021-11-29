@@ -16,8 +16,8 @@
         </a-menu-item>
         <a-menu-item key="json-editor2">
           <a-icon type="file-text" />
-          <span>Json编辑器(去转义)</span>
-          <router-link to="/json-editor2"></router-link>
+          <span>去除转义</span>
+          <router-link to="/dislodge-escape"></router-link>
         </a-menu-item>
         <a-menu-item key="url-editor">
           <a-icon type="link" />

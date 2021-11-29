@@ -1,10 +1,10 @@
 <template>
   <div class="box">
     <div class="left">
-      <textarea id="jsonText" v-model="jsonText" v-on:change="jsonTextFormat()"></textarea>
+      <textarea v-model="escapeText" v-on:change="jsonTextFormat()"></textarea>
     </div>
     <div class="right">
-      <textarea id="jsonFormat" v-model="jsonFormat" disabled="true"></textarea>
+      <textarea v-model="dislodgeEscape" disabled="true"></textarea>
     </div>
   </div>
 </template>
@@ -12,17 +12,16 @@
 <script>
 
 export default {
-  name: "JsonEditor2",
+  name: "DislodgeEscape",
   data() {
     return {
-      jsonText:"",
-      jsonFormat:""
+      escapeText:"",
+      dislodgeEscape:""
     }
   },
   methods : {
     jsonTextFormat(){
-      this.jsonFormat = JSON.stringify(JSON.parse(this.jsonText),null,4).toString()
-          .replace(new RegExp("\\\\\"","gm"),"\"")
+      this.dislodgeEscape = this.escapeText.replace(new RegExp("\\\\\"","gm"),"\"")
     },
   }
 }
