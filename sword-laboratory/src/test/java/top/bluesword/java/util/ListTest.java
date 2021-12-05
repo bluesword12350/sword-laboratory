@@ -15,6 +15,13 @@ class ListTest {
     }
 
     @Test
+    void set(){
+        List<Integer> list = new ArrayList<>(List.of(1,2,3));
+        list.set(1,5);
+        System.out.println(list);
+    }
+
+    @Test
     void remove(){
         List<String> list = new ArrayList<>(List.of("1","2"));
         System.out.println(list.remove(null));
