@@ -10,7 +10,8 @@
   "author": "李林峰",
   "license": "MIT",
   "dependencies": {
-    "ant-design-vue": "^2.2.8",
+    "ant-design-vue": "^3.0.0-alpha.16",
+    "@ant-design/icons-vue": "^6.0.1",
     "vue": "^3.2.20",
     "vue-router": "^4.0.12"
   },

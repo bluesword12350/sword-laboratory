@@ -2,10 +2,14 @@
   <a-layout id="layout-demo-custom-trigger">
     <a-layout-sider id="layout-sider-demo">
       <a-menu theme="dark" mode="inline">
-        <a-menu-item key="2">
+        <a-menu-item key="1">
           <FieldTimeOutlined />
           <span>时间</span>
-          <router-link to="/timestamp"></router-link>
+          <router-link to="/timestamp"/>
+        </a-menu-item>
+        <a-menu-item key="2">
+          <span>模态对话框</span>
+          <router-link to="/modal-test"/>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
