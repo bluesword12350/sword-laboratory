@@ -10,7 +10,7 @@ import {ref} from "vue"
 
 const modalComponent = ref(null)
 
-let showModal = function () {
+const showModal = function () {
   modalComponent.value.showModal()
 }
 </script>
