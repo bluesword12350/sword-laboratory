@@ -1,31 +1,31 @@
 package top.bluesword.laboratory.controller;
 
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import top.bluesword.laboratory.async.AsyncTask;
+import top.bluesword.laboratory.event.TestApplicationEvent;
+
+import java.util.UUID;
 
 /**
  * @author 李林峰
  */
+@Slf4j
 @RestController
-@RequestMapping("async-task")
+@RequestMapping("application-event")
 @AllArgsConstructor
-public class AsyncController {
+public class ApplicationEventController {
 
-    private static final Logger log = LoggerFactory.getLogger(AsyncController.class);
-
-    private AsyncTask asyncTask;
+    private ApplicationEventPublisher publisher;
 
     @ResponseBody
     @GetMapping("start")
-    public Object asyncTaskStart() throws InterruptedException {
-        asyncTask.doTask();
-        log.info("异步任务开启，同步返回");
+    public String asyncTaskStart() {
+        publisher.publishEvent(new TestApplicationEvent(UUID.randomUUID().toString()));
         return "开启完成";
     }
 

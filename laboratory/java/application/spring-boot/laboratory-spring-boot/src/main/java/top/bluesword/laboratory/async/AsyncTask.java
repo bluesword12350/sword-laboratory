@@ -16,15 +16,10 @@ public class AsyncTask {
     Logger log = LoggerFactory.getLogger(AsyncTask.class);
 
     @Async
-    public void doTaskOne() throws InterruptedException {
+    public void doTask() throws InterruptedException {
         log.info("异步任务开始执行");
         Thread.sleep(3000);
         log.info("异步任务执行完成");
-    }
-
-    @Async
-    public void doTaskTwo() throws InterruptedException {
-        doTaskOne();
     }
 
 }
