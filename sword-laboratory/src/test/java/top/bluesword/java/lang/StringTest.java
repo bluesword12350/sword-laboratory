@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,15 +37,23 @@ class StringTest {
 
     @Test
     void charsetTest(){
+        String source = "你好";
         byte[] bytes = "你好".getBytes();
-        System.out.println(new String(bytes, StandardCharsets.UTF_8));
-        System.out.println(new String(bytes, StandardCharsets.ISO_8859_1));
-        System.out.println(new String(bytes, StandardCharsets.US_ASCII));
-        System.out.println(new String(bytes, StandardCharsets.UTF_16));
-        System.out.println(new String(bytes, Charset.forName("GBK")));
-        System.out.println(new String(bytes, Charset.forName("GB18030")));
-        System.out.println(new String(bytes, Charset.forName("GB2312")));
-        System.out.println(new String(bytes, Charset.forName("Big5")));
+        Charset[] charsets = new Charset[]{
+                StandardCharsets.UTF_8,StandardCharsets.ISO_8859_1,StandardCharsets.US_ASCII,StandardCharsets.UTF_16,
+                Charset.forName("GBK"),Charset.forName("GB18030"),Charset.forName("GB2312"),Charset.forName("Big5")
+        };
+        List<Charset> possibleCharset = new ArrayList<>();
+        for (Charset charset : charsets) {
+            if (source.equals(new String(bytes, charset))) {
+                possibleCharset.add(charset);
+            }
+        }
+        if (possibleCharset.isEmpty()) {
+            System.out.println("没有找到匹配的编码");
+        } else {
+            System.out.println("可能的编码有："+possibleCharset);
+        }
     }
 
     @Test
