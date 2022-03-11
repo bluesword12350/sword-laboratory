@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -80,6 +81,12 @@ class StringTest {
         String aaa1 = String.format("%12s", "aaa");
         System.out.println(aaa1);
         System.out.println(aaa1.length());
+    }
+
+    @Test
+    void dateTimeFormatTest() {
+        ZonedDateTime now = ZonedDateTime.now();
+        System.out.printf("%1$tY%1$tm%1$td %1$tH:%1$tM",now);
     }
 
     @Test
