@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时间进度</title>
+    <style>
+        #thisChineseYear {
+            width: 100%;
+            background-color: #ddd;
+        }
+        #pastPart {
+            width: 0;
+            height: 30px;
+            background-color: #193ec4;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="thisChineseYear">
+        <div id="pastPart">0%</div>
+    </div>
+    <script src="node_modules/lunar-javascript/lunar.js"></script>
+    <script>
+        const pastPart = document.getElementById("pastPart")
+        let lunarYear = Lunar.fromDate(new Date()).getYear()
+        let startTime = solarToDate(Lunar.fromYmd(lunarYear,1,1).getSolar()).getTime()
+        let endTime = solarToDate(Lunar.fromYmd(lunarYear+1,1,1).getSolar()).getTime()
+        let timeLong = endTime-startTime;
+
+        move()
+        setInterval(move,1000)
+
+        function move() {
+            let nowTime = new Date().getTime();
+            let width = ((nowTime-startTime)/timeLong*100).toFixed(5);
+            pastPart.style.width = width + '%';
+            pastPart.innerHTML = width  + '%';
+        }
+
+        function solarToDate(solar){
+            return new Date(solar.getYear(),solar.getMonth()-1,solar.getDay())
+        }
+    </script>
+</body>
+</html>
