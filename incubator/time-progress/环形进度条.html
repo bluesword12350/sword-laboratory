@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>中国年进度</title>
     <style>
         :root {
             --side: 80vh;
@@ -15,7 +15,7 @@
             background: pink;
         }
 
-        .container{
+        #container{
             height: var(--side);
             width: var(--side);
             display:flex;
@@ -29,7 +29,7 @@
             overflow: hidden;
         }
 
-        .leftCircle{
+        #leftCircle{
             width: calc(var(--side) - 40px);
             height: calc(var(--side) - 40px);
             border: 20px solid white;
@@ -40,7 +40,6 @@
             border-bottom: 20px solid orange;
             border-left: 20px solid orange;
             transform: rotate(-135deg);
-            /*animation-name:circle_left;*/
         }
 
         .right {
@@ -50,7 +49,7 @@
             overflow: hidden;
         }
 
-        .rightCircle {
+        #rightCircle {
             width: calc(var(--side) - 40px);
             height: calc(var(--side) - 40px);
             border-radius: 50%;
@@ -61,37 +60,56 @@
             right: 0;
             top: 0;
             transform: rotate(-135deg);
-            /*animation-name: circle_right;*/
         }
 
-        @keyframes circle_right {
-            0% {
-                transform: rotate(-135deg);
-            }
-            50%,100% {
-                transform: rotate(45deg);
-            }
-        }
-        @keyframes circle_left {
-            0%,50% {
-                transform: rotate(-135deg);
-            }
-            100% {
-                transform: rotate(45deg);
-            }
+        #pastPart{
+            width: 80px;
+            margin: auto;
         }
     </style>
 </head>
 
 <body>
-    <div class='container'>
+    <div id='container'>
         <div class="left">
-            <div class="leftCircle"></div>
+            <div id="leftCircle"></div>
         </div>
         <div class="right">
-            <div class="rightCircle"></div>
+            <div id="rightCircle"></div>
         </div>
     </div>
+    <div id="pastPart"></div>
+    <script src="node_modules/lunar-javascript/lunar.js"></script>
+    <script>
+        const leftCircle = document.getElementById("leftCircle")
+        const rightCircle = document.getElementById("rightCircle")
+        const pastPart = document.getElementById("pastPart")
+
+        let lunarYear = Lunar.fromDate(new Date()).getYear()
+        let startTime = solarToDate(Lunar.fromYmd(lunarYear,1,1).getSolar()).getTime()
+        let endTime = solarToDate(Lunar.fromYmd(lunarYear+1,1,1).getSolar()).getTime()
+        let timeLong = endTime-startTime;
+
+        move()
+        setInterval(move,1000)
+
+        function move() {
+            let nowTime = new Date().getTime();
+            let progress = (nowTime-startTime)/timeLong;
+            if (progress < 0.5) {
+                rightCircle.style.transform = `rotate(${progress*360-135}deg)`
+                leftCircle.style.transform = 'rotate(-135deg)'
+            } else {
+                rightCircle.style.transform = 'rotate(45deg)'
+                leftCircle.style.transform = `rotate(${progress*360-315}deg)`
+            }
+            pastPart.innerHTML = (progress*100).toFixed(5)  + '%';
+        }
+
+        function solarToDate(solar){
+            return new Date(solar.getYear(),solar.getMonth()-1,solar.getDay())
+        }
+    </script>
 </body>
 
 </html>
