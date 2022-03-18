@@ -20,6 +20,7 @@
             width: var(--side);
             display:flex;
             margin: auto;
+            position: relative;
         }
 
         .left{
@@ -63,14 +64,16 @@
         }
 
         #pastPart{
+            position: absolute;
             width: 180px;
-            margin: auto;
+            height: 45px;
+            left: calc((var(--side) - 180px)/2);
+            top: 40%;
         }
     </style>
 </head>
 
 <body>
-    <h1 id="pastPart"></h1>
     <div id='container'>
         <div class="left">
             <div id="leftCircle"></div>
@@ -78,6 +81,7 @@
         <div class="right">
             <div id="rightCircle"></div>
         </div>
+        <h1 id="pastPart"></h1>
     </div>
     <script src="node_modules/lunar-javascript/lunar.js"></script>
     <script>
