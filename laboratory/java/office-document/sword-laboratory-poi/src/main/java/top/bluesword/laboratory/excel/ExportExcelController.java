@@ -1,4 +1,4 @@
-package top.bluesword.laboratory;
+package top.bluesword.laboratory.excel;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -24,8 +24,8 @@ import java.io.IOException;
  * @author 李林峰
  */
 @RestController
-@RequestMapping("export-excel")
-public class ExportExcelService {
+@RequestMapping("excel/export")
+public class ExportExcelController {
 
     @GetMapping
     public Mono<Void> get(ServerHttpResponse response) {

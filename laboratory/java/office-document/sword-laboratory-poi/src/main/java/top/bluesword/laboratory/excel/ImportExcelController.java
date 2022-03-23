@@ -1,4 +1,4 @@
-package top.bluesword.laboratory;
+package top.bluesword.laboratory.excel;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -22,10 +22,10 @@ import java.util.Map;
  * @author 李林峰
  */
 @Controller
-@RequestMapping("model")
+@RequestMapping("excel/import")
 public class ImportExcelController {
 
-    @PostMapping("import-excel")
+    @PostMapping
     @ResponseBody
     public List<Map<String,Object>> importExcel(MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
