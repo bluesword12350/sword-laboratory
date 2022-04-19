@@ -7,7 +7,8 @@ class LongTest {
 	@Test
 	void parseLong() {
 		long parseInt = Long.parseLong("-AB",16);
-		String string = Long.toString(parseInt, 37);
+		System.out.println(parseInt);
+		String string = Long.toString(parseInt, 36);
 		System.out.println(string);
 	}
 
@@ -35,4 +36,16 @@ class LongTest {
 		String binaryString = Long.toBinaryString(~(-1L << 63));
 		System.out.println(binaryString);
 	}
+
+
+	@Test
+	void maxValue() {
+		Long maxValue = Long.MAX_VALUE;
+		System.out.println(maxValue);
+		System.out.println(maxValue.toString().length());
+		String max36Value = Long.toString(maxValue, 36);
+		System.out.println(max36Value);
+		System.out.println(max36Value.length());
+	}
+
 }
