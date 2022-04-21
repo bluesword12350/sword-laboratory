@@ -25,10 +25,15 @@ class BigDecimalTest {
 		System.out.println(i);
 	}
 
-    @Test
-    void equals() {
-        System.out.println(BigDecimal.ZERO.equals(BigDecimal.valueOf(0.0000)));
-    }
+	@Test
+	void equals() {
+		System.out.println(BigDecimal.ZERO.equals(BigDecimal.valueOf(0.0000)));
+	}
+
+	@Test
+	void zeroEquals() {
+		System.out.println(0 == new BigDecimal("0.00000").doubleValue());
+	}
 
     @Test
     void compareTo() {

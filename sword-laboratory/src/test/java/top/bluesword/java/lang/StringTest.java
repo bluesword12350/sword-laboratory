@@ -70,7 +70,7 @@ class StringTest {
     @Test
     void formatTest() {
 		String string = "DS16AWARDS";
-		String string2 = String.format("%0"+(16-string.length())+"d%s",0,string);
+		String string2 = String.format("%08d%s",12345,string);
 		System.out.println(string2);
 		System.out.println(string2.length());
 
