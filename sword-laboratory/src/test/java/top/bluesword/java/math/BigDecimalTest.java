@@ -33,6 +33,8 @@ class BigDecimalTest {
 	@Test
 	void zeroEquals() {
 		System.out.println(0 == new BigDecimal("0.00000").doubleValue());
+		System.out.println(BigDecimal.ZERO.equals(BigDecimal.valueOf(0.0000)));
+		System.out.println(BigDecimal.ZERO.compareTo(BigDecimal.valueOf(0.0000))==0);
 	}
 
     @Test
