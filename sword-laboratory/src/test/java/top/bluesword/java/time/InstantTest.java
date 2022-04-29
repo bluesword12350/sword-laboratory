@@ -15,4 +15,5 @@ class InstantTest {
         Instant instant1 = Instant.ofEpochMilli(0);
         System.out.println(instant.compareTo(instant1));
     }
+
 }

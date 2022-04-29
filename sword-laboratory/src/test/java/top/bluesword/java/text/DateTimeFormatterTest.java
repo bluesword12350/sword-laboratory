@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 class DateTimeFormatterTest {
 
@@ -19,6 +20,15 @@ class DateTimeFormatterTest {
         String dateStr = dateTimeFormatter.format(LocalTime.of(9, 3));
         System.out.println(dateStr);
         System.out.println(LocalTime.parse(dateStr,dateTimeFormatter));
+    }
+
+    @Test
+    void withLocale(){
+        Instant instant = Instant.now();
+        DateTimeFormatter dateTimeFormatter0 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.of("+08:00"));
+        DateTimeFormatter dateTimeFormatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.of("+00:00")).withLocale(Locale.CHINA);
+        System.out.println(dateTimeFormatter0.format(instant));
+        System.out.println(dateTimeFormatter1.format(instant));
     }
 
 }
