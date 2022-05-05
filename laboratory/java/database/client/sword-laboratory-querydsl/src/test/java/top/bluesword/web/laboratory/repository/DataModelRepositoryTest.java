@@ -37,18 +37,25 @@ class DataModelRepositoryTest {
 
     @Test
     void containsIgnoreCase(){
-        BooleanExpression expression = QDataForQueryDsl.dataForQueryDsl.name.containsIgnoreCase("aBc");
+        BooleanExpression expression = QDataModel.dataModel.name.containsIgnoreCase("aBc");
+        Iterable<DataModel> all = dataModelQueryDslRepository.findAll(expression);
+        System.out.println(all);
+    }
+
+    @Test
+    void isEmpty(){
+        BooleanExpression expression = QDataModel.dataModel.name.isEmpty();
         Iterable<DataModel> all = dataModelQueryDslRepository.findAll(expression);
         System.out.println(all);
     }
 
     @Test
     void groupByKey(){
-        QDataForQueryDsl qDataForQueryDsl = QDataForQueryDsl.dataForQueryDsl;
+        QDataModel qDataModel = QDataModel.dataModel;
         List<DataGroup> total = queryFactory
-                .select(Projections.bean(DataGroup.class, qDataForQueryDsl.key, qDataForQueryDsl.count().as("total")))
-                .from(qDataForQueryDsl)
-                .groupBy(qDataForQueryDsl.key)
+                .select(Projections.bean(DataGroup.class, qDataModel.key, qDataModel.count().as("total")))
+                .from(qDataModel)
+                .groupBy(qDataModel.key)
                 .fetch();
         System.out.println(total);
     }
