@@ -12,7 +12,8 @@ public class LaboratoryTest {
 	
 	@Test
 	public void contextLoads() {
-		String sql = "SELECT 1 where 1 = ?";
-		System.out.println(jdbcTemplate.queryForList(sql,2));
+		String sql = "SELECT 1 where 1 = ? and 'a' in (?)";
+		String[] strings = {"a"};
+		System.out.println(jdbcTemplate.queryForList(sql,1,strings));
 	}
 }
