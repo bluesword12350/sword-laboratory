@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author 李林峰
  */
 @SpringBootApplication
-public class WebLaboratoryApplication {
+public class LaboratoryApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(WebLaboratoryApplication.class, args);
+		SpringApplication.run(LaboratoryApplication.class, args);
 	}
 }
