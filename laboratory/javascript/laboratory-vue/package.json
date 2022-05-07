@@ -6,12 +6,14 @@
     "build": "vite build",
     "serve": "vite preview"
   },
+  "author": "李林峰",
+  "license": "MIT",
   "dependencies": {
-    "vue": "^3.2.16",
-    "vue-router": "^4.0.11"
+    "vue": "^3.2.20",
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.2",
-    "vite": "^2.6.0"
+    "@vitejs/plugin-vue": "^2.3.2",
+    "vite": "^2.9.8"
   }
 }
