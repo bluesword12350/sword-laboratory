@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "vue": "^3.2.20",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.2",
