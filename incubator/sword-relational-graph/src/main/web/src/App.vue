@@ -16,19 +16,18 @@ const data = {
 
 onMounted(() => {
   const container = document.getElementById('relational-graph');
-
-  const width = container.scrollWidth;
-  const height = container.scrollHeight || 500;
-
   const graph = new G6.Graph({
     container,
-    width,
-    height,
+    width:container.scrollWidth,
+    height:container.scrollHeight || 500,
     layout: {
-      type: 'force',
+      type: 'gForce',
+      linkDistance: 100,
+      preventOverlap: true
     },
+    fitView: true,
     defaultNode: {
-      size: 40,
+      size: 50,
     },
     defaultEdge: {
       style: {
