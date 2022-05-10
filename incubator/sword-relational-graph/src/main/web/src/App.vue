@@ -1,3 +1,7 @@
+<template>
+  <div id="relational-graph" style="width:100vw; height: 100vh"></div>
+</template>
+
 <script setup>
 import {onMounted} from "vue";
 import G6 from '@antv/g6';
@@ -39,10 +43,6 @@ onMounted(() => {
   graph.render();
 })
 </script>
-
-<template>
-  <div id="relational-graph" style="width:100vw; height: 100vh"></div>
-</template>
 
 <style>
 </style>
