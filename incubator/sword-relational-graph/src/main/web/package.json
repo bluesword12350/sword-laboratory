@@ -1,0 +1,20 @@
+{
+  "name": "laboratory-vue",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "author": "李林峰",
+  "license": "MIT",
+  "dependencies": {
+    "@antv/g6": "^4.6.4",
+    "vue": "^3.2.20",
+    "vue-router": "^4.0.15"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.2",
+    "vite": "^2.9.8"
+  }
+}
