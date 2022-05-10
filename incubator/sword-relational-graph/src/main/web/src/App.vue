@@ -4,8 +4,8 @@ import G6 from '@antv/g6';
 
 const data = {
   nodes: [
-    {id: "1", label: '毛发1'},
-    {id: "2", label: '毛发2'},
+    {id: '1', label: '毛发1'},
+    {id: '2', label: '毛发2'},
   ],
   edges: [
     {
@@ -18,12 +18,11 @@ onMounted(() => {
   const container = document.getElementById('relational-graph');
   const graph = new G6.Graph({
     container,
-    width:container.scrollWidth,
-    height:container.scrollHeight || 500,
     layout: {
       type: 'gForce',
       linkDistance: 100,
-      preventOverlap: true
+      preventOverlap: true,
+      gpuEnabled: true
     },
     fitView: true,
     defaultNode: {
@@ -42,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="relational-graph" style="height: 100%"></div>
+  <div id="relational-graph" style="width:100vw; height: 100vh"></div>
 </template>
 
 <style>
