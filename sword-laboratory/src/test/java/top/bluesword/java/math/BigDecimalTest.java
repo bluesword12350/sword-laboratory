@@ -50,4 +50,9 @@ class BigDecimalTest {
 		BigDecimal decimal = BigDecimal.ONE.divide(BigDecimal.valueOf(3), 5, RoundingMode.HALF_UP);
 		System.out.println(decimal.multiply(decimal));
 	}
+
+	@Test
+	void string() {
+		System.out.println(new BigDecimal("0.000000"));
+	}
 }
