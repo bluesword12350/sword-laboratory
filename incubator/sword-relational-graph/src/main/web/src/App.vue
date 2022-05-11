@@ -1,22 +1,17 @@
 <template>
-  <div id="relational-graph" style="width:100vw; height: 100vh"></div>
+  <div id="relational-graph" style="width:90vw; height: 90vh"></div>
 </template>
 
 <script setup>
 import {onMounted} from "vue";
 import G6 from '@antv/g6';
+import RelationalGraph from "./relational_graph";
 
-const data = {
-  nodes: [
-    {id: '1', label: '毛发1'},
-    {id: '2', label: '毛发2'},
-  ],
-  edges: [
-    {
-      source: '1', target: '2',
-    },
-  ]
-}
+const relationalGraph = new RelationalGraph();
+relationalGraph.addNodes([
+  {label: '毛发1'},
+  {label: '毛发2'},
+])
 
 onMounted(() => {
   const container = document.getElementById('relational-graph');
@@ -39,7 +34,7 @@ onMounted(() => {
       }
     }
   });
-  graph.data(data);
+  graph.data(relationalGraph.getGraphData());
   graph.render();
 })
 </script>
