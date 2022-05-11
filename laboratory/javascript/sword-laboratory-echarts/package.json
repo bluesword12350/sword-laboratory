@@ -7,7 +7,6 @@
   "author": "李林峰",
   "license": "MIT",
   "dependencies": {
-    "dayjs": "^1.8.7",
-    "echarts": "^4.1.0"
+    "echarts": "^5.3.2"
   }
 }
