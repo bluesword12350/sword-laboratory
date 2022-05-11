@@ -1,4 +1,4 @@
-function RelationalGraph(relationalGraphData) {
+export default function RelationalGraph(relationalGraphData) {
     if (relationalGraphData) {
         this.data = relationalGraphData;
     } else {
@@ -26,5 +26,3 @@ RelationalGraph.prototype.addEdges = function (edges){
         this.addEdge(edges[key])
     }
 }
-
-export default RelationalGraph
