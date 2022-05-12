@@ -38,6 +38,3 @@ onMounted(() => {
   graph.render();
 })
 </script>
-
-<style>
-</style>

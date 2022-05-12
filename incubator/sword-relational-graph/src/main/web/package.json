@@ -10,11 +10,14 @@
   "license": "MIT",
   "dependencies": {
     "@antv/g6": "^4.6.4",
+    "element-plus": "^2.2.0",
     "vue": "^3.2.20",
     "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.2",
+    "unplugin-auto-import": "^0.7.1",
+    "unplugin-vue-components": "^0.19.5",
     "vite": "^2.9.8"
   }
 }
