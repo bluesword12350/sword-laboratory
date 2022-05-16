@@ -1,7 +1,9 @@
 package top.bluesword.java.lang;
 
 import org.junit.jupiter.api.Test;
+import top.bluesword.model.DataModel;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 
 class ClassTest {
@@ -24,4 +26,15 @@ class ClassTest {
         Class<?> superclass = aClass.getSuperclass();
         System.out.println(superclass);
     }
+
+    @Test
+    void classTest() throws IllegalAccessException {
+        DataModel result = new DataModel();
+        for (Field declaredField : DataModel.class.getDeclaredFields()) {
+            declaredField.setAccessible(true);
+            System.out.println(declaredField.getName()+":"+declaredField.get(result));
+            declaredField.setAccessible(false);
+        }
+    }
+
 }
