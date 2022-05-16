@@ -3,7 +3,7 @@ package top.bluesword.model;
 /**
  * @author 李林峰
  */
-public class DataModel extends BaseDataModel{
+public class DataModel extends BaseDataModel {
 
     private String name;
 
