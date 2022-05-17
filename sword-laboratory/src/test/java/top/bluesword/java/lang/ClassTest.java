@@ -1,10 +1,12 @@
 package top.bluesword.java.lang;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import top.bluesword.model.DataModel;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.util.List;
 
 class ClassTest {
 
@@ -28,13 +30,22 @@ class ClassTest {
     }
 
     @Test
-    void classTest() throws IllegalAccessException {
+    void getDeclaredFields() throws IllegalAccessException {
         DataModel result = new DataModel();
         for (Field declaredField : DataModel.class.getDeclaredFields()) {
             declaredField.setAccessible(true);
             System.out.println(declaredField.getName()+":"+declaredField.get(result));
             declaredField.setAccessible(false);
         }
+    }
+
+    @Test
+    void testGetClass() {
+        List<Object> data = List.of(new DataModel());
+        Object o = data.get(0);
+        Class<?> oClass = o.getClass();
+        System.out.println(oClass);
+        Assertions.assertEquals(DataModel.class, oClass);
     }
 
 }
