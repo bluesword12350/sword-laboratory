@@ -1,9 +1,7 @@
 package top.bluesword.laboratory.controller;
 
-import cn.afterturn.easypoi.entity.vo.TemplateExcelConstants;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
-import cn.afterturn.easypoi.view.PoiBaseView;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -15,7 +13,6 @@ import top.bluesword.laboratory.bean.DataGenerate;
 import top.bluesword.laboratory.config.TemplateProperties;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,19 +30,6 @@ public class TemplateController {
 
     @Autowired
     TemplateProperties templateProperties;
-
-    @GetMapping("/exportExcelByPoiBaseView")
-    @ApiOperation("模板导出")
-    public void exportExcelByPoiBaseView(HttpServletRequest request, HttpServletResponse response) {
-        Map<String, Object> modelMap = new HashMap<>(5);
-        TemplateExportParams params = new TemplateExportParams(templateProperties.getUrl());
-        Map<String, Object> map = DataGenerate.generateMap();
-        modelMap.put(TemplateExcelConstants.FILE_NAME, "test");
-        modelMap.put(TemplateExcelConstants.PARAMS, params);
-        modelMap.put(TemplateExcelConstants.MAP_DATA, map);
-        PoiBaseView.render(modelMap, request, response,
-                TemplateExcelConstants.EASYPOI_TEMPLATE_EXCEL_VIEW);
-    }
 
     @GetMapping("/exportExcelByExcelExportUtil")
     @ApiOperation("Util模板导出")

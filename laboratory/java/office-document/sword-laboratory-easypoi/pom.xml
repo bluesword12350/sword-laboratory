@@ -25,7 +25,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>cn.afterturn</groupId>
-			<artifactId>easypoi-spring-boot-starter</artifactId>
+			<artifactId>easypoi-base</artifactId>
 			<version>4.3.0</version>
 		</dependency>
 		<dependency>

@@ -1,30 +1,25 @@
 package top.bluesword.laboratory.controller;
 
-import cn.afterturn.easypoi.entity.vo.NormalExcelConstants;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
-import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
-import cn.afterturn.easypoi.view.PoiBaseView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import top.bluesword.laboratory.bean.BaseExcelTemplate;
-import top.bluesword.laboratory.bean.DataGenerate;
 import top.bluesword.laboratory.bean.ExcelTemplate;
 import top.bluesword.laboratory.bean.MergedCellExcelTemplate;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -86,17 +81,6 @@ public class ModelController {
 			}
 		}
 	}
-	
-	@GetMapping("/exportExcel")
-	@ApiOperation("最简导出")
-	public void exportExcelByBean(ModelMap map,HttpServletRequest request,HttpServletResponse response){
-		ExportParams params = new ExportParams("测试导出表格","表格1");
-        map.put(NormalExcelConstants.DATA_LIST, DataGenerate.generateList());
-        map.put(NormalExcelConstants.CLASS, ExcelTemplate.class);
-        map.put(NormalExcelConstants.PARAMS, params);
-        map.put(NormalExcelConstants.FILE_NAME, "test");
-        PoiBaseView.render(map, request, response, NormalExcelConstants.EASYPOI_EXCEL_VIEW);
-	}
 
 	@PostMapping("import-excel/exclude-blank-lines")
 	@ApiOperation("过滤空白行导入")
@@ -115,11 +99,35 @@ public class ModelController {
 			params.setTitleRows(0);
 			params.setStartRows(0);
 			ExcelImportResult<?> importExcel = ExcelImportUtil.importExcelMore(inputStream, BaseExcelTemplate.class, params);
-			data = importExcel.getList();
+			data = removeEmptyLine(importExcel);
 			return objectMapper.writeValueAsString(data);
 		} catch (Exception e1) {
 			return e1.toString();
 		}
+	}
+
+	private <T> List<T> removeEmptyLine(ExcelImportResult<T> importExcel) throws IllegalAccessException {
+		List<T> data = new ArrayList<>();
+		for (T o : importExcel.getList()) {
+			boolean isNotEmptyLine = false;
+			Field[] declaredFields = o.getClass().getDeclaredFields();
+			for (Field declaredField : declaredFields) {
+				if ("rowNum".equals(declaredField.getName())) {
+					continue;
+				}
+				declaredField.setAccessible(true);
+				Object value = declaredField.get(o);
+				declaredField.setAccessible(false);
+				if (!ObjectUtils.isEmpty(value)) {
+					isNotEmptyLine = true;
+					break;
+				}
+			}
+			if (isNotEmptyLine) {
+				data.add(o);
+			}
+		}
+		return data;
 	}
 
 }
