@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.config;
+package top.bluesword.laboratory.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
  * @author 李林峰
  */
 @Component
-@ConfigurationProperties(prefix = "swagger.project")
+@ConfigurationProperties(prefix = "sword.template")
 @Data
-public class SwaggerProperties {
+public class TemplateProperties {
 
-    private String version;
+    private String url;
 
 }

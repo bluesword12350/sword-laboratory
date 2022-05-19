@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.bean;
+package top.bluesword.laboratory.bean;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.handler.inter.IExcelDataModel;

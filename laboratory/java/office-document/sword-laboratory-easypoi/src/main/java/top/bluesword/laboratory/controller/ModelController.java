@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.controller;
+package top.bluesword.laboratory.controller;
 
 import cn.afterturn.easypoi.entity.vo.NormalExcelConstants;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
@@ -6,7 +6,7 @@ import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
 import cn.afterturn.easypoi.view.PoiBaseView;
-import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -17,13 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import top.bluesword.web.laboratory.bean.DataGenerate;
-import top.bluesword.web.laboratory.bean.ExcelTemplate;
-import top.bluesword.web.laboratory.bean.MergedCellExcelTemplate;
+import top.bluesword.laboratory.bean.BaseExcelTemplate;
+import top.bluesword.laboratory.bean.DataGenerate;
+import top.bluesword.laboratory.bean.ExcelTemplate;
+import top.bluesword.laboratory.bean.MergedCellExcelTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author 李林峰
@@ -32,7 +34,9 @@ import java.io.InputStream;
 @Api(tags = "easyPoi测试接口")
 @RequestMapping("model")
 public class ModelController {
-	
+
+	private final ObjectMapper objectMapper = new ObjectMapper();
+
 	@PostMapping("importExcel")
 	@ApiOperation("最简导入")
     @ResponseBody
@@ -50,9 +54,9 @@ public class ModelController {
 			params.setNeedVerify(true);
             ExcelImportResult<ExcelTemplate> importExcel = ExcelImportUtil.importExcelMore(inputStream, ExcelTemplate.class, params);
             if (importExcel.isVerifyFail()) {
-				return JSON.toJSONString(importExcel.getFailList());
+				return objectMapper.writeValueAsString(importExcel.getFailList());
 			}else {
-				return JSON.toJSONString(importExcel.getList());
+				return objectMapper.writeValueAsString(importExcel.getList());
 			}
 		} catch (Exception e1) {
 			return e1.toString();
@@ -76,9 +80,9 @@ public class ModelController {
 			params.setNeedVerify(true);
 			ExcelImportResult<ExcelTemplate> importExcel = ExcelImportUtil.importExcelMore(inputStream, MergedCellExcelTemplate.class, params);
 			if (importExcel.isVerifyFail()) {
-				return JSON.toJSONString(importExcel.getFailList());
+				return objectMapper.writeValueAsString(importExcel.getFailList());
 			}else {
-				return JSON.toJSONString(importExcel.getList());
+				return objectMapper.writeValueAsString(importExcel.getList());
 			}
 		}
 	}
@@ -92,6 +96,30 @@ public class ModelController {
         map.put(NormalExcelConstants.PARAMS, params);
         map.put(NormalExcelConstants.FILE_NAME, "test");
         PoiBaseView.render(map, request, response, NormalExcelConstants.EASYPOI_EXCEL_VIEW);
+	}
+
+	@PostMapping("import-excel/exclude-blank-lines")
+	@ApiOperation("过滤空白行导入")
+	@ResponseBody
+	public String importExcelExcludeBlankLines(@ApiParam(required = true) MultipartFile file){
+		if (file.isEmpty()) {
+			return "文件为空";
+		}
+		int max = 1024*1024;
+		if (file.getSize()/(max)>1) {
+			return "文件过大";
+		}
+		List<?> data;
+		try (InputStream inputStream = file.getInputStream()) {
+			ImportParams params = new ImportParams();
+			params.setTitleRows(0);
+			params.setStartRows(0);
+			ExcelImportResult<?> importExcel = ExcelImportUtil.importExcelMore(inputStream, BaseExcelTemplate.class, params);
+			data = importExcel.getList();
+			return objectMapper.writeValueAsString(data);
+		} catch (Exception e1) {
+			return e1.toString();
+		}
 	}
 
 }

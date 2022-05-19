@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.bean;
+package top.bluesword.laboratory.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

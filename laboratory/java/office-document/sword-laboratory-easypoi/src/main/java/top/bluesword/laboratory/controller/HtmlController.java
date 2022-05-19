@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.controller;
+package top.bluesword.laboratory.controller;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelXorHtmlUtil;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import top.bluesword.web.laboratory.bean.DataGenerate;
-import top.bluesword.web.laboratory.bean.User;
-import top.bluesword.web.laboratory.config.TemplateProperties;
+import top.bluesword.laboratory.bean.User;
+import top.bluesword.laboratory.config.TemplateProperties;
+import top.bluesword.laboratory.bean.DataGenerate;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;

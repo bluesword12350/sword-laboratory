@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.controller;
+package top.bluesword.laboratory.controller;
 
 import cn.afterturn.easypoi.entity.vo.TemplateExcelConstants;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import top.bluesword.web.laboratory.bean.DataGenerate;
-import top.bluesword.web.laboratory.config.TemplateProperties;
+import top.bluesword.laboratory.bean.DataGenerate;
+import top.bluesword.laboratory.config.TemplateProperties;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;

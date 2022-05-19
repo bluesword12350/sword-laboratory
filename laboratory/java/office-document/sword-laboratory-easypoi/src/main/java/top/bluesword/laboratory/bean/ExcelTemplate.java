@@ -1,9 +1,10 @@
-package top.bluesword.web.laboratory.bean;
+package top.bluesword.laboratory.bean;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.handler.inter.IExcelDataModel;
 import cn.afterturn.easypoi.handler.inter.IExcelModel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @author 李林峰
  */
 @Data
+@NoArgsConstructor
 public class ExcelTemplate implements IExcelDataModel, IExcelModel {
 
 	private Integer rowNum;
