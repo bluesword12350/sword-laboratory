@@ -39,7 +39,7 @@
     "compileHotReLoad": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.11.0",
+  "libVersion": "2.21.4",
   "appid": "wxb4c845574c0eb755",
   "projectname": "sword-wechat",
   "simulatorType": "wechat",
