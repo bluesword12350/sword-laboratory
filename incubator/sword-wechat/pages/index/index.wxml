@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="divLine"></view>
+  <view class="container">
+    <text>春节 {{springFestival}}</text>
+    <text>农历年进度: {{percent}}%</text>
+  </view>
+  <view class="divLine"></view>
+  <view class="container">
+    <text>距离中秋节({{midAutumnFestival}})</text>
+    <text>还有{{nowToMidAutumn}}天</text>
+  </view>
+  <view class="divLine"></view>
+</view>
