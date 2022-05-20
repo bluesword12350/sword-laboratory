@@ -35,7 +35,8 @@
     "showES6CompileOption": false,
     "disableUseStrict": false,
     "useCompilerPlugins": false,
-    "minifyWXML": true
+    "minifyWXML": true,
+    "compileHotReLoad": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.11.0",
