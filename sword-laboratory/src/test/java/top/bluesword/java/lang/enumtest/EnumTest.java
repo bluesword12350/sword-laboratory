@@ -1,21 +1,21 @@
 package top.bluesword.java.lang.enumtest;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 public class EnumTest {
-	public static void main(String[] args) {
-		DemoEnum valueOf = DemoEnum.valueOf("1");
-		System.out.println(valueOf);
+
+	@Test
+	void valueOf() {
+		Assertions.assertThrows(IllegalArgumentException.class,() -> DemoEnum.valueOf("1"));
 	}
-	
-	public static DemoEnum enumValueTest() {
+
+	@Test
+	void enumValue() {
 		DemoEnum one = DemoEnum.ONE;
-		one.setName("tree");
-		System.out.println(one.getName());
-		return one;
+		Assertions.assertEquals("一",one.getName());
+		one.setName("1");
+		Assertions.assertEquals("1",one.getName());
 	}
-	
-	public static DemoEnum enumValueTest2() {
-		DemoEnum one = DemoEnum.ONE;
-		System.out.println(one.getName());
-		return one;
-	}
+
 }
