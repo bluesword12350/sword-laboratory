@@ -12,8 +12,8 @@ import java.util.concurrent.RecursiveTask;
 public class ForkJoinExample extends RecursiveTask<Integer> {
     
     private static final int THRESHOLD = 2;
-    private int start;
-    private int end;
+    private final int start;
+    private final int end;
 
     private ForkJoinExample(int start, int end) {
         this.start = start;
