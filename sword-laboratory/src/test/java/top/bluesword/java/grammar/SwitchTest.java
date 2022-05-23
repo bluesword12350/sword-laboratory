@@ -14,12 +14,8 @@ class SwitchTest {
 		Random random = new Random();
 		String key = random.nextBoolean() ? "0001":"0000";
 		switch (key) {
-			case "0001":
-			case "0000":
-				System.out.println(key);
-				break;
-			default:break;
+			case "0001", "0000" -> System.out.println(key);
+			default -> System.out.println("default");
 		}
-		System.out.println(0);
 	}
 }
