@@ -9,7 +9,7 @@ import tob.bluesword.Metadata;
 public class XmlMapperTest {
 
     @Test
-    void unmarshal() throws JsonProcessingException {
+    void writeValueAsString() throws JsonProcessingException {
         Metadata metadata = new Metadata();
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.enable(ToXmlGenerator.Feature.WRITE_XML_DECLARATION);
