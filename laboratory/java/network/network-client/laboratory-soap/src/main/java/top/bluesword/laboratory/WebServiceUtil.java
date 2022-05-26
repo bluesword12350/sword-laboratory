@@ -27,6 +27,7 @@ public class WebServiceUtil {
      */
     public static String request() throws RemoteException, ServiceException, MalformedURLException {
         final String namespaceUrl = "http://tempuri.org/";
+        final String localPart = "ReadERPManifest";
         Object[] paramValues;
         Service service = new Service();
         Call call = (Call) service.createCall();
@@ -36,11 +37,11 @@ public class WebServiceUtil {
         call.addParameter(xml, XMLType.XSD_STRING, ParameterMode.IN);
         paramValues = new Object[]{"<?xml version=\"1.0\" encoding=\"UTF-8\"?><TxControl>  <processId>6EBF8BFE004F4D5D8D54C79E45274817</processId>  <senderId>IDEAS2</senderId>  <receiverId>TBU</receiverId>  <msgType>TRANSPORT_ORDER_DETAIL_SYNC</msgType>  <docType></docType>  <docId>875F3676B9AF400E986A52D1C063E9E8</docId>  <msgCatg>XML</msgCatg>  <encoding>PLAIN</encoding>  <charset>UTF-8</charset>  <version>2.0</version>  <docDT>20220223094950</docDT>  <ref1></ref1>  <ref2></ref2>  <ref3></ref3>  <ref4></ref4>  <ref5></ref5>  <txData>    <orderList>      <orderInfo>        <orderCode>TP2220223003082</orderCode>        <balanceCode>EPD5-TJ</balanceCode>        <balanceLegalCode>BF2170S87</balanceLegalCode>        <loadingNo>3500799746</loadingNo>        <creator>admin</creator>        <remark>CU</remark>      </orderInfo>    </orderList>  </txData></TxControl>"};
         call.setUseSOAPAction(true);
-        call.setSOAPActionURI("http://tempuri.org/ReadERPManifest");
+        call.setSOAPActionURI(namespaceUrl+localPart);
         // 设置返回格式
         call.setReturnType(XMLType.XSD_STRING);
         // 设置调用的方法
-        call.setOperationName(new QName(namespaceUrl,"ReadERPManifest"));
+        call.setOperationName(new QName(namespaceUrl,localPart));
         return (String) call.invoke(paramValues);
     }
 }
