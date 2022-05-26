@@ -25,7 +25,7 @@ public class WebServiceUtil {
      * WebService 接口请求
      * @return 请求结果(XML)
      */
-    public static String sendWebServiceRequest() throws RemoteException, ServiceException, MalformedURLException {
+    public static String request() throws RemoteException, ServiceException, MalformedURLException {
         Object[] paramValues;
         Service service = new Service();
         Call call = (Call) service.createCall();
