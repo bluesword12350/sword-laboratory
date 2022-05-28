@@ -2,7 +2,7 @@ package top.bluesword.enums;
 
 /**
  * 货币代码枚举
- * 参考 ISO-4217(https://www.iso.org/iso-4217-currency-codes.html)(2019年7月29日15:21:18)
+ * 参考 (<a href="https://www.iso.org/iso-4217-currency-codes.html">ISO-4217</a>)(2019年7月29日15:21:18)
  * @author 李林峰
  */
 public enum CurrencyCodeEnum {
