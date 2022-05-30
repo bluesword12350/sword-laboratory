@@ -7,13 +7,23 @@ import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import org.junit.jupiter.api.Test;
 import tob.bluesword.Metadata;
 
+import java.util.List;
+
 public class XmlMapperTest {
 
     @Test
     void writeValueAsString() throws JsonProcessingException {
         Metadata metadata = new Metadata();
-        XmlMapper xmlMapper = new XmlMapper();
-        xmlMapper.enable(ToXmlGenerator.Feature.WRITE_XML_DECLARATION);
+        Metadata.Versioning versioning = new Metadata.Versioning();
+        Metadata.Versioning.Versions versions = new Metadata.Versioning.Versions();
+        versions.setVersion(List.of("1.0.0","1.0.1"));
+        versioning.setVersions(versions);
+        metadata.setVersioning(versioning);
+
+        XmlMapper xmlMapper = new XmlMapper.Builder(new XmlMapper())
+                .defaultUseWrapper(false)
+                .enable(ToXmlGenerator.Feature.WRITE_XML_DECLARATION)
+                .build();
         System.out.println(xmlMapper.writeValueAsString(metadata));
     }
 

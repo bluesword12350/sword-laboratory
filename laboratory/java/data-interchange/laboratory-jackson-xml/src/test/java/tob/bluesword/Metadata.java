@@ -14,7 +14,7 @@ public class Metadata {
     private Versioning versioning;
 
     @Data
-    static class Versioning {
+    public static class Versioning {
 
         private String latest;
 
@@ -25,7 +25,7 @@ public class Metadata {
         private Long lastUpdated;
 
         @Data
-        static class Versions {
+        public static class Versions {
 
             private List<String> version;
 
