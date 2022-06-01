@@ -5,7 +5,8 @@
 </head>
 <body>
 <h1>Hello ${name} !</h1>
-<a href="${url}"></a>
+<a href="${url}">${url}</a>
 <div>${number?string("#")}</div>
+<div>${null!}</div>
 </body>
 </html>
