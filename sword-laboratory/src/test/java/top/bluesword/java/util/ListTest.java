@@ -1,5 +1,6 @@
 package top.bluesword.java.util;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -23,11 +24,11 @@ class ListTest {
 
     @Test
     void remove(){
-        List<String> list = new ArrayList<>(List.of("1","2"));
-        System.out.println(list.remove(null));
-        System.out.println(list.remove("null"));
-        System.out.println(list.remove(""));
-        System.out.println(list.remove("1"));
+        List<String> list = new ArrayList<>(List.of("1","1","2"));
+        Assertions.assertFalse(list.remove(null));
+        Assertions.assertFalse(list.remove("null"));
+        Assertions.assertFalse(list.remove(""));
+        Assertions.assertTrue(list.remove("1"));
         System.out.println(list);
     }
 
