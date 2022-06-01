@@ -23,9 +23,10 @@ public class TemplateTest {
         Configuration cfg = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
         cfg.setDirectoryForTemplateLoading(new File("src/test/resources"));
         Template temp = cfg.getTemplate("test.ftlh");
-        Map<String, String> root = Map.of(
+        Map<String, Object> root = Map.of(
                 "name", "Apache FreeMarker™",
-                "url","https://bluesword.top"
+                "url","https://bluesword.top",
+                "number",4927878744830128128L
         );
         temp.process(root, out);
     }

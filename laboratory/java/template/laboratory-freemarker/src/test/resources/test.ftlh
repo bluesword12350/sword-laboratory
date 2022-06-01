@@ -6,5 +6,6 @@
 <body>
 <h1>Hello ${name} !</h1>
 <a href="${url}"></a>
+<div>${number?string("#")}</div>
 </body>
 </html>
