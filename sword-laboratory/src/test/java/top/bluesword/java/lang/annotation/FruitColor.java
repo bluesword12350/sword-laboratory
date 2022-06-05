@@ -3,6 +3,7 @@ package top.bluesword.java.lang.annotation;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
@@ -16,7 +17,7 @@ public @interface FruitColor {
     /**
      * 颜色枚举
      */
-    enum Color{ BLUE,RED,GREEN};
+    enum Color{ BLUE,RED,GREEN }
     
     /**
      * 颜色属性
