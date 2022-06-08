@@ -18,8 +18,7 @@ class CompletableFutureTest {
         private CompletableTestException(Throwable cause){
             super(cause);
         }
-        private CompletableTestException(String message){
-            super(message);
+        private CompletableTestException(){
         }
     }
 
@@ -43,7 +42,7 @@ class CompletableFutureTest {
                 throw new CompletableTestException(e);
             }
             if (error) {
-                throw new CompletableTestException("随机异常");
+                throw new CompletableTestException();
             }
         });
         CompletableFuture<Void> future = CompletableFuture.allOf(completableFuture);
@@ -64,7 +63,7 @@ class CompletableFutureTest {
                 Thread.interrupted();
                 throw new CompletableTestException(e);
             }
-            throw new CompletableTestException("随机异常");
+            throw new CompletableTestException();
         });
         CompletableFuture<Void> future = CompletableFuture.allOf(completableFuture);
         Assertions.assertThrows(ExecutionException.class, future::get);
