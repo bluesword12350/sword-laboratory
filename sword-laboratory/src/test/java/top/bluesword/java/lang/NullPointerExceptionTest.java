@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.logging.Logger;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NullPointerExceptionTest {
@@ -17,11 +16,10 @@ class NullPointerExceptionTest {
      */
     @Test
     void checkThrows(){
-        String[] strings = {"", null};
-        assertEquals(0, strings[0].length());
-        assertThrows(NullPointerException.class, () -> strings[1].length());
+        String[] strings = {null};
+        assertThrows(NullPointerException.class, () -> strings[0].length());
         try {
-            int length = strings[1].length();
+            int length = strings[0].length();
             logger.info(String.valueOf(length));
         } catch (NullPointerException e){
             logger.info(e.getMessage());
