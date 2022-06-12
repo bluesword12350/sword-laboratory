@@ -9,6 +9,7 @@ class LocalDateTimeTest {
     @Test
     void test(){
         LocalDateTime now = LocalDateTime.now();
-        System.out.println(now.toString());
+        System.out.println(now);
     }
+
 }
