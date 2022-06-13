@@ -10,7 +10,7 @@ public class PathsTest {
     @Test
     void get(){
         Path path = Paths.get("./target/test/test.txt");
-        System.out.println(path.toString());
+        System.out.println(path);
         System.out.println(path.getRoot());
     }
 
