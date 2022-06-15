@@ -38,7 +38,7 @@
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy</artifactId>
-            <version>3.0.10</version>
+            <version>3.0.11</version>
         </dependency>
         <!-- 真实使用 -->
         <dependency>
@@ -55,12 +55,12 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.0</version>
+            <version>5.8.2</version>
         </dependency>
         <dependency>
             <groupId>org.ocpsoft.prettytime</groupId>
             <artifactId>prettytime</artifactId>
-            <version>5.0.2.Final</version>
+            <version>5.0.3.Final</version>
         </dependency>
         <dependency>
             <groupId>net.java.dev.jna</groupId>
@@ -80,7 +80,7 @@
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
-            <version>3.4.17</version>
+            <version>3.4.18</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
