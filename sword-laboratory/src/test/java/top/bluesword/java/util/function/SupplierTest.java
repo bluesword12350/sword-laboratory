@@ -2,6 +2,7 @@ package top.bluesword.java.util.function;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
 import java.util.function.Supplier;
 
 /**
@@ -9,17 +10,19 @@ import java.util.function.Supplier;
  */
 class SupplierTest {
 
+    private final Random random = new Random();
+
     @Test
     void apply() {
         System.out.println(apply(this::print));
     }
 
-    private Boolean print(){
+    private boolean print(){
         System.out.println("执行");
-        return true;
+        return random.nextBoolean();
     }
 
-    private static Boolean apply(Supplier<Boolean> action) {
+    private static boolean apply(Supplier<Boolean> action) {
         return action.get();
     }
 
