@@ -12,13 +12,12 @@ class NullPointerExceptionTest {
      */
     @Test
     void checkThrows(){
-        String[] strings = {null};
-        assertThrows(NullPointerException.class, () -> strings[0].length());
+        String s = new String[]{null}[0];
+        assertThrows(NullPointerException.class, () -> System.out.println(s.length()));
         try {
-            int length = strings[0].length();
-            System.out.println(length);
+            System.out.println(s.length());
         } catch (NullPointerException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
