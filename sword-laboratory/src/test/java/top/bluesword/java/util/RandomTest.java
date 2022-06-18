@@ -18,7 +18,7 @@ public class RandomTest {
 			int num = random.nextInt(2);
 			if (num==0) {
 				cz++;
-			} else if (num==1) {
+			} else {
 				co++;
 			}
 		}
@@ -28,7 +28,7 @@ public class RandomTest {
 
 	@Test
 	void nextInt4Test() {
-		System.out.println(String.format("%04d", 123456789));
+		System.out.printf("%04d%n", 123456789);
 	}
 
 	@Test
