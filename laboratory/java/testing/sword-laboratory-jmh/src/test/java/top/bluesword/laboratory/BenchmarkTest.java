@@ -9,15 +9,15 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import java.util.concurrent.TimeUnit;
 
 //BenchmarkMode，使用模式，默认是Mode.Throughput，表示吞吐量
-//还有AverageTime，表示每次执行时间
+//AverageTime，表示每次执行时间
 //SampleTime表示采样时间
 //SingleShotTime表示只运行一次，用于测试冷启动消耗时间
 //All表示统计前面的所有指标
 @BenchmarkMode(Mode.All)
-//Warmup 配置预热次数，默认是每次运行1秒，运行10次
-@Warmup(iterations = 3)
-//Measurement 配置执行次数，本例是一次运行5秒，总共运行3次。
-@Measurement(iterations = 3, time = 5)
+//Warmup 配置预热次数，iterations表示执行次数，time是每次执行时间，timeUnit是执行时间单位
+@Warmup(iterations = 1,time = 1)
+//Measurement 配置执行次数。
+@Measurement(iterations = 5, time = 1)
 //Threads 配置同时起多少个线程执行
 @Threads(1)
 //Fork，代表启动多个单独的进程分别测试每个方法
@@ -54,4 +54,5 @@ public class BenchmarkTest {
                 .build();
         new Runner(opt).run();
     }
+
 }
