@@ -36,12 +36,15 @@ public class ExcelTemplate implements IExcelDataModel, IExcelModel {
 
 	private String style;
 
-	ExcelTemplate(Integer id, String name, String style) {
+	private Boolean isNew;
+
+	ExcelTemplate(Integer id, String name, String style ,Boolean isNew) {
 		this.id = id;
 		this.name = name;
 		this.style = style;
 		this.date = new Date();
 		this.timestamp = System.currentTimeMillis();
+		this.isNew = isNew;
 	}
 
 	@Override

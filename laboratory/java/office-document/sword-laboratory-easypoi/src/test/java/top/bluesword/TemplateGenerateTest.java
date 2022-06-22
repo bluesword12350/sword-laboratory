@@ -12,12 +12,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.stream.IntStream;
 
-class TemplateGenerate {
+class TemplateGenerateTest {
 
     @Test
     void generate() throws IOException {
-        String[] titles = new String[]{"编号","名称","样式","日期","时间戳","内部参数"};
-        String[] row1 = new String[]{"{{fe:list t.id","t.name","t.style","fd:(t.date;yyyy-MM-dd)","fd:(t.timestamp;yyyy-MM-dd)","t.ex.name}}"};
+        String[] titles = new String[]{"编号","名称","样式","日期","时间戳","三目","内部参数"};
+        String[] row1 = new String[]{"{{fe:list t.id","t.name","t.style","fd:(t.date;yyyy-MM-dd)","fd:(t.timestamp;yyyy-MM-dd)","t.isNew ? '是':'否'","t.ex.name}}"};
 
         FileOutputStream outputStream = new FileOutputStream("test.xlsx");
         XSSFWorkbook table = new XSSFWorkbook();

@@ -37,7 +37,6 @@ public class TemplateController {
         Map<String, Object> map = DataGenerate.generateMap();
         TemplateExportParams params = new TemplateExportParams(templateProperties.getUrl());
         Workbook workbook = ExcelExportUtil.exportExcel(params, map);
-
         response.setHeader("content-disposition", "attachment;filename=" + "测试文件.xlsx");
         try (ServletOutputStream outputStream = response.getOutputStream()){
             workbook.write(outputStream);
