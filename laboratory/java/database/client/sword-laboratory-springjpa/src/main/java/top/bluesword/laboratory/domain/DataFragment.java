@@ -3,7 +3,6 @@ package top.bluesword.laboratory.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,7 +12,6 @@ import java.util.List;
  */
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
 public class DataFragment {
@@ -33,7 +31,7 @@ public class DataFragment {
     /**
      * 外部链接
      */
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = ExternalLink_.DATA_FRAGMENT_ID)
     private List<ExternalLink> externalLinks;
 

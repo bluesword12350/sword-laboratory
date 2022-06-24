@@ -8,12 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.transaction.annotation.Transactional;
 import top.bluesword.laboratory.domain.DataModel;
 import top.bluesword.laboratory.domain.DataModel_;
 import top.bluesword.laboratory.mock.DataModelMock;
 import top.bluesword.laboratory.transfer.DataFragmentDTO;
 import top.bluesword.laboratory.transfer.DataModelDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,9 +46,15 @@ class DataJpaRepositoryTest {
     }
 
     @Test
+    @Transactional
     void findAll(){
         List<DataModel> all = dataJpaRepository.findAll();
-        System.out.println(all);
+        List<DataModelDTO> dataModels = new ArrayList<>();
+        for (DataModel dataModel : all) {
+            DataModelDTO dto = modelMapper.map(dataModel, DataModelDTO.class);
+            dataModels.add(dto);
+        }
+        System.out.println(dataModels);
     }
 
     @Test
