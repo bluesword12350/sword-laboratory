@@ -1,5 +1,6 @@
 package top.bluesword.laboratory.repository;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import top.bluesword.laboratory.transfer.DataModelDTO;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @SpringBootTest
 class DataJpaRepositoryTest {
 
@@ -38,7 +40,7 @@ class DataJpaRepositoryTest {
         dataFragment1.setTitle("新增的数据");
         DataModel dataModel1 = modelMapper.map(dataModelDTO, DataModel.class);
         DataModel dataModel2 = dataJpaRepository.save(dataModel1);
-        System.out.println(dataModel2);
+        log.info("{}",dataModel2);
     }
 
     @Test
@@ -56,7 +58,9 @@ class DataJpaRepositoryTest {
     @Test
     void save(){
         DataModel dataModel = DataModelMock.mock();
-        System.out.println(dataJpaRepository.save(dataModel));
+        dataModel = dataJpaRepository.save(dataModel);
+        DataModelDTO dataModelData = modelMapper.map(dataModel, DataModelDTO.class);
+        log.info("{}",dataModelData);
     }
 
     @Test
@@ -71,8 +75,13 @@ class DataJpaRepositoryTest {
 
     @Test
     void findById(){
-        Optional<DataModel> data = dataJpaRepository.findById(1L);
-        data.ifPresent(System.out::println);
+        Optional<DataModel> data = dataJpaRepository.findById(624L);
+        if (data.isEmpty()) {
+            log.error("数据不存在");
+            return;
+        }
+        DataModelDTO dataModelData = modelMapper.map(data.get(), DataModelDTO.class);
+        log.info("{}",dataModelData);
     }
 
     @Test

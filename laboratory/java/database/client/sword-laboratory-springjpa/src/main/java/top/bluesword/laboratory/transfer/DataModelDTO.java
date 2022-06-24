@@ -14,7 +14,7 @@ import java.time.Instant;
 @EqualsAndHashCode(callSuper = true)
 public class DataModelDTO extends BaseDataDTO {
 
-    private String key;
+    private String code;
 
     private String name;
 

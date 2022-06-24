@@ -1,9 +1,6 @@
 package top.bluesword.laboratory.mock;
 
-import top.bluesword.laboratory.domain.DataModel;
-import top.bluesword.laboratory.domain.TypeEnum;
-import top.bluesword.laboratory.domain.DataContext;
-import top.bluesword.laboratory.domain.DataFragment;
+import top.bluesword.laboratory.domain.*;
 import top.bluesword.laboratory.domain.person.PersonSummary;
 
 import java.time.Instant;
@@ -14,7 +11,7 @@ public final class DataModelMock {
 
     public static DataModel mock() {
         DataModel dataModel = new DataModel();
-        dataModel.setCode("key%");
+        dataModel.setCode("code");
         dataModel.setName("name1");
         dataModel.setType(TypeEnum.CANDIDATE);
         dataModel.setDate(Instant.now());
@@ -48,9 +45,19 @@ public final class DataModelMock {
     public static DataFragment mockFormat(int i) {
         DataFragment dataFragment = new DataFragment();
         dataFragment.setTitle("简介");
-        dataFragment.setContent("第+"+i+"+个片段");
+        dataFragment.setContent("第"+i+"个片段");
         dataFragment.setIndex(i);
+        dataFragment.setExternalLinks(mockExternalLinks());
         return dataFragment;
+    }
+
+    private static List<ExternalLink> mockExternalLinks() {
+        List<ExternalLink> externalLinks = new ArrayList<>();
+        ExternalLink externalLink = new ExternalLink();
+        externalLink.setName("外链");
+        externalLink.setUrl("https://external.link");
+        externalLinks.add(externalLink);
+        return externalLinks;
     }
 
 }

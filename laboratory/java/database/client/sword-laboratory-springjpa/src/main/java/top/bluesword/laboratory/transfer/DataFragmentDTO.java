@@ -1,6 +1,9 @@
 package top.bluesword.laboratory.transfer;
 
 import lombok.Data;
+import top.bluesword.laboratory.domain.ExternalLink;
+
+import java.util.List;
 
 /**
  * @author 李林峰
@@ -17,5 +20,7 @@ public class DataFragmentDTO {
     private Integer index;
 
     private Long dataModelId;
+
+    private List<ExternalLink> externalLinks;
 
 }
