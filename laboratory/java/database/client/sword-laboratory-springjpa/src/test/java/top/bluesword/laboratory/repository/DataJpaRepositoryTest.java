@@ -20,14 +20,13 @@ import java.util.Optional;
 class DataJpaRepositoryTest {
 
     @Autowired
-    DataJpaRepository dataJpaRepository;
+    private DataJpaRepository dataJpaRepository;
     @Autowired
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     @Test
     void updateFragment() {
         DataModel dataModel = DataModelMock.mock();
-        dataModel.getContext().getFragments().add(DataModelMock.mockFormat());
         dataModel = dataJpaRepository.save(dataModel);
         dataModel = dataJpaRepository.findById(dataModel.getId()).orElseThrow();
         DataModelDTO dataModelDTO = modelMapper.map(dataModel, DataModelDTO.class);
@@ -79,7 +78,7 @@ class DataJpaRepositoryTest {
     @Test
     void findAllIsNotNull(){
         List<DataModel> all = dataJpaRepository.findAll(
-                (Specification<DataModel>) (root, query, builder) -> builder.isNotNull(root.get(DataModel_.KEY))
+                (Specification<DataModel>) (root, query, builder) -> builder.isNotNull(root.get(DataModel_.CODE))
         );
         System.out.println(all);
     }
@@ -89,7 +88,7 @@ class DataJpaRepositoryTest {
         String keyWord = "key\\%%";
         dataJpaRepository.findAll(
                 (Specification<DataModel>) (root, criteriaQuery, criteriaBuilder) ->
-                        criteriaBuilder.like(root.get(DataModel_.KEY),keyWord)
+                        criteriaBuilder.like(root.get(DataModel_.CODE),keyWord)
         ).forEach(System.out::println);
     }
 
@@ -99,8 +98,8 @@ class DataJpaRepositoryTest {
         dataJpaRepository.findAll(
                 (Specification<DataModel>) (root, criteriaQuery, criteriaBuilder) ->
                         criteriaBuilder.and(
-                                criteriaBuilder.like(root.get(DataModel_.KEY),keyWord),
-                                criteriaBuilder.isNotNull(root.get(DataModel_.KEY))
+                                criteriaBuilder.like(root.get(DataModel_.CODE),keyWord),
+                                criteriaBuilder.isNotNull(root.get(DataModel_.CODE))
                         )
         ).forEach(System.out::println);
     }

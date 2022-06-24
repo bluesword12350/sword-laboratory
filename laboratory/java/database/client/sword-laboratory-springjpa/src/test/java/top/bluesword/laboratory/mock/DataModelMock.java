@@ -14,7 +14,7 @@ public final class DataModelMock {
 
     public static DataModel mock() {
         DataModel dataModel = new DataModel();
-        dataModel.setKey("key%");
+        dataModel.setCode("key%");
         dataModel.setName("name1");
         dataModel.setType(TypeEnum.CANDIDATE);
         dataModel.setDate(Instant.now());
@@ -39,15 +39,17 @@ public final class DataModelMock {
 
     public static List<DataFragment> mockFormatList() {
         List<DataFragment> fragments = new ArrayList<>();
-        fragments.add(mockFormat());
+        for (int i = 0; i < 100; i++) {
+            fragments.add(mockFormat(i));
+        }
         return fragments;
     }
 
-    public static DataFragment mockFormat() {
+    public static DataFragment mockFormat(int i) {
         DataFragment dataFragment = new DataFragment();
         dataFragment.setTitle("简介");
-        dataFragment.setContent("第一个片段");
-        dataFragment.setIndex(1);
+        dataFragment.setContent("第+"+i+"+个片段");
+        dataFragment.setIndex(i);
         return dataFragment;
     }
 

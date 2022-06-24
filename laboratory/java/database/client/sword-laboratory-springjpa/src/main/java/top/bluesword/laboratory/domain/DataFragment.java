@@ -1,13 +1,20 @@
 package top.bluesword.laboratory.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author 李林峰
  */
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 public class DataFragment {
 
@@ -22,5 +29,12 @@ public class DataFragment {
     private Integer index;
 
     private Long dataModelId;
+
+    /**
+     * 外部链接
+     */
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = ExternalLink_.DATA_FRAGMENT_ID)
+    private List<ExternalLink> externalLinks;
 
 }
