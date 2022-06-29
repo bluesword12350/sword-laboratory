@@ -10,9 +10,9 @@ class MavenRemoteRepositoryTest {
 
     @Test
     void getPackMetadata() throws IOException, JAXBException {
-        String repositoryUrlStr = "https://repo1.maven.org/maven2/";
+        String repositoryUrlStr = "https://maven.aliyun.com/nexus/content/groups/public/";
         MavenRemoteRepository remoteRepository = new MavenRemoteRepository(repositoryUrlStr);
-        Pack pack = Pack.builder().groupId("org.slf4j").artifactId("slf4j-simple").build();
+        Pack pack = Pack.builder().groupId("org.springframework.boot").artifactId("spring-boot-starter-parent").build();
         System.out.println(remoteRepository.getPackMetadata(pack));
     }
 }
