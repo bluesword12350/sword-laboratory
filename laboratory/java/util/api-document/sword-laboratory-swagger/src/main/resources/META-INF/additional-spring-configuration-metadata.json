@@ -1,7 +1,0 @@
-{"properties": [
-  {
-    "name": "project.version",
-    "type": "java.lang.String",
-    "description": "项目版本号"
-  }
-]}

@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>top.bluesword</groupId>
-	<artifactId>sword-laboratory-swagger</artifactId>
+	<artifactId>laboratory-swagger</artifactId>
 	<version>0.0.2</version>
 	<packaging>jar</packaging>
 	<parent>
@@ -20,7 +20,6 @@
 		</developer>
 	</developers>
 	<properties>
-		<springfox.version>2.9.2</springfox.version>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
@@ -49,6 +48,7 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -57,18 +57,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>maven-ali</id>
-			<url>http://maven.aliyun.com/nexus/content/groups/public//</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</snapshots>
-		</repository>
-	</repositories>
+
 </project>
