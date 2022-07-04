@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.repository;
+package top.bluesword.laboratory.repository;
 
 import com.querydsl.core.group.GroupBy;
 import com.querydsl.core.types.Projections;
@@ -7,7 +7,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.bluesword.web.laboratory.domain.*;
+import top.bluesword.laboratory.domain.*;
 
 import java.util.List;
 import java.util.Map;

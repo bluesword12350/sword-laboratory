@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.domain;
+package top.bluesword.laboratory.domain;
 
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;

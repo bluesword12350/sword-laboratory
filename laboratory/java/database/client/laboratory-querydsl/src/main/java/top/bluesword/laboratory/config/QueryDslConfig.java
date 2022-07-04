@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.config;
+package top.bluesword.laboratory.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.context.annotation.Bean;
