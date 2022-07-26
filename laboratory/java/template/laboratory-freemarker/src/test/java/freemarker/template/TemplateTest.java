@@ -27,7 +27,8 @@ public class TemplateTest {
         Map<String, Object> root = new HashMap<>(Map.of(
                 "name", "Apache FreeMarker™",
                 "url", "https://bluesword.top",
-                "number", 4927878744830128128L
+                "number", 4927878744830128128L,
+                "numberStr", 4927878744830128128L
         ));
         root.put("null",null);
         temp.process(root, out);
