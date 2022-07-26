@@ -5,9 +5,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.Test;
 import top.bluesword.bean.BeanDemo;
+import top.bluesword.com.fasterxml.jackson.serialize.DecimalNumberSerialize;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -113,4 +115,15 @@ class JacksonTest {
             }
         }
     }
+
+
+    @Test
+    void addSerializer() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        SimpleModule simpleModule = new SimpleModule();
+        simpleModule.addSerializer(BigDecimal.class, DecimalNumberSerialize.INSTANCE);
+        mapper.registerModule(simpleModule);
+        System.out.println(mapper.writeValueAsString(new BigDecimal("5.40E-10")));
+    }
+
 }

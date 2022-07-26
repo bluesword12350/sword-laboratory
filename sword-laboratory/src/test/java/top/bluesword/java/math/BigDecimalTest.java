@@ -60,12 +60,15 @@ class BigDecimalTest {
 
 	@Test
 	void scientificNotation() {
-		log.info("-10:{}",BigDecimal.valueOf(Math.pow(10, -10)).stripTrailingZeros().toPlainString());
-		log.info(" -7:{}",BigDecimal.valueOf(Math.pow(10, -7)));
-		log.info(" -6:{}",BigDecimal.valueOf(Math.pow(10, -6)));
-		log.info("  6:{}",BigDecimal.valueOf(Math.pow(10, 6)).stripTrailingZeros());
-		log.info("  7:{}",BigDecimal.valueOf(Math.pow(10, 7)));
-		log.info(" 10:{}",BigDecimal.valueOf(Math.pow(10, 10)).toPlainString());
+		log.info("P-10:{}",BigDecimal.valueOf(Math.pow(10, -10)).stripTrailingZeros().toPlainString());
+		log.info("P -7:{}",new BigDecimal(new BigDecimal("1.0E-7").toPlainString()));
+		log.info("  -7:{}",BigDecimal.valueOf(Math.pow(10, -7)));
+		log.info("  -6:{}",BigDecimal.valueOf(Math.pow(10, -6)));
+		log.info("   6:{}",BigDecimal.valueOf(Math.pow(10, 6)).stripTrailingZeros());
+		log.info("   7:{}",BigDecimal.valueOf(Math.pow(10, 7)));
+		BigDecimal pow10 = BigDecimal.valueOf(Math.pow(10, 10));
+		log.info("  10:{}", pow10.toPlainString());
+		log.info("P100:{}",new BigDecimal(BigDecimal.valueOf(Math.pow(10, 100)).toPlainString()));
 	}
 
 }
