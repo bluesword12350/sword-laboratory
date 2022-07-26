@@ -9,5 +9,5 @@ import top.bluesword.laboratory.domain.DataModel;
  * @author 李林峰
  */
 @Repository
-public interface DataModelQueryDslRepository extends JpaRepository<DataModel, String>, QuerydslPredicateExecutor<DataModel> {
+public interface DataModelQueryDslRepository extends JpaRepository<DataModel, Long>, QuerydslPredicateExecutor<DataModel> {
 }
