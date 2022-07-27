@@ -37,7 +37,7 @@ class DataModelRepositoryTest {
                         .query()
                         .select(qDataModel)
                         .from(qDataModel)
-                        .orderBy(qDataModel.date.desc(),qDataModel.id.asc())
+                        .orderBy(qDataModel.date.desc().nullsLast(),qDataModel.id.asc())
                         .fetchPage(0, 1);
         System.out.println(dataModels);
         List<DataModel> models = jpqlQueryFactory.select(qDataModel).from(qDataModel).fetch();
