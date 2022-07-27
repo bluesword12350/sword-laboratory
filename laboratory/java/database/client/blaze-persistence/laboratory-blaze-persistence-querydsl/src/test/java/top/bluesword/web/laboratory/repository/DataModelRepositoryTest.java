@@ -1,7 +1,7 @@
 package top.bluesword.web.laboratory.repository;
 
 import com.blazebit.persistence.PagedList;
-import com.blazebit.persistence.querydsl.BlazeJPAQuery;
+import com.blazebit.persistence.querydsl.JPQLNextQueryFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,31 +14,34 @@ import java.util.List;
 class DataModelRepositoryTest {
 
     @Autowired
-    private BlazeJPAQuery<?> blazeJpaQuery;
+    private JPQLNextQueryFactory jpqlQueryFactory;
 
     private final QDataModel qDataModel = QDataModel.dataModel;
 
     @Test
     void fetch(){
-        List<DataModel> dataModels = blazeJpaQuery.select(qDataModel).from(qDataModel).fetch();
+        List<DataModel> dataModels = jpqlQueryFactory.select(qDataModel).from(qDataModel).fetch();
         System.out.println(dataModels);
     }
 
     @Test
     void fetchCount(){
-        long count = blazeJpaQuery.select(qDataModel).from(qDataModel).fetchCount();
+        long count = jpqlQueryFactory.select(qDataModel).from(qDataModel).fetchCount();
         System.out.println(count);
     }
 
     @Test
     void fetchPage(){
         PagedList<DataModel> dataModels =
-                blazeJpaQuery
+                jpqlQueryFactory
+                        .query()
                         .select(qDataModel)
                         .from(qDataModel)
-                        .orderBy(qDataModel.id.asc())
-                        .fetchPage(0, 10);
+                        .orderBy(qDataModel.date.desc(),qDataModel.id.asc())
+                        .fetchPage(0, 1);
         System.out.println(dataModels);
+        List<DataModel> models = jpqlQueryFactory.select(qDataModel).from(qDataModel).fetch();
+        System.out.println(models);
     }
 
 }
