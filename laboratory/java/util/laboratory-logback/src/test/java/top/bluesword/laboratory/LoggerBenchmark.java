@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 1,time = 1)
 @Measurement(iterations = 5, time = 1)
-@Threads(1)
+@Threads(3)
 @Fork(1)
 @OutputTimeUnit(TimeUnit.SECONDS)
 public class LoggerBenchmark {
