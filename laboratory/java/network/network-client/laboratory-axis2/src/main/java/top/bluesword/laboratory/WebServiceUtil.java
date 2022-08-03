@@ -2,6 +2,7 @@ package top.bluesword.laboratory;
 
 
 import org.apache.axiom.om.OMAbstractFactory;
+import org.apache.axiom.om.OMElement;
 import org.apache.axiom.soap.SOAPEnvelope;
 import org.apache.axiom.soap.SOAPFactory;
 import org.apache.axis2.AxisFault;
@@ -30,7 +31,6 @@ public class WebServiceUtil {
      * @return 请求结果(XML)
      */
     public static String request() throws RemoteException {
-        // creating the Service with a unique name
         AxisService service = new AxisService("TransPortOrderService"+System.currentTimeMillis());
         RobustOutOnlyAxisOperation robustoutoonlyOperation = new RobustOutOnlyAxisOperation(ServiceClient.ANON_ROBUST_OUT_ONLY_OP);
         service.addOperation(robustoutoonlyOperation);
@@ -40,9 +40,7 @@ public class WebServiceUtil {
         service.addOperation(outInOperation);
 
         // creating the operations
-        AxisOperation operation;
-        operation = new OutInAxisOperation();
-
+        AxisOperation operation = new OutInAxisOperation();
         operation.setName(new QName("http://tempuri.org/", "readERPManifest"));
         service.addOperation(operation);
 
@@ -62,34 +60,19 @@ public class WebServiceUtil {
         readERPManifest.setXML(param);
 
         MessageContext messageContext = new MessageContext();
-        OperationClient operationClient = serviceClient.createClient(operation.getName());
-        operationClient.getOptions().setAction("http://tempuri.org/ReadERPManifest");
-        operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
-        operationClient.getOptions().setProperty(WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
         SOAPEnvelope env;
+        OMElement omElement;
         try {
             SOAPFactory factory = OMAbstractFactory.getSOAP12Factory();
             env = factory.getDefaultEnvelope();
-            env.getBody().addChild(readERPManifest.getOMElement(ReadERPManifest.MY_QNAME, factory));
+            omElement = readERPManifest.getOMElement(ReadERPManifest.MY_QNAME, factory);
+            env.getBody().addChild(omElement);
         } catch (ADBException e) {
             throw AxisFault.makeFault(e);
         }
-        // adding SOAP soap_headers
         serviceClient.addHeadersToEnvelope(env);
-        // set the message context with that soap envelope
         messageContext.setEnvelope(env);
-
-        // add the message contxt to the operation client
-        operationClient.addMessageContext(messageContext);
-
-        // execute the operation client
-        operationClient.execute(true);
-
-        MessageContext returnMessageContext = operationClient.getMessageContext(WSDLConstants.MESSAGE_LABEL_IN_VALUE);
-        SOAPEnvelope returnEnv = returnMessageContext.getEnvelope();
-        returnEnv.buildWithAttachments();
-
-        return returnEnv.getBody().getFirstElement().getFirstElement().getText();
+        return serviceClient.sendReceive(omElement).getFirstElement().getText();
     }
 
 }
