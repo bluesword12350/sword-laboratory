@@ -31,6 +31,7 @@ public class WebServiceUtil {
      * @return 请求结果(XML)
      */
     public static String request() throws RemoteException {
+        final String namespaceUrl = "http://tempuri.org/";
         AxisService service = new AxisService("TransPortOrderService"+System.currentTimeMillis());
         RobustOutOnlyAxisOperation robustoutoonlyOperation = new RobustOutOnlyAxisOperation(ServiceClient.ANON_ROBUST_OUT_ONLY_OP);
         service.addOperation(robustoutoonlyOperation);
@@ -41,7 +42,7 @@ public class WebServiceUtil {
 
         // creating the operations
         AxisOperation operation = new OutInAxisOperation();
-        operation.setName(new QName("http://tempuri.org/", "readERPManifest"));
+        operation.setName(new QName(namespaceUrl, "readERPManifest"));
         service.addOperation(operation);
 
         ServiceClient serviceClient = new ServiceClient(null,service);
@@ -55,23 +56,14 @@ public class WebServiceUtil {
                 .getOptions()
                 .setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
 
-        ReadERPManifest readERPManifest = new ReadERPManifest();
         String param = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><TxControl>  <processId>6EBF8BFE004F4D5D8D54C79E45274817</processId>  <senderId>IDEAS2</senderId>  <receiverId>TBU</receiverId>  <msgType>TRANSPORT_ORDER_DETAIL_SYNC</msgType>  <docType></docType>  <docId>875F3676B9AF400E986A52D1C063E9E8</docId>  <msgCatg>XML</msgCatg>  <encoding>PLAIN</encoding>  <charset>UTF-8</charset>  <version>2.0</version>  <docDT>20220223094950</docDT><txData><orderList><orderInfo><orderCode>TP2220223003082</orderCode><balanceCode>EPD5-TJ</balanceCode><balanceLegalCode>BF2170S87</balanceLegalCode><loadingNo>3500799746</loadingNo><creator/><remark/></orderInfo></orderList></txData></TxControl>";
-        readERPManifest.setXML(param);
 
-        MessageContext messageContext = new MessageContext();
-        SOAPEnvelope env;
         OMElement omElement;
-        try {
-            SOAPFactory factory = OMAbstractFactory.getSOAP12Factory();
-            env = factory.getDefaultEnvelope();
-            omElement = readERPManifest.getOMElement(ReadERPManifest.MY_QNAME, factory);
-            env.getBody().addChild(omElement);
-        } catch (ADBException e) {
-            throw AxisFault.makeFault(e);
-        }
-        serviceClient.addHeadersToEnvelope(env);
-        messageContext.setEnvelope(env);
+        SOAPFactory factory = OMAbstractFactory.getSOAP12Factory();
+        omElement = factory.createOMElement(new QName(namespaceUrl, "ReadERPManifest"));
+        OMElement xml = factory.createOMElement(new QName(namespaceUrl, "XML"));
+        xml.setText(param);
+        omElement.addChild(xml);
         return serviceClient.sendReceive(omElement).getFirstElement().getText();
     }
 
