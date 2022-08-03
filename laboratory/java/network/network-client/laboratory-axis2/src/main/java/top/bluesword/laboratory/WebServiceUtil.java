@@ -3,16 +3,10 @@ package top.bluesword.laboratory;
 
 import org.apache.axiom.om.OMAbstractFactory;
 import org.apache.axiom.om.OMElement;
-import org.apache.axiom.soap.SOAPEnvelope;
 import org.apache.axiom.soap.SOAPFactory;
-import org.apache.axis2.AxisFault;
 import org.apache.axis2.addressing.EndpointReference;
-import org.apache.axis2.client.OperationClient;
+import org.apache.axis2.client.Options;
 import org.apache.axis2.client.ServiceClient;
-import org.apache.axis2.context.MessageContext;
-import org.apache.axis2.databinding.ADBException;
-import org.apache.axis2.description.*;
-import org.apache.axis2.wsdl.WSDLConstants;
 
 import javax.xml.namespace.QName;
 import java.rmi.RemoteException;
@@ -32,31 +26,13 @@ public class WebServiceUtil {
      */
     public static String request() throws RemoteException {
         final String namespaceUrl = "http://tempuri.org/";
-        AxisService service = new AxisService("TransPortOrderService"+System.currentTimeMillis());
-        RobustOutOnlyAxisOperation robustoutoonlyOperation = new RobustOutOnlyAxisOperation(ServiceClient.ANON_ROBUST_OUT_ONLY_OP);
-        service.addOperation(robustoutoonlyOperation);
-        OutOnlyAxisOperation outOnlyOperation = new OutOnlyAxisOperation(ServiceClient.ANON_OUT_ONLY_OP);
-        service.addOperation(outOnlyOperation);
-        OutInAxisOperation outInOperation = new OutInAxisOperation(ServiceClient.ANON_OUT_IN_OP);
-        service.addOperation(outInOperation);
+        final String param = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><TxControl>  <processId>6EBF8BFE004F4D5D8D54C79E45274817</processId>  <senderId>IDEAS2</senderId>  <receiverId>TBU</receiverId>  <msgType>TRANSPORT_ORDER_DETAIL_SYNC</msgType>  <docType></docType>  <docId>875F3676B9AF400E986A52D1C063E9E8</docId>  <msgCatg>XML</msgCatg>  <encoding>PLAIN</encoding>  <charset>UTF-8</charset>  <version>2.0</version>  <docDT>20220223094950</docDT><txData><orderList><orderInfo><orderCode>TP2220223003082</orderCode><balanceCode>EPD5-TJ</balanceCode><balanceLegalCode>BF2170S87</balanceLegalCode><loadingNo>3500799746</loadingNo><creator/><remark/></orderInfo></orderList></txData></TxControl>";
+        final String address = "https://glws.foxconn.com/CustomerServices/TransPortOrderService.asmx";
 
-        // creating the operations
-        AxisOperation operation = new OutInAxisOperation();
-        operation.setName(new QName(namespaceUrl, "readERPManifest"));
-        service.addOperation(operation);
-
-        ServiceClient serviceClient = new ServiceClient(null,service);
-
-        serviceClient
-                .getOptions()
-                .setTo(new EndpointReference("https://glws.foxconn.com/CustomerServices/TransPortOrderService.asmx"));
-        serviceClient.getOptions().setUseSeparateListener(false);
-
-        serviceClient
-                .getOptions()
-                .setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
-
-        String param = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><TxControl>  <processId>6EBF8BFE004F4D5D8D54C79E45274817</processId>  <senderId>IDEAS2</senderId>  <receiverId>TBU</receiverId>  <msgType>TRANSPORT_ORDER_DETAIL_SYNC</msgType>  <docType></docType>  <docId>875F3676B9AF400E986A52D1C063E9E8</docId>  <msgCatg>XML</msgCatg>  <encoding>PLAIN</encoding>  <charset>UTF-8</charset>  <version>2.0</version>  <docDT>20220223094950</docDT><txData><orderList><orderInfo><orderCode>TP2220223003082</orderCode><balanceCode>EPD5-TJ</balanceCode><balanceLegalCode>BF2170S87</balanceLegalCode><loadingNo>3500799746</loadingNo><creator/><remark/></orderInfo></orderList></txData></TxControl>";
+        ServiceClient serviceClient = new ServiceClient();
+        Options options = serviceClient.getOptions();
+        options.setTo(new EndpointReference(address));
+        options.setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
 
         OMElement omElement;
         SOAPFactory factory = OMAbstractFactory.getSOAP12Factory();
