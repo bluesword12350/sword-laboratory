@@ -37,9 +37,7 @@ public class WebServiceUtil {
         OMElement omElement;
         SOAPFactory factory = OMAbstractFactory.getSOAP12Factory();
         omElement = factory.createOMElement(new QName(namespaceUrl, "ReadERPManifest"));
-        OMElement xml = factory.createOMElement(new QName(namespaceUrl, "XML"));
-        xml.setText(param);
-        omElement.addChild(xml);
+        factory.createOMElement(new QName(namespaceUrl, "XML"),omElement).setText(param);
         return serviceClient.sendReceive(omElement).getFirstElement().getText();
     }
 
