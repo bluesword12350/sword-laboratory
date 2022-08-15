@@ -3,6 +3,7 @@ package top.bluesword.laboratory.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @Setter
 @RequiredArgsConstructor
 @Entity
+@ToString
 public class DataFragment {
 
     @Id

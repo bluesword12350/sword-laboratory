@@ -20,7 +20,7 @@ public class DataContext {
     /**
      * 片段
      */
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = DataFragment_.DATA_MODEL_ID)
     private List<DataFragment> fragments;
 

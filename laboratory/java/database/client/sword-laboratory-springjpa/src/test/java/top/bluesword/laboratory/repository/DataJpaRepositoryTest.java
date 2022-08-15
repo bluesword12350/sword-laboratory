@@ -29,7 +29,7 @@ class DataJpaRepositoryTest {
     private ModelMapper modelMapper;
 
     @Test
-    void updateFragment() {
+    void coverFragment() {
         DataModel dataModel = DataModelMock.mock();
         dataModel = dataJpaRepository.save(dataModel);
         dataModel = dataJpaRepository.findById(dataModel.getId()).orElseThrow();
@@ -82,6 +82,7 @@ class DataJpaRepositoryTest {
     }
 
     @Test
+    @Transactional(rollbackFor = Throwable.class)
     void findById(){
         Optional<DataModel> data = dataJpaRepository.findById(624L);
         if (data.isEmpty()) {
@@ -120,4 +121,5 @@ class DataJpaRepositoryTest {
                         )
         ).forEach(System.out::println);
     }
+
 }
