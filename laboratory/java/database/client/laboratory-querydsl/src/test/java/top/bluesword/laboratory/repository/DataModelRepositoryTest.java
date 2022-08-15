@@ -4,6 +4,7 @@ import com.querydsl.core.group.GroupBy;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+@Slf4j
 @SpringBootTest
 class DataModelRepositoryTest {
 
@@ -39,14 +41,14 @@ class DataModelRepositoryTest {
     void containsIgnoreCase(){
         BooleanExpression expression = QDataModel.dataModel.name.containsIgnoreCase("aBc");
         Iterable<DataModel> all = dataModelQueryDslRepository.findAll(expression);
-        System.out.println(all);
+        log.info("{}",all);
     }
 
     @Test
     void isEmpty(){
         BooleanExpression expression = QDataModel.dataModel.name.isEmpty();
         Iterable<DataModel> all = dataModelQueryDslRepository.findAll(expression);
-        System.out.println(all);
+        log.info("{}",all);
     }
 
     @Test
@@ -57,31 +59,56 @@ class DataModelRepositoryTest {
                 .from(qDataModel)
                 .groupBy(qDataModel.key)
                 .fetch();
-        System.out.println(total);
+        log.info("{}",total);
     }
 
     @Test
     void transformBean(){
         QDataModel qDataModel = QDataModel.dataModel;
-        QDataFragment dataFragment = QDataFragment.dataFragment;
+        QDataFragment qDataFragment = QDataFragment.dataFragment;
         Map<Long, DataModelQueryResult> fragmentTitles = queryFactory
                 .from(qDataModel)
-                .leftJoin(dataFragment).on(dataFragment.dataModelId.eq(qDataModel.id))
+                .leftJoin(qDataFragment).on(qDataFragment.dataModelId.eq(qDataModel.id))
                 .transform(GroupBy.groupBy(qDataModel.id)
-                        .as(Projections.bean(DataModelQueryResult.class, qDataModel.key, GroupBy.list(dataFragment.title).as("fragmentTitles")))
+                        .as(Projections.bean(DataModelQueryResult.class, qDataModel.key, GroupBy.list(qDataFragment.title).as("fragmentTitles")))
                 );
-        System.out.println(fragmentTitles);
+        log.info("{}",fragmentTitles);
     }
 
     @Test
     void transform(){
         QDataModel qDataModel = QDataModel.dataModel;
-        QDataFragment dataFragment = QDataFragment.dataFragment;
+        QDataFragment qDataFragment = QDataFragment.dataFragment;
         Map<Long, List<String>> fragmentTitles = queryFactory
                 .from(qDataModel)
-                .leftJoin(dataFragment).on(dataFragment.dataModelId.eq(qDataModel.id))
-                .transform(GroupBy.groupBy(qDataModel.id).as(GroupBy.list(dataFragment.title).as("fragmentTitles"))
+                .leftJoin(qDataFragment).on(qDataFragment.dataModelId.eq(qDataModel.id))
+                .transform(GroupBy.groupBy(qDataModel.id).as(GroupBy.list(qDataFragment.title).as("fragmentTitles"))
                 );
-        System.out.println(fragmentTitles);
+        log.info("{}",fragmentTitles);
     }
+
+    @Test
+    void selectProjection(){
+        QDataModel qDataModel = QDataModel.dataModel;
+        List<String> keys = queryFactory
+                .select(qDataModel.key)
+                .from(qDataModel)
+                .where(qDataModel.key.contains("f"))
+                .fetch();
+        log.info("keys:{}",keys);
+    }
+
+    @Test
+    void selectProjectionForJoinTable(){
+        QDataModel qDataModel = QDataModel.dataModel;
+        QDataFragment qDataFragment = QDataFragment.dataFragment;
+        List<String> titles = queryFactory
+                .select(qDataFragment.title)
+                .from(qDataModel)
+                .leftJoin(qDataFragment).on(qDataFragment.dataModelId.eq(qDataModel.id))
+                .where(qDataFragment.title.contains("段落"))
+                .fetch();
+        log.info("titles:{}",titles);
+    }
+
 }
