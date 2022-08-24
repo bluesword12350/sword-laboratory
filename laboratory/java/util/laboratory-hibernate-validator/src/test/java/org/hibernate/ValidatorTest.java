@@ -52,7 +52,7 @@ class ValidatorTest {
 	void groupTest() {
 		BeanDemo beanDemo = new BeanDemo();
 		Set<ConstraintViolation<BeanDemo>> validateResult = VALIDATOR.validate(beanDemo, StringChecks.class);
-		System.out.println(validateResult.size());
+		log.info("{}",validateResult.size());
 		printViolation(validateResult);
 	}
 
