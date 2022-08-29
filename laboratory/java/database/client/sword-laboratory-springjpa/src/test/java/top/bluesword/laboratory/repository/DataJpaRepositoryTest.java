@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
+import top.bluesword.laboratory.domain.BaseData;
 import top.bluesword.laboratory.domain.DataModel;
 import top.bluesword.laboratory.domain.DataModel_;
 import top.bluesword.laboratory.mock.DataModelMock;
@@ -18,6 +19,7 @@ import top.bluesword.laboratory.transfer.DataModelDTO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @SpringBootTest
@@ -120,6 +122,27 @@ class DataJpaRepositoryTest {
                                 criteriaBuilder.isNotNull(root.get(DataModel_.CODE))
                         )
         ).forEach(System.out::println);
+    }
+
+    @Transactional
+    @Test
+    void findFirst(){
+        Optional<DataModel> dataModelOptional = dataJpaRepository.findFirstByName("name1");
+        log.info("{}",dataModelOptional.orElseGet(() -> null));
+    }
+
+    @Transactional
+    @Test
+    void findByName(){
+        List<DataModel> dataModels = dataJpaRepository.findByName("name1");
+        log.info("{}",dataModels.stream().map(BaseData::getId).collect(Collectors.toList()));
+    }
+
+    @Transactional
+    @Test
+    void findByNameAndIdNot(){
+        List<DataModel> dataModels = dataJpaRepository.findByNameAndIdNot("name1",13L);
+        log.info("{}",dataModels.stream().map(BaseData::getId).collect(Collectors.toList()));
     }
 
 }
