@@ -22,7 +22,8 @@ public class TemplateTest {
 
     private void process(Writer out) throws IOException, TemplateException {
         Configuration cfg = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
-        cfg.setDirectoryForTemplateLoading(new File("src/test/resources"));
+        //cfg.setDirectoryForTemplateLoading(new File("src/test/resources"));
+        cfg.setClassLoaderForTemplateLoading(this.getClass().getClassLoader(), "/");
         Template temp = cfg.getTemplate("test.ftlh");
         Map<String, Object> root = new HashMap<>(Map.of(
                 "name", "Apache FreeMarker™",
