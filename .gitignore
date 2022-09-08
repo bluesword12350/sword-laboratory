@@ -41,3 +41,5 @@ build
 *.xlsx
 *.docx
 *.db
+*.TTC
+*.ttf
