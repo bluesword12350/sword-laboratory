@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+
+knife4j:
+  enableAggregation: true
+  cloud:
+    enable: true
+    routes:
+      - name: 项目名
+        uri: 'url'
+        location: /v3/api-docs
+        swaggerVersion: 3.0
