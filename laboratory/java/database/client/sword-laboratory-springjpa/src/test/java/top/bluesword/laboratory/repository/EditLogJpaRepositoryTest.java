@@ -14,7 +14,7 @@ import java.util.List;
 class EditLogJpaRepositoryTest {
 
     @Autowired
-    DataJpaRepository dataJpaRepository;
+    DataModelJpaRepository dataModelJpaRepository;
     @Autowired
     EditLogJpaRepository editLogJpaRepository;
 
@@ -29,7 +29,7 @@ class EditLogJpaRepositoryTest {
         EditLog editLog = new EditLog();
         editLog.setEditTime(Instant.now());
         editLogs.add(editLog);
-        List<DataModel> all = dataJpaRepository.findAll();
+        List<DataModel> all = dataModelJpaRepository.findAll();
         if (!all.isEmpty()){
             editLog.setDataModel(all.get(0));
         }

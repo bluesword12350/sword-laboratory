@@ -1,11 +1,13 @@
 package top.bluesword.laboratory.repository;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import top.bluesword.laboratory.domain.CompositePrimaryKey;
 import top.bluesword.laboratory.domain.CompositePrimaryKeyTable;
 
+@Slf4j
 @SpringBootTest
 class CompositePrimaryKeyRepositoryTest {
 
@@ -21,7 +23,7 @@ class CompositePrimaryKeyRepositoryTest {
 
     @Test
     void findAll() {
-        System.out.println(compositePrimaryKeyRepository.findAll());
+        log.info("findAll：{}",compositePrimaryKeyRepository.findAll());
     }
 
 }

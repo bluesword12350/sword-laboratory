@@ -23,18 +23,18 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @SpringBootTest
-class DataJpaRepositoryTest {
+class DataModelJpaRepositoryTest {
 
     @Autowired
-    private DataJpaRepository dataJpaRepository;
+    private DataModelJpaRepository dataModelJpaRepository;
     @Autowired
     private ModelMapper modelMapper;
 
     @Test
     void coverFragment() {
         DataModel dataModel = DataModelMock.mock();
-        dataModel = dataJpaRepository.save(dataModel);
-        dataModel = dataJpaRepository.findById(dataModel.getId()).orElseThrow();
+        dataModel = dataModelJpaRepository.save(dataModel);
+        dataModel = dataModelJpaRepository.findById(dataModel.getId()).orElseThrow();
         DataModelDTO dataModelDTO = modelMapper.map(dataModel, DataModelDTO.class);
         List<DataFragmentDTO> fragments = dataModelDTO.getContext().getFragments();
         DataFragmentDTO dataFragment0 = fragments.get(0);
@@ -43,14 +43,14 @@ class DataJpaRepositoryTest {
         dataFragment1.setId(null);
         dataFragment1.setTitle("新增的数据");
         DataModel dataModel1 = modelMapper.map(dataModelDTO, DataModel.class);
-        DataModel dataModel2 = dataJpaRepository.save(dataModel1);
+        DataModel dataModel2 = dataModelJpaRepository.save(dataModel1);
         log.info("{}",dataModel2);
     }
 
     @Test
     @Transactional
     void findAll(){
-        List<DataModel> all = dataJpaRepository.findAll();
+        List<DataModel> all = dataModelJpaRepository.findAll();
         List<DataModelDTO> dataModels = new ArrayList<>();
         for (DataModel dataModel : all) {
             DataModelDTO dto = modelMapper.map(dataModel, DataModelDTO.class);
@@ -61,32 +61,32 @@ class DataJpaRepositoryTest {
 
     @Test
     void pageRequest(){
-        Page<DataModel> all = dataJpaRepository.findAll(PageRequest.of(0,1));
+        Page<DataModel> all = dataModelJpaRepository.findAll(PageRequest.of(0,1));
         System.out.println(all);
     }
 
     @Test
     void save(){
         DataModel dataModel = DataModelMock.mock();
-        dataModel = dataJpaRepository.save(dataModel);
+        dataModel = dataModelJpaRepository.save(dataModel);
         DataModelDTO dataModelData = modelMapper.map(dataModel, DataModelDTO.class);
         log.info("{}",dataModelData);
     }
 
     @Test
     void update(){
-        List<DataModel> dataModels = dataJpaRepository.findAll();
+        List<DataModel> dataModels = dataModelJpaRepository.findAll();
         if (!dataModels.isEmpty()) {
             DataModel dataModel = dataModels.get(0);
             dataModel.setContext(DataModelMock.mockContext());
-            dataJpaRepository.save(dataModel);
+            dataModelJpaRepository.save(dataModel);
         }
     }
 
     @Test
     @Transactional(rollbackFor = Throwable.class)
     void findById(){
-        Optional<DataModel> data = dataJpaRepository.findById(624L);
+        Optional<DataModel> data = dataModelJpaRepository.findById(624L);
         if (data.isEmpty()) {
             log.error("数据不存在");
             return;
@@ -97,7 +97,7 @@ class DataJpaRepositoryTest {
 
     @Test
     void findAllIsNotNull(){
-        List<DataModel> all = dataJpaRepository.findAll(
+        List<DataModel> all = dataModelJpaRepository.findAll(
                 (Specification<DataModel>) (root, query, builder) -> builder.isNotNull(root.get(DataModel_.CODE))
         );
         System.out.println(all);
@@ -106,7 +106,7 @@ class DataJpaRepositoryTest {
     @Test
     void findAllLike(){
         String keyWord = "key\\%%";
-        dataJpaRepository.findAll(
+        dataModelJpaRepository.findAll(
                 (Specification<DataModel>) (root, criteriaQuery, criteriaBuilder) ->
                         criteriaBuilder.like(root.get(DataModel_.CODE),keyWord)
         ).forEach(System.out::println);
@@ -115,7 +115,7 @@ class DataJpaRepositoryTest {
     @Test
     void specification(){
         String keyWord = "key\\%%";
-        dataJpaRepository.findAll(
+        dataModelJpaRepository.findAll(
                 (Specification<DataModel>) (root, criteriaQuery, criteriaBuilder) ->
                         criteriaBuilder.and(
                                 criteriaBuilder.like(root.get(DataModel_.CODE),keyWord),
@@ -127,21 +127,21 @@ class DataJpaRepositoryTest {
     @Transactional
     @Test
     void findFirst(){
-        Optional<DataModel> dataModelOptional = dataJpaRepository.findFirstByName("name1");
-        log.info("{}",dataModelOptional.orElseGet(() -> null));
+        Optional<DataModel> dataModelOptional = dataModelJpaRepository.findFirstByName("name1");
+        log.info("{}",dataModelOptional.orElse(null));
     }
 
     @Transactional
     @Test
     void findByName(){
-        List<DataModel> dataModels = dataJpaRepository.findByName("name1");
+        List<DataModel> dataModels = dataModelJpaRepository.findByName("name1");
         log.info("{}",dataModels.stream().map(BaseData::getId).collect(Collectors.toList()));
     }
 
     @Transactional
     @Test
     void findByNameAndIdNot(){
-        List<DataModel> dataModels = dataJpaRepository.findByNameAndIdNot("name1",13L);
+        List<DataModel> dataModels = dataModelJpaRepository.findByNameAndIdNot("name1",13L);
         log.info("{}",dataModels.stream().map(BaseData::getId).collect(Collectors.toList()));
     }
 

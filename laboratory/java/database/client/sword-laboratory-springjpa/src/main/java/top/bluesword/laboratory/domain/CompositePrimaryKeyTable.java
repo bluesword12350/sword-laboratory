@@ -8,6 +8,9 @@ import lombok.ToString;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+/**
+ * @author 李林峰
+ */
 @Getter
 @Setter
 @ToString

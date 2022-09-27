@@ -12,7 +12,7 @@ import java.util.Optional;
  * @author 李林峰
  */
 @Repository
-public interface DataJpaRepository extends JpaRepository<DataModel,Long>, JpaSpecificationExecutor<DataModel> {
+public interface DataModelJpaRepository extends JpaRepository<DataModel,Long>, JpaSpecificationExecutor<DataModel> {
 
     Optional<DataModel> findFirstByName(String name);
 

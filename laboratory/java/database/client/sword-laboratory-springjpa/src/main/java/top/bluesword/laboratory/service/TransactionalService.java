@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import top.bluesword.laboratory.domain.DataModel;
-import top.bluesword.laboratory.repository.DataJpaRepository;
+import top.bluesword.laboratory.repository.DataModelJpaRepository;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -26,7 +26,7 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 public class TransactionalService {
 
     @Autowired
-    private DataJpaRepository dataJpaRepository;
+    private DataModelJpaRepository dataModelJpaRepository;
 
     /**
      * 默认事务，当乐观锁冲突时会抛出StaleObjectStateException异常
@@ -67,7 +67,7 @@ public class TransactionalService {
 
     public void nameAddition(Long id, String addition,int waitingTime) {
         log.info("开始追加：{}",addition);
-        Optional<DataModel> dataModelOptional = dataJpaRepository.findById(id);
+        Optional<DataModel> dataModelOptional = dataModelJpaRepository.findById(id);
         if (dataModelOptional.isEmpty()) {
             return;
         }
@@ -78,18 +78,18 @@ public class TransactionalService {
             name = "";
         }
         dataModel.setName(name+ addition);
-        dataJpaRepository.save(dataModel);
+        dataModelJpaRepository.save(dataModel);
         log.info("追加完成：{}",addition);
     }
 
     public void nameClear(Long id){
-        Optional<DataModel> dataModelOptional = dataJpaRepository.findById(id);
+        Optional<DataModel> dataModelOptional = dataModelJpaRepository.findById(id);
         if (dataModelOptional.isEmpty()) {
             return;
         }
         DataModel dataModel = dataModelOptional.get();
         dataModel.setName(null);
-        dataJpaRepository.save(dataModel);
+        dataModelJpaRepository.save(dataModel);
     }
 
     public void waitingRandomTime(int waitingTime){
