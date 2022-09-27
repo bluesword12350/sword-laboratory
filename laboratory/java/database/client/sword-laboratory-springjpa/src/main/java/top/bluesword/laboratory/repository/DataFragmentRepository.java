@@ -1,5 +1,6 @@
 package top.bluesword.laboratory.repository;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -23,5 +24,11 @@ public interface DataFragmentRepository extends JpaRepository<DataFragment,Long>
     })
     @Override
     List<DataFragment> findAll();
+
+    @Override
+    @EntityGraph(attributePaths = {
+            DataFragment_.EXTERNAL_LINKS
+    })
+    <S extends DataFragment> List<S> findAll(Example<S> example);
 
 }
