@@ -43,7 +43,7 @@
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy</artifactId>
-            <version>3.0.12</version>
+            <version>3.0.13</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.6</version>
+            <version>5.8.7</version>
         </dependency>
         <dependency>
             <groupId>org.ocpsoft.prettytime</groupId>
