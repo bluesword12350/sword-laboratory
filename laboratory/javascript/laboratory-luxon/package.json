@@ -10,6 +10,6 @@
   "author": "李林峰",
   "license": "MIT",
   "dependencies": {
-    "luxon": "laster"
+    "luxon": "2.3.1"
   }
 }
