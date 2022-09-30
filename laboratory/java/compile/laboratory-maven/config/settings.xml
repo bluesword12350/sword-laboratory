@@ -149,6 +149,8 @@ under the License.
      | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
      | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
      |
+     | mirrorOf 可以配置为central 为中央仓库镜像。配置为 * 为所有仓库镜像。
+     | 也可以配置为pom文件中repositories > repository > id，当配置为pom文件repository的id时，会替代该repository的url
     <mirror>
       <id>mirrorId</id>
       <mirrorOf>repositoryId</mirrorOf>
@@ -159,7 +161,7 @@ under the License.
     <mirror>
       <id>aliyun</id>
       <mirrorOf>central</mirrorOf>
-      <name>aliyun</name>
+      <name>阿里云</name>
       <url>https://maven.aliyun.com/repository/public</url>
     </mirror>
     <mirror>
