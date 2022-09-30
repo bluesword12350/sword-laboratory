@@ -151,6 +151,7 @@ under the License.
      |
      | mirrorOf 可以配置为central 为中央仓库镜像。配置为 * 为所有仓库镜像。
      | 也可以配置为pom文件中repositories > repository > id，当配置为pom文件repository的id时，会替代该repository的url
+     | mirrorOf 值相同时，只有排序最靠前的mirror会生效
     <mirror>
       <id>mirrorId</id>
       <mirrorOf>repositoryId</mirrorOf>
