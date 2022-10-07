@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="top.bluesword.web.laboratory.dao.LTestMapper">
+<mapper namespace="top.bluesword.laboratory.dao.LTestMapper">
 
     <insert id="insertList">
         begin
@@ -11,7 +11,7 @@
         end;
     </insert>
 
-    <select id="selectListByValues" resultType="top.bluesword.web.laboratory.entity.LTest">
+    <select id="selectListByValues" resultType="top.bluesword.laboratory.entity.LTest">
         select TEST_ID,TEST_VALUE
         from L_TEST
         <where>

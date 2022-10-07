@@ -1,14 +1,16 @@
-package top.bluesword.web.laboratory.dao;
+package top.bluesword.laboratory.dao;
 
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
-import top.bluesword.web.laboratory.entity.LTest;
+import top.bluesword.laboratory.entity.LTest;
 
 import java.util.List;
 
 /**
  * @author 李林峰
  */
+@Repository
 public interface LTestMapper extends Mapper<LTest> {
 
     /**

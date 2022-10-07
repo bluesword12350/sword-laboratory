@@ -1,12 +1,12 @@
-package top.bluesword.web.laboratory.service;
+package top.bluesword.laboratory.service;
 
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import top.bluesword.laboratory.dao.LTestMapper;
+import top.bluesword.laboratory.entity.LTest;
 import top.bluesword.util.exception.SwordRuntimeException;
-import top.bluesword.web.laboratory.dao.LTestMapper;
-import top.bluesword.web.laboratory.entity.LTest;
 
 import java.util.Random;
 
@@ -17,7 +17,8 @@ import java.util.Random;
 @Transactional(rollbackFor = Exception.class)
 public class TransactionalTestService {
 
-    @Autowired LTestMapper mapper;
+    @Autowired
+    LTestMapper mapper;
 
     public LTest getOne(){
         PageHelper.startPage(1,1);

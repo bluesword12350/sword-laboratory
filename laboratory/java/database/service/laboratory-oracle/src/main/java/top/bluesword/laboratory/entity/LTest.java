@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.entity;
+package top.bluesword.laboratory.entity;
 
 import tk.mybatis.mapper.annotation.KeySql;
 import tk.mybatis.mapper.code.ORDER;
