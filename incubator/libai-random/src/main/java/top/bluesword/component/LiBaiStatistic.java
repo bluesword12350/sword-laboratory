@@ -1,6 +1,5 @@
 package top.bluesword.component;
 
-import com.alibaba.fastjson.JSON;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,8 +18,4 @@ public class LiBaiStatistic {
 
     Integer all;
 
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
-    }
 }

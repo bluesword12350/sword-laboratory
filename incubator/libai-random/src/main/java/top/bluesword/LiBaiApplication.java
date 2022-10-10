@@ -11,14 +11,15 @@ import org.springframework.shell.jline.PromptProvider;
  * @author 李林峰
  */
 @SpringBootApplication
-public class WebLaboratoryApplication {
+public class LiBaiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WebLaboratoryApplication.class);
+        SpringApplication.run(LiBaiApplication.class);
     }
 
     @Bean
     public PromptProvider myPromptProvider() {
         return () -> new AttributedString("libai-cipher-book:>", AttributedStyle.DEFAULT.foreground(AttributedStyle.YELLOW));
     }
+
 }
