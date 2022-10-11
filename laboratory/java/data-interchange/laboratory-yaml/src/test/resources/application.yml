@@ -1,5 +1,4 @@
 blue-sword:
-  zh-cn: 快乐
   ls: s1,s2
   map:
     k1:
@@ -8,3 +7,5 @@ blue-sword:
     k2:
       - v3
       - v4
+    '[中文key]':
+      zhCn
