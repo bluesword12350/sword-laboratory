@@ -21,4 +21,6 @@ public class YamlProperties {
 
     private Map<String,List<String>> map;
 
+    private String zhCn;
+
 }

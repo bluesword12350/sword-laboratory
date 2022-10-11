@@ -1,5 +1,6 @@
 package top.bluesword;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @SpringBootTest
 public class YamlTest {
 
@@ -16,12 +18,19 @@ public class YamlTest {
     @Test
     void ls() {
         List<String> ls = yaml.getLs();
-        System.out.println(ls);
+        log.info("list:{}",ls);
     }
 
     @Test
     void map() {
         Map<String, List<String>> map = yaml.getMap();
-        System.out.println(map);
+        log.info("map:{}",map);
     }
+
+    @Test
+    void zhCn() {
+        String zhCn = yaml.getZhCn();
+        log.info("zhCn:{}",zhCn);
+    }
+
 }
