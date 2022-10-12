@@ -1,5 +1,6 @@
 package top.bluesword.java.lang;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.Charset;
@@ -9,16 +10,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 class StringTest {
 
     @Test
     void emoji() {
-        System.out.println("\uD83D\uDE18");
+        log.info("\uD83D\uDC99");
+    }
+
+    @Test
+    void length() {
+        log.info("\uD83D\uDC99.length:{}","\uD83D\uDC99".length());
     }
 
     @Test
     void substring() {
-        System.out.println("abc.substring(2):"+"abc".substring(3,3));
+        log.info("abc.substring(2):{}","abc".substring(2));
     }
 
     @Test
