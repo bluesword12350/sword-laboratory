@@ -145,7 +145,8 @@ public class HttpClientUtil {
             SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, (chain, authType) -> true).build();
             HostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
             SSLConnectionSocketFactory sslConnectionSocketFactory = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
-            PoolingHttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create().setSSLSocketFactory(sslConnectionSocketFactory).build();
+            PoolingHttpClientConnectionManager connectionManager = 
+                    PoolingHttpClientConnectionManagerBuilder.create().setSSLSocketFactory(sslConnectionSocketFactory).build();
             return HttpClients.custom().setConnectionManager(connectionManager).build();
         } catch (KeyManagementException | NoSuchAlgorithmException | KeyStoreException e) {
             return HttpClients.createDefault();
