@@ -18,4 +18,5 @@ class SpelExpressionParserTest {
                 .getValue(context,String.class);
         System.out.println(value);
     }
+
 }

@@ -11,5 +11,7 @@
     - compile【压缩工具】
       - laboratory-apache-compress【org.apache.commons.commons-compress】
       - laboratory-zstandard【com.github.luben.zstd-jni】
+    - template【模板工具】
+      - laboratory-spring-expression【org.springframework.spring-expression】
     - testing【测试工具】
       - laboratory-jacoco【org.jacoco.jacoco-maven-plugin】
