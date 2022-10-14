@@ -17,3 +17,5 @@
       - laboratory-spring-expression【org.springframework.spring-expression】
     - testing【测试工具】
       - laboratory-jacoco【org.jacoco.jacoco-maven-plugin】
+    - util【工具目录（暂时未分类的工具）】
+      - laboratory-guava【com.google.guava.guava】【java小工具集】
