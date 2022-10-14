@@ -11,6 +11,8 @@
     - compile【压缩工具】
       - laboratory-apache-compress【org.apache.commons.commons-compress】
       - laboratory-zstandard【com.github.luben.zstd-jni】
+    - office-document【办公文档】
+      - laboratory-easypoi【cn.afterturn.easypoi-base】
     - template【模板工具】
       - laboratory-spring-expression【org.springframework.spring-expression】
     - testing【测试工具】
