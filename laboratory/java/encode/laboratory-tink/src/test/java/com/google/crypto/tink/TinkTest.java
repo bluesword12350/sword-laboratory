@@ -1,13 +1,6 @@
 package com.google.crypto.tink;
 
-import cn.hutool.core.io.FileUtil;
-import com.google.crypto.tink.aead.AeadKeyTemplates;
-import com.google.crypto.tink.config.TinkConfig;
-import com.google.crypto.tink.daead.DeterministicAeadKeyTemplates;
-import com.google.crypto.tink.hybrid.HybridKeyTemplates;
-import com.google.crypto.tink.mac.MacKeyTemplates;
-import com.google.crypto.tink.signature.SignatureKeyTemplates;
-import com.google.crypto.tink.streamingaead.StreamingAeadKeyTemplates;
+import com.google.crypto.tink.hybrid.HybridConfig;
 import com.google.crypto.tink.subtle.Hex;
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +12,14 @@ import java.security.GeneralSecurityException;
 
 class TinkTest {
 
-    private byte[] plaintext = "1245".getBytes();
-    private byte[] aad = "1".getBytes();
-    private byte[] data = "1212424".getBytes();
-    private byte[] contextInfo = data;
+    private final byte[] plaintext = "1245".getBytes();
+    private final byte[] aad = "1".getBytes();
+    private final byte[] data = "1212424".getBytes();
+    private final byte[] contextInfo = data;
 
     static {
         try {
-            TinkConfig.register();
+            HybridConfig.register();
         } catch (GeneralSecurityException e) {
             e.printStackTrace();
         }
@@ -34,8 +27,8 @@ class TinkTest {
 
     @Test
     void aes128Test() throws GeneralSecurityException {
-        KeysetHandle keysetHandle = KeysetHandle.generateNew(
-                AeadKeyTemplates.AES128_GCM);
+
+        KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("AES128_GCM"));
         Aead aead = keysetHandle.getPrimitive(Aead.class);
         byte[] cipherText = aead.encrypt(plaintext, aad);
         System.out.println(Hex.encode(cipherText));
@@ -45,8 +38,7 @@ class TinkTest {
 
     @Test
     void aes256Test() throws GeneralSecurityException {
-        KeysetHandle keysetHandle = KeysetHandle.generateNew(
-                DeterministicAeadKeyTemplates.AES256_SIV);
+        KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("AES256_SIV"));
         DeterministicAead deterministicAead = keysetHandle.getPrimitive(DeterministicAead.class);
         byte[] cipherText = deterministicAead.encryptDeterministically(plaintext, aad);
         System.out.println(Hex.encode(cipherText));
@@ -56,8 +48,7 @@ class TinkTest {
 
     @Test
     void macTest() throws GeneralSecurityException {
-        KeysetHandle keysetHandle = KeysetHandle.generateNew(
-                MacKeyTemplates.HMAC_SHA256_128BITTAG);
+        KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("HMAC_SHA256_128BITTAG"));
         Mac mac = keysetHandle.getPrimitive(Mac.class);
         byte[] tag = mac.computeMac(data);
         System.out.println(Hex.encode(tag));
@@ -79,8 +70,7 @@ class TinkTest {
     void ecdsaSignTest() throws GeneralSecurityException, IOException {
         String publicKeyFileName = ".publicKey";
 
-        KeysetHandle privateKeySetHandle = KeysetHandle.generateNew(
-                SignatureKeyTemplates.ECDSA_P256);
+        KeysetHandle privateKeySetHandle = KeysetHandle.generateNew(KeyTemplates.get("ECDSA_P256"));
         PublicKeySign signer = privateKeySetHandle.getPrimitive(PublicKeySign.class);
         byte[] signature = signer.sign(data);
         System.out.println(Hex.encode(signature));
@@ -110,8 +100,7 @@ class TinkTest {
     void hybridEncryptTest() throws GeneralSecurityException, IOException {
         String fileName = ".privateKey";
 
-        KeysetHandle privateKeySetHandle = KeysetHandle.generateNew(
-                HybridKeyTemplates.ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM);
+        KeysetHandle privateKeySetHandle = KeysetHandle.generateNew(KeyTemplates.get("ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM"));
         KeysetHandle publicKeySetHandle =
                 privateKeySetHandle.getPublicKeysetHandle();
         HybridEncrypt hybridEncrypt = publicKeySetHandle.getPrimitive(HybridEncrypt.class);
@@ -134,20 +123,21 @@ class TinkTest {
     void streamingAeadTest () throws GeneralSecurityException, IOException {
         String encryptedFile = "pom加密.encrypted";
 
-        KeysetHandle keysetHandle = KeysetHandle.generateNew(
-                StreamingAeadKeyTemplates.AES128_CTR_HMAC_SHA256_4KB);
+        KeysetHandle keysetHandle = KeysetHandle.generateNew(KeyTemplates.get("AES128_CTR_HMAC_SHA256_4KB"));
         StreamingAead streamingAead = keysetHandle.getPrimitive(StreamingAead.class);
         try (FileOutputStream fileOutputStream = new FileOutputStream(encryptedFile)){
             FileChannel cipherTextDestination = fileOutputStream.getChannel();
-            try (WritableByteChannel encryptingChannel =
-                         streamingAead.newEncryptingChannel(cipherTextDestination, aad)){
-                byte[] bytes = FileUtil.readBytes(new File("pom.xml"));
+            FileInputStream fileInputStream = new FileInputStream("pom.xml");
+            WritableByteChannel encryptingChannel = streamingAead.newEncryptingChannel(cipherTextDestination, aad);
+            try (encryptingChannel;fileInputStream){
+                byte[] bytes = fileInputStream.readAllBytes();
                 ByteBuffer buffer = ByteBuffer.wrap(bytes);
                 encryptingChannel.write(buffer);
             }
         }
         FileInputStream cipherTextSource = new FileInputStream(encryptedFile);
         InputStream inputStream1 = streamingAead.newDecryptingStream(cipherTextSource, aad);
-        FileUtil.writeFromStream(inputStream1,new File("pom.iml"));
+        new FileOutputStream("pom.iml").write(inputStream1.readAllBytes());
     }
+
 }
