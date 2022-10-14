@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.service;
+package top.bluesword.laboratory.service;
 
 import org.springframework.stereotype.Service;
 

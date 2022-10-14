@@ -1,10 +1,10 @@
-package top.bluesword.web.laboratory.runner;
+package top.bluesword.laboratory.runner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import top.bluesword.web.laboratory.service.HelloService;
+import top.bluesword.laboratory.service.HelloService;
 
 /**
  * @author 李林峰

@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.controller;
+package top.bluesword.laboratory.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

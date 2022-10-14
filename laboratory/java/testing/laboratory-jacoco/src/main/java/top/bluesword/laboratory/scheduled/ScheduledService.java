@@ -1,10 +1,10 @@
-package top.bluesword.web.laboratory.scheduled;
+package top.bluesword.laboratory.scheduled;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import top.bluesword.web.laboratory.destroy.TestAnnotationPreDestroy;
+import top.bluesword.laboratory.destroy.TestAnnotationPreDestroy;
 
 /**
  * @author 李林峰

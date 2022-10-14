@@ -1,4 +1,4 @@
-package top.bluesword.web.laboratory.component;
+package top.bluesword.laboratory.component;
 
 import org.springframework.context.SmartLifecycle;
 import org.springframework.stereotype.Component;
