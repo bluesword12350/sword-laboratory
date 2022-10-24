@@ -2,6 +2,7 @@ package org.hibernate;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import top.bluesword.laboratory.bean.BeanDemoAbility;
 import top.bluesword.laboratory.bean.BeanDemo;
 import top.bluesword.laboratory.bean.DefaultBeanDemo;
 import top.bluesword.laboratory.bean.InsideBeanDemo;
@@ -10,6 +11,7 @@ import top.bluesword.laboratory.validation.group.StringChecks;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +19,14 @@ import java.util.Set;
 @Slf4j
 class ValidatorTest {
 	
-	private static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
+	private static final Validator VALIDATOR;
+
+	static {
+		ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+		try(validatorFactory) {
+			VALIDATOR = validatorFactory.getValidator();
+		}
+	}
 
 	@Test
 	void defaultTest() {
@@ -58,9 +67,8 @@ class ValidatorTest {
 
 	@Test
 	void extendTest(){
-		DefaultBeanDemo defaultBeanDemo = new DefaultBeanDemo();
-		defaultBeanDemo.setString("1");
-		Set<ConstraintViolation<DefaultBeanDemo>> validateResult = VALIDATOR.validate(defaultBeanDemo);
+		BeanDemoAbility defaultBeanDemo = new DefaultBeanDemo();
+		Set<ConstraintViolation<BeanDemoAbility>> validateResult = VALIDATOR.validate(defaultBeanDemo);
 		printViolation(validateResult);
 	}
 
