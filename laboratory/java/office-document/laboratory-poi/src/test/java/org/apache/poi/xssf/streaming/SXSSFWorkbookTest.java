@@ -1,45 +1,23 @@
-package top.bluesword.laboratory.excel;
+package org.apache.poi.xssf.streaming;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.xssf.streaming.SXSSFCell;
-import org.apache.poi.xssf.streaming.SXSSFRow;
-import org.apache.poi.xssf.streaming.SXSSFSheet;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.poi.ss.util.CellRangeAddressList;
+import org.apache.poi.xssf.usermodel.*;
+import org.junit.jupiter.api.Test;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
  * @author 李林峰
  */
-@RestController
-@RequestMapping("excel/export")
-public class ExportExcelController {
+class SXSSFWorkbookTest {
 
-    @GetMapping
-    public void get(HttpServletResponse response) throws IOException {
-        SXSSFWorkbook colorTable = createColorTable();
-        String fileName = "test.xlsx";
-        downloadFile(response, colorTable, fileName);
-    }
-
-    private void downloadFile(HttpServletResponse response, SXSSFWorkbook workbook, String fileName) throws IOException {
-        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+fileName);
-        ServletOutputStream outputStream = response.getOutputStream();
-        try(outputStream;workbook) {
-            workbook.write(outputStream);
-        }
-    }
-
-    public static SXSSFWorkbook createColorTable() {
+    @Test
+    void createColorTable() throws IOException {
         SXSSFWorkbook table = new SXSSFWorkbook();
         SXSSFSheet sheet = table.createSheet("颜色卡");
         sheet.setDefaultColumnWidth(20);
@@ -64,7 +42,10 @@ public class ExportExcelController {
                 color.createCell(index).setCellStyle(fillForegroundColorStyle);
             }
         }
-        return table;
+        FileOutputStream fileOutputStream = new FileOutputStream("颜色卡.xlsx");
+        try(table;fileOutputStream) {
+            table.write(fileOutputStream);
+        }
     }
 
 }
