@@ -14,4 +14,5 @@ public class RestTestController {
     public ModelAndView test() {
         return new ModelAndView("test");
     }
+
 }

@@ -1,0 +1,13 @@
+{
+  "name": "laboratory-editorjs",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@editorjs/editorjs": "^2.25.0"
+  },
+  "devDependencies": {
+    "vite": "^2.9.8"
+  }
+}
