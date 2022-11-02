@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>top.bluesword</groupId>
-    <artifactId>sword-laboratory-groovy</artifactId>
+    <artifactId>laboratory-groovy</artifactId>
     <version>0.0.1</version>
 
     <licenses>
@@ -22,10 +22,17 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.codehaus.groovy</groupId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-            <version>3.0.5</version>
+            <version>4.0.6</version>
             <type>pom</type>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -76,4 +83,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

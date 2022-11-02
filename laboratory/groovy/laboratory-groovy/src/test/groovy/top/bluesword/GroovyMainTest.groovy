@@ -1,9 +1,14 @@
 package top.bluesword
 
+import org.junit.jupiter.api.Test
+
 class GroovyMainTest {
-    static void main(String[] args) {
+
+    @Test
+    void printTest() {
         print("你好")
         print(",")
         println("groovy")
     }
+
 }
