@@ -11,24 +11,27 @@ public class ScheduledExecutorServiceTest {
         ScheduledExecutorService scheduledExecutorService= new ScheduledThreadPoolExecutor(1, (ThreadFactory) Thread::new);
         scheduledExecutorService.scheduleAtFixedRate(new Task(scheduledExecutorService), 3, 1, TimeUnit.SECONDS);
     }
-}
 
-class Task implements Runnable {
-    private final ScheduledExecutorService timer;
+    static class Task implements Runnable {
+        private final ScheduledExecutorService timer;
 
-    public Task(ScheduledExecutorService timer) {
-        this.timer = timer;
-    }
+        public Task(ScheduledExecutorService timer) {
+            this.timer = timer;
+        }
 
-    int i = 1;
+        int i = 1;
 
-    @Override
-    public void run() {
-        System.out.println("******程序执行******");
-        //当执行到第5秒，程序结束
-        if (i++ == 5) {
-            this.timer.shutdown();
-            System.out.println("******程序结束******");
+        @Override
+        public void run() {
+            System.out.println("******程序执行******");
+            //当执行到第5秒，程序结束
+            if (i++ == 5) {
+                this.timer.shutdown();
+                System.out.println("******程序结束******");
+            }
         }
     }
+
 }
+
+
