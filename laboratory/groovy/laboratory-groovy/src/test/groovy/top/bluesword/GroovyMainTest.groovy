@@ -1,5 +1,6 @@
 package top.bluesword
 
+
 import org.junit.jupiter.api.Test
 
 class GroovyMainTest {
