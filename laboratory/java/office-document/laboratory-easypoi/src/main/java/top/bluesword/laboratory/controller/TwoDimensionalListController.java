@@ -2,7 +2,6 @@ package top.bluesword.laboratory.controller;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
-import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.stereotype.Controller;
@@ -29,7 +28,6 @@ public class TwoDimensionalListController {
     private final Random random = new Random();
 
     @GetMapping("export-by-template")
-    @ApiOperation("通过模板导出")
     public void exportTwoDimensionalList(HttpServletResponse response){
         try (
                 InputStream inputStream = Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("templates/二维列表.xlsx"));

@@ -2,10 +2,9 @@ package top.bluesword.laboratory.controller;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
-import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +25,12 @@ import java.util.Objects;
  */
 @Controller
 @RequestMapping("template")
+@RequiredArgsConstructor
 public class TemplateController {
 
-    @Autowired
-    TemplateProperties templateProperties;
+    private final TemplateProperties templateProperties;
 
     @GetMapping("/exportExcelByExcelExportUtil")
-    @ApiOperation("Util模板导出")
     public void exportExcelByExcelExportUtil(HttpServletResponse response) {
         Map<String, Object> map = DataGenerate.generateMap();
         TemplateExportParams params = new TemplateExportParams(templateProperties.getUrl());
@@ -46,7 +44,6 @@ public class TemplateController {
     }
 
     @GetMapping("/exportExcelByExcelExportUtilAndTemplateWb")
-    @ApiOperation("Util模板流导出")
     public void exportExcelByExcelExportUtilAndTemplateWb(HttpServletResponse response) {
         try (
                 InputStream inputStream = Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(templateProperties.getUrl()));
@@ -63,7 +60,6 @@ public class TemplateController {
     }
 
     @GetMapping("export-excel-controls")
-    @ApiOperation("导出excel控件")
     public void exportExcelControls(HttpServletResponse response){
         try (
                 InputStream inputStream = Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("templates/控件测试.xlsx"));

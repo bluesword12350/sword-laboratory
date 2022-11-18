@@ -4,9 +4,6 @@ import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,42 +23,38 @@ import java.util.List;
  * @author 李林峰
  */
 @Controller
-@Api(tags = "easyPoi测试接口")
 @RequestMapping("model")
 public class ModelController {
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
 	@PostMapping("importExcel")
-	@ApiOperation("最简导入")
     @ResponseBody
-	public String importExcel(@ApiParam(required = true) MultipartFile file){
+	public List<ExcelTemplate> importExcel(MultipartFile file) throws Exception {
 		if (file.isEmpty()) {
-            return "文件为空";
+			throw new RuntimeException("文件为空");
         }
 		int max = 1024*1024;
 		if (file.getSize()/(max)>1) {
-			return "文件过大";
+			throw new RuntimeException("文件过大");
 		}
+		ImportParams params = new ImportParams();
+		params.setTitleRows(0);
+		params.setNeedVerify(false);
+		ExcelImportResult<ExcelTemplate> importExcel;
 		try (InputStream inputStream = file.getInputStream()) {
-			ImportParams params = new ImportParams();
-			params.setTitleRows(1);
-			params.setNeedVerify(true);
-            ExcelImportResult<ExcelTemplate> importExcel = ExcelImportUtil.importExcelMore(inputStream, ExcelTemplate.class, params);
-            if (importExcel.isVerifyFail()) {
-				return objectMapper.writeValueAsString(importExcel.getFailList());
-			}else {
-				return objectMapper.writeValueAsString(importExcel.getList());
-			}
-		} catch (Exception e1) {
-			return e1.toString();
+            importExcel = ExcelImportUtil.importExcelMore(inputStream, ExcelTemplate.class, params);
+		}
+		if (importExcel.isVerifyFail()) {
+			throw new RuntimeException(objectMapper.writeValueAsString(importExcel.getFailList()));
+		}else {
+			return importExcel.getList();
 		}
 	}
 
 	@PostMapping("import-merged-cell")
-	@ApiOperation("合并单元格导入")
 	@ResponseBody
-	public String importMergedCell(@ApiParam(required = true) MultipartFile file) throws Exception {
+	public String importMergedCell(MultipartFile file) throws Exception {
 		if (file.isEmpty()) {
 			return "文件为空";
 		}
@@ -83,9 +76,8 @@ public class ModelController {
 	}
 
 	@PostMapping("import-excel/exclude-blank-lines")
-	@ApiOperation("过滤空白行导入")
 	@ResponseBody
-	public String importExcelExcludeBlankLines(@ApiParam(required = true) MultipartFile file){
+	public String importExcelExcludeBlankLines(MultipartFile file){
 		if (file.isEmpty()) {
 			return "文件为空";
 		}
