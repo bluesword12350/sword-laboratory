@@ -15,7 +15,7 @@ import java.util.List;
 @DiyObjectConstraint
 public class BeanDemo {
 
-	@Max(value = 1,message = "太大了")
+	@Max(value = 1,message = "{filed.integer}{error.max}")
 	@NotNull
 	public Integer integer;
 
