@@ -15,7 +15,10 @@ import java.util.List;
 @DiyObjectConstraint
 public class BeanDemo {
 
-	@Max(value = 1,message = "{filed.integer}{error.max}")
+	/**
+	 * @see org.springframework.boot.validation.MessageInterpolatorFactory
+	 */
+	@Max(value = 1,message = "字段名:{filed.integer}{error.max}")
 	@NotNull
 	public Integer integer;
 
