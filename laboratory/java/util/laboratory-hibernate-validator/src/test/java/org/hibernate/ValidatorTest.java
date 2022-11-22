@@ -2,9 +2,8 @@ package org.hibernate;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import top.bluesword.laboratory.bean.BeanDemoAbility;
 import top.bluesword.laboratory.bean.BeanDemo;
-import top.bluesword.laboratory.bean.DefaultBeanDemo;
+import top.bluesword.laboratory.bean.BeanDemoAbility;
 import top.bluesword.laboratory.bean.InsideBeanDemo;
 import top.bluesword.laboratory.validation.group.StringChecks;
 
@@ -67,7 +66,7 @@ class ValidatorTest {
 
 	@Test
 	void extendTest(){
-		BeanDemoAbility defaultBeanDemo = new DefaultBeanDemo();
+		BeanDemoAbility defaultBeanDemo = new BeanDemo();
 		Set<ConstraintViolation<BeanDemoAbility>> validateResult = VALIDATOR.validate(defaultBeanDemo);
 		printViolation(validateResult);
 	}

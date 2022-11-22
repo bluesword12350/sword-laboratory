@@ -13,13 +13,8 @@ import java.util.List;
  */
 @Data
 @DiyObjectConstraint
-public class BeanDemo {
+public class BeanDemo implements BeanDemoAbility {
 
-	/**
-	 * @see org.springframework.boot.validation.MessageInterpolatorFactory
-	 */
-	@Max(value = 1,message = "字段名:{filed.integer}{error.max}")
-	@NotNull
 	public Integer integer;
 
 	@NotEmpty
@@ -43,5 +38,6 @@ public class BeanDemo {
 
 	@NotNull
 	public InsideBeanDemo i2;
+
 
 }
