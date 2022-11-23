@@ -59,12 +59,12 @@ class BigDecimalTest {
 	}
 
 	@Test
-	void scientificNotation() {
-		log.info("P-10:{}",BigDecimal.valueOf(Math.pow(10, -10)).stripTrailingZeros().toPlainString());
-		log.info("P -7:{}",new BigDecimal(new BigDecimal("1.0E-7").toPlainString()));
+	void toPlainString() {
+		log.info("P-10:{}",new BigDecimal("1.2e-10").toPlainString());
+		log.info("P -7:{}",new BigDecimal("1.0e-7"));
 		log.info("  -7:{}",BigDecimal.valueOf(Math.pow(10, -7)));
 		log.info("  -6:{}",BigDecimal.valueOf(Math.pow(10, -6)));
-		log.info("   6:{}",BigDecimal.valueOf(Math.pow(10, 6)).stripTrailingZeros());
+		log.info("   6:{}",BigDecimal.valueOf(Math.pow(10, 6)));
 		log.info("   7:{}",BigDecimal.valueOf(Math.pow(10, 7)));
 		BigDecimal pow10 = BigDecimal.valueOf(Math.pow(10, 10));
 		log.info("  10:{}", pow10.toPlainString());
