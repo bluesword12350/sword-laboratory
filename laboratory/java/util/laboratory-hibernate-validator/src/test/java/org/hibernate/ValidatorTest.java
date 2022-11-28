@@ -33,6 +33,7 @@ class ValidatorTest {
 		beanDemo.setInteger(100);
 		beanDemo.setString(" ");
 		beanDemo.setString2(" ");
+		beanDemo.setNumText("1");
 		beanDemo.setDecimal(BigDecimal.valueOf(134165448.1324564768));
 		beanDemo.setI1(new InsideBeanDemo());
 		beanDemo.setI2(new InsideBeanDemo());

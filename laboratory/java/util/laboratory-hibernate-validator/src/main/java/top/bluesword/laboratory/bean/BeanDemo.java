@@ -1,6 +1,7 @@
 package top.bluesword.laboratory.bean;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
 import top.bluesword.laboratory.validation.group.StringChecks;
 
 import javax.validation.Valid;
@@ -23,6 +24,9 @@ public class BeanDemo implements BeanDemoAbility {
 
 	@NotBlank(groups = StringChecks.class)
 	public String string2;
+
+	@Range(min = 1,max = 999)
+	public String numText;
 
 	@Digits(integer = 2,fraction = 2)
 	@NotNull
