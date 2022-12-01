@@ -14,11 +14,6 @@ import java.io.InputStream;
  */
 public class HttpContextAssist {
 
-    public static String getLocaleCode() {
-        HttpServletRequest request = getHttpServletRequest();
-        return request.getLocale().toString();
-    }
-
     public static String getJsonBody() throws IOException {
         HttpServletRequest request = getHttpServletRequest();
         ServletServerHttpRequest inputMessage = new ServletServerHttpRequest(request);
