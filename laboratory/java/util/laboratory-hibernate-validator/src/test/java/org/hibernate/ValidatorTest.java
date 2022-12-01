@@ -2,6 +2,7 @@ package org.hibernate;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import top.bluesword.laboratory.PrintViolationUtils;
 import top.bluesword.laboratory.bean.BeanDemo;
 import top.bluesword.laboratory.bean.BeanDemoAbility;
 import top.bluesword.laboratory.bean.InsideBeanDemo;
@@ -40,13 +41,7 @@ class ValidatorTest {
 		beanDemo.setList(List.of());
 
 		Set<ConstraintViolation<BeanDemo>> vm = VALIDATOR.validate(beanDemo);
-		printViolation(vm);
-	}
-
-	private <T> void printViolation(Set<ConstraintViolation<T>> vm) {
-		for (ConstraintViolation<T> constraintViolation : vm) {
-			log.error("{}:{}", constraintViolation.getPropertyPath(), constraintViolation.getMessage());
-		}
+		PrintViolationUtils.print(vm);
 	}
 
 	@Test
@@ -54,7 +49,7 @@ class ValidatorTest {
 		BeanDemo beanDemo = new BeanDemo();
 		beanDemo.setString("0123456789");
 		Set<ConstraintViolation<BeanDemo>> validate = VALIDATOR.validate(beanDemo);
-		printViolation(validate);
+		PrintViolationUtils.print(validate);
 	}
 
 	@Test
@@ -62,14 +57,14 @@ class ValidatorTest {
 		BeanDemo beanDemo = new BeanDemo();
 		Set<ConstraintViolation<BeanDemo>> validateResult = VALIDATOR.validate(beanDemo, StringChecks.class);
 		log.info("{}",validateResult.size());
-		printViolation(validateResult);
+		PrintViolationUtils.print(validateResult);
 	}
 
 	@Test
 	void extendTest(){
 		BeanDemoAbility defaultBeanDemo = new BeanDemo();
 		Set<ConstraintViolation<BeanDemoAbility>> validateResult = VALIDATOR.validate(defaultBeanDemo);
-		printViolation(validateResult);
+		PrintViolationUtils.print(validateResult);
 	}
 
 }

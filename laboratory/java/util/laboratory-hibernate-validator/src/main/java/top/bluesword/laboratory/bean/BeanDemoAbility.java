@@ -10,7 +10,7 @@ public interface BeanDemoAbility {
 
     /**
      * 整数
-     * @see org.springframework.boot.validation.MessageInterpolatorFactory
+     * @see javax.validation.MessageInterpolator org.springframework.boot.validation.MessageSourceMessageInterpolator
      * @return 整数
      */
     @NotNull
