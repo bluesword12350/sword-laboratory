@@ -1,11 +1,13 @@
 package top.bluesword.java.time;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
 
+@Slf4j
 class ZonedDateTimeTest {
 
     @Test
@@ -38,4 +40,12 @@ class ZonedDateTimeTest {
     void weekOfYear() {
         System.out.println(ZonedDateTime.now().get(WeekFields.ISO.weekOfYear()));
     }
+
+    @Test
+    void ofLocalDate(){
+        LocalDate localDate = LocalDate.from(DateTimeFormatter.ofPattern("yyyy-MM-dd").parse("2023-01-01"));
+        Instant instant = ZonedDateTime.of(localDate, LocalTime.of(0, 0), ZoneId.of("+07:00")).toInstant();
+        log.info("instant:{}",instant);
+    }
+
 }
