@@ -74,6 +74,14 @@ class DataModelJpaRepositoryTest {
     }
 
     @Test
+    void saveAll(){
+        DataModel dataModel0 = DataModelMock.mock();
+        DataModel dataModel1 = DataModelMock.mock();
+        List<DataModel> dataModels = dataModelJpaRepository.saveAll(List.of(dataModel0, dataModel1));
+        log.info("saveAll dataModels: {}",dataModels);
+    }
+
+    @Test
     void update(){
         List<DataModel> dataModels = dataModelJpaRepository.findAll();
         if (!dataModels.isEmpty()) {
