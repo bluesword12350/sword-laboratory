@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 /**
  * @author 李林峰
  */
+@SuppressWarnings("unused")
 public interface BeanDemoAbility {
 
     /**

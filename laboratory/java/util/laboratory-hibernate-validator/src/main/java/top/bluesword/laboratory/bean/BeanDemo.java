@@ -2,6 +2,7 @@ package top.bluesword.laboratory.bean;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
+import top.bluesword.laboratory.validation.group.DiyObjectChecks;
 import top.bluesword.laboratory.validation.group.StringChecks;
 
 import javax.validation.Valid;
@@ -13,35 +14,37 @@ import java.util.List;
  * @author 李林峰
  */
 @Data
-@DiyObjectConstraint
+@DiyObjectConstraint(groups = DiyObjectChecks.class)
 public class BeanDemo implements BeanDemoAbility {
 
 	public Integer integer;
 
 	@NotEmpty
 	@Size(min= 10,max = 500)
-	public String string;
+	private String string;
 
 	@NotBlank(groups = StringChecks.class)
-	public String string2;
+	private String string2;
 
 	@Range(min = 1,max = 999)
-	public String numText;
+	private String numText;
+
+	@DecimalMin(value = "0",inclusive = false)
+	private String decimalMin;
 
 	@Digits(integer = 2,fraction = 2)
 	@NotNull
-	public BigDecimal decimal;
+	private BigDecimal decimal;
 
 	@NotNull
 	@Size(min= 1)
-	public List<String> list;
+	private List<String> list;
 
 	@Valid
 	@NotNull
-	public InsideBeanDemo i1;
+	private InsideBeanDemo i1;
 
 	@NotNull
-	public InsideBeanDemo i2;
-
+	private InsideBeanDemo i2;
 
 }

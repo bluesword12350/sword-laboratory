@@ -67,4 +67,12 @@ class ValidatorTest {
 		PrintViolationUtils.print(validateResult);
 	}
 
+	@Test
+	void decimalMinTest(){
+		BeanDemo beanDemo = new BeanDemo();
+		beanDemo.setDecimalMin("0");
+		Set<ConstraintViolation<BeanDemo>> validate = VALIDATOR.validate(beanDemo);
+		PrintViolationUtils.print(validate);
+	}
+
 }
