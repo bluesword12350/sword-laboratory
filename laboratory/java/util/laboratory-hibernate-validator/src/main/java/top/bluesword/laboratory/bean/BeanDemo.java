@@ -29,7 +29,7 @@ public class BeanDemo implements BeanDemoAbility {
 	@Range(min = 1,max = 999)
 	private String numText;
 
-	@DecimalMin(value = "0",inclusive = false,message = "{field-name.bean-demo.decimal-min}{javax.validation.constraints.DecimalMin.message}")
+	@DecimalMin(value = "0",inclusive = false,message = "{field-name.bean-demo.decimal-min}{sword.DecimalMin.joint-message}")
 	private String decimalMin;
 
 	@Digits(integer = 2,fraction = 2)
