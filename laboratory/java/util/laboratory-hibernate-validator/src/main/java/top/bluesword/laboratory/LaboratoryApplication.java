@@ -21,7 +21,7 @@ public class LaboratoryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LaboratoryApplication.class, args);
 	}
-	
+
 	@PostMapping
 	public BeanDemo test(@RequestBody @Validated({Default.class,StringChecks.class}) BeanDemo demo) {
 		return demo;

@@ -15,7 +15,7 @@ public interface BeanDemoAbility {
      * @return 整数
      */
     @NotNull
-    @Max(value = 1,message = "字段名:{filed.integer}{error.max}")
+    @Max(value = 1)
     Integer getInteger();
 
 }

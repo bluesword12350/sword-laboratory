@@ -12,7 +12,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
@@ -31,15 +30,9 @@ class ValidatorTest {
 	@Test
 	void defaultTest() {
 		BeanDemo beanDemo = new BeanDemo();
-		beanDemo.setInteger(100);
-		beanDemo.setString(" ");
-		beanDemo.setString2(" ");
-		beanDemo.setNumText("1");
-		beanDemo.setDecimal(BigDecimal.valueOf(134165448.1324564768));
 		beanDemo.setI1(new InsideBeanDemo());
 		beanDemo.setI2(new InsideBeanDemo());
 		beanDemo.setList(List.of());
-
 		Set<ConstraintViolation<BeanDemo>> vm = VALIDATOR.validate(beanDemo);
 		PrintViolationUtils.print(vm);
 	}
