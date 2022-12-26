@@ -50,8 +50,9 @@ public final class MessageSourceExpansion {
             if (parentheses == 0 && startIndex < endIndex) {
                 String parameter = buf.substring(startIndex + 1, endIndex);
                 if (!visitedParameters.add(parameter)) {
-                    throw new IllegalArgumentException("Circular reference '{" + String.join(" -> ", visitedParameters)
-                            + " -> " + parameter + "}'");
+                    throw new IllegalArgumentException(
+                            "Circular reference '{" + String.join(" -> ", visitedParameters) + " -> " + parameter + "}'"
+                    );
                 }
                 String value = replaceParameter(parameter, locale, visitedParameters);
                 if (value != null) {
@@ -68,9 +69,8 @@ public final class MessageSourceExpansion {
 
     private String replaceParameter(String parameter, Locale locale, Set<String> visitedParameters) {
         parameter = replaceParameters(parameter, locale, visitedParameters);
-        String value = this.messageSource.getMessage(parameter, null, null, locale);
-        return (value != null && !isUsingCodeAsDefaultMessage(value, parameter))
-                ? replaceParameters(value, locale, visitedParameters) : null;
+        String value = this.messageSource.getMessage(parameter, null, locale);
+        return !isUsingCodeAsDefaultMessage(value, parameter) ? replaceParameters(value, locale, visitedParameters) : null;
     }
 
     private boolean isUsingCodeAsDefaultMessage(String value, String parameter) {
