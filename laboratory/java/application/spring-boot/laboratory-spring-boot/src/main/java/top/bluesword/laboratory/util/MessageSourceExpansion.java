@@ -2,6 +2,7 @@ package top.bluesword.laboratory.util;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashSet;
@@ -22,8 +23,16 @@ public final class MessageSourceExpansion {
 
     private final MessageSource messageSource;
 
+    public String getMessage(String message) {
+        return getMessage(message,LocaleContextHolder.getLocale());
+    }
+
     public String getMessage(String message, Locale locale) {
         return replaceParameters(message, NullArgsProvider.INSTANCE, locale, new LinkedHashSet<>(4));
+    }
+
+    public String getMessageWithSingleArgs(String message,Object[] args) {
+        return getMessageWithSingleArgs(message,args,LocaleContextHolder.getLocale());
     }
 
     public String getMessageWithSingleArgs(String message,Object[] args, Locale locale) {
