@@ -16,7 +16,16 @@ class MessageSourceExpansionTest {
 
     @Test
     void replaceParameters() {
-        String message = messageSourceExpansion.getMessage("{demand.message.hello},{demand.message.args}", Locale.getDefault());
+        String message = messageSourceExpansion.getMessage("{demand.message.hello}", Locale.getDefault());
+        log.info(message);
+    }
+
+    @Test
+    void getMessageWithSingleArgs() {
+        String message =
+                messageSourceExpansion.getMessageWithSingleArgs(
+                        "{demand.message.hello},{demand.message.args}",new Object[]{"测试参数"}, Locale.getDefault()
+                );
         log.info(message);
     }
 
