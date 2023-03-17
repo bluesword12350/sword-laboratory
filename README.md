@@ -21,4 +21,5 @@
     - testing【测试】
       - laboratory-jacoco【org.jacoco.jacoco-maven-plugin】
     - util【工具目录（暂时未分类的工具）】
-      - laboratory-guava【com.google.guava.guava】【java小工具集】
+      - laboratory-guava [com.google.guava.guava]【google-java小工具集】
+      - laboratory-lombok [org.projectlombok.lombok]【java类注解增强工具】
