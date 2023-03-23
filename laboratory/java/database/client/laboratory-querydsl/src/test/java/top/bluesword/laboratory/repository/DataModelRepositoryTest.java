@@ -111,4 +111,16 @@ class DataModelRepositoryTest {
         log.info("titles:{}",titles);
     }
 
+    @Test
+    void coalesce(){
+        QDataModel qDataModel = QDataModel.dataModel;
+        List<String> strings = queryFactory
+                .select(
+                        qDataModel.key.coalesce(qDataModel.name)
+                )
+                .from(qDataModel)
+                .fetch();
+        System.out.println(strings);
+    }
+
 }
