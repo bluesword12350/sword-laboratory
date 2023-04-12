@@ -24,4 +24,5 @@
       - laboratory-guava [com.google.guava.guava]【google-java小工具集】
       - laboratory-lombok [org.projectlombok.lombok]【java类注解增强工具】
   - [javascript](laboratory/javascript/)
-    - [laboratory-antdv](laboratory/javascript/laboratory-antdv/)【Ant Design组件库 的 Vue 实现】
+    - [component-library](laboratory/javascript/component-library/)【组件库】
+      - [laboratory-antdv](laboratory/javascript/component-library/laboratory-antdv/)【Ant Design组件库 的 Vue 实现】
