@@ -13,7 +13,7 @@ class DataTest {
     JPAQueryFactory queryFactory;
 
     @Test
-    void groupBy(){
+    void selectZero(){
         JPAQuery<Integer> integerJPAQuery = queryFactory.selectZero();
         System.out.println(integerJPAQuery);
     }

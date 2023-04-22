@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import top.bluesword.laboratory.domain.*;
+import top.bluesword.laboratory.domain.projection.DataGroup;
+import top.bluesword.laboratory.domain.projection.DataModelQueryResult;
 
 import java.util.List;
 import java.util.Map;

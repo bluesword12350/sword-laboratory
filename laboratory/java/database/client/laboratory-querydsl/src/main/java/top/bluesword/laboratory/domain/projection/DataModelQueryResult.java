@@ -1,4 +1,4 @@
-package top.bluesword.laboratory.domain;
+package top.bluesword.laboratory.domain.projection;
 
 import lombok.Data;
 

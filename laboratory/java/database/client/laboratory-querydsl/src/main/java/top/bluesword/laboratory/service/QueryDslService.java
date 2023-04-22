@@ -36,13 +36,4 @@ public class QueryDslService {
         return dataModelQueryDslRepository.findAll();
     }
 
-    public DataModel mock() {
-        DataModel dataModel = new DataModel();
-        dataModel.setKey(UUID.randomUUID().toString());
-        DataContext dataContext = new DataContext();
-        dataContext.setFragments(List.of(new DataFragment("段落1"),new DataFragment("段落2")));
-        dataModel.setContext(dataContext);
-        return dataModelQueryDslRepository.save(dataModel);
-    }
-
 }

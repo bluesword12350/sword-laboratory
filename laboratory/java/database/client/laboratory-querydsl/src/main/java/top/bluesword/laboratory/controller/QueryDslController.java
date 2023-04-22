@@ -27,9 +27,4 @@ public class QueryDslController {
 		queryDslService.delete(id);
 	}
 
-	@PostMapping("mock")
-	public DataModel mock() {
-		return queryDslService.mock();
-	}
-
 }
