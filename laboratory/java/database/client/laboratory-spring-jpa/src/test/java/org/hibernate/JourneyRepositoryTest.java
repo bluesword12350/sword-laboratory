@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest(classes = LaboratoryApplication.class)
-public class TimeZoneStorageTest {
+public class JourneyRepositoryTest {
 
     @Resource
     private JourneyRepository journeyRepository;
