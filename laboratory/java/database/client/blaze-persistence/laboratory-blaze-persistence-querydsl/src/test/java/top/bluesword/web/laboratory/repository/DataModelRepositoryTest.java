@@ -44,4 +44,15 @@ class DataModelRepositoryTest {
         System.out.println(models);
     }
 
+    @Test
+    void groupByAndFetchPage(){
+        PagedList<String> pagedList = jpqlQueryFactory.select(qDataModel.name)
+                .from(qDataModel)
+                .groupBy(qDataModel.name)
+                .orderBy(qDataModel.name.asc())
+                .fetchPage(0, 2);
+        System.out.println(pagedList.getTotalSize());
+        System.out.println(pagedList.size());
+    }
+
 }
