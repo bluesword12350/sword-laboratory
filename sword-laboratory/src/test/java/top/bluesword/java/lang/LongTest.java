@@ -1,7 +1,10 @@
 package top.bluesword.java.lang;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+@Slf4j
 class LongTest {
 
 	@Test
@@ -29,14 +32,17 @@ class LongTest {
 		String time = Long.toBinaryString(System.currentTimeMillis()/1000);
 		System.out.println(time);
 		System.out.println(time.length());
+
+		String binaryString2 = Long.toBinaryString(~(-1L << 63));
+		System.out.println(binaryString2);
 	}
 
 	@Test
-	void toBinaryString2(){
-		String binaryString = Long.toBinaryString(~(-1L << 63));
-		System.out.println(binaryString);
+	void _toString(){
+		String result = Long.toString(Long.parseLong("8", 10), 8);
+		log.debug("Long.toString(Long.parseLong(8, 10), 8) : {}",result);
+		Assertions.assertEquals("10", result);
 	}
-
 
 	@Test
 	void maxValue() {
