@@ -1,14 +1,20 @@
 package top.bluesword.laboratory.repository;
 
+import com.querydsl.core.Tuple;
 import com.querydsl.core.group.GroupBy;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.bluesword.laboratory.domain.*;
+import top.bluesword.laboratory.domain.DataContext;
+import top.bluesword.laboratory.domain.DataFragment;
+import top.bluesword.laboratory.domain.DataModel;
+import top.bluesword.laboratory.domain.QDataFragment;
+import top.bluesword.laboratory.domain.QDataModel;
 import top.bluesword.laboratory.domain.projection.DataGroup;
 import top.bluesword.laboratory.domain.projection.DataModelQueryResult;
 
@@ -97,6 +103,36 @@ class DataModelRepositoryTest {
                 .from(qDataModel)
                 .where(qDataModel.key.contains("f"))
                 .fetch();
+        log.info("keys:{}",keys);
+    }
+
+    @Test
+    void template(){
+        QDataModel qDataModel = QDataModel.dataModel;
+        List<DataModel> keys = queryFactory
+          .selectFrom(qDataModel)
+          .where(
+            Expressions.template(Object.class, "({0},{1})",qDataModel.key, qDataModel.name).in(
+              Expressions.template(Tuple.class, "({0},{1})", "key2","name2"),
+              Expressions.template(Tuple.class, "({0},{1})", "key1","name 1")
+            )
+          )
+          .fetch();
+        log.info("keys:{}",keys);
+    }
+
+    @Test
+    void list(){
+        QDataModel qDataModel = QDataModel.dataModel;
+        List<DataModel> keys = queryFactory
+          .selectFrom(qDataModel)
+          .where(
+            Expressions.list(Object.class,qDataModel.key, qDataModel.name).in(
+              Expressions.template(Object.class, "({0},{1})", "key1","name1"),
+              Expressions.template(Object.class, "({0},{1})", "key2","name2")
+            )
+          )
+          .fetch();
         log.info("keys:{}",keys);
     }
 
