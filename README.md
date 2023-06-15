@@ -15,15 +15,15 @@
     - [database](laboratory/java/database/)【数据库】
       - [client](laboratory/java/database/client/)【数据库客户端技术】
         - [laboratory-spring-jpa](laboratory/java/database/client/laboratory-spring-jpa/)
-        - 
     - encode【编码/加密】
       - laboratory-tink【com.google.crypto.tink.tink】
     - office-document【办公文档】
       - laboratory-easypoi【cn.afterturn.easypoi-base】
     - template【模板】
       - laboratory-spring-expression【org.springframework.spring-expression】
-    - testing【测试】
-      - laboratory-jacoco【org.jacoco.jacoco-maven-plugin】
+    - [testing](laboratory/java/testing)【测试】
+      - laboratory-jacoco
+      - [laboratory-jmh](laboratory\java\testing\laboratory-jmh)【微基准性能测试】
     - util【工具目录（暂时未分类的工具）】
       - laboratory-guava [com.google.guava.guava]【google-java小工具集】
       - laboratory-lombok [org.projectlombok.lombok]【java类注解增强工具】
