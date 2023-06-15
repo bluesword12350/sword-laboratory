@@ -9,7 +9,7 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import java.util.concurrent.TimeUnit;
 
 //BenchmarkMode，使用模式，默认是Mode.Throughput，表示吞吐量
-//AverageTime，表示每次执行时间
+//AverageTime，表示平均执行时间
 //SampleTime表示采样时间
 //SingleShotTime表示只运行一次，用于测试冷启动消耗时间
 //All表示统计前面的所有指标
@@ -27,25 +27,12 @@ import java.util.concurrent.TimeUnit;
 public class BenchmarkTest {
 
     @Benchmark
-    public static void test1(){
-        int sum = 1;
-        for (int i = 0; i < 10; i++) {
-            sum*=2;
-        }
-        if (sum!=1024) {
-            throw new RuntimeException();
-        }
+    public static void deci() throws InterruptedException {
+        Thread.sleep(100);
     }
 
     @Benchmark
-    public static void test2(){
-        int sum = 1;
-        for (int i = 0; i < 10; i++) {
-            sum=sum<<1;
-        }
-        if (sum!=1024) {
-            throw new RuntimeException();
-        }
+    public static void empty() {
     }
 
     public static void main(String[] args) throws RunnerException {
