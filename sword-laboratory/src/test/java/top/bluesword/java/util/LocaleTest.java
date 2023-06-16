@@ -14,4 +14,16 @@ class LocaleTest {
         Assertions.assertEquals(locale, new Locale("zh","CN"));
     }
 
+    @Test
+    void toStr(){
+        Locale locale = Locale.SIMPLIFIED_CHINESE;
+        System.out.println(locale);
+    }
+
+    @Test
+    void toLanguageTag(){
+        Locale locale = Locale.SIMPLIFIED_CHINESE;
+        System.out.println(locale.toLanguageTag());
+    }
+
 }
