@@ -16,9 +16,10 @@ public interface ProjectionRepository extends JpaRepository<Journey,Long> {
     value =
       """
         select key,name from json_to_recordset(:json ::::json) as t(key varchar,name varchar)
+        where key = :key
       """,
     nativeQuery = true
   )
-  List<Projection> selectJson(String json);
+  List<Projection> selectJson(String json,String key);
 
 }

@@ -19,7 +19,7 @@ class ProjectionRepositoryTest {
   @Test
   void selectJson() {
     String jsonStr = "[{\"key\":\"key1\",\"name\":\"name1\"},{\"key\":\"key2\",\"name\":\"name2\"}]";
-    List<Projection> projections = projectionRepository.selectJson(jsonStr);
+    List<Projection> projections = projectionRepository.selectJson(jsonStr,"key1");
     for (Projection projection : projections) {
       System.out.println("key:"+projection.getKey());
       System.out.println("name:"+projection.getName());
