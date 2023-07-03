@@ -1,14 +1,17 @@
-package top.bluesword.web.laboratory.dao;
+package top.bluesword.laboratory.dao;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Locale;
 import java.util.Optional;
 
 /**
  * @author 李林峰
  */
-@Repository
+@Mapper
 public interface TestMapper {
 
     /**
@@ -22,5 +25,7 @@ public interface TestMapper {
      * @return 数字列表
      */
     Cursor<Integer> scan();
+
+    Optional<Locale> selectLocale(@Param("locale") Locale locale);
 
 }

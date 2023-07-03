@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="top.bluesword.web.laboratory.dao.TestMapper">
+<mapper namespace="top.bluesword.laboratory.dao.TestMapper">
     <select id="selectNow" resultType="string">
         SELECT DATETIME('now')
     </select>
@@ -10,5 +10,9 @@
     <select id="scan" resultType="integer">
         WITH RECURSIVE cnt(x) AS ( SELECT 1 UNION ALL SELECT x + 1 FROM cnt LIMIT 100000)
         SELECT x FROM cnt;
+    </select>
+
+    <select id="selectLocale" resultType="java.util.Locale">
+        SELECT #{locale}
     </select>
 </mapper>

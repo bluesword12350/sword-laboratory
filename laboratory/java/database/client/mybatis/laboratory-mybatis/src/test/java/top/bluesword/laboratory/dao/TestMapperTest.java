@@ -1,22 +1,24 @@
-package top.bluesword.web.laboratory.dao;
+package top.bluesword.laboratory.dao;
 
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Optional;
 
 @SpringBootTest
 class TestMapperTest {
 
     @Autowired
-    TestMapper mapper;
+    private TestMapper mapper;
     @Autowired
-    SqlSessionFactory sqlSessionFactory;
+    private SqlSessionFactory sqlSessionFactory;
 
     @Test
     void selectNow() {
@@ -32,5 +34,12 @@ class TestMapperTest {
         ) {
             cursor.forEach(System.out::println);
         }
+    }
+
+    @Test
+    void selectLocale() {
+        Locale china = Locale.CHINA;
+        Optional<Locale> localeOptional = mapper.selectLocale(china);
+        Assertions.assertEquals(china,localeOptional.orElse(null));
     }
 }
