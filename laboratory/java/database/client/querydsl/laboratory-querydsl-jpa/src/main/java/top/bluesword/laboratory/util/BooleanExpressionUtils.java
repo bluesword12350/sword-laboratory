@@ -12,9 +12,29 @@ import java.util.List;
  * @author 李林峰
  */
 public class BooleanExpressionUtils {
+
+  public static BooleanExpression multiValueInWhenNotEmpty(SimpleExpression<?>[] paths, List<List<Object>> values){
+    if (values == null || values.size() < 1) {
+      return null;
+    }
+    return multiValueIn(paths,values);
+  }
+
   public static BooleanExpression multiValueIn(SimpleExpression<?>[] paths, List<List<Object>> values) {
     if (paths.length < 1) {
       throw new RuntimeException("查询列不应该少于1");
+    }
+    if (values.size() < 1) {
+      return Expressions.booleanTemplate("0=1");
+    }
+    if (values.size() == 1) {
+      List<Object> objects = values.get(0);
+      List<BooleanExpression> booleanExpressions = new ArrayList<>();
+      for (int i = 0; i < paths.length; i++) {
+        //noinspection unchecked
+        booleanExpressions.add(((SimpleExpression<Object>)paths[i]).eq(objects.get(i)));
+      }
+      return Expressions.allOf(booleanExpressions.toArray(new BooleanExpression[]{}));
     }
     String template = buildTemplate(paths.length);
     List<Expression<Object>> simpleTemplates = new ArrayList<>();
