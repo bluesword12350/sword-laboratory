@@ -13,11 +13,19 @@ import java.util.List;
  */
 public class BooleanExpressionUtils {
 
+  public static BooleanExpression multiValueInWhenNotEmpty(List<SimpleExpression<?>> paths, List<List<Object>> values){
+    return multiValueInWhenNotEmpty(paths.toArray(new SimpleExpression<?>[]{}),values);
+  }
+
   public static BooleanExpression multiValueInWhenNotEmpty(SimpleExpression<?>[] paths, List<List<Object>> values){
     if (values == null || values.size() < 1) {
       return null;
     }
     return multiValueIn(paths,values);
+  }
+
+  public static BooleanExpression multiValueIn(List<SimpleExpression<?>> paths, List<List<Object>> values) {
+    return multiValueIn(paths.toArray(new SimpleExpression<?>[]{}),values);
   }
 
   public static BooleanExpression multiValueIn(SimpleExpression<?>[] paths, List<List<Object>> values) {

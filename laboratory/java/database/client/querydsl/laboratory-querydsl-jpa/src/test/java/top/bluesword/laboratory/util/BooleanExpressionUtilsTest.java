@@ -21,13 +21,14 @@ class BooleanExpressionUtilsTest {
   @Test
   void multiValueIn() {
     List<List<Object>> values = List.of(
+      List.of("key1","name1")
     );
     QDataModel qDataModel = QDataModel.dataModel;
     List<SimpleExpression<?>> paths = List.of(qDataModel.key, qDataModel.name);
     List<DataModel> keys = queryFactory
       .selectFrom(qDataModel)
       .where(
-        BooleanExpressionUtils.multiValueIn(paths.toArray(new SimpleExpression[]{}),values)
+        BooleanExpressionUtils.multiValueIn(paths,values)
       )
       .fetch();
     log.info("keys:{}",keys);
@@ -35,14 +36,13 @@ class BooleanExpressionUtilsTest {
 
   @Test
   void multiValueInWhenNotEmpty() {
-    List<List<Object>> values = List.of(
-    );
+    List<List<Object>> values = List.of();
     QDataModel qDataModel = QDataModel.dataModel;
     List<SimpleExpression<?>> paths = List.of(qDataModel.key, qDataModel.name);
     DataModel dataModel = queryFactory
       .selectFrom(qDataModel)
       .where(
-        BooleanExpressionUtils.multiValueInWhenNotEmpty(paths.toArray(new SimpleExpression[]{}),values)
+        BooleanExpressionUtils.multiValueInWhenNotEmpty(paths,values)
       )
       .fetchFirst();
     log.info("dataModel:{}",dataModel);
