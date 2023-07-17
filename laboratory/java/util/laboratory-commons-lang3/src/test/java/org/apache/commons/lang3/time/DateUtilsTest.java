@@ -15,6 +15,12 @@ class DateUtilsTest {
 	}
 
 	@Test
+	void parseDate() throws ParseException {
+		Date date = DateUtils.parseDate("2023-5-17 00:00:00", "yyyy-MM-dd HH:mm:ss","yyyy-M-dd HH:mm:ss");
+		System.out.println(DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(date));
+	}
+
+	@Test
 	void addHours() {
 		Date date = new Date();
 		Date date2 = DateUtils.addHours(date, -1);
