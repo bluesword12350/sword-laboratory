@@ -10,7 +10,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoField;
 import java.util.Locale;
 
@@ -51,9 +50,9 @@ class DateTimeFormatterTest {
             .appendPattern("[yyyy][yy][-][/][MM][M][-][/][dd][d][ HH:mm]")
             .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
             .toFormatter()
-            .withResolverStyle(ResolverStyle.STRICT)
+            //.withResolverStyle(ResolverStyle.STRICT)
             .withZone(ZoneId.systemDefault());
-        log.info("parse 1 :{}", ZonedDateTime.from(dateTimeFormatter.parse("2022-12-09 15:29")));
+        log.info("parse 1 :{}",ZonedDateTime.from(dateTimeFormatter.parse("2022-12-09 15:29")));
         log.info("parse 2 :{}",ZonedDateTime.from(dateTimeFormatter.parse("2022-12-09")));
         log.info("parse 3 :{}",ZonedDateTime.from(dateTimeFormatter.parse("2022/12/09")));
         log.info("parse 4 :{}",ZonedDateTime.from(dateTimeFormatter.parse("22/1/9")));
