@@ -13,7 +13,12 @@ import java.util.Map;
 public class YamlTest {
 
     @Autowired
-    YamlProperties yaml;
+    private YamlProperties yaml;
+
+    @Test
+    void yaml() {
+        log.info("yaml:{}",yaml);
+    }
 
     @Test
     void ls() {
@@ -25,12 +30,6 @@ public class YamlTest {
     void map() {
         Map<String, List<String>> map = yaml.getMap();
         log.info("map:{}",map);
-    }
-
-    @Test
-    void zhCn() {
-        String zhCn = yaml.getZhCn();
-        log.info("zhCn:{}",zhCn);
     }
 
 }

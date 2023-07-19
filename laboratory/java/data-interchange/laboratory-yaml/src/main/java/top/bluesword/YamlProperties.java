@@ -17,6 +17,8 @@ import java.util.Map;
 @SpringBootApplication
 public class YamlProperties {
 
+    private String string;
+
     private List<String> ls;
 
     private Map<String,List<String>> map;

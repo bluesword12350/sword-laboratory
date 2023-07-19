@@ -1,5 +1,6 @@
 blue-sword:
-  ls: s1,s2
+  string: 空格 值
+  ls: s1,s2,空格 值
   map:
     k1:
       - v1
