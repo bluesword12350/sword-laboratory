@@ -1,8 +1,8 @@
 package top.bluesword.laboratory.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,7 +27,7 @@ public class DataModel {
 
     private Instant date;
 
-    @Embedded
+    @Type(type = "json")
     private DataContext context;
 
 }

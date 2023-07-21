@@ -3,20 +3,12 @@ package top.bluesword.laboratory.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 /**
  * @author 李林峰
  */
 @Data
-@Entity
+@NoArgsConstructor
 public class DataFragment {
-
-    @Id
-    @GeneratedValue
-    private Long id;
 
     private String title;
 
@@ -25,9 +17,6 @@ public class DataFragment {
     private Integer index;
 
     private Long dataModelId;
-
-    public DataFragment() {
-    }
 
     public DataFragment(String title) {
         this.title = title;
