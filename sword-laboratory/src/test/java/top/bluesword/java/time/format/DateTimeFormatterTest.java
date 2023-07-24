@@ -1,6 +1,7 @@
 package top.bluesword.java.time.format;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
@@ -32,6 +33,12 @@ class DateTimeFormatterTest {
         String dateStr = dateTimeFormatter.format(LocalTime.of(9, 3));
         System.out.println(dateStr);
         System.out.println(LocalTime.parse(dateStr,dateTimeFormatter));
+    }
+
+    @Test
+    void ofPattern(){
+        //noinspection IncorrectDateTimeFormat
+        Assertions.assertThrows(IllegalArgumentException.class, () -> DateTimeFormatter.ofPattern("qwertyuiopasdfghjklzxcvbnm"));
     }
 
     @Test
