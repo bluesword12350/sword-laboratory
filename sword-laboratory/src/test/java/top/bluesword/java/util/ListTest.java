@@ -1,5 +1,6 @@
 package top.bluesword.java.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+@Slf4j
 class ListTest {
 
     @Test
@@ -17,9 +19,11 @@ class ListTest {
 
     @Test
     void set(){
-        List<Integer> list = new ArrayList<>(List.of(1,2,3));
-        list.set(1,5);
-        System.out.println(list);
+        List<Integer> list = new ArrayList<>(List.of(0,0,0));
+        for (int i = 0; i < list.size();) {
+            list.set(i++,i);
+        }
+        log.info("list:{}",list);
     }
 
     @Test
