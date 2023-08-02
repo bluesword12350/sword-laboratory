@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文件服务</title>
+</head>
+<body>
+  <a href="/share">文件目录</a>
+  <form enctype="multipart/form-data" target="_top">
+    <label for="up-file">上传文件</label>
+    <input id="up-file" name="upFile" type="file"/>
+    <button type="button" onclick="uploadFile(this.parentElement)">上传</button>
+  </form>
+</body>
+<script>
+  function uploadFile(form) {
+    let request = new XMLHttpRequest()
+    request.open("post","/upload")
+    request.send(new FormData(form))
+  }
+</script>
+</html>

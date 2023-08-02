@@ -10,7 +10,7 @@ import (
 func main() {
 	pathName := "file"
 	_ = os.Mkdir(pathName, os.ModePerm)
-	fileUrl := "/file/"
+	fileUrl := "/"
 	http.Handle(fileUrl, http.StripPrefix(fileUrl, http.FileServer(http.Dir(pathName))))
 	http.HandleFunc("/upload", func(writer http.ResponseWriter, request *http.Request) {
 		file, fileHeader, _ := request.FormFile("upFile")
