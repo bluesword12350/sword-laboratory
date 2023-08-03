@@ -35,8 +35,6 @@ export default {
       nowTimestamp: 0,
       nowDataTimeText: "",
       dataTimeText:"",
-      horizontal : 8,
-      vertical : 16,
       inputTimestamp: "",
       inputTimestampText: ""
     }
