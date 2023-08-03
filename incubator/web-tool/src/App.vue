@@ -1,0 +1,39 @@
+<script setup>
+import {Setting} from '@element-plus/icons-vue'
+import {ElMenu} from "element-plus";
+</script>
+
+<template>
+  <el-container>
+    <el-aside>
+      <el-menu router>
+        <el-menu-item index="/json-editor">
+          <el-icon><setting /></el-icon>
+          <span>Json编辑器</span>
+        </el-menu-item>
+        <el-menu-item index="/dislodge-escape">
+          <el-icon><setting /></el-icon>
+          <span>去除转义</span>
+        </el-menu-item>
+        <el-menu-item index="/url-editor">
+          <el-icon><setting /></el-icon>
+          <span>URL编码</span>
+        </el-menu-item>
+        <el-menu-item index="/timestamp">
+          <el-icon><setting /></el-icon>
+          <span>时间</span>
+        </el-menu-item>
+      </el-menu>
+    </el-aside>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
+  </el-container>
+</template>
+
+<style>
+body {
+  margin: 0;
+  height: 100%;
+}
+</style>
