@@ -6,8 +6,8 @@ import {Setting} from '@element-plus/icons-vue'
 <template>
   <el-container>
     <el-aside>
-      <el-menu>
-        <el-menu-item route="/timestamp">
+      <el-menu router>
+        <el-menu-item index="/timestamp">
           <el-icon><setting /></el-icon>
           <span>时间戳</span>
         </el-menu-item>
