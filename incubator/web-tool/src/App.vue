@@ -1,5 +1,5 @@
 <script setup>
-import {Setting} from '@element-plus/icons-vue'
+import {BottomRight,Document,Calendar,Link} from '@element-plus/icons-vue'
 import {ElMenu} from "element-plus";
 </script>
 
@@ -8,19 +8,19 @@ import {ElMenu} from "element-plus";
     <el-aside>
       <el-menu router>
         <el-menu-item index="/json-editor">
-          <el-icon><setting /></el-icon>
+          <el-icon><Document /></el-icon>
           <span>Json编辑器</span>
         </el-menu-item>
         <el-menu-item index="/dislodge-escape">
-          <el-icon><setting /></el-icon>
+          <el-icon><BottomRight /></el-icon>
           <span>去除转义</span>
         </el-menu-item>
         <el-menu-item index="/url-editor">
-          <el-icon><setting /></el-icon>
+          <el-icon><Link /></el-icon>
           <span>URL编码</span>
         </el-menu-item>
         <el-menu-item index="/timestamp">
-          <el-icon><setting /></el-icon>
+          <el-icon><Calendar /></el-icon>
           <span>时间</span>
         </el-menu-item>
       </el-menu>

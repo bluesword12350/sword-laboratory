@@ -2,7 +2,7 @@
   <div style="padding:20px">
     <el-row>
       <el-col :span="2"><span>现在：</span></el-col>
-      <el-col :span="4"><a @click="copyTimestamp">{{nowTimestamp}}</a> 毫秒</el-col>
+      <el-col :span="4"><el-link type="primary" @click="copyTimestamp">{{nowTimestamp}}</el-link> 毫秒</el-col>
       <el-col :span="4"><span>{{ nowDataTimeText }}</span></el-col>
     </el-row>
     <el-row>
@@ -64,6 +64,7 @@ export default {
 </script>
 
 <style>
+/*noinspection CssUnusedSymbol*/
 .el-row {
   margin-bottom: 20px;
 }

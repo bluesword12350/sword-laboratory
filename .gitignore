@@ -24,6 +24,9 @@ yarn.lock
 babel.config.js
 .pnp.js
 
+#pnpm
+pnpm-lock.yaml
+
 dist
 node_modules
 
