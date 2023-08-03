@@ -1,0 +1,26 @@
+{
+  "name": "web-tool",
+  "version": "1.0.0",
+  "description": "网页小工具",
+  "main": "src/main.js",
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "dayjs": "^1.11.9",
+    "element-plus": "^2.3.8",
+    "jsoneditor": "^9.10.2",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.1",
+    "vite": "^4.4.8"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "author": "李林峰",
+  "license": "MIT"
+}

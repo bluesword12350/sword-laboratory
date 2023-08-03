@@ -16,6 +16,7 @@ import {Back, Right} from "@element-plus/icons-vue";
 
 export default {
   name: "JsonEditor",
+  components: {Back, Right},
   data() {
     return {
       codeEditor:{},

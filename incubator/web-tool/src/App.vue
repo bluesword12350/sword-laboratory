@@ -4,7 +4,7 @@ import {ElMenu} from "element-plus";
 </script>
 
 <template>
-  <el-container>
+  <el-container class="container">
     <el-aside>
       <el-menu router>
         <el-menu-item index="/json-editor">
@@ -32,8 +32,7 @@ import {ElMenu} from "element-plus";
 </template>
 
 <style>
-body {
-  margin: 0;
-  height: 100%;
+.container{
+  height: 100vh;
 }
 </style>
