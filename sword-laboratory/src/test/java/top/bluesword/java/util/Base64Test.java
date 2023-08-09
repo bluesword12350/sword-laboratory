@@ -1,6 +1,5 @@
 package top.bluesword.java.util;
 
-import cn.hutool.core.io.resource.ClassPathResource;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileOutputStream;
@@ -13,7 +12,7 @@ class Base64Test {
 	@Test
 	void decode() throws IOException {
 		byte[] data;
-		InputStream inputStream = new ClassPathResource("rocket.base64").getStream();
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("rocket.base64");
 		FileOutputStream outputStream = new FileOutputStream("rocket.ico");
 		try (inputStream;outputStream) {
 			data = new byte[inputStream.available()];
@@ -33,7 +32,6 @@ class Base64Test {
 			char[] chars = new char[end-start];
 			encodeToString.getChars(start,end,chars,0);
 			start = end;
-			System.out.println(String.copyValueOf(chars));
 		}
 		System.out.println("data:image/x-icon;base64," + encodeToString);
 	}
